@@ -1,0 +1,85 @@
+#maId,maDeck,maNumero,maNom,maInit,maMultiplie,maCrise,maRencontre,maAcceleration
+1,1,20,Casser Et Emporter,2,0,0,1,0
+2,1,21,Contrôler la foule,2,1,1,0,0
+3,2,19,Réseau de défense,2,0,1,0,0
+4,2,20,Fabrique d'armes clandestines,3,0,0,1,0
+5,2,21,Klaw \"l'Immortel\",3,1,0,0,1
+6,3,17,Offensive De Crossbones,2,1,0,0,1
+7,3,18,Offensive de Crossbones,2,1,0,0,0
+8,3,19,Employés Pris au Piège,3,0,1,0,0
+9,4,Hawkeye,Désignée pour Mourir,5,0,0,0,1
+10,4,Spider-Woman,Les Ambitions De La Vipère,2,0,0,1,0
+11,4,Captain America,Commando Armé,3,1,0,0,1
+12,4,Black Widow,Tueur à Louer,3,0,0,0,1
+13,5,1,Légions D'Hydra,3,0,0,1,0
+14,5,2,Légions D'Hydra,3,0,0,1,0
+15,6,1,Ingérence En Cours,1,1,1,0,0
+16,7,1,Absorption Electrique,2,1,0,0,1
+17,8,1,Un Immense Gâchis,2,0,0,1,0
+18,9,6,Patrouille D'Hydra,2,1,1,0,0
+19,10,1,Le Siège De L'Apocalypse,8,0,0,0,1
+20,10,2,Le Siège De L'Apocalypse,8,0,0,0,1
+21,11,1,Civils Attaqués,3,0,1,0,0
+22,12,1,Les Maîtres Du Mal,3,1,0,0,1
+23,13,1,Alerte à La Bombe,2,0,0,1,0
+24,14,23,Fabrique de Drones,4,0,0,0,1
+25,14,24,I.A. Invasive,3,1,0,1,0
+26,14,25,Ordre D'Ultron,2,1,0,1,0
+27,15,14,Effondrement D'un Pont,2,1,1,0,0
+28,15,15,Production D'Oscorp,2,1,0,0,0
+29,15,16,Production D'Oscorp,2,1,0,0,1
+30,15,17,Pot-De-Vin,2,1,0,1,0
+31,15,18,Pot-De-Vin,2,1,0,1,0
+32,16,21,Renforts Du Bouffon,2,0,0,1,0
+33,16,22,Renforts Du Bouffon,2,0,0,1,0
+34,16,23,La Nation Bouffon,2,1,0,0,0
+35,16,24,Débordement,1,1,0,0,2
+36,16,25,Débordement,1,1,0,0,2
+37,17,3,Compression !,3,0,0,0,0
+38,18,3,L'Heure Des Comptes,6,0,0,0,0
+39,19,3,Dégager La Voie,4,0,0,0,0
+40,20,3,Envoyer Bouler,5,0,0,0,0
+41,21,23,Avalanche !,2,1,0,0,1
+42,21,24,Avalanche !,2,1,0,0,1
+43,21,25,Pouvoir Super Absorbant,3,1,0,0,0
+44,22,28,Prison D'Hydra,1,0,0,0,0
+45,22,29,Cobayes,2,1,0,1,0
+46,22,29,Cobayes,2,1,0,1,0
+47,22,31,Expériences De Zola,3,1,0,0,1
+48,23,19,Capturé Par Hydra,5,0,0,0,1
+49,23,20,Capturé Par Hydra,5,0,0,0,1
+50,23,21,Capturé Par Hydra,5,0,0,0,1
+51,23,22,Capturé Par Hydra,5,0,0,0,1
+52,23,23,Camp D'Entraînement De Taskmaster,2,1,0,1,0
+53,24,23,La Maison Rouge,3,1,0,0,0
+54,24,24,Le Réveil Du Dormeur,0,0,0,0,0
+55,24,25,Camps De Prisonniers,3,1,0,0,1
+56,24,26,Réécrire Le Passé,3,1,0,0,1
+57,24,27,Renforts D'Hydra,2,1,0,1,0
+58,24,28,Chaos De Masse,0,0,1,0,0
+59,25,30,Flux Temporel Perverti,2,0,0,0,0
+60,25,31,Empire De Kang,3,1,0,0,0
+61,25,32,Empire De Kang,3,1,0,0,0
+62,25,33,Empire De Kang,3,1,0,0,0
+63,25,34,Empire De Kang,3,1,0,0,0
+64,25,35,Cloués Au Sol,2,0,1,0,0
+65,25,36,Dévastation,4,0,0,0,1
+66,25,37,Dévastation,4,0,0,0,1
+67,26,6,Lueur Des Spères Séculaires,3,1,0,1,0
+68,27,6,Les Anachronautes,3,1,0,1,0
+69,27,7,Les Anachronautes,3,1,0,1,0
+70,28,7,Portail Temporel,2,1,0,1,0
+71,4,Spiderman,Cambriolage De Haut Vol,3,1,0,0,1
+72,4,Captain Marvel,Le Psycho-Magnitron,3,0,0,1,0
+73,4,Miss Hulk,Défi Personnel,3,0,1,0,0
+74,4,Iron Man,Surcharge Imminente,3,0,0,0,1
+75,4,Black Panther,Usurper Le Trône,3,1,0,1,0
+76,4,Miss Marvel,Génération Y,2,1,0,1,0
+77,4,Thor,Querelle Familiale,2,0,0,0,1
+78,4,Docteur Strange,Ouvrir La Dimension Noire,3,1,0,0,1
+79,4,Hulk,Destruction Totale,2,1,0,1,0
+80,25,12,3B| La Guerre Présent-Futur,2,0,0,0,0
+81,25,11,3B| Le Royaume De Ram-Tut,1,0,0,0,0
+82,25,10,3B| Destin Inéluctable,1,0,0,0,0
+83,25,9,3B| Chronopolis,0,0,0,0,0
+84,4,Ant-Man,Vol de technologie,0,2,0,0,0
