@@ -5,18 +5,22 @@ if (!file_exists('./config.inc')) {
 	$error='';
 	if(!is_writable(__DIR__)) {$error="Ecriture impossible dans le répertoire '".__DIR__."', merci de vérifier!";}
 	elseif (isset($_POST['serverName'])) {
-		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName'].":".$_POST['serverPort']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysql_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n?>";
+		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName'].":".$_POST['serverPort']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysqli_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n?>";
 		if ($_POST['newDb']=='1') {
 			#Création d'une nouvelle base de donnée
 			$sqlConn=mysqli_connect($_POST['serverName'].':'.$_POST['serverPort'],$_POST['serverUser'],$_POST['serverPass']);
 			if (!$sqlConn){$error="Erreur,Connection impossible, merci de vérifier";}
 			else {
-				$sqlQuery="CREATE DATABASE '".$_POST['newDb']."'";
-				
-				
-				
-				
-			}}
+				$sqlQuery="CREATE DATABASE `".$_POST['serverDb']."`";
+				mysqli_query($sqlConn,$sqlQuery);
+				$sqlError=mysqli_error($sqlConn);
+				if ($sqlError!='') {
+					echo "Création de la nouvelle Base de données '".$_POST['serverDb']."'.<br/>$sqlQuery<br/><b>$sqlError</b>";
+					exit();}
+				else {
+					file_put_contents ('config.inc',$configContent);
+					header("Refresh:0");}				
+			exit();}}
 		else {
 			#Utilisation d'une base de donnée existante
 			$sqlConn=mysqli_connect($_POST['serverName'].':'.$_POST['serverPort'],$_POST['serverUser'],$_POST['serverPass'],$_POST['serverDb']);
@@ -30,7 +34,7 @@ if (!file_exists('./config.inc')) {
 	if ($_POST['newDb']=='0') {echo ' checked';}
 	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
 	if ($_POST['newDb']<>'0') {echo ' checked';}
-	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'>(Non fonctionnel!)</td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
+	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
 exit();}
 
 function updateSQLcontent($tableId) {
@@ -112,12 +116,16 @@ function sqlUpdate() {
 echo "Installation / Mise à jour du site... patience...<br/>";
 include 'config.inc';
 $bodyClass='setup';
-$currentVersion=mysqli_fetch_assoc(sql_get("SELECT `cfValue` FROM `config` WHERE `cfName`='version'"))['cfValue'];
+$currentVersion=sql_get("SELECT `cfValue` FROM `config` WHERE `cfName`='version'");
+if ($currentVersion) {
+	$allreadySetup=true;
+	$currentVersion=mysqli_fetch_assoc($currentVersion)['cfValue'];}
+else {$allreadySetup=false;}
 #Récupération de la dernière version (le changement de version permet aussi la mise à jour du présent script)
 $file=fopen("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/changelog.md","r");
 $newVersion=rtrim(fgets($file));
 fclose($file);
-if ($currentVersion<>$newVersion) {
+if ($allreadySetup and $currentVersion<>$newVersion) {
 	#Mise à jour du script de mise à jour !
 	echo "Mise à jour du script de mise à jour !<br><a href=''>Cliquer ici pour relancer la mise à jour avec le script en version '$newVersion'</a>";
     if (copy('https://raw.githubusercontent.com/Fouyoufr/mc/main/setup/setup.php','setup.php')) {
@@ -127,6 +135,8 @@ if ($currentVersion<>$newVersion) {
 	exit();}
 #Ajout/mise à jour des éléments initiaux dans les tables.		
 sqlUpdate();
+if (!$allreadySetup) {
+	sql_get("INSERT INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
 updateSQLcontent('mechants');
 updateSQLcontent('ManigancesPrincipales');
 updateSQLcontent('manigances');
