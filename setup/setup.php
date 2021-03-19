@@ -30,7 +30,7 @@ if (!file_exists('./config.inc')) {
 	if ($_POST['newDb']=='0') {echo ' checked';}
 	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
 	if ($_POST['newDb']<>'0') {echo ' checked';}
-	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
+	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'>(Non fonctionnel!)</td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
 exit();}
 
 function updateSQLcontent($tableId) {
@@ -126,11 +126,15 @@ if ($currentVersion<>$newVersion) {
     else {echo "<br/><b>Copie échouée....</b>";}
 	exit();}
 #Ajout/mise à jour des éléments initiaux dans les tables.		
-#sqlUpdate();
-#updateSQLcontent('mechants');
-#updateSQLcontent('ManigancesPrincipales');
-#updateSQLcontent('manigances');
+sqlUpdate();
+updateSQLcontent('mechants');
+updateSQLcontent('ManigancesPrincipales');
+updateSQLcontent('manigances');
+updateSQLcontent('decks');
 #Mise à jour des images des méchants
+if (!file_exists('img/mechants')) {if(!mkdir('img/mechants',0777,true)) {
+	echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
+	exit();}}
 $mechants=sql_get("SELECT `mId`,`mNom` FROM `mechants`");
 while ($mechant=mysqli_fetch_assoc($mechants)) {
 	$mechantFile='img/mechants/'.$mechant['mId'].'.png';
