@@ -113,15 +113,18 @@ echo "Installation / Mise à jour du site... patience...<br/>";
 include 'config.inc';
 $bodyClass='setup';
 $currentVersion=mysqli_fetch_assoc(sql_get("SELECT `cfValue` FROM `config` WHERE `cfName`='version'"))['cfValue'];
-#Récupération de la dernière version
+#Récupération de la dernière version (le changement de version permet aussi la mise à jour du présent script)
 $file=fopen("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/changelog.md","r");
 $newVersion=rtrim(fgets($file));
 fclose($file);
 if ($currentVersion<>$newVersion) {
 	#Mise à jour du script de mise à jour !
 	echo "Mise à jour du script de mise à jour !<br><a href=''>Cliquer ici pour relancer la mise à jour avec le script en version '$newVersion'</a>";
-	exit();
-	}
+    if (copy('https://raw.githubusercontent.com/Fouyoufr/mc/main/setup/setup.php','setup.php')) {
+    	#Mise à jour de la version
+		sql_get("REPLACE INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
+    else {echo "<br/><b>Copie échouée....</b>";}
+	exit();}
 #Ajout/mise à jour des éléments initiaux dans les tables.		
 #sqlUpdate();
 #updateSQLcontent('mechants');
@@ -136,8 +139,6 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {
 		if (!copy("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/$mechantFile",$mechantFile)) {echo "<br/><b>Copie échouée....</b>";}
 		echo '<br/>';}}
 
-#Mise à jour de la version
-sql_get("REPLACE INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");
 echo "<hr/>Le site est prêt !<br/><a href='/'>Y accèder !</a>";
 ?>
 </body>
