@@ -26,7 +26,6 @@ if (!file_exists('./config.inc')) {
 			$sqlConn=mysqli_connect($_POST['serverName'].':'.$_POST['serverPort'],$_POST['serverUser'],$_POST['serverPass'],$_POST['serverDb']);
 			if (!$sqlConn){$error="Erreur,Connection impossible, merci de vérifier";}
 			else {
-				
 				file_put_contents ('config.inc',$configContent);
 				header("Refresh:0");}}}
 	if (!isset($_POST['serverPort'])) {$_POST['serverPort']='3306';}
@@ -38,16 +37,19 @@ if (!file_exists('./config.inc')) {
 exit();}
 
 function updateSQLcontent($tableId) {
-	#Mise à jour (ajout et modification, pas de suppression) du contenu d'une table fixe.
+	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
 	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/$tableId", "r");
 	if (!$file) {exit("<p>Unable to open remote file '$tableId'.<br/>Update/Setup of mc needs your php engine to allow remote read.");}
+	$newTable=array();
 	while (!feof ($file)) {
 		$line=explode(',',fgets($file));
 		if ($line[0][0]=='#') {
 			$line[0]=substr($line[0],1);
-			$cols=$line;}
+			$cols=$line;
+			$cols[count($cols)-1]=rtrim($cols[count($cols)-1]);}
 		else {
+			$newTable[$line[0]]=$line[1];
 			$entry=sql_get("SELECT * FROM $tableId WHERE `$cols[0]`='$line[0]'");
 			if ((!mysqli_num_rows($entry))) {
 				echo "- Ajout de l'entrée `$cols[0]`='$line[0]' dans la table `$tableId`";
@@ -74,8 +76,13 @@ function updateSQLcontent($tableId) {
 					sql_get($sqlQuery);
 					$sqlError=mysqli_error($sqlConn);
 					if ($sqlError!='') {echo "<br/>$sqlQuery<br/><b>$sqlError</b>";}
-					echo '<br/>';}}}}}
-
+					echo '<br/>';}}}}
+	#Supression des enregistrements dipsarus.
+	$oldTable=sql_get("SELECT `$cols[0]`, `$cols[1]` FROM $tableId");
+	while($oldLine=mysqli_fetch_assoc($oldTable)) {
+		if(!isset($newTable[$oldLine[$cols[0]]])) {
+			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
+			echo "Supression de l'entrée '".$oldLine[$cols[1]]."' de la table '$tableId'.<br/>";}}}
 function sqlUpdate() {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
 	global $sqlConn;
