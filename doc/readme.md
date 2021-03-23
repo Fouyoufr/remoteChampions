@@ -10,6 +10,19 @@ Une fois votre site installé, vous pouvez simplement y accéder depuis votre na
    - Vous pouvez héberger le suivi de parties pour 1 à 4 joueurs
    - Vous pouvez suivre seulement le compteur de méchant en choisissant "**Méchant seul**" (utile pour certaines parties spécifique comme le suivi de *Kang*).
  - Dans les deux cas, si vous êtes sur pc/Mac, vous serez ensuite dirigé vers l'écran principal de la partie. Si vous consultez le site depuis un smartphone, vous serez redirigé vers votre fiche de joueur.
-# Création d'une partie
+# Création d'une nouvelle partie
+*En construction*
+# Comment utiliser le site
+*En construction*
+## Gestion de la partie
 ![Ecran principal](illus2.png "Ecran principal")
+*En construction*
+## Gestion du méchant
+![Ecran principal](illus3.png "Ecran principal")
+*En construction*
+## Gestion du joueur
+![Ecran principal](illus4.png "Ecran principal")
+*En construction*
+## Gestion des Manigances
+![Ecran principal](illus5.png "Ecran principal")
 *En construction*
