@@ -2,12 +2,12 @@
 ## prérequis
 Pour installer mc sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
 #### Serveur Web PHP
-En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour...
+En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
 Fonctionnement testé avec succès sur les configurations/versions suivantes :
  - Apache 2.4
  - PHP 7.2
 #### Base de données
-Il vous faut un service de base de donnée relationnelle type *mySql*.
+Il vous faut un service de base de donnée relationnelle type *mySql*.  
 Fonctionnement testé avec succès sur les configuration/versions suivantes :
  - MariaDB 10
 # Mise à jour de votre site
