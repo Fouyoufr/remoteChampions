@@ -162,6 +162,13 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {
 		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$mechantFile",$mechantFile)) {echo "<br/><b>Copie échouée....</b>";}
 		echo '<br/>';}}
 
+#Vérification des fichiers php par leur taille.
+$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php');
+foreach ($phpFile in $phpFiles) {
+	$localSize=filesize($phpFile);
+	echo "$localSize<br/>";
+}
+
 echo "<hr/>Le site est prêt !<br/><a href='/'>Y accèder !</a>";
 ?>
 </body>
