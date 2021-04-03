@@ -1,29 +1,29 @@
-#dId,dNom
-1,Rhino
-2,Klaw
-3,CrossBones
-4,Héros
-5,Légions D'Hydra
-6,Ingérence En Cours
-7,Absorption Électrique
-8,Un Immense Gâchis
-9,Patrouille D'Hydra
-10,Le siège De L'Apocalypse
-11,Civils Attaqués
-12,Les Maîtres Du Mal
-13,Alerte à La Bombe
-14,Ultron
-15,Entreprise à Risques
-16,Formule Mutagène
-17,Le Compresseur
-18,Le Démolisseur
-19,Le Bulldozer
-20,Le Boulet
-21,L'Homme Absorbant
-22,Zola
-23,Taskmaster
-24,Crâne Rouge
-25,Kang
-26,Le Maître Du Temps
-27,Les Anachronautes
-28,Temporel
+#dId,dNom,dBoite
+1,Rhino,1
+2,Klaw,1
+3,CrossBones,0
+4,Héros,0
+5,Légions D'Hydra,0
+6,Ingérence En Cours,0
+7,Absorption Électrique,0
+8,Un Immense Gâchis,0
+9,Patrouille D'Hydra,0
+10,Le siège De L'Apocalypse,0
+11,Civils Attaqués,0
+12,Les Maîtres Du Mal,0
+13,Alerte à La Bombe,0
+14,Ultron,1
+15,Entreprise à Risques,0
+16,Formule Mutagène,0
+17,Le Compresseur,0
+18,Le Démolisseur,0
+19,Le Bulldozer,0
+20,Le Boulet,0
+21,L'Homme Absorbant,0
+22,Zola,0
+23,Taskmaster,0
+24,Crâne Rouge,0
+25,Kang,0
+26,Le Maître Du Temps,0
+27,Les Anachronautes,0
+28,Temporel,0
