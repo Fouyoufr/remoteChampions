@@ -144,6 +144,7 @@ if ($allreadySetup and $currentVersion<>$newVersion) {
 sqlUpdate();
 if (!$allreadySetup) {
 	sql_get("INSERT INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
+updateSQLcontent('boites');
 updateSQLcontent('mechants');
 updateSQLcontent('ManigancesPrincipales');
 updateSQLcontent('manigances');
