@@ -39,7 +39,7 @@ exit();}
 function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
-	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/$tableId", "r");
+	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$tableId", "r");
 	if (!$file) {exit("<p>Ouverture du fichier impossible: '$tableId'.<br/>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).");}
 	$newTable=array();
 	while (!feof ($file)) {
@@ -88,7 +88,7 @@ function sqlUpdate() {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
 	global $sqlConn;
 	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
-	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/sqlTables", "r");
+	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/sqlTables", "r");
 	if (!$file) {exit("<p>Ouverture de fichier ipossible.<br/>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).");}
 	while (!feof ($file)) {
     	$table=explode('=>',fgets($file),2);
@@ -130,13 +130,13 @@ if ($currentVersion) {
 	$currentVersion=mysqli_fetch_assoc($currentVersion)['cfValue'];}
 else {$allreadySetup=false;}
 #Récupération de la dernière version (le changement de version permet aussi la mise à jour du présent script)
-$file=fopen("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/changelog.md","r");
+$file=fopen("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/changelog.md","r");
 $newVersion=rtrim(fgets($file));
 fclose($file);
 if ($allreadySetup and $currentVersion<>$newVersion) {
 	#Mise à jour du script de mise à jour !
 	echo "Mise à jour du script de mise à jour !<br><a href=''>Cliquer ici pour relancer la mise à jour avec le script en version '$newVersion'</a>";
-    if (copy('https://raw.githubusercontent.com/Fouyoufr/mc/main/setup/setup.php','setup.php')) {
+    if (copy('https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup/setup.php','setup.php')) {
     	#Mise à jour de la version
 		sql_get("REPLACE INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
     else {echo "<br/><b>Copie échouée....</b>";}
@@ -159,7 +159,7 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {
 	$mechantFile='img/mechants/'.$mechant['mId'].'.png';
 	if (!file_exists($mechantFile)) {
 		echo "Ajout de l'image de '".$mechant['mNom']."'.<br/>";
-		if (!copy("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/$mechantFile",$mechantFile)) {echo "<br/><b>Copie échouée....</b>";}
+		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$mechantFile",$mechantFile)) {echo "<br/><b>Copie échouée....</b>";}
 		echo '<br/>';}}
 
 echo "<hr/>Le site est prêt !<br/><a href='/'>Y accèder !</a>";
