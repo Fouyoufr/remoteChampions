@@ -41,7 +41,5 @@ if (isset($partieId)) { echo "(Cette action quittera la partie en cours)<br/>";}
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');
   if (css!=null) {document.getElementById('selectCSS').value=css;}
-  ajaxCall(ajaxAdminSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)
-  setInterval("ajaxCall(ajaxAdminSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)",2000); 
 </script>
 </body>

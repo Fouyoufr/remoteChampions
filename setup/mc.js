@@ -250,14 +250,6 @@ function ajaxMechantSet() {
  
 }}}
 
-function ajaxAdminSet() {
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	  var xmlDoc = ajaxReq.responseXML;
-    document.getElementById('ajaxLoad').style.display='none';
-    document.getElementById('ajaxSave').style.display='none';
-}}}
-
 function phMechant (phase) {
   switch (phase) {
       case '2':
