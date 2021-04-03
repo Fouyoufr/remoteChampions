@@ -6,7 +6,7 @@ function ajaxCall (ajaxTraite,getParam) {
   ajaxReq.send();}
   
 function ajaxPost (key,value) {
-  document.getElementById('ajaxSave').style.display='block';
+  if (document.getElementById('ajaxSave')) {document.getElementById('ajaxSave').style.display='block';}
   ajaxReqPost=new XMLHttpRequest();
   ajaxReqPost.open('POST','ajax.php',true);
   ajaxReqPost.onreadystatechange=function() {
