@@ -40,7 +40,7 @@ function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
 	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/$tableId", "r");
-	if (!$file) {exit("<p>Unable to open remote file '$tableId'.<br/>Update/Setup of mc needs your php engine to allow remote read.");}
+	if (!$file) {exit("<p>Ouverture du fichier impossible: '$tableId'.<br/>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).");}
 	$newTable=array();
 	while (!feof ($file)) {
 		$line=explode(',',fgets($file));
@@ -83,12 +83,13 @@ function updateSQLcontent($tableId) {
 		if(!isset($newTable[$oldLine[$cols[0]]])) {
 			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
 			echo "Supression de l'entrée '".$oldLine[$cols[1]]."' de la table '$tableId'.<br/>";}}}
+
 function sqlUpdate() {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
 	global $sqlConn;
 	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
 	$file = fopen ("https://raw.githubusercontent.com/Fouyoufr/mc/main/updates/sqlTables", "r");
-	if (!$file) {exit("<p>Unable to open remote file.<br/>Update/Setup of mc needs your php engine to allow remote read.");}
+	if (!$file) {exit("<p>Ouverture de fichier ipossible.<br/>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).");}
 	while (!feof ($file)) {
     	$table=explode('=>',fgets($file),2);
     	$tableId=$table[0];

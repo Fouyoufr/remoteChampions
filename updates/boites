@@ -1,6 +1,6 @@
-#bId,bNom
-1,Base
-2,Convoitise Galactique
-3,Quicksilver
-4,Scarlet Witch
-5,Wasp
+#bId,bNom,bPossedee
+1,Base,1
+2,Convoitise Galactique,1
+3,Quicksilver,1
+4,Scarlet Witch,1
+5,Wasp,1

@@ -1,7 +1,6 @@
-# Marvel Champions
+# Remote Champions
 
+## *Moteur crée par des fans, pour faciliter les parties distantes de Marvel champions*
+Vous aurez besoin d'un serveur web/PHP et d'une base de donnée type mySql (ou d'identifiants vous permattant la création d'une telle base).
+Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine de votre serveur web et lancez *<yourwebsiteURL>/setup.php*...
 [Voir la documentation du projet](https://github.com/Fouyoufr/mc/blob/main/doc/readme.md)
-## Marvel champions fanmande website to ease remote play
-You'll need a fresh mysql DB (or a username of your mysqlserver able to create a new DB)
-
-Just copy the content of the "*setup*" directory to the root of your website and launch *<yourwebsiteURL>/setup.php*...
