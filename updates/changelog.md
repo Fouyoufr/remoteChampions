@@ -1,4 +1,4 @@
-1.3
+1.3.1
 # Version 1.3
 Gestion des mises à jour du code PHP depuis gitHub
 # Version 1.2

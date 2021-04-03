@@ -2,13 +2,9 @@
 $title='Marvel Champions - Admin';
 $bodyClass='admin';
 include 'include.php';
+if (isset($partieId)) { echo "<div class='pannel'><div class='titleAdmin'>Mot-clef de la partie</div>$partieId</div>";}
 ?>
-<div class="pannel">
-  <div class="titleAdmin">Mot-clef de la partie</div>
-<?php
-echo $partieId;
-?>
-</div>
+
 
 <div class="pannel">
   <div class="titleAdmin">Mise en page</div>
@@ -17,8 +13,7 @@ echo $partieId;
 <?php
   foreach (glob("*.css") as $filename) {
     echo '<option>'.basename($filename,'.css');
-    echo '</option>';
-}
+    echo '</option>';}
 ?>
 </select>
 </div>
@@ -32,13 +27,16 @@ echo $partieId;
       $boiteId=$boite['bId'];
       $boiteNom=$boite['bNom'];
       echo "<input type='checkbox' id='boite$boiteId' onclick='ajaxPost(\"boite=$boiteId&inclus\",document.getElementById(\"boite$boiteId\").checked);'";
-
       if ($boite['bInclus']=='1') {echo ' checked ';}
-      echo "><label for='boite$boiteId'>$boiteNom</label><br/>";
-
-    }
-  }
+      echo "><label for='boite$boiteId'>$boiteNom</label><br/>";}}
   ?>
+</div>
+<div class="pannel">
+<div class="titleAdmin">Mise à jour</div>
+<?php
+if (isset($partieId)) { echo "(Cette action quittera la partie en cours)<br/>";}
+?>
+<button onclick="if(window.opener){window.opener.open('/setup.php');} else {window.open('/setup.php','_self');}">Lancer la mise à jour</button>
 </div>
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');

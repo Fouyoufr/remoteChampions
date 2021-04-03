@@ -93,7 +93,7 @@ onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Num
   <div id='online".$i."' class='pointVert'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
-echo "<div id='dispClef' onclick='window.open(\"admin.php?p=$partieId\",\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=200px,width=304px\");'>
+echo "<div id='dispClef' onclick='window.open(\"admin.php?p=$partieId\",\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=\"+screen.height+\",width=304px\");'>
   Le mot-clef de cette partie est <span>$partieId</span>
 </div>";
 ?>

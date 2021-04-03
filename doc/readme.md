@@ -30,22 +30,28 @@ A l'issue de l'installation, votre site devrait être fonctionnel. Si vous appel
 Sinon, vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#Utilisation-de-votre-site) et vous serez prêt à joueur dans un instant !  
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sur que le site web soit accèssible de tous les joueurs sur Internet.
 # Mise à jour de votre site
-*En construction*
+Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".
+*(En construction)*
 # Utilisation de votre site
 Une fois votre site installé, vous pouvez simplement y accéder depuis votre navigateur. Vous tomberez dès lors sur l'écran de sélection de fonction suivant
 ![Ecran de connexion](illus1.png "Ecran de connexion")
-- Si la partie qui vous intéresse a déjà été créée ([voir plus loin](https:#création-dune-nouvelle-partie)), vous pouvez simplement saisir son mot-clef dans le premier champ avant de cliquer sur "**OK**"
- - Pour créer une nouvelle partie, choisissez le *nombre de joueurs* depuis le menu avant de cliquer sur "**Créer**".
-   - Vous pouvez héberger le suivi de parties pour 1 à 4 joueurs
-   - Vous pouvez suivre seulement le compteur de méchant en choisissant "**Méchant seul**" (utile pour certaines parties spécifique comme le suivi de *Kang*).
- - Dans les deux cas, si vous êtes sur pc/Mac, vous serez ensuite dirigé vers l'écran principal de la partie. Si vous consultez le site depuis un smartphone, vous serez redirigé vers votre fiche de joueur.
+- Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir son mot-clef dans le premier champ avant de cliquer sur "**OK**". Sinon :
 # Création d'une nouvelle partie
-*En construction*
+Pour créer une nouvelle partie, choisissez le *nombre de joueurs* depuis le menu avant de cliquer sur "**Créer**".
+ - Vous pouvez héberger le suivi de parties pour 1 à 4 joueurs
+ - Vous pouvez suivre seulement le compteur de méchant en choisissant "**Méchant seul**" (utile pour certaines parties spécifique comme le suivi de *Kang*).
+Dans les deux cas, si vous êtes sur pc/Mac, vous serez ensuite dirigé vers l'écran principal de la partie ([voir la section Gestion de la partie](https:#Gestiondelapartie)). Si vous consultez le site depuis un smartphone, vous serez redirigé vers votre fiche de joueur.
 # Comment utiliser le site
 *En construction*
 ## Gestion de la partie
 ![Ecran principal](illus2.png "Ecran principal")
-
+L'écran principal présente une synthèse de la partie avec les élements suivants:
+ 1. La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)). (Mettez-vous d'accord avec tous les joueurs pour choisir une répréntation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.)
+ 1. La synthèse du méchant qui fournit plusieurs informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))
+ 1. L'indication du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection du méchant. Il suffira ensuite de cliquer sur l'indication du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indication se déplace).
+ 1. Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : ce pourra servir pour suivre des éléments spécifiques de certaines missions...
+ 1. La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)). En début de partie, aprés avoir choisi le méchant, il faudra choisir la manigance principale en cliquant sur le titre "**Manigance Principale**".
+ 1. A tout moment, le mot-clef d'accès à la partie, à communiquer à tous les joueurs pour que ceux-ci accèdent à la partie est rappelé en bas de page. En cliquant sur le mot-clef de la partie, il est possible d'ouvrir l'écran d'administration.
 *En construction*
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
