@@ -1,4 +1,6 @@
-1.2
+1.3
+# Version 1.3
+Gestion des mises à jour du code PHP depuis gitHub
 # Version 1.2
 Préparation de l'arrivée de la prise en charge des "boites de jeu"
 1.1

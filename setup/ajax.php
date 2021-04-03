@@ -164,6 +164,12 @@ if(isset($_POST['switch'])) {
     	break;    	
 }}
 
+if (isset($_POST['boite'])) {
+  $boite=htmlspecialchars($_POST['boite']);
+  $inclus=htmlspecialchars($_POST['inclus']);
+  sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");
+}
+
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
   sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");
@@ -227,6 +233,5 @@ if(isset($_POST['compteur'])) {
   $compteur=htmlspecialchars($_POST['compteur']);
   $value=htmlspecialchars($_POST['value']);
   sql_get("UPDATE `compteurs` SET `cValeur`='$value' WHERE `cId`='$compteur'");}
-  
 
 ?>

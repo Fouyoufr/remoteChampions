@@ -164,9 +164,20 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {
 
 #Vérification des fichiers php par leur taille.
 $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php');
-foreach ($phpFile in $phpFiles) {
+foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
-	echo "$localSize<br/>";
+	$remoteCall = curl_init("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup/$phpFile");
+	curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
+	curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
+   	$data = curl_exec($remoteCall);
+	$remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+	curl_close($remoteCall);
+	if ($localSize<>$remoteSize) {
+		echo "Changement de taille du fichier '$phpFile' : remplacement de la version locale.";
+		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup/$phpFile",$phpFile)) {echo "<br/><b>Copie échouée....</b>";}
+		echo '<br/>';
+	}
 }
 
 echo "<hr/>Le site est prêt !<br/><a href='/'>Y accèder !</a>";

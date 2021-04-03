@@ -22,7 +22,24 @@ echo $partieId;
 ?>
 </select>
 </div>
+<div class="pannel">
+  <div class="titleAdmin">Activation des boites de jeu</div>
+  (paramètre global du serveur)<br/>
+  <?php
+  $boites=sql_get("SELECT * FROM `boites` ORDER BY `bNom`");
+  while ($boite=mysqli_fetch_assoc($boites)) {
+    if ($boite['bId']<>0) {
+      $boiteId=$boite['bId'];
+      $boiteNom=$boite['bNom'];
+      echo "<input type='checkbox' id='boite$boiteId' onclick='ajaxPost(\"boite=$boiteId&inclus\",document.getElementById(\"boite$boiteId\").checked);'";
 
+      if ($boite['bInclus']=='1') {echo ' checked ';}
+      echo "><label for='boite$boiteId'>$boiteNom</label><br/>";
+
+    }
+  }
+  ?>
+</div>
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');
   if (css!=null) {document.getElementById('selectCSS').value=css;}
