@@ -32,17 +32,12 @@ if (isset($title)) {
   </script>
 </head>
 <body";
-  if (isset($bodyClass)) echo " class='$bodyClass'";
-  echo ">";
-  if (isset($partieId)) {
-    echo "<div id='ajaxLoad'";
-    if (isset($bodyClass)) echo " class='$bodyClass'";
-    echo "></div>
-<div id='ajaxSave'";
-    if (isset($bodyClass)) echo " class='$bodyClass'";
-    echo "></div>
-<input id='partie' type='hidden' value='$partieId'/>
-";}
-if (isset($joueurId)) echo "<input id='jId' type='hidden' value='$joueurId'/>
-";}
+if (!isset($partieId)) {$partieId=0;}
+if (isset($bodyClass)) echo " class='$bodyClass'";
+echo "><div id='ajaxLoad'";
+if (isset($bodyClass)) echo " class='$bodyClass'";
+echo "></div><div id='ajaxSave'";
+if (isset($bodyClass)) echo " class='$bodyClass'";
+echo "></div><input id='partie' type='hidden' value='$partieId'/>";
+if (isset($joueurId)) echo "<input id='jId' type='hidden' value='$joueurId'/>";}
 ?>
