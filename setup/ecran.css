@@ -48,15 +48,15 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #indexFirst.first2 {top:50px;right:1px;}
 #indexFirst.first3 {bottom:100px;right:1px;}
 #indexFirst.first4 {bottom:100px;left:170px;}
-#changeMechant {position:relative;margin:auto;margin-top:20px;width:70%;background:red;border:solid 3px white;padding:2%;color:white;z-index:10;padding-top:5%;display:none;}
+#changeMechant,#changeHeros {position:relative;margin:auto;margin-top:20px;width:70%;background:red;border:solid 3px white;padding:2%;color:white;z-index:10;padding-top:5%;display:none;}
 #changePhase,#NewManigance,#NewPrincipale {position:relative;margin:auto;margin-top:20px;width:40%;background:red;border:solid 3px white;padding:2%;color:white;z-index:10;padding-top:5%;display:none;}
 #changePhaseNext {font-weight:bold;font-style:italic;}
 #changePhaseVie,#changeMechantNom {font-weight:bold;}
 .titlePopup {position:absolute;width:calc(100% - 10px);top:0px;left:0px;background-color:black;color:white;font-weight:bold;font-size:10px;padding-left:10px;font-size: calc(1vw + 1vh + 1vmin);}
 #mechantSelect {display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;font-size:20px;font-weight:bold;font-variant: small-caps; text-transform: capitalize;}
-.changeMechant {display: flex;align-items: center;justify-content: left;background:lightgray;color:black;}
-.changeMechant:hover {cursor: pointer;background:black;color:lightgray;}
-.changeMechant img {margin-right:5px;}
+.changeMechant,.changeHeros {display: flex;align-items: center;justify-content: left;background:lightgray;color:black;}
+.changeMechant:hover,.changeHeros:hover {cursor: pointer;background:black;color:lightgray;}
+.changeMechant img,.changeHeros img {margin-right:5px;}
 #dispClef {position:absolute;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;text-decoration: none;}
 #dispClef span {font-weight:bold;font-size:20px;font-variant: small-caps; text-transform: capitalize;}
 #dispClef span:hover {color:black;background:white;cursor: pointer;}
@@ -111,13 +111,15 @@ body.admin {background-color:#7e696a;color:white;}
 #ajaxSave.admin {bottom:2px; left:2px;z-index:10;}
 
 /*Mise en forme pour l'écran de joueur */
-#joueurDisp {width:calc(100% - 10px);height:calc(100% - 10px);background:radial-gradient(black,red);background-attachment:fixed;border:solid 5px white;border-radius:50px;color:white;font-family: "Gill Sans", sans-serif;text-align:center;font-size: calc(4vw + 4vh + 2vmin);font-weight:bold;font-variant: small-caps; text-transform: capitalize;}
+#joueurDisp {width:calc(100% - 10px);height:calc(100% - 10px);background:radial-gradient(black,red);background-attachment:fixed;border:solid 5px white;border-radius:50px;color:white;font-family: "Gill Sans", sans-serif;text-align:center;font-size: calc(4vw + 4vh + 2vmin);font-weight:bold;font-variant: small-caps; text-transform: capitalize;overflow: hidden;}
 body.joueur {overflow:hidden;background:lightgray;}
 #mechantPicJoueur{position:absolute;bottom:18px;left:22px;width:50px;height:50px;font-size:12px;border-radius:2px;border:ridge 5px transparent;}
 #mechantPicJoueur.mechantDesJ {border-left-color:#e5d2e5;}
 #mechantPicJoueur.mechantSonJ {border-bottom-color:#afcd53;}
 #mechantPicJoueur.mechantTenJ {border-right-color:#feb848;}
-#picJoueur,.picJoueur{position:absolute;top:22px;left:22px;width:50px;height:50px;font-size:12px;border-radius:2px;border:ridge 5px transparent;}
+#picJoueur,.picJoueur{position:absolute;top:22px;left:22px;width:50px;height:50px;font-size:12px;}
+#picJoueur:hover,.picJoueur:hover {cursor:pointer;}
+.picJoueur {top:6px;left:6px;width:40px;height:40px;}
 #phaseMechantJoueur {position:absolute;top:2px;right:2px;color:white;background:black;padding:1px;font-style:oblique;padding-right:3px;border:solid 1px white;}
 #mechantLifeJoueur {position:absolute; bottom:2px;left:15px;width:20px;font:12px bold comic;font-family:Impact, Charcoal, sans-serif;color:white;border:solid 1px white;border-radius:2px;background-color:darkred;text-align:center;}
 #vieJoueur {display:inline-block;font:comic;font-family:Impact, Charcoal, sans-serif;color:white;border: solid 4px white;border-radius:5px;background-color:lightcyan;-webkit-text-stroke: 1px black;width:15%;}

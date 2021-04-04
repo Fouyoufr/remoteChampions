@@ -13,6 +13,7 @@ function ajaxPost (key,value) {
   	if (document.getElementById('changePhase')) {document.getElementById('changePhase').style.display='none';}
   	if (document.getElementById('changeMechant')) {document.getElementById('changeMechant').style.display='none';}
   	if (document.getElementById('changeName')) {document.getElementById('changeName').style.display='none';}
+    if (document.getElementById('changeHeros')) {document.getElementById('changeHeros').style.display='none';}
   	if (ajaxReqPost.responseText!='') {
   		if (ajaxReqPost.responseText=='SelectManigance') {document.getElementById('NewPrincipale').style.display='block';}
   		console.log(ajaxReqPost.responseText);
@@ -74,7 +75,7 @@ function ajaxJoueurSet() {
       document.getElementById('mechantPicJoueur').style.background='url(img/mechants/'+xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechant')+'.png) no-repeat center';
       document.getElementById('mechantLifeJoueur').innerText=vieMechant;
       document.getElementById('phaseMechantJoueur').innerText=phMechant(xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechPhase'))
-      document.getElementById('picJoueur')..style.background='url(img/heros/'+xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jHeros')+'.png) no-repeat center';
+      document.getElementById('picJoueur').style.background='url(img/heros/'+xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jHeros')+'.png) no-repeat center';
       document.getElementById('mechantPicJoueur').classList.remove('mechantDesJ','mechantSonJ','mechantTenJ');
       if (xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechDesoriente')==1) { document.getElementById('mechantPicJoueur').classList.add('mechantDesJ');}
       if (xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechSonne')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantSonJ');}
@@ -184,6 +185,7 @@ function ajaxMainSet() {
       if (jDoc.getAttribute('jTenace')==0) {document.getElementById('tenace'+numero).className='disabledButton';} else {document.getElementById('tenace'+numero).className='tenace';}
       if (Date.now()-jDoc.getAttribute('jOnline')>5000) {
       	joueurOnline=false;
+        document.getElementById('picJoueur'+numero).src='img/heros/'+jDoc.getAttribute('jHeros')+'.png';
       	document.getElementById('online'+numero).style.display='none';
       	document.getElementById('vieDisp'+numero).innerHTML='<input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText);">';
       	document.getElementById('vieDisp'+numero).innerHTML+='<div id="vie'+numero+'" class="playerLife">'+vie+'</div>'

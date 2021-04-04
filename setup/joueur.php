@@ -8,6 +8,7 @@ include 'include.php';
     <div id="phaseMechantJoueur"></div>
     <div id="mechantLifeJoueur"></div>
   </div>
+  <div id="picJoueur"></div>
   <div id="joueur" onclick='document.getElementById("changeNameOld").innerText=document.getElementById("joueur").innerText;document.getElementById("changeName").style.display="block";document.getElementById("playerName").focus();'></div>
   <div style='text-align:center;margin:2%;'>
     <input class="vieJoueur" id="vieJoueurMoins" type="button" value="<" onclick='document.getElementById("vieJoueur").innerText-=1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText);'>

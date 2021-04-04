@@ -125,6 +125,12 @@ if (isset($_POST['mechant'])) {
   $vieMechant=mysqli_fetch_assoc($vieMechant)['mVieMax1']*$nbJoueurs;
   sql_get("UPDATE `parties` SET `pMechDesoriente`=0, `pMechSonne`=0, `pMechTenace`=0, `pMechPhase`='1', `pMechVie`='$vieMechant', `pMechant`='$mechant',`pPremier`='$premier',`pManiPrincipale`='0',`pManiCourant`='0',`pManiMax`='0' WHERE `pUri`='$partieId'");
   echo 'SelectManigance';}
+
+if(isset($_POST['heros'])) {
+  $heros=htmlspecialchars($_POST['heros']);
+  $joueur=htmlspecialchars($_POST['joueur']);
+  $newVie=mysqli_fetch_assoc(sql_get("SELECT `hVie` FROM `heros` WHERE `hId`='$heros'"));
+  $joueurId=sql_get("UPDATE `joueurs` SET `jHeros`='$heros', `jVie`='".$newVie['hVie']."' WHERE `jPartie`='$partieId' AND `jNumero`='$joueur'");}
   
 if(isset($_POST['vieMechant'])) {
   $vieMechant=htmlspecialchars($_POST['vieMechant']);

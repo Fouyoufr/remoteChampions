@@ -81,9 +81,7 @@ $principales[$principale['mpId']]=$principale['mpNom'];
 for ($i = 1; $i <= 4; $i++) {
 echo "
 <div id='joueur".$i."Disp' class='joueurDisp'>
-<!--
-onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value);'>
--->
+  <img class='picJoueur' id='picJoueur$i' onclick=\"document.getElementById('herosAChanger').value=$i;document.getElementById('changeHeros').style.display='block';\"></img>
   <div><span id='joueur$i'></span></div>
   <div id='vieDisp$i' class='vieDisp'></div>
   <input id='desoriente$i' type='button' value='Désorienté'>
@@ -92,7 +90,6 @@ onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Num
   <div id='joueur".$i."Etat' class='joueurEtat'></div>
   <input id='joueur".$i."Numero' type='hidden' />
   <div id='online".$i."' class='pointVert'></div>
-  <div class='picJoueur' id='picJoueur$i'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
 echo "<a id='dispClef' href='/admin.php'>
@@ -135,7 +132,7 @@ echo "<a id='dispClef' href='/admin.php'>
 </div>
 
 <div id="changeMechant">
-  <div class="titlePopup">Changer le méchant de la partie</div>
+  <div class="titlePopup">Choisir/Changer le méchant de la partie</div>
   <div style="text-align:center;">&#9888; Si vous changez de méchant, le nouveau sera réinitialisé à la phase 1 &#9888;<br/>Et le jeton premier joueur sera réattribué aléatoirement.</div><br/>
   <div id="mechantSelect">
 <?php
@@ -146,6 +143,22 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant'
   <br/>
   <div class="boutonsPopup">
     <input type="button" value="Annuler" onclick='document.getElementById("changeMechant").style.display="none";' class='bouton'>
+  </div>
+</div>
+
+<div id="changeHeros">
+  <div class="titlePopup">Choisir/Changer de personnage</div>
+  <input type="hidden" id="herosAChanger" value="0">
+  <div style="text-align:center;">&#9888; Si vous changez de personnage, la vie de ce joueur sera réinitialisée.</div><br/>
+  <div id="herosSelect">
+<?php
+$heros=sql_get("SELECT * FROM `heros`,`boites` WHERE `hId`>0 AND `hBoite`=`bID` AND `bInclus`='1' ORDER BY `hNom` ASC");
+while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueur=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='/img/heros/".$hero['hId'].".png' style='background:white;'/>".$hero['hNom'].'</div>';}
+?>
+  </div>
+  <br/>
+  <div class="boutonsPopup">
+    <input type="button" value="Annuler" onclick='document.getElementById("changeHeros").style.display="none";' class='bouton'>
   </div>
 </div>
 
