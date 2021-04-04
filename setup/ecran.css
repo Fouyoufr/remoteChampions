@@ -102,8 +102,8 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 
 /* Mise en forme de l'écran d'administration */
 body.admin {background-color:#7e696a;color:white;}
-.pannel {position:relative;border:solid 2px white;padding:2px;width:300px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;border-color:black;color:black;font-weight:bold;font-size:1em;}
-.titleAdmin {width:294px;height:20px;background-color:black;color:white;font-weight:bold;font-size:10px;margin:-2px;margin-bottom:2px;line-height:20px;padding-left:10px;}
+.pannel {position:relative;border:solid 2px white;padding:2px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;border-color:black;color:black;font-weight:bold;font-size:1em;text-align:center;}
+.titleAdmin {background-color:black;color:white;font-weight:bold;font-size:2em;margin:-2px;margin-bottom:2px;padding-left:10px;text-align:left;}
 #ajaxLoad.admin {top:2Px;left:2px;z-index: 10;}
 #ajaxSave.admin {bottom:2px; left:2px;z-index:10;}
 

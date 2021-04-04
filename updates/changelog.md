@@ -1,4 +1,6 @@
-1.4.3
+1.5
+# Version 1.5
+Préparation de la sélection des boites de jeu dans l'écran d'administration.
 # Version 1.4
 Gestion des mises à jour des images depuis gitHub
 # Version 1.3
