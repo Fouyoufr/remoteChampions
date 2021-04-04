@@ -36,6 +36,20 @@ if (!file_exists('./config.inc')) {
 	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
 exit();}
 
+function imageUpdate($imgFolder,$imgId,$imgNom) {
+	#Mise à jour des images du dossier
+if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
+	echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
+	exit();}}
+$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
+while ($image=mysqli_fetch_assoc($images)) {
+	$imageFile="img/$imgFolder/".$image[$imgId].'.png';
+	if (!file_exists($imageFile)) {
+		echo "Ajout de l'image de '".$image[$imgNom]."'.<br/>";
+		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$imageFile",$imageFile)) {echo "<br/><b>Copie échouée....</b>";}
+		echo '<br/>';}}
+}
+
 function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
@@ -150,17 +164,10 @@ updateSQLcontent('mechants');
 updateSQLcontent('ManigancesPrincipales');
 updateSQLcontent('manigances');
 updateSQLcontent('decks');
-#Mise à jour des images des méchants
-if (!file_exists('img/mechants')) {if(!mkdir('img/mechants',0777,true)) {
-	echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
-	exit();}}
-$mechants=sql_get("SELECT `mId`,`mNom` FROM `mechants`");
-while ($mechant=mysqli_fetch_assoc($mechants)) {
-	$mechantFile='img/mechants/'.$mechant['mId'].'.png';
-	if (!file_exists($mechantFile)) {
-		echo "Ajout de l'image de '".$mechant['mNom']."'.<br/>";
-		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$mechantFile",$mechantFile)) {echo "<br/><b>Copie échouée....</b>";}
-		echo '<br/>';}}
+updateSQLcontent('heros');
+
+imageUpdate('mechants','mId','mNom');
+imageUpdate('boites','bId','bNom');
 
 #Vérification des fichiers php par leur taille.
 $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration1.png','img/MenaceAcceleration2.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png');

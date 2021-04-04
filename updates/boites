@@ -1,20 +1,20 @@
-#bId,bNom,bInclus
-1,Base,1
-2,Convoitise Galactique,0
-3,Quicksilver,0
-4,Scarlet Witch,0
-5,Wasp,0
-6,L'avènement de Crâne rouge,0,
-7,Le Bouffon Vert,0
-8,Les Démolisseurs,0
-9,Captain America,0
-10,Miss Marvel,0
-11,Thor,0
-12,Black Widow,0
-13,Docteur Strange,0
-14,Hulk,0
-15,Kang le conquérant,0
-16,Ant Man,0
-17,Star Lord,0
-18,Gomora,0
-19,Drax,0
+#bId,bNom,bType,bInclus
+1,Base,b,1
+2,Convoitise Galactique,b,0
+3,Quicksilver,h,0
+4,Scarlet Witch,h,0
+5,Wasp,h,0
+6,L'avènement de Crâne rouge,b,0,
+7,Le Bouffon Vert,s,0
+8,Les Démolisseurs,s,0
+9,Captain America,h,0
+10,Miss Marvel,h,0
+11,Thor,h,0
+12,Black Widow,h,0
+13,Docteur Strange,h,0
+14,Hulk,h,0
+15,Kang le conquérant,s,0
+16,Ant Man,h,0
+17,Star Lord,h,0
+18,Gomora,h,0
+19,Drax,h,0
