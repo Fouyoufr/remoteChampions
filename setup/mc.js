@@ -74,6 +74,7 @@ function ajaxJoueurSet() {
       document.getElementById('mechantPicJoueur').style.background='url(img/mechants/'+xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechant')+'.png) no-repeat center';
       document.getElementById('mechantLifeJoueur').innerText=vieMechant;
       document.getElementById('phaseMechantJoueur').innerText=phMechant(xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechPhase'))
+      document.getElementById('picJoueur')..style.background='url(img/heros/'+xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jHeros')+'.png) no-repeat center';
       document.getElementById('mechantPicJoueur').classList.remove('mechantDesJ','mechantSonJ','mechantTenJ');
       if (xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechDesoriente')==1) { document.getElementById('mechantPicJoueur').classList.add('mechantDesJ');}
       if (xmlDoc.getElementsByTagName('joueur')[0].getAttribute('pMechSonne')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantSonJ');}
@@ -142,7 +143,10 @@ function ajaxMainSet() {
       if (menaceToDisplay<10) {menaceToDisplay='0'+menaceToDisplay;}
       maniAnnexe+='<div class="MA" id="MA'+value.getAttribute('maId')+'">'+menaceToDisplay+'</div>';
       maniAnnexe+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText=parseInt(document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText)+1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
-      maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom')+'<span class="tooltiptext">'+value.getAttribute('dNom')+' N°'+value.getAttribute('maNumero')+'</div>';
+      maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom')+'<span class="tooltiptext">';
+      if (value.getAttribute('maDeck')==0) {maniAnnexe+=value.getAttribute('hNom');}
+      else {maniAnnexe+=value.getAttribute('dNom')+' N°'+value.getAttribute('maNumero');}
+      maniAnnexe+='</div>';
       document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div>';
       });
     var compteurs = xmlDoc.getElementsByTagName('compteur');

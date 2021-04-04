@@ -22,6 +22,7 @@ if (isset($_GET['pGet'])) {
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
+  $sqlManiHeros=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`heros` WHERE `mnPartie`='$partieId' AND `maDeck`='0' AND `maId`=`mnManigance` AND `maNumero`=`hId`");
   $sqlPrincipale=sql_get("SELECT `mpId`,`mpNom`, `mpMax` FROM `parties`, `ManigancesPrincipales` WHERE `mpID`=`pManiPrincipale` AND `pURI`='$partieId'");
   $sqlCompteurs=sql_get("SELECT * FROM `compteurs` WHERE `cPartie`='$partieId'");
   $xml = new XMLWriter();
@@ -43,6 +44,10 @@ if (isset($_GET['pGet'])) {
       $xml->startElement('manigance');
       foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance, $valManigance);}
       $xml->endElement();}
+    while ($manigance=mysqli_fetch_assoc($sqlManiHeros)) {
+        $xml->startElement('manigance');
+        foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance, $valManigance);}
+        $xml->endElement();}
     while ($joueur=mysqli_fetch_assoc($sqlJoueurs)) {
       $xml->startElement('joueur');
       foreach ($joueur as $clePartie => $valPartie) {
@@ -76,9 +81,10 @@ if (isset($_GET['mGet'])) {
   if (substr($deck,0,1)=='h') {
     #récupération des manigances du héros choisi
     $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='0' AND `maNumero`='".substr($deck,1)."'");}
-  else {
+  elseif ($deck<>'0') {
     #récupération des manigances du deck choisi
     $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='$deck' ORDER BY `maNom`ASC");}
+  else exit();
   $sqlDejaEnJeu=sql_get("SELECT * FROM `maniAnnexes` WHERE `mnPartie`='$partieId'");
   $dejaEnJeu=[]; 
   while ($Deja=mysqli_fetch_assoc($sqlDejaEnJeu)) {

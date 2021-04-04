@@ -92,6 +92,7 @@ onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Num
   <div id='joueur".$i."Etat' class='joueurEtat'></div>
   <input id='joueur".$i."Numero' type='hidden' />
   <div id='online".$i."' class='pointVert'></div>
+  <div class='picJoueur' id='picJoueur$i'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
 echo "<a id='dispClef' href='/admin.php'>
@@ -166,11 +167,11 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant'
 <div id="NewManigance">
   <div class="titlePopup">Ajouter une manigance annexe à la partie</div>
 
-    <select name="deck" id="deck" onchange="ajaxCall(ajaxManigancesMenu,'p='+document.getElementById('partie').value+'&mGet='+(this.value));">
-      <option value="0" disabled>--Choisissez le deck--</option><optGroup>
+    <select name="deck" id="deck" onchange="if (this.value=='0') {getElementById('newManiganceId').style.display='none';} else {ajaxCall(ajaxManigancesMenu,'p='+document.getElementById('partie').value+'&mGet='+(this.value));}">
+      <option value="0">--Choisissez le deck--</option>
 <?php
   foreach ($decks as $dId => $dNom) {echo"<option value='$dId'>$dNom</option>";}
-  echo '</optGroup><optGroup>';
+  echo '<optGroup>';
   foreach ($heros as $hId => $hNom) echo"<option value='h$hId'>$hNom</option>";
 ?>
       </optGroup>

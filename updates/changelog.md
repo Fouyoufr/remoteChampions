@@ -1,4 +1,7 @@
-1.5
+2.0
+# Version 2.0
+La gestion des boites de jeu se trouve dans l'écran d'administration, permettant de simplifier les interfaces de sélection selon les éléments de jeu possédés.
+Refonte de la page d'administration avec liste des parties stockées et possibilité de faire le ménage.
 # Version 1.5
 Préparation de la sélection des boites de jeu dans l'écran d'administration.
 # Version 1.4
