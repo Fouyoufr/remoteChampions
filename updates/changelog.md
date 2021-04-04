@@ -1,4 +1,4 @@
-1.4
+1.4.1
 # Version 1.4
 Gestion des mises à jour des images depuis gitHub
 # Version 1.3
