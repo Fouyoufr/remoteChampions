@@ -38,17 +38,16 @@ exit();}
 
 function imageUpdate($imgFolder,$imgId,$imgNom) {
 	#Mise à jour des images du dossier
-if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
-	echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
-	exit();}}
-$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
-while ($image=mysqli_fetch_assoc($images)) {
-	$imageFile="img/$imgFolder/".$image[$imgId].'.png';
-	if (!file_exists($imageFile)) {
-		echo "Ajout de l'image de '".$image[$imgNom]."'.<br/>";
-		if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$imageFile",$imageFile)) {echo "<br/><b>Copie échouée....</b>";}
-		echo '<br/>';}}
-}
+	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
+		echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
+		exit();}}
+	$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
+	while ($image=mysqli_fetch_assoc($images)) {
+		$imageFile="img/$imgFolder/".$image[$imgId].'.png';
+		if (!file_exists($imageFile)) {
+			echo "Ajout de l'image de '".$image[$imgNom]."'.<br/>";
+			if (!copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/$imageFile",$imageFile)) {echo "<br/><b>Copie échouée....</b>";}
+			echo '<br/>';}}}
 
 function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
