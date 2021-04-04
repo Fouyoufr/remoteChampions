@@ -131,9 +131,7 @@ function sqlUpdate() {
 			$sqlError=mysqli_error($sqlConn);
 			if ($sqlError!='') {echo "<br/>$tableAdd<br/><b>$sqlError</b>";}
 			echo "<br/>";}}
-	fclose($file);}
-	
-	
+	fclose($file);}	
 	
 echo "Installation / Mise à jour du site... patience...<br/>";
 include 'config.inc';
