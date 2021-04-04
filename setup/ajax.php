@@ -194,9 +194,7 @@ if(isset($_POST['maniganceMax'])) {
 if(isset($_POST['maniganceAcc'])) {
 
   $maniAccel=mysqli_num_rows(sql_get("SELECT `maId` FROM `manigances`,`maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`=`maId` AND `maAcceleration`='1'"));
-  $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;
-  #deduire l'acceleration existante !
-  
+  $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;  
   sql_get("UPDATE `parties` SET `pManiAcceleration`='$manigance' WHERE `pUri`='$partieId'");}
   
 if(isset($_POST['newManigance'])) {

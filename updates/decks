@@ -1,29 +1,37 @@
 #dId,dNom,dBoite
 1,Rhino,1
 2,Klaw,1
-3,CrossBones,0
+3,CrossBones,6
 4,Héros,0
-5,Légions D'Hydra,0
-6,Ingérence En Cours,0
-7,Absorption Électrique,0
-8,Un Immense Gâchis,0
-9,Patrouille D'Hydra,0
-10,Le siège De L'Apocalypse,0
-11,Civils Attaqués,0
-12,Les Maîtres Du Mal,0
-13,Alerte à La Bombe,0
+5,Légions D'Hydra,1
+6,Ingérence En Cours,7
+7,Absorption Électrique,7
+8,Un Immense Gâchis,7
+9,Patrouille D'Hydra,6
+10,Le siège De L'Apocalypse,1
+11,Civils Attaqués,1
+12,Les Maîtres Du Mal,1
+13,Alerte à La Bombe,1
 14,Ultron,1
-15,Entreprise à Risques,0
-16,Formule Mutagène,0
-17,Le Compresseur,0
-18,Le Démolisseur,0
-19,Le Bulldozer,0
-20,Le Boulet,0
-21,L'Homme Absorbant,0
-22,Zola,0
-23,Taskmaster,0
-24,Crâne Rouge,0
-25,Kang,0
-26,Le Maître Du Temps,0
-27,Les Anachronautes,0
-28,Temporel,0
+15,Entreprise à Risques,7
+16,Formule Mutagène,7
+17,Le Compresseur,8
+18,Le Démolisseur,8
+19,Le Bulldozer,8
+20,Le Boulet,8
+21,L'Homme Absorbant,6
+22,Zola,6
+23,Taskmaster,6
+24,Crâne Rouge,6
+25,Kang,15
+26,Le Maître Du Temps,15
+27,Les Anachronautes,15
+28,Temporel,15
+29,La confrérie des Badoon,2
+30,Nébula,2
+31,Ronan l'Accusateur,2
+32, Artefacts Galactiques,2
+33,Pirates de l'espace,2
+34,Contrôles du vaisseau,2
+35,Campagne - Défi Standard/Expert,2
+36,Traqueur Badoon,2

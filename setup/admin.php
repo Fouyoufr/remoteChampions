@@ -41,5 +41,7 @@ if (isset($partieId)) { echo "(Cette action quittera la partie en cours)<br/>";}
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');
   if (css!=null) {document.getElementById('selectCSS').value=css;}
+  document.getElementById('ajaxLoad').style.display='none';
+  document.getElementById('ajaxSave').style.display='none';
 </script>
 </body>

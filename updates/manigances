@@ -78,12 +78,30 @@
 77,4,Thor,Querelle Familiale,2,0,0,0,1,0
 78,4,Docteur Strange,Ouvrir La Dimension Noire,3,1,0,0,1,0
 79,4,Hulk,Destruction Totale,2,1,0,1,0,0
-80,25,12,3B| La Guerre Présent-Futur,2,0,0,0,0,0
-81,25,11,3B| Le Royaume De Ram-Tut,1,0,0,0,0,0
-82,25,10,3B| Destin Inéluctable,1,0,0,0,0,0
-83,25,9,3B| Chronopolis,0,0,0,0,0,0
-84,4,Ant-Man,Vol de technologie,0,2,0,0,0,0
-85,4,Rocket Raccoon,Vendetta,0,2,0,0,0,1
-86,4,Groot,Brasier infernal,0,3,0,0,0,0
-87,4,La guèpe,Les ordres de mère,0,2,0,0,0,0
-88,4,Vif-Argent,Extorsion Cataclysmique,0,2,1,0,0,0
+#maId,maDeck,maNumero,maNom,maInit,maMultiplie,maCrise,maRencontre,maAcceleration,maAmplification
+80,4,Ant-Man,Vol de technologie,0,2,0,0,0,0
+81,4,Rocket Raccoon,Vendetta,0,2,0,0,0,1
+82,4,Groot,Brasier infernal,0,3,0,0,0,0
+83,4,La guèpe,Les ordres de mère,0,2,0,0,0,0
+84,4,Vif-Argent,Extorsion Cataclysmique,0,2,1,0,0,0
+85,4,La sorcière rouge,La prochaine évolution,0,0,0,0,0,0
+86,29,0,Blocus,0,0,0,0,0,0
+87,29,0,Bombardement,0,0,0,0,0,0
+88,29,0,Flotte surpuissante,0,0,0,0,0,0
+89,29,0,Positionnement spatial,0,0,0,0,0,0
+90,30,0,Intentions meurtrières,0,0,0,0,0,0
+91,31,0,Courant coupé,0,0,0,0,0,0
+92,31,0,Pris en tenaille,0,0,0,0,0,0
+93,31,0,Grand tacticien,0,0,0,0,0,0
+94,32,0,Oeuf de monarque Hujahdarien,0,0,0,0,0,0
+95,32,0,Théière magique,0,0,0,0,0,0
+96,32,0,Pierre philosophale,0,0,0,0,0,0
+97,32,0,Boule de cristal,0,0,0,0,0,0
+98,33,0,Sonnez l'alerte,0,0,0,0,0,0
+99,34,0,Canonnade,0,0,0,0,0,0
+100,35,0,Attaque surprise des Badoon,0,0,0,0,0,0
+101,35,0,Guerre des merveilles,0,0,0,0,0,0
+102,35,0,Il n'y a aucune issue,0,0,0,0,0,0
+103,35,0,Tactiques de guérilla,0,0,0,0,0,0
+104,35,0,Supériorité Kree,0,0,0,0,0,0
+105,36,0,Retrouver les fugitifs,0,0,0,0,0,0
