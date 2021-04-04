@@ -73,7 +73,12 @@ if (isset($_GET['phase'])) {
   
 if (isset($_GET['mGet'])) {
   $deck=htmlspecialchars($_GET['mGet']);
-  $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='$deck' ORDER BY `maNom`ASC");
+  if (substr($deck,0,1)=='h') {
+    #récupération des manigances du héros choisi
+    $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='0' AND `maNumero`='".substr($deck,1)."'");}
+  else {
+    #récupération des manigances du deck choisi
+    $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='$deck' ORDER BY `maNom`ASC");}
   $sqlDejaEnJeu=sql_get("SELECT * FROM `maniAnnexes` WHERE `mnPartie`='$partieId'");
   $dejaEnJeu=[]; 
   while ($Deja=mysqli_fetch_assoc($sqlDejaEnJeu)) {

@@ -57,7 +57,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 .changeMechant {display: flex;align-items: center;justify-content: left;background:lightgray;color:black;}
 .changeMechant:hover {cursor: pointer;background:black;color:lightgray;}
 .changeMechant img {margin-right:5px;}
-#dispClef {position:absolute;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;}
+#dispClef {position:absolute;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;text-decoration: none;}
 #dispClef span {font-weight:bold;font-size:20px;font-variant: small-caps; text-transform: capitalize;}
 #dispClef span:hover {color:black;background:white;cursor: pointer;}
 #keyError {position:absolute;top:0px;left:0px;width:100%;text-align:center;color:yellow;}
@@ -103,6 +103,9 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 /* Mise en forme de l'écran d'administration */
 body.admin {background-color:#7e696a;color:white;}
 .pannel {position:relative;border:solid 2px white;padding:2px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;border-color:black;color:black;font-weight:bold;font-size:1em;text-align:center;}
+.pannel table,.pannel tr {border-top: 1px solid #555;width:100%;border-collapse: collapse;}
+.pannel tr:nth-child(odd) {background-color:bisque;}
+.pannel th {background-color: #555;color: #e5d2e5;}
 .titleAdmin {background-color:black;color:white;font-weight:bold;font-size:2em;margin:-2px;margin-bottom:2px;padding-left:10px;text-align:left;}
 #ajaxLoad.admin {top:2Px;left:2px;z-index: 10;}
 #ajaxSave.admin {bottom:2px; left:2px;z-index:10;}

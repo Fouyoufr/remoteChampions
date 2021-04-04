@@ -44,10 +44,11 @@ if ($mobile) {
   setInterval("ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)",2000); 
  </script>');}}
 
-$sqlDecks=sql_get("SELECT * FROM `decks` ORDER By `dNom` ASC");
-while ($deck=mysqli_fetch_assoc($sqlDecks))
-$decks[$deck['dId']]=$deck['dNom'];
-$sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales` WHERE `mpId`!=0 ORDER By `mpNom` ASC");
+$sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
+while ($deck=mysqli_fetch_assoc($sqlDecks)) $decks[$deck['dId']]=$deck['dNom'];
+$sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `heros`,`boites` WHERE `bId`=`hBoite` AND `bInclus`='1' ORDER By `hNom` ASC");
+while ($hero=mysqli_fetch_assoc($sqlHeros)) $heros[$hero['hId']]=$hero['hNom'];
+$sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales`,`boites` WHERE `mpId`!=0 AND `bInclus`='1' AND `bId`=`mpBoite` ORDER By `mpNom` ASC");
 while ($principale=mysqli_fetch_assoc($sqlPrincipales))
 $principales[$principale['mpId']]=$principale['mpNom'];
 ?>
@@ -93,9 +94,9 @@ onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Num
   <div id='online".$i."' class='pointVert'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
-echo "<div id='dispClef' onclick='window.open(\"admin.php\");'>
+echo "<a id='dispClef' href='/admin.php'>
   Le mot-clef de cette partie est <span>$partieId</span>
-</div>";
+</a>";
 ?>
 <img id="indexFirst" src='img/first.png'/>
 <div id="manigance">
@@ -137,7 +138,7 @@ echo "<div id='dispClef' onclick='window.open(\"admin.php\");'>
   <div style="text-align:center;">&#9888; Si vous changez de méchant, le nouveau sera réinitialisé à la phase 1 &#9888;<br/>Et le jeton premier joueur sera réattribué aléatoirement.</div><br/>
   <div id="mechantSelect">
 <?php
-$mechants=sql_get("SELECT * FROM `mechants` WHERE `mID`>0 ORDER BY `mNom` ASC");
+$mechants=sql_get("SELECT * FROM `mechants`,`boites` WHERE `mID`>0 AND `mBoite`=`bID` AND `bInclus`='1' ORDER BY `mNom` ASC");
 while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['mId'].");'><img src='/img/mechants/".$mechant['mId'].".png' style='background:white;'/>".$mechant['mNom'].'</div>';}
 ?>
   </div>
@@ -166,10 +167,13 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant'
   <div class="titlePopup">Ajouter une manigance annexe à la partie</div>
 
     <select name="deck" id="deck" onchange="ajaxCall(ajaxManigancesMenu,'p='+document.getElementById('partie').value+'&mGet='+(this.value));">
-      <option value="0">--Choisissez le deck--</option>
+      <option value="0" disabled>--Choisissez le deck--</option><optGroup>
 <?php
   foreach ($decks as $dId => $dNom) {echo"<option value='$dId'>$dNom</option>";}
+  echo '</optGroup><optGroup>';
+  foreach ($heros as $hId => $hNom) echo"<option value='h$hId'>$hNom</option>";
 ?>
+      </optGroup>
     </select>
     <select name="manigance" id="newManiganceId" style="display:none;"></select><br/>
   <div class="boutonsPopup">
