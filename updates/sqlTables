@@ -1,5 +1,5 @@
 compteurs=>cId=>int(8) NOT NULL AUTO_INCREMENT,cPartie=>varchar(8) NOT NULL,cValeur=>int(3) NOT NULL DEFAULT 0,PRIMARY KEY=>cId
-decks=>dId=>int(8) NOT NULL,dNom=>varchar(50) NOT #NULL,dBoite=>int(8),PRIMARY KEY=>dId
+decks=>dId=>int(8) NOT NULL,dNom=>varchar(50) NOT NULL,dBoite=>int(8),PRIMARY KEY=>dId
 heros=>hId=>int(8) NOT NULL,hNom=>varchar(50) NOT NULL,hVie=>int(3) NOT NULL,hBoite=>int(8),PRIMARY KEY=>hId
 joueurs=>jId=>int(8) NOT NULL AUTO_INCREMENT,jPartie=>varchar(8) NOT NULL,jNom=>varchar(50) NOT NULL,jHeros=>int(8) NOT NULL DEFAULT 0,jVie=>int(3) NOT NULL DEFAULT 0,jStatut=>enum('AE';'SH') NOT NULL DEFAULT 'AE',jDesoriente=>tinyint(1) NOT NULL DEFAULT 0,jSonne=>tinyint(1) NOT NULL DEFAULT 0,jTenace=>tinyint(1) NOT NULL DEFAULT 0,jNumero=>enum('1';'2';'3';'4') NOT NULL,jOnline=>datetime NOT NULL DEFAULT current_timestamp(),PRIMARY KEY=>jId
 maniAnnexes=>mnPArtie=>varchar(8) NOT NULL,mnManigance=>int(8) NOT NULL,mnMenace=>int(3) NOT NULL DEFAULT 0

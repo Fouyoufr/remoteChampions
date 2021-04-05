@@ -11,7 +11,7 @@
   <style>
 	body {background-color:#7e696a;color:white;}
 	.pannel {position:relative;border:solid 2px white;padding:2px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;border-color:black;color:black;font-weight:bold;font-size:1em;}
-	.pannel table,.pannel tr {border-top: 1px solid #555;border-collapse: collapse;}
+	.pannel table,.pannel td {border: 1px solid #555;border-collapse: collapse;}
 	.pannel tr:nth-child(odd) {background-color:bisque;}
 	.pannel th {background-color: #555;color: #e5d2e5;}
 	.pannelTitle {background-color:black;color:white;font-weight:bold;font-size:2em;margin:-2px;margin-bottom:2px;padding-left:10px;text-align:left;}
@@ -143,14 +143,14 @@ function sqlUpdate() {
 			else {
 				$tableAdd.="`$key` $value, ";
 				if (!$addTab AND !(mysqli_num_rows(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'") ))) {
-					echo "<tr><td>Table <b>$tableId</b></td><td>Ajout de la colonne '$key'";
+					echo "<tr><td>$tableId</td><td>Ajout de la colonne '$key'";
 					$columnAdd="ALTER TABLE $tableId ADD COLUMN `$key` $value;";
 					sql_get($columnAdd);
 					$sqlError=mysqli_error($sqlConn);
 					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$columnAdd<br/><b>$sqlError</b></div></div>";}
 					echo "</td></tr>";}}}
 		if ($addTab) {
-			echo "<tr><td>Table <b>$tableId</td><td>Création de la table dans la base de donnée.";
+			echo "<tr><td>$tableId</td><td>Création de la table dans la base de donnée.";
 			$tableAdd=substr($tableAdd,0,-2).") $engine";
 			sql_get($tableAdd);
 			$sqlError=mysqli_error($sqlConn);
@@ -179,7 +179,7 @@ if ($allreadySetup and $currentVersion<>$newVersion) {
 		echo "Mise à jour du script de mise à jour !<br><a href=''>Cliquer ici pour relancer la mise à jour avec le script en version '$newVersion'</a>";}
     else {echo "<div class='error'>Mise à jour du script '<i>setup.php</i>' impossible...</div>";}
 	exit();}
-echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table>";
+echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 sqlUpdate();
 if (!$allreadySetup) {
 	sql_get("INSERT INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
