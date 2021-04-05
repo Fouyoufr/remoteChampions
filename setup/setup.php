@@ -88,7 +88,7 @@ function imageUpdate($imgFolder,$imgId,$imgNom) {
 		$imageFile="img/$imgFolder/".$image[$imgId].'.png';
 		if (!file_exists($imageFile)) {
 			$nothingToDo=false;
-			echo "<tr><td>".$image[$imgNom]."</td><td>";
+			echo "<tr><td>".$image[$imgNom]."</td><td>Ajout";
 			if (!@copy("$gitUrl/updates/$imageFile",$imageFile)) {echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>dossier $imgFolder</td><td>Images au complet</td></tr>";}
@@ -126,10 +126,11 @@ function updateSQLcontent($tableId) {
 			else {
 				$news=false;
 				$entry=mysqli_fetch_assoc($entry);
-				foreach ($cols as $key=> $value) {if ($entry[rtrim($value)]<>rtrim($line[$key])) {$news=true;}}
+				foreach ($cols as $key=> $value) {if ($entry[rtrim($value)]<>rtrim($line[$key]) and $key<>'bInclus') {$news=true;}}
+				#L'ajout $key<>'bInclus' permet de ne pas remplacer la valeur 'possédée' de la boite...
 				if ($news) {
 					$nothingToDo=false;
-					echo"<tr><td>$tableId</td>Modification de l'entrée `$cols[0]`='$line[0]'";
+					echo"<tr><td>$tableId</td><td>Modification de l'entrée `$cols[0]`='$line[0]'";
 					$sqlQuery="UPDATE `$tableId` SET ";
 					foreach ($cols as $key=>$value) {if ($key<>0) {$sqlQuery.="`".rtrim($value)."`='".mysqli_real_escape_string($sqlConn,rtrim($line[$key]))."', ";}}
 					$sqlQuery=substr($sqlQuery,0,-2)." WHERE `$cols[0]`='".mysqli_real_escape_string($sqlConn,rtrim($line[0]))."'";
@@ -192,11 +193,13 @@ echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'inst
 #Récupération de la dernière version du présent script
 $localSize=filesize('setup.php');
 $remoteSize = remoteFileSize('setup.php');
-if ($localSize<>$remoteSize) {
-	echo "Nouvelle version du script de mise à jour.<br/>";
-	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
-	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
-else echo "Script Déjà à jour";
+
+#if ($localSize<>$remoteSize) {
+#	echo "Nouvelle version du script de mise à jour.<br/>";
+#	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+#	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+#else echo "Script Déjà à jour";
+
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 sqlUpdate();
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour du contenu fixe de la base SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
@@ -222,7 +225,7 @@ foreach ($phpFiles as $phpFile) {
 		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo "Déjà à jour";
 	echo "</td></tr>";}
-echo "</table></div><div class='pannel'><div class='pannelTitle'>Fin d'installation/mise à jour</div><a class='button' href='/'>Accéder au site</a></div>";
+echo "</table></div><div class='pannel'><div class='pannelTitle'>Fin d'installation/mise à jour</div><a class='button' href='.'>Accéder au site</a></div>";
 ?>
 </body>
 </html>

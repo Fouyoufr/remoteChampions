@@ -92,9 +92,11 @@ echo "
   <div id='online".$i."' class='pointVert'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
-echo "<a id='dispClef' href='/admin.php'>
-  Le mot-clef de cette partie est <span>$partieId</span>
-</a>";
+echo "<form action='admin.php' method='post' id='dispClef' onclick='prompt(\"Mot de passe administratif\");this.submit();'>
+<input type='hidden' name='adminPassword' id='adminPassword'>
+Le mot-clef de cette partie est <span>$partieId</span></form>";
+#onclick="document.getElementById('form-id').submit();"
+#person = prompt("Please enter your name", "Harry Potter");
 ?>
 <img id="indexFirst" src='img/first.png'/>
 <div id="manigance">
@@ -137,7 +139,7 @@ echo "<a id='dispClef' href='/admin.php'>
   <div id="mechantSelect">
 <?php
 $mechants=sql_get("SELECT * FROM `mechants`,`boites` WHERE `mID`>0 AND `mBoite`=`bID` AND `bInclus`='1' ORDER BY `mNom` ASC");
-while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['mId'].");'><img src='/img/mechants/".$mechant['mId'].".png' style='background:white;'/>".$mechant['mNom'].'</div>';}
+while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['mId'].");'><img src='img/mechants/".$mechant['mId'].".png' style='background:white;'/>".$mechant['mNom'].'</div>';}
 ?>
   </div>
   <br/>
@@ -153,7 +155,7 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant'
   <div id="herosSelect">
 <?php
 $heros=sql_get("SELECT * FROM `heros`,`boites` WHERE `hId`>0 AND `hBoite`=`bID` AND `bInclus`='1' ORDER BY `hNom` ASC");
-while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueur=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='/img/heros/".$hero['hId'].".png' style='background:white;'/>".$hero['hNom'].'</div>';}
+while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueur=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='img/heros/".$hero['hId'].".png' style='background:white;'/>".$hero['hNom'].'</div>';}
 ?>
   </div>
   <br/>

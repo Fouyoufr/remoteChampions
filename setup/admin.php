@@ -33,7 +33,7 @@ if (isset($_GET['del'])) {
     echo "<div style='display:inline-block;border:2px solid black;padding:3px;margin:2px;'><input type='checkbox' id='boite$boiteId' onclick='ajaxPost(\"boite=$boiteId&inclus\",document.getElementById(\"boite$boiteId\").checked);'";
     if ($boite['bInclus']=='1') {echo ' checked ';}
     if ($boite['bInclus']=='2') {echo ' checked disabled';}
-    echo "><label for='boite$boiteId'style='display:inline-block;'><img src='/img/boites/$boiteId.png'/><br/>$boiteNom</label></div>";}
+    echo "><label for='boite$boiteId'style='display:inline-block;'><img src='img/boites/$boiteId.png'/><br/>$boiteNom</label></div>";}
     function displayBoxes($dbReq) {
     $boites=sql_get("SELECT * FROM `boites` WHERE $dbReq ORDER BY `bNom`");
     while ($boite=mysqli_fetch_assoc($boites)) {
@@ -59,14 +59,14 @@ if (mysqli_num_rows($partiesMechant)<>0) {
     echo '</td><td>';
     if (isset($partiesJoueur[$partie['pUri']])) {echo $partiesJoueur[$partie['pUri']]['COUNT(`jId`)']; }
     else {echo 'aucun';}
-    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td><a href="/?p='.$partie['pUri'].'">Ouvrir</a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')">Supprimer</a></td></tr>';
+    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td><a href=".?p='.$partie['pUri'].'">Ouvrir</a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')">Supprimer</a></td></tr>';
   }
   echo "</table></div>";
 }
 ?>
 <div class="pannel">
 <div class="titleAdmin">Mise à jour</div>
-<button onclick="window.open('/setup.php','_self');">Lancer la mise à jour</button>
+<button onclick="window.open('setup.php','_self');">Lancer la mise à jour</button>
 </div>
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');
