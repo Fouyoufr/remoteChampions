@@ -186,8 +186,8 @@ while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick
       <option value="0">--Choisissez le deck--</option>
 <?php
   foreach ($decks as $dId => $dNom) {echo"<option value='$dId'>$dNom</option>";}
-  echo '<optGroup>';
-  foreach ($heros as $hId => $hNom) echo"<option value='h$hId'>$hNom</option>";
+  echo '<option disabled>Manigances des héros</option>';
+  foreach ($heros as $hero) echo"<option value='h".$hero['hId']."'>".$hero['hNom']."</option>";
 ?>
       </optGroup>
     </select>
