@@ -200,11 +200,11 @@ echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'inst
 $localSize=filesize('setup.php');
 $remoteSize = remoteFileSize('setup.php');
 
-#if ($localSize<>$remoteSize) {
-#	echo "Nouvelle version du script de mise à jour.<br/>";
-#	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
-#	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
-#else echo "Script Déjà à jour";
+if ($localSize<>$remoteSize) {
+	echo "Nouvelle version du script de mise à jour.<br/>";
+	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+else echo "Script Déjà à jour";
 
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 sqlUpdate();
