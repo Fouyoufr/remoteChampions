@@ -1,5 +1,5 @@
 <?php
-$title='Marvel Champions';
+$title='Remote Champions';
 $bodyClass='index';
 include 'include.php';
 if (!isset($partieId)) {

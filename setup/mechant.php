@@ -1,5 +1,5 @@
 <?php
-$title='Marvel Champions';
+$title='Remote Champions';
 $bodyClass='mechant';
 include 'include.php';
 ?>

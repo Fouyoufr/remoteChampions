@@ -1,5 +1,5 @@
 <?php
-$title='Marvel Champions - Admin';
+$title='Remote Champions - Admin';
 $bodyClass='admin';
 include 'include.php';
 if (isset($_GET['del'])) {
