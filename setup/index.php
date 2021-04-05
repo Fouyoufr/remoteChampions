@@ -3,7 +3,7 @@ $title='Remote Champions';
 $bodyClass='index';
 include 'include.php';
 if (!isset($partieId)) {
-  if (isset($_POST['nbJoueurs'])) {
+  if (isset($_POST['nbJoueurs']) and $_POST['nbJoueurs']<>'-1') {
   	$nbJoueurs=htmlspecialchars($_POST['nbJoueurs']);
     $caracteres = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $partieId = '';
@@ -22,7 +22,7 @@ else {
   if (isset($badPartie)) {echo '<div id="keyError">&#9888; Le mot-clef saisi n\'est pas valide... &#9888;</div>';}
   exit ("<h1>Saisir le mot-clef d'une partie pour l'afficher:</h1>
     <input type='text' name='p' id='selectPartieName'>
-    <input type='submit' value='OK' onclick='document.getElementById(\"nbJoueurs\").value=\"0\";' class='bouton'><br/>
+    <input type='submit' value='OK' onclick='document.getElementById(\"nbJoueurs\").value=\"-1\";' class='bouton'><br/>
     <h1>Ou créer une nouvelle partie pour</h1>
     <select id='nbJoueurs' name='nbJoueurs'><option value='1'>1 joueur</option><option value='2'>2 joueur</option><option value='3'>3 joueur</option><option value='4'>4 joueur</option><option value='0'>Méchant seul</option></select>.
     <input type='submit' value='Créer' onclick='document.getElementById(\"selectPartieName\").value=\"\";' class='bouton'></form>
