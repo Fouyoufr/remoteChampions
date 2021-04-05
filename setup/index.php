@@ -20,15 +20,17 @@ if (!isset($partieId)) {
 else {
   echo '<form id="selectPartie" method="post">';
   if (isset($badPartie)) {echo '<div id="keyError">&#9888; Le mot-clef saisi n\'est pas valide... &#9888;</div>';}
-  exit ('<h1>Choisir le mot-clef d\'une partie pour l\'afficher:<br/>
-    <input type="text" name="p" id="selectPartieName">
-    <input type="submit" value="OK" onclick="document.getElementById(\'nbJoueurs\').value=\'0\';" class="bouton"><br/>
-    <h1>Ou créer une nouvelle partie pour 
-    <select id="nbJoueurs" name="nbJoueurs"><option value="1">1 joueur</option><option value="2">2 joueur</option><option value="3">3 joueur</option><option value="4">4 joueur</option><option value="0">Méchant seul</option></select>.<br/>
-    <input type="submit" value="Créer" onclick="document.getElementById(\'selectPartieName\').value=\'\';" class="bouton">
-  </form>
+  exit ("<h1>Saisir le mot-clef d'une partie pour l'afficher:</h1>
+    <input type='text' name='p' id='selectPartieName'>
+    <input type='submit' value='OK' onclick='document.getElementById(\"nbJoueurs\").value=\"0\";' class='bouton'><br/>
+    <h1>Ou créer une nouvelle partie pour</h1>
+    <select id='nbJoueurs' name='nbJoueurs'><option value='1'>1 joueur</option><option value='2'>2 joueur</option><option value='3'>3 joueur</option><option value='4'>4 joueur</option><option value='0'>Méchant seul</option></select>.
+    <input type='submit' value='Créer' onclick='document.getElementById(\"selectPartieName\").value=\"\";' class='bouton'></form>
+  <form action='admin.php' method='post' id='dispClef' onclick='moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}'>
+<input type='hidden' name='adminPassword' id='adminPassword'>
+Administration du site</form>
 </body>
-</html>');}}
+</html>");}}
 
 if ($mobile) {
   if (!isset($joueurId)) {
@@ -92,11 +94,9 @@ echo "
   <div id='online".$i."' class='pointVert'></div>
   <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
 </div>";}
-echo "<form action='admin.php' method='post' id='dispClef' onclick='prompt(\"Mot de passe administratif\");this.submit();'>
+echo "<form action='admin.php' method='post' id='dispClef' onclick='moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}'>
 <input type='hidden' name='adminPassword' id='adminPassword'>
 Le mot-clef de cette partie est <span>$partieId</span></form>";
-#onclick="document.getElementById('form-id').submit();"
-#person = prompt("Please enter your name", "Harry Potter");
 ?>
 <img id="indexFirst" src='img/first.png'/>
 <div id="manigance">

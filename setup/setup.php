@@ -25,14 +25,16 @@
 </head>
 <body>
 <?php
+session_start();
 $gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
+$adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
 if (!file_exists('./config.inc')) {
 	#Le fichier de paramètrage n'existe pas
 	echo "<div class='pannel'><div class='pannelTitle'>Installation initiale</div>";
 	$error='';
 	if(!is_writable(__DIR__)) {$error="Ecriture impossible dans le répertoire '".__DIR__."', merci de vérifier!";}
 	elseif (isset($_POST['serverName'])) {
-		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName'].":".$_POST['serverPort']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysqli_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n?>";
+		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName'].":".$_POST['serverPort']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysqli_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n\$adminPassword='$adminPasswordInitial';\n?>";
 		if (!isset($_POST['serverDb']) or $_POST['serverDb']==''){$error="Vous n'avez pas saisi de nom pour la base...";}
 		elseif ($_POST['newDb']=='1') {
 			#Création d'une nouvelle base de donnée
@@ -46,6 +48,7 @@ if (!file_exists('./config.inc')) {
 					$error="Création de la nouvelle Base de données '".$_POST['serverDb']."' impossible.<div class='subError'><i>$sqlQuery</i> : $sqlError</div>";}
 				else {
 					file_put_contents ('config.inc',$configContent);
+					$_SESSION['adminPassword']=$adminPasswordInitial;
 					header("Refresh:0");}}}
 		else {
 			#Utilisation d'une base de donnée existante
@@ -53,6 +56,7 @@ if (!file_exists('./config.inc')) {
 			if (!$sqlConn){$error="Erreur,Connection impossible, merci de vérifier.<br/><div class='subError'>".mysqli_connect_error()."</div>";}
 			else {
 				file_put_contents ('config.inc',$configContent);
+				$_SESSION['adminPassword']=$adminPasswordInitial;
 				header("Refresh:0");}}}
 	if (!isset($_POST['serverPort'])) {$_POST['serverPort']='3306';}
 	echo "<form action='' method='post'>";
@@ -61,7 +65,7 @@ if (!file_exists('./config.inc')) {
 	if ($_POST['newDb']=='0') {echo ' checked';}
 	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
 	if ($_POST['newDb']<>'0') {echo ' checked';}
-	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
+	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table>(Nota: le mot de passe administratif initial est 'admin', changez le dans la page d'administration.)</form>";
 exit();}
 
 function remoteFileSize ($phpFile) {
@@ -99,8 +103,8 @@ function updateSQLcontent($tableId) {
 	$file = fopen ("$gitUrl/updates/$tableId", "r");
 	if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
 	$newTable=array();
+	$nothingToDo=true;
 	while (!feof ($file)) {
-		$nothingToDo=true;
 		$line=explode(',',fgets($file));
 		if ($line[0][0]=='#') {
 			$line[0]=substr($line[0],1);
@@ -126,7 +130,7 @@ function updateSQLcontent($tableId) {
 			else {
 				$news=false;
 				$entry=mysqli_fetch_assoc($entry);
-				foreach ($cols as $key=> $value) {if ($entry[rtrim($value)]<>rtrim($line[$key]) and $key<>'bInclus') {$news=true;}}
+				foreach ($cols as $key=> $value) if ($entry[rtrim($value)]<>rtrim($line[$key]) and $value<>'bInclus') $news=true;
 				#L'ajout $key<>'bInclus' permet de ne pas remplacer la valeur 'possédée' de la boite...
 				if ($news) {
 					$nothingToDo=false;
@@ -189,6 +193,8 @@ function sqlUpdate() {
 	fclose($file);}	
 	
 include 'config.inc';
+#Vérification du mot de passe d'administration.
+if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) exit("<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>");
 echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
 #Récupération de la dernière version du présent script
 $localSize=filesize('setup.php');

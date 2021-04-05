@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 2.6
+Protection de l'administrtation du site par mot de passe.
 ## Version 2.5
 - Script d'installation/Mise à jour nettoyé.
 - Toutes les images de héros officiellement sortis à ce jour.

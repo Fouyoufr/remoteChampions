@@ -107,6 +107,8 @@ body.admin {background-color:#7e696a;color:white;}
 .pannel tr:nth-child(odd) {background-color:bisque;}
 .pannel th {background-color: #555;color: #e5d2e5;}
 .titleAdmin {background-color:black;color:white;font-weight:bold;font-size:2em;margin:-2px;margin-bottom:2px;padding-left:10px;text-align:left;}
+a.adminButton {font-size:1.5em;font-weight:bold;color:black;background-color:darkgray;margin-top:10px;display:inline-block;padding:4px;text-decoration:none;border:solid 2px black;text-align:center;}
+a.adminButton:hover {background-color:lightgray;}
 #ajaxLoad.admin {top:2Px;left:2px;z-index: 10;}
 #ajaxSave.admin {bottom:2px; left:2px;z-index:10;}
 

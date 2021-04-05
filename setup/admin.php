@@ -2,6 +2,12 @@
 $title='Remote Champions - Admin';
 $bodyClass='admin';
 include 'include.php';
+#Vérification du mot de passe d'administration.
+if (isset($_POST['newPass'])) {
+  $adminPassword=hash('sha256',$_POST['newPass']);
+  updatePassword();}
+if (isset($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
+if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) exit("<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>");
 if (isset($_GET['del'])) {
   $partie=sql_get("SELECT `pUri` FROM `parties` WHERE `pUri`='".$_GET['del']."'");
   if (mysqli_num_rows($partie)<>0) {
@@ -61,12 +67,25 @@ if (mysqli_num_rows($partiesMechant)<>0) {
     else {echo 'aucun';}
     echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td><a href=".?p='.$partie['pUri'].'">Ouvrir</a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')">Supprimer</a></td></tr>';
   }
-  echo "</table></div>";
-}
+  echo "</table></div>";}
 ?>
+<form class="pannel" style="text-align:left;" id='newPassForm' method='post' action=''>
+<div class="titleAdmin">Mot de passe administratif</div>
+<?php
+if (isset($_POST['newPass'])) echo "<div style='width:100%;font-size:2em;text-align:center;background-color:red;color:white;'>Le mot de passe administratif a été modifié.</div>"
+?>
+<span style="color:red;text-decoration:underline">Attention:</span> Le mot de passe modifié ici n'est pas stocké en clair sur le serveur.<br/>
+(Veillez à le conserver en lieu sur et à ne pas le perdre...)<br/>
+<div style="float:left;margin-right:10px;">Nouveau mot de passe<br/>Vérification<br/> </div>
+<div>
+<input type='password' name='newPass' id='newPass'><br/>
+<input type='password' name='newPass2' id='newPass2'>
+<input type='submit' onclick="if (document.getElementById('newPass').value == document.getElementById('newPass2').value) return true; else {alert('Le mot de passe saisi et la vérification ne correspondent pas!');return false;}">
+</div>
+</form>
 <div class="pannel">
 <div class="titleAdmin">Mise à jour</div>
-<button onclick="window.open('setup.php','_self');">Lancer la mise à jour</button>
+<a href="setup.php" class="adminButton">Lancer la mise à jour</a>
 </div>
 <script language="JavaScript">
   var css=localStorage.getItem('mcCss');
