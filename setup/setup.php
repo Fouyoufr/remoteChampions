@@ -5,7 +5,7 @@
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
   <meta charset='UTF-8'>
   <link rel='icon' href='favicon.ico'/>
-  <title>Remote Champions - Installation</title>
+  <title>Remote Champions - Installation/Mise à jour</title>
   <script language='JavaScript'>
   </script>
   <style>
@@ -18,7 +18,9 @@
 	.error {background-color:red;color:white;font-weight:bold;width:100%;text-align:center;font-size:1.5em;margin:-2px;padding:3px;}
 	.subError {text-align:left;font-size:.5em;font-style:italic;color:lightgray;font-weight:normal;}
 	input {background:transparent;}
-	input[type=submit] {font-size:1.5em;font-weight:bold;color:white;background-color:black;margin-top:10px;}
+	input[type=submit] {font-size:1.5em;font-weight:bold;color:white;background-color:black;margin-top:10px;display:inline-block;}
+	a.button {margin-left:calc(50% - 100px);width:200px;font-size:1.5em;font-weight:bold;color:black;background-color:darkgray;margin-top:10px;display:inline-block;padding:4px;text-decoration:none;border:solid 2px black;text-align:center;}
+	a.button:hover {background-color:lightgray;}
   </style>
 </head>
 <body>
@@ -62,18 +64,34 @@ if (!file_exists('./config.inc')) {
 	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table></form>";
 exit();}
 
+function remoteFileSize ($phpFile) {
+	global $gitUrl;
+	$remoteCall = curl_init("$gitUrl/setup/$phpFile");
+	curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
+	curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
+   	$data = curl_exec($remoteCall);
+	$remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+	curl_close($remoteCall);
+	return $remoteSize;}
+
 function imageUpdate($imgFolder,$imgId,$imgNom) {
 	#Mise à jour des images du dossier
+	global $gitUrl;
+	$nothingToDo=true;
 	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
-		echo "<br/><b>Création de sous-répertoire dans '/img' impossible...</b>";
+		$nothingToDo=false;
+		echo "<tr><td></td><div class='error'>Création de sous-répertoire dans '/img' impossible...</div></td></tr>";
 		exit();}}
 	$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
 	while ($image=mysqli_fetch_assoc($images)) {
 		$imageFile="img/$imgFolder/".$image[$imgId].'.png';
 		if (!file_exists($imageFile)) {
-			echo "Ajout de l'image de '".$image[$imgNom]."'.<br/>";
-			if (!copy("$gitUrl/updates/$imageFile",$imageFile)) {echo "<br/><b>Copie échouée....</b>";}
-			echo '<br/>';}}}
+			$nothingToDo=false;
+			echo "<tr><td>".$image[$imgNom]."</td><td>";
+			if (!@copy("$gitUrl/updates/$imageFile",$imageFile)) {echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
+			echo '</td></tr>';}}
+	if ($nothingToDo) echo "<tr><td>dossier $imgFolder</td><td>Images au complet</td></tr>";}
 
 function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
@@ -82,6 +100,7 @@ function updateSQLcontent($tableId) {
 	if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
 	$newTable=array();
 	while (!feof ($file)) {
+		$nothingToDo=true;
 		$line=explode(',',fgets($file));
 		if ($line[0][0]=='#') {
 			$line[0]=substr($line[0],1);
@@ -91,7 +110,8 @@ function updateSQLcontent($tableId) {
 			$newTable[$line[0]]=$line[1];
 			$entry=sql_get("SELECT * FROM $tableId WHERE `$cols[0]`='$line[0]'");
 			if ((!mysqli_num_rows($entry))) {
-				echo "- Ajout de l'entrée `$cols[0]`='$line[0]' dans la table `$tableId`";
+				$nothingToDo=false;
+				echo "<tr><td>$tableId</td><td>Ajout de l'entrée `$cols[0]`='$line[0]'";
 				$sqlQuery1='';
 				$sqlQuery2=") VALUES (";
 				foreach ($cols as $key=>$value) {
@@ -101,27 +121,33 @@ function updateSQLcontent($tableId) {
 				$sqlQuery="INSERT INTO `$tableId` (".substr($sqlQuery1,0,-2).substr($sqlQuery2,0,-2).')';
 				sql_get($sqlQuery);
 				$sqlError=mysqli_error($sqlConn);
-				if ($sqlError!='') {echo "<br/>$sqlQuery<br/><b>$sqlError</b>";}
-				echo "<br/>";}
+				if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
+				echo "</td></tr>";}
 			else {
 				$news=false;
 				$entry=mysqli_fetch_assoc($entry);
 				foreach ($cols as $key=> $value) {if ($entry[rtrim($value)]<>rtrim($line[$key])) {$news=true;}}
 				if ($news) {
-					echo"- Modification de l'entrée `$cols[0]`='$line[0]' dans la table `$tableId`";
+					$nothingToDo=false;
+					echo"<tr><td>$tableId</td>Modification de l'entrée `$cols[0]`='$line[0]'";
 					$sqlQuery="UPDATE `$tableId` SET ";
 					foreach ($cols as $key=>$value) {if ($key<>0) {$sqlQuery.="`".rtrim($value)."`='".mysqli_real_escape_string($sqlConn,rtrim($line[$key]))."', ";}}
 					$sqlQuery=substr($sqlQuery,0,-2)." WHERE `$cols[0]`='".mysqli_real_escape_string($sqlConn,rtrim($line[0]))."'";
 					sql_get($sqlQuery);
 					$sqlError=mysqli_error($sqlConn);
-					if ($sqlError!='') {echo "<br/>$sqlQuery<br/><b>$sqlError</b>";}
+					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
 					echo '<br/>';}}}}
 	#Supression des enregistrements dipsarus.
 	$oldTable=sql_get("SELECT `$cols[0]`, `$cols[1]` FROM $tableId");
 	while($oldLine=mysqli_fetch_assoc($oldTable)) {
 		if(!isset($newTable[$oldLine[$cols[0]]])) {
+			$nothingToDo=false;
+			echo "<tr><td>$tableId</td><td>Suppression de l'entrée '".$oldLine[$cols[1]]."'";
 			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
-			echo "Supression de l'entrée '".$oldLine[$cols[1]]."' de la table '$tableId'.<br/>";}}}
+			$sqlError=mysqli_error($sqlConn);
+			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
+			echo "</td></tr>";}}
+	if ($nothingToDo) echo "<tr><td>$tableId</td><td>Tout est en ordre</td></tr>";}
 
 function sqlUpdate() {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
@@ -130,6 +156,7 @@ function sqlUpdate() {
 	$file = fopen ("$gitUrl/updates/sqlTables", "r");
 	if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
 	while (!feof ($file)) {
+		$nothingToDo=true;
     	$table=explode('=>',fgets($file),2);
     	$tableId=$table[0];
     	$addTab=(!mysqli_num_rows(sql_get("SHOW TABLES LIKE '$tableId';")));
@@ -143,6 +170,7 @@ function sqlUpdate() {
 			else {
 				$tableAdd.="`$key` $value, ";
 				if (!$addTab AND !(mysqli_num_rows(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'") ))) {
+					$nothingToDo=false;
 					echo "<tr><td>$tableId</td><td>Ajout de la colonne '$key'";
 					$columnAdd="ALTER TABLE $tableId ADD COLUMN `$key` $value;";
 					sql_get($columnAdd);
@@ -155,65 +183,46 @@ function sqlUpdate() {
 			sql_get($tableAdd);
 			$sqlError=mysqli_error($sqlConn);
 			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$tableAdd<br/><b>$sqlError</b></div></div>";}
-			echo "</td></tr>";}}
+			echo "</td></tr>";}
+		elseif($nothingToDo) echo "<tr><td>$tableId</td><td>Déja à jour</td></tr>";}
 	fclose($file);}	
 	
 include 'config.inc';
-echo "<div class='pannel'><div class='pannelTitle'>Comparaison des versions</div>";
-$currentVersion=sql_get("SELECT `cfValue` FROM `config` WHERE `cfName`='version'");
-if ($currentVersion) {
-	$allreadySetup=true;
-	$currentVersion=mysqli_fetch_assoc($currentVersion)['cfValue'];}
-else {$allreadySetup=false;}
-#Récupération de la dernière version (le changement de version permet aussi la mise à jour du présent script)
-$file=fopen("$gitUrl/updates/changelog.md","r");
-if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
-$newVersion=rtrim(fgets($file));
-fclose($file);
-echo "<ul><li>Version locale: $currentVersion<li>Version de référence: $newVersion</ul>";
-if ($allreadySetup and $currentVersion<>$newVersion) {
-	#Mise à jour du script de mise à jour !
-    if (copy('$gitUrl/setup/setup.php','setup.php')) {
-    	#Mise à jour de la version
-		sql_get("REPLACE INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");
-		echo "Mise à jour du script de mise à jour !<br><a href=''>Cliquer ici pour relancer la mise à jour avec le script en version '$newVersion'</a>";}
-    else {echo "<div class='error'>Mise à jour du script '<i>setup.php</i>' impossible...</div>";}
-	exit();}
+echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
+#Récupération de la dernière version du présent script
+$localSize=filesize('setup.php');
+$remoteSize = remoteFileSize('setup.php');
+if ($localSize<>$remoteSize) {
+	echo "Nouvelle version du script de mise à jour.<br/>";
+	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+else echo "Script Déjà à jour";
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 sqlUpdate();
-if (!$allreadySetup) {
-	sql_get("INSERT INTO `config` (`cfName`,`cfValue`) VALUES ('version','".$newVersion."')");}
-exit();
+echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour du contenu fixe de la base SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 updateSQLcontent('boites');
 updateSQLcontent('mechants');
 updateSQLcontent('ManigancesPrincipales');
 updateSQLcontent('manigances');
 updateSQLcontent('decks');
 updateSQLcontent('heros');
-
+echo "</table></div><div class='pannel'><div class='pannelTitle'>Ajout des images manquantes</div><table><tr><th>Image</th><th></th></tr>";
 imageUpdate('mechants','mId','mNom');
 imageUpdate('boites','bId','bNom');
 imageUpdate('heros','hId','hNom');
-
+echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
 #Vérification des fichiers php par leur taille.
 $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration1.png','img/MenaceAcceleration2.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png');
 foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
-	$remoteCall = curl_init("$gitUrl/setup/$phpFile");
-	curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
-	curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
-   	$data = curl_exec($remoteCall);
-	$remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-	curl_close($remoteCall);
+	$remoteSize = remoteFileSize($phpFile);
+	echo "<tr><td>$phpFile</td><td>";
 	if ($localSize<>$remoteSize) {
-		echo "Changement de taille du fichier '$phpFile' : remplacement de la version locale.";
-		if (!copy("$gitUrl/setup/$phpFile",$phpFile)) {echo "<br/><b>Copie échouée....</b>";}
-		echo '<br/>';
-	}
-}
-
-echo "<hr/>Le site est prêt !<br/><a href='/'>Y accèder !</a>";
+		echo "Mise à jour";
+		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
+	else echo "Déjà à jour";
+	echo "</td></tr>";}
+echo "</table></div><div class='pannel'><div class='pannelTitle'>Fin d'installation/mise à jour</div><a class='button' href='/'>Accéder au site</a></div>";
 ?>
 </body>
 </html>
