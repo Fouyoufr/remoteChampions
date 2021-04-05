@@ -16,8 +16,7 @@ function ajaxPost (key,value) {
     if (document.getElementById('changeHeros')) {document.getElementById('changeHeros').style.display='none';}
   	if (ajaxReqPost.responseText!='') {
   		if (ajaxReqPost.responseText=='SelectManigance') {document.getElementById('NewPrincipale').style.display='block';}
-  		console.log(ajaxReqPost.responseText);
-  		}}
+  		console.log(ajaxReqPost.responseText);}}
   ajaxReqPost.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   uri=key+'='+encodeURIComponent(value);
   if (document.getElementById('partie')) {uri+='&p='+encodeURIComponent(document.getElementById('partie').value);}
@@ -37,8 +36,7 @@ function ajaxSelecSet() {
     if (nbJoueurs<4 && document.getElementById('selecJ4').style.visibility!='hidden') {document.getElementById('selecJ4').style.visibility='hidden'}
     if (nbJoueurs<3 && document.getElementById('selecJ3').style.visibility!='hidden') {document.getElementById('selecJ3').style.visibility='hidden'}
     document.getElementById('ajaxLoad').style.display='none';
-    document.getElementById('ajaxSave').style.display='none';
-}}}
+    document.getElementById('ajaxSave').style.display='none';}}}
 
 function ajaxManigancesMenu () {
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
@@ -48,8 +46,7 @@ function ajaxManigancesMenu () {
     var manigancesList = Array.prototype.slice.call(manigances);
     document.getElementById('newManiganceId').innerHTML='';
     manigancesList.forEach(function(value,index,array) {document.getElementById('newManiganceId').innerHTML+='<option value="'+value.getAttribute('maId')+'">'+value.getAttribute('maNom')+'</option>';});
-    document.getElementById('newManiganceId').style.display='inline-block';
-}}}
+    document.getElementById('newManiganceId').style.display='inline-block';}}}
 
 function ajaxPhase () {
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
@@ -99,8 +96,7 @@ function ajaxJoueurSet() {
       	document.getElementById('vieJoueurMoins').className='vieJoueurRed';
       	document.getElementById('tenJoueur').className='tenJoueur';}
     document.getElementById('ajaxLoad').style.display='none';  
-    document.getElementById('ajaxSave').style.display='none';
-}}}
+    document.getElementById('ajaxSave').style.display='none';}}}
   
 function ajaxMainSet() {
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
@@ -126,6 +122,18 @@ function ajaxMainSet() {
     document.getElementById('manigancePri').innerText=maniCourant;
     document.getElementById('manigancePriMax').innerText=maniMax;
     var maniganceAcc=partie.getAttribute('pManiAcceleration');
+    var Decks=xmlDoc.getElementsByTagName('deck');
+    var DeckList=Array.prototype.slice.call(Decks);
+    var newDecks="<option value='0'>--Choisissez le deck--</option>";
+    var newDeckSeparation=false;
+    //document.getElementById('deck').innerHTML=document.getElementById('deckOptionsInit').value;
+    DeckList.forEach(function(value,index,array) {
+      if (!newDeckSeparation && value.getAttribute('dId').charAt(0)=='h') {
+        newDeckSeparation=true;
+        newDecks+='<option disabled>Manigances des héros</option>';}
+      newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';
+    });
+    if (document.getElementById('NewManigance').style.display!='block') {document.getElementById('deck').innerHTML=newDecks;}
     var manigances = xmlDoc.getElementsByTagName('manigance');
     var manigancesList = Array.prototype.slice.call(manigances);
     document.getElementById('manigancesAnnexes').innerHTML='';

@@ -21,6 +21,8 @@ if (isset($_GET['pGet'])) {
   $partieId=htmlspecialchars($_GET['pGet']);
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
+  $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
+  $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `heros`,`joueurs` WHERE `jPartie`='$partieId' AND `hId`=`jHeros` AND `hId`<>0 ORDER BY `hNom` ASC");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
   $sqlManiHeros=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`heros` WHERE `mnPartie`='$partieId' AND `maDeck`='0' AND `maId`=`mnManigance` AND `maNumero`=`hId`");
   $sqlPrincipale=sql_get("SELECT `mpId`,`mpNom`, `mpMax` FROM `parties`, `ManigancesPrincipales` WHERE `mpID`=`pManiPrincipale` AND `pURI`='$partieId'");
@@ -53,6 +55,16 @@ if (isset($_GET['pGet'])) {
       foreach ($joueur as $clePartie => $valPartie) {
       	if ($clePartie=='jOnline') {$valPartie=strtotime($valPartie)*1000;}
       	$xml->writeAttribute($clePartie, $valPartie);}
+      $xml->endElement();}
+    while ($deck=mysqli_fetch_assoc($sqlDecks)) {
+      $xml->startElement('deck');
+      $xml->writeAttribute('dId',$deck['dId']);
+      $xml->writeAttribute('dNom',$deck['dNom']);
+      $xml->endElement();}
+    while ($heros=mysqli_fetch_assoc($sqlHeros)) {
+      $xml->startElement('deck');
+      $xml->writeAttribute('dId', 'h'.$heros['hId']);
+      $xml->writeAttribute('dNom', $heros['hNom']);
       $xml->endElement();}
   $xml->endElement();  
   header('Content-type: text/xml');

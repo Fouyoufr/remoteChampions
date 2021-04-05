@@ -10,7 +10,7 @@ if (!isset($partieId)) {
     for ($i=0;$i<6;$i++) {$partieId.=$caracteres[mt_rand(0, strlen($caracteres)-1)];}
     $insertDate=date('Y-m-d H:i:s');
     if ($nbJoueurs!=0) {
-      for ($i=1;$i<=$nbJoueurs;$i++) {sql_get("INSERT INTO `joueurs` (`jPartie`,`jNom`,`jVie`,`jStatut`,`jHeros`,`jNumero`) VALUES ('$partieId', 'Joueur $i', '10', 'AE','1','$i')");}
+      for ($i=1;$i<=$nbJoueurs;$i++) {sql_get("INSERT INTO `joueurs` (`jPartie`,`jNom`,`jVie`,`jStatut`,`jHeros`,`jNumero`) VALUES ('$partieId', 'Joueur $i', '10', 'AE','0','$i')");}
       $premier=mt_rand(1,$nbJoueurs);}
     else {$premier=0;}
     sql_get("INSERT INTO `parties` (`pUri`,`pPremier`) VALUES ('$partieId','$premier')");
@@ -46,10 +46,6 @@ if ($mobile) {
   setInterval("ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)",2000); 
  </script>');}}
 
-$sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
-while ($deck=mysqli_fetch_assoc($sqlDecks)) $decks[$deck['dId']]=$deck['dNom'];
-$sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `heros`,`boites` WHERE `bId`=`hBoite` AND `bInclus`='1' ORDER By `hNom` ASC");
-while ($hero=mysqli_fetch_assoc($sqlHeros)) $heros[$hero['hId']]=$hero['hNom'];
 $sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales`,`boites` WHERE `mpId`!=0 AND `bInclus`='1' AND `bId`=`mpBoite` ORDER By `mpNom` ASC");
 while ($principale=mysqli_fetch_assoc($sqlPrincipales))
 $principales[$principale['mpId']]=$principale['mpNom'];
@@ -181,20 +177,12 @@ while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick
 
 <div id="NewManigance">
   <div class="titlePopup">Ajouter une manigance annexe à la partie</div>
-
-    <select name="deck" id="deck" onchange="if (this.value=='0') {getElementById('newManiganceId').style.display='none';} else {ajaxCall(ajaxManigancesMenu,'p='+document.getElementById('partie').value+'&mGet='+(this.value));}">
-      <option value="0">--Choisissez le deck--</option>
-<?php
-  foreach ($decks as $dId => $dNom) {echo"<option value='$dId'>$dNom</option>";}
-  echo '<option disabled>Manigances des héros</option>';
-  foreach ($heros as $hero) echo"<option value='h".$hero['hId']."'>".$hero['hNom']."</option>";
-?>
-      </optGroup>
+  <select name='deck' id='deck' onchange='if (this.value=="0") {getElementById("newManiganceId").style.display="none";} else {ajaxCall(ajaxManigancesMenu,"p="+document.getElementById("partie").value+"&mGet="+(this.value));}'>
     </select>
     <select name="manigance" id="newManiganceId" style="display:none;"></select><br/>
   <div class="boutonsPopup">
-    <input type ="button" value="Confirmer" onclick='ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";' class='bouton'>
-    <input type="button" value="Annuler" onclick='document.getElementById("NewManigance").style.display="none";' class='bouton'>
+    <input type ="button" value="Confirmer" onclick='ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("newManiganceId").style.display="none";document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";' class='bouton'>
+    <input type="button" value="Annuler" onclick='document.getElementById("NewManigance").style.display="none";document.getElementById("newManiganceId").style.display="none";' class='bouton'>
   </div>
 </div>
 
