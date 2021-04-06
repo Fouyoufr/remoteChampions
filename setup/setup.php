@@ -223,7 +223,7 @@ echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification d
 #Vérification des fichiers php par leur taille.
 $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','aide.md','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png');
 foreach ($phpFiles as $phpFile) {
-	$localSize=filesize($phpFile);
+	$localSize=@filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
 	echo "<tr><td>$phpFile</td><td>";
 	if ($localSize<>$remoteSize) {
