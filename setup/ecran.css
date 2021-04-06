@@ -112,7 +112,7 @@ a.adminButton:hover {background-color:darkgray;color:black;}
 #ajaxLoad.admin {top:2Px;left:2px;z-index: 10;}
 #ajaxSave.admin {bottom:2px; left:2px;z-index:10;}
 .adminEncadre {display:inline-block;border:2px solid black;padding:3px;margin:2px;color:black;text-decoration:none;}
-a.adminEncadre {font-size:.8em;font-weight: normal;}
+a.adminEncadre {font-size:.8em;font-weight: normal;text-align:left;}
 a.adminEncadre:hover {background-color:#555;color:white;border-color:white;}
 
 /*Mise en forme pour l'écran de joueur */

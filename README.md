@@ -7,8 +7,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 
 # Historique des changements
 ## Version 2.9
-- Affichage de la dernière version gitHub dans l'écran d'administration
-- Correction d'un bug sur l'affichage des decks uniquement de boites sélectionnées lors de l'ajout de manigance annexe
+- Affichage de la dernière version gitHub dans l'écran d'administration,
+- Correction d'un bug sur l'affichage des decks uniquement de boites sélectionnées lors de l'ajout de manigance annexe,
 - Gestion des manigances principales sans multiplicateur (pour KANG par exemple).
 ## Version 2.8
 Affichage dynamique des decks pour sélection d'une manigance secondaire.

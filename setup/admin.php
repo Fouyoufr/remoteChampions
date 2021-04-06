@@ -92,7 +92,7 @@ $context = stream_context_create(array('http'=>array('method'=>"GET",'header'=>"
 $lastCommit=json_decode(file_get_contents('https://api.github.com/repos/Fouyoufr/remoteChampions/commits?per_page=1',false,$context),true)[0]['commit'];
 $version=strtok($lastCommit['message'],"\n");
 $comments=nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n"));
-echo "<a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>Dernière mise à jour gitHub : version $version, il y a ".date_diff(new DateTime($lastCommit['committer']['date']),new DateTime())->format('%m mois,%a jours, %h heures et %i minutes').":<br/>'$comments'</a><br/>";
+echo "<a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>Dernière mise à jour gitHub : version $version, il y a ".date_diff(new DateTime($lastCommit['committer']['date']),new DateTime())->format('%m mois,%a jours, %h heures et %i minutes').":<br/>$comments</a><br/>";
 
 ?>
 <a href="setup.php" class="adminButton">Lancer la mise à jour</a>
