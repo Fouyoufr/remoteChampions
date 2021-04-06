@@ -147,7 +147,7 @@ function updateSQLcontent($tableId) {
 	while($oldLine=mysqli_fetch_assoc($oldTable)) {
 		if(!isset($newTable[$oldLine[$cols[0]]])) {
 			$nothingToDo=false;
-			echo "<tr><td>$tableId</td><td>Suppression de l'entrée '".$oldLine[$cols[1]]."'";
+			echo "<tr><td>$tableId</td><td>Suppression de l'entrée '".$oldLine[$cols[0]]."'";
 			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
 			$sqlError=mysqli_error($sqlConn);
 			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
