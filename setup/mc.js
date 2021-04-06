@@ -139,24 +139,26 @@ function ajaxMainSet() {
     document.getElementById('manigancesAnnexes').innerHTML='';
     document.getElementById('maCrise').className='vieBtn';
     manigancesList.forEach(function(value,index,array) {
-      maniAnnexe='';
-      if (value.getAttribute('maCrise')==1) {
-      	maniAnnexe+=' crise';
-      	document.getElementById('maCrise').className='vieBtnRed';}
-      if (value.getAttribute('maRencontre')>0) {maniAnnexe+=' rencontre';}
-      if (value.getAttribute('maAcceleration')>0) {
-      	maniganceAcc=parseInt(maniganceAcc)+parseInt(value.getAttribute('maAcceleration'));
-      	maniAnnexe+=' acceleration'+value.getAttribute('maAcceleration');}
-      maniAnnexe+='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
+      maniAnnexe='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
       menaceToDisplay=value.getAttribute('mnMenace');
       if (menaceToDisplay<10) {menaceToDisplay='0'+menaceToDisplay;}
       maniAnnexe+='<div class="MA" id="MA'+value.getAttribute('maId')+'">'+menaceToDisplay+'</div>';
       maniAnnexe+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText=parseInt(document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText)+1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
       maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom')+'<span class="tooltiptext">';
       if (value.getAttribute('maDeck')==0) {maniAnnexe+=value.getAttribute('hNom');}
-      else {maniAnnexe+=value.getAttribute('dNom')+' N°'+value.getAttribute('maNumero');}
-      maniAnnexe+='</div>';
-      document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div>';
+      else {
+        maniAnnexe+=value.getAttribute('dNom');
+        if (value.getAttribute('maNumero')!=0) maniAnnexe+=' N°'+value.getAttribute('maNumero');}
+      maniAnnexe+='</div><div class="maniganceIcones">';
+      if (value.getAttribute('maCrise')==1) {
+        maniAnnexe+='<img src="img/MenaceCrise.png" alt="Crise"/>';
+        document.getElementById('maCrise').className='vieBtnRed';}
+      if (value.getAttribute('maRencontre')>0) for (let pas=0;pas<value.getAttribute('maRencontre');pas++) maniAnnexe+='<img src="img/MenaceRencontre.png" alt="Rencontre"/>';
+      if (value.getAttribute('maAcceleration')>0) {
+        for (let pas=0;pas<value.getAttribute('maAcceleration');pas++) maniAnnexe+='<img src="img/MenaceAcceleration.png" alt="Accelération"/>';
+        maniganceAcc=parseInt(maniganceAcc)+parseInt(value.getAttribute('maAcceleration'));}
+      if (value.getAttribute('maAmplification')>0) for (let pas=0;pas<value.getAttribute('maAmplification');pas++) maniAnnexe+='<img src="img/amplification.png" alt="Accelération"/>';
+      document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div></div>';
       });
     var compteurs = xmlDoc.getElementsByTagName('compteur');
     var compteursList = Array.prototype.slice.call(compteurs);

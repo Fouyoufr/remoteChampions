@@ -7,6 +7,7 @@
 - mpId = identifiant de l'entrée,
 - mpNom = libellé de la manigance,
 - mpMax = Valeur de menace maximale (en haut à gauche sur la carte),
+- mpMaxMultiplie = Si est à 1, *mpMax* est multiplié par le nombre de joueurs,
 - mpInit = Valeur de menace lors de la mise en jeu,
 - mpMultiplie = Si est à 1, *mpInit* est multiplié par le nombre de joueurs,
 - mpBoite = référence de la boite de jeu contenant cette manigance.

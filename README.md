@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.0
+Gestion des manigances annexes avec plusieurs icônes.
 ## Version 2.9
 - Affichage de la dernière version gitHub dans l'écran d'administration,
 - Correction d'un bug sur l'affichage des decks uniquement de boites sélectionnées lors de l'ajout de manigance annexe,

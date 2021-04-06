@@ -54,6 +54,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #changePhaseVie,#changeMechantNom {font-weight:bold;}
 .titlePopup {position:absolute;width:calc(100% - 10px);top:0px;left:0px;background-color:black;color:white;font-weight:bold;font-size:10px;padding-left:10px;font-size: calc(1vw + 1vh + 1vmin);}
 #mechantSelect {display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;font-size:20px;font-weight:bold;font-variant: small-caps; text-transform: capitalize;}
+#herosSelect {display: grid;grid-template-columns: repeat(4, 1fr);grid-gap: 10px;font-size:20px;font-weight:bold;font-variant: small-caps; text-transform: capitalize;}
 .changeMechant,.changeHeros {display: flex;align-items: center;justify-content: left;background:lightgray;color:black;}
 .changeMechant:hover,.changeHeros:hover {cursor: pointer;background:black;color:lightgray;}
 .changeMechant img,.changeHeros img {margin-right:5px;}
@@ -72,10 +73,9 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 .compteurMoins {position:absolute;bottom:2px;right:2px;font-weight:bold;font-size:20px;background-color:#B3B629;color:white;width:20px;height:20px;border: solid 1px white;text-align:center;}
 .compteurMoins:hover {border:solid 1px white;background-color:white;cursor:pointer;color:black;}
 .maniganceLine {border-top:solid 1px white;position:relative;}
-.maniganceLine.crise {background: url('/img/MenaceCrise.png') no-repeat calc(100% - 5px);}
-.maniganceLine.rencontre {background: url('/img/MenaceRencontre.png') no-repeat calc(100% - 5px);}
-.maniganceLine.acceleration1 {background: url('/img/MenaceAcceleration1.png') no-repeat calc(100% - 5px);}
-.maniganceLine.acceleration2 {background: url('/img/MenaceAcceleration2.png') no-repeat calc(100% - 5px);}
+.maniganceIcones {position:absolute;right:0px;top:0px;height:100%;}
+.maniganceIcones:before {content: "";display: inline-block;height: 100%;vertical-align: middle;}
+.maniganceIcones img {max-height:20px;vertical-align:middle;margin-right:3px;}
 .tooltip {position: relative;display: inline-block;}
 .tooltip:hover {cursor: default;}
 .tooltip .tooltiptext {visibility:hidden;width:250px;background-color:#555;color:#fff;text-align:center;padding:5px 0;border-radius:6px;
@@ -114,6 +114,9 @@ a.adminButton:hover {background-color:darkgray;color:black;}
 .adminEncadre {display:inline-block;border:2px solid black;padding:3px;margin:2px;color:black;text-decoration:none;}
 a.adminEncadre {font-size:.8em;font-weight: normal;text-align:left;}
 a.adminEncadre:hover {background-color:#555;color:white;border-color:white;}
+.adminIcones:before {content: "";display: inline-block;height: 100%;vertical-align: middle;}
+.adminIcones a {vertical-align:middle;margin-right:3px;}
+.adminIcones a img {max-height:20px;}
 
 /*Mise en forme pour l'écran de joueur */
 #joueurDisp {width:calc(100% - 10px);height:calc(100% - 10px);background:radial-gradient(black,red);background-attachment:fixed;border:solid 5px white;border-radius:50px;color:white;font-family: "Gill Sans", sans-serif;text-align:center;font-size: calc(4vw + 4vh + 2vmin);font-weight:bold;font-variant: small-caps; text-transform: capitalize;overflow: hidden;}

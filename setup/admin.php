@@ -65,7 +65,7 @@ if (mysqli_num_rows($partiesMechant)<>0) {
     echo '</td><td>';
     if (isset($partiesJoueur[$partie['pUri']])) {echo $partiesJoueur[$partie['pUri']]['COUNT(`jId`)']; }
     else {echo 'aucun';}
-    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td><a href=".?p='.$partie['pUri'].'">Ouvrir</a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')">Supprimer</a></td></tr>';
+    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td class="adminIcones"><a href=".?p='.$partie['pUri'].'"><img src="img/link.png" alt="Ouvrir"/></a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')"><img src="img/trash.png" alt="Supprimer"/></a></td></tr>';
   }
   echo "</table></div>";}
 ?>
