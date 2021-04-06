@@ -6,7 +6,11 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
-## Veersion 2.8
+## Version 2.9
+- Affichage de la dernière version gitHub dans l'écran d'administration
+- Correction d'un bug sur l'affichage des decks uniquement de boites sélectionnées lors de l'ajout de manigance annexe
+- Gestion des manigances principales sans multiplicateur (pour KANG par exemple).
+## Version 2.8
 Affichage dynamique des decks pour sélection d'une manigance secondaire.
 ## Version 2.7
 Sélection des decks de manigance secondaire en fonction des héros présents.

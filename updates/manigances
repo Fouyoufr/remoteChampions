@@ -84,23 +84,30 @@
 83,0,17,Les ordres de mère,2,1,0,0,0,0
 84,0,18,Extorsion Cataclysmique,2,1,1,0,0,0
 85,0,19,La prochaine évolution,2,1,0,0,0,0
-86,29,0,Blocus,0,0,0,0,0,0
-87,29,0,Bombardement,0,0,0,0,0,0
-88,29,0,Flotte surpuissante,0,0,0,0,0,0
-89,29,0,Positionnement spatial,0,0,0,0,0,0
-90,30,0,Intentions meurtrières,0,0,0,0,0,0
-91,31,0,Courant coupé,0,0,0,0,0,0
-92,31,0,Pris en tenaille,0,0,0,0,0,0
-93,31,0,Grand tacticien,0,0,0,0,0,0
-94,32,0,Oeuf de monarque Hujahdarien,0,0,0,0,0,0
-95,32,0,Théière magique,0,0,0,0,0,0
-96,32,0,Pierre philosophale,0,0,0,0,0,0
-97,32,0,Boule de cristal,0,0,0,0,0,0
-98,33,0,Sonnez l'alerte,0,0,0,0,0,0
-99,34,0,Canonnade,0,0,0,0,0,0
-100,35,0,Attaque surprise des Badoon,0,0,0,0,0,0
-101,35,0,Guerre des merveilles,0,0,0,0,0,0
-102,35,0,Il n'y a aucune issue,0,0,0,0,0,0
-103,35,0,Tactiques de guérilla,0,0,0,0,0,0
-104,35,0,Supériorité Kree,0,0,0,0,0,0
-105,36,0,Retrouver les fugitifs,0,0,0,0,0,0
+86,29,10,Blocus,2,0,1,0,0,0
+87,29,11,Bombardement,3,1,0,0,0,0
+88,29,12,Flotte surpuissante,1,0,0,1,0,0
+89,29,13,Positionnement spatial,3,1,0,0,0,1
+90,30,15,Intentions meurtrières,2,1,0,1,0,0
+91,31,10,Courant coupé,3,1,1,0,0,0
+92,31,11,Pris en tenaille,3,0,0,0,2,0
+93,31,13,Grand tacticien,2,1,0,0,0,0
+94,32,6,Oeuf de monarque Hujahdarien,3,0,0,0,1,0
+95,32,7,Théière magique,3,0,0,1,0,0
+96,32,8,Pierre philosophale,3,0,0,0,0,1
+97,32,9,Boule de cristal,3,0,0,0,1,0
+98,33,6,Sonnez l'alerte,2,1,0,0,0,0
+99,34,3,Canonnade,1,0,0,0,0,1
+100,35,0,Attaque surprise des Badoon,2,0,0,0,0,0
+101,35,0,Galerie des merveilles,3,0,0,0,0,0
+102,35,0,Il n'y a aucune issue,4,0,0,0,0,0
+103,35,0,Tactiques de guérilla,5,0,0,0,0,0
+104,35,0,Supériorité Kree,6,0,0,1,0,0
+105,36,5,Retrouver les fugitifs,2,0,1,0,0,0
+106,37,0,Supériorité Kree,7,0,0,1,1,1
+107,37,0,Tactiques de guérilla,6,0,0,1,1,0
+108,37,0,Il n'y a aucune issue,5,0,0,0,0,1
+109,37,0,Galerie des merveilles,4,0,0,1,0,0
+110,30,16,Intentions meurtrières,2,1,0,1,0,0
+111,31,11,Pris en tenaille,3,0,0,0,2,0
+112,37,0,Attaque surprise des Badoon,3,0,0,0,1,0

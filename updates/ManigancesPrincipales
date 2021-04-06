@@ -1,38 +1,38 @@
-#mpId,mpNom,mpMax,mpInit,mpMultiplie,mpBoite
-0,Manigance Principale,0,0,0,0
-1,L'Effraction!,7,0,0,1
-2,Trafic Clandestin,6,0,0,1
-3,Rendez-Vous Secret,8,0,0,1
-4,Le Crimson Cowl,3,0,0,1
-5,Assaut Sur Le Norad,10,0,0,1
-6,Compte à Rebours Pour L'Enfer,5,0,0,1
-7,Prise De Contrôle Hostile,7,2,1,7
-8,Acquisition D'Entreprise,10,1,1,7
-9,Répandre Le Mutagène,7,2,1,7
-10,Nuage Mutagène,11,4,1,7
-11,Evasion,6,0,0,8
-12,Attaque Sur Le Mont Athéna,3,0,0,6
-13,La Pierre D'Infinité,6,1,1,6
-14,La Fuite,5,1,1,6
-15,Personne Ne Passe,12,2,1,6
-16,Traquer les Héros,12,1,1,6
-17,L'Île Du Dr Zola,6,0,0,6
-18,Le Savant Fou,8,1,1,6
-19,L'Avènement de Crâne Rouge,8,0,0,6
-20,Nouvel Ordre Mondial D'Hydra,11,1,1,6
-21,L'Arrivée de Kang,7,0,0,15
-23,La Colère De Kang,10,0,0,15
-25,Chronopolis,0,0,0,15
-26,Destin Inéluctable,0,1,0,15
-27,Le royaume de Rama-Tut,0,1,0,15
-28,La guerre Présent-Futur,0,2,0,15
-29,Invasion terrestre,8,2,1,2
-30,Protéger la planète,0,0,0,2
-31,La grande collection,0,0,0,2
-32,Retrouver le Milano,0,0,0,2
-33,Perdus dans le musée,0,0,0,2
-34,La grande évasion,0,0,0,2
-35,L'art de la fuite,0,0,0,2
-36,Mode Distorsion activé,0,0,0,2
-37,Interception imminente,0,0,0,2
-38,Je reprends ce qui m'appartient,0,0,0,2
+#mpId,mpNom,mpMax,mpMaxMultiplie,mpInit,mpMultiplie,mpBoite
+0,Manigance Principale,0,0,0,0,0
+1,L'Effraction!,7,1,0,0,1
+2,Trafic Clandestin,6,1,0,0,1
+3,Rendez-Vous Secret,8,1,0,0,1
+4,Le Crimson Cowl,3,1,0,0,1
+5,Assaut Sur Le Norad,10,1,0,0,1
+6,Compte à Rebours Pour L'Enfer,5,1,0,0,1
+7,Prise De Contrôle Hostile,7,1,2,1,7
+8,Acquisition D'Entreprise,10,1,1,1,7
+9,Répandre Le Mutagène,7,1,2,1,7
+10,Nuage Mutagène,11,1,4,1,7
+11,Evasion,6,1,0,0,8
+12,Attaque Sur Le Mont Athéna,3,1,0,0,6
+13,La Pierre D'Infinité,6,1,1,1,6
+14,La Fuite,5,1,1,1,6
+15,Personne Ne Passe,12,1,2,1,6
+16,Traquer les Héros,12,1,1,1,6
+17,L'Île Du Dr Zola,6,1,0,0,6
+18,Le Savant Fou,8,1,1,1,6
+19,L'Avènement de Crâne Rouge,8,1,0,0,6
+20,Nouvel Ordre Mondial D'Hydra,11,1,1,1,6
+21,L'Arrivée de Kang,7,1,0,0,15
+23,La Colère De Kang,10,1,0,0,15
+25,Chronopolis,9,0,0,0,15
+26,Destin Inéluctable,9,0,1,0,15
+27,Le royaume de Rama-Tut,9,0,1,0,15
+28,La guerre Présent-Futur,9,0,2,0,15
+29,Invasion terrestre,8,1,2,1,2
+30,Protéger la planète,8,1,4,1,2
+31,La grande collection,10,1,4,1,2
+32,Retrouver le Milano,11,1,7,1,2
+33,Perdus dans le musée,15,1,11,1,2
+34,La grande évasion,12,1,8,1,2
+35,L'art de la fuite,6,1,2,1,2
+36,Mode Distorsion activé,9,1,3,1,2
+37,Interception imminente,7,1,2,1,2
+38,Je reprends ce qui m'appartient,10,1,1,1,2
