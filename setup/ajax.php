@@ -21,8 +21,7 @@ if (isset($_GET['pGet'])) {
   $partieId=htmlspecialchars($_GET['pGet']);
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
-  #$sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
-  $sqlDecks=sql_get("SELECT * FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL  GROUP BY `dNom` ORDER BY `dNom` ASC");
+  $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks`,`boites` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL AND `bId`=`dBoite` AND `bInclus`='1' GROUP BY `dNom` ORDER BY `dNom` ASC");
   $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`joueurs`,heros WHERE `maDeck`=0 AND `jPartie`='$partieId' AND `maNumero`=`jHeros` AND `hId`=`jHeros` AND `mnPartie` IS NULL GROUP BY `hNom` ORDER BY `hNom` ASC");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
   $sqlManiHeros=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`heros` WHERE `mnPartie`='$partieId' AND `maDeck`='0' AND `maId`=`mnManigance` AND `maNumero`=`hId`");
@@ -240,10 +239,12 @@ if(isset($_POST['MA'])) {
 if(isset($_POST['NewPrincipale'])) {
   $manigance=htmlspecialchars($_POST['NewPrincipale']);
   $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `ManigancesPrincipales` WHERE `mpId`='$manigance'"));
-  $nbJoueurs=mysqli_num_rows(sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'"));
+  $mpMax=$maniDetail['mpMax'];
+  if ($maniDetail['mpMaxMultiplie']==true) {
+    $nbJoueurs=mysqli_num_rows(sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'"));
+    $mpMax=$mpMax*$nbJoueurs;}
   $mpInit=$maniDetail['mpInit'];
-  $mpMax=$maniDetail['mpMax']*$nbJoueurs;
-  if ($maniDetail['mpMultiplie']==true) {$mpInit=$mpInit*$nbJoueurs;}
+  if ($maniDetail['mpMultiplie']==true) $mpInit=$mpInit*$nbJoueurs;
   sql_get("UPDATE `parties` SET `pManiMax`='$mpMax', `pManiCourant`='$mpInit', `pManiPrincipale`='$manigance' WHERE `pUri`='$partieId'");}
   
 if(isset($_POST['addCompteur'])) {sql_get("INSERT INTO `compteurs` (`cPartie`) VALUES ('$partieId')");}
