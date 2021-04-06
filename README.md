@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Veersion 2.8
+Affichage dynamique des decks pour sélection d'une manigance secondaire.
 ## Version 2.7
 Sélection des decks de manigance secondaire en fonction des héros présents.
 ## Version 2.6

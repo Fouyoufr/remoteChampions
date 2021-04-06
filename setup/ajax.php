@@ -21,8 +21,9 @@ if (isset($_GET['pGet'])) {
   $partieId=htmlspecialchars($_GET['pGet']);
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
-  $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
-  $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `heros`,`joueurs` WHERE `jPartie`='$partieId' AND `hId`=`jHeros` AND `hId`<>0 ORDER BY `hNom` ASC");
+  #$sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `decks`,`boites` WHERE `bId`=`dBoite` AND `bInclus`='1' ORDER By `dNom` ASC");
+  $sqlDecks=sql_get("SELECT * FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL  GROUP BY `dNom` ORDER BY `dNom` ASC");
+  $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`joueurs`,heros WHERE `maDeck`=0 AND `jPartie`='$partieId' AND `maNumero`=`jHeros` AND `hId`=`jHeros` AND `mnPartie` IS NULL GROUP BY `hNom` ORDER BY `hNom` ASC");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
   $sqlManiHeros=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`heros` WHERE `mnPartie`='$partieId' AND `maDeck`='0' AND `maId`=`mnManigance` AND `maNumero`=`hId`");
   $sqlPrincipale=sql_get("SELECT `mpId`,`mpNom`, `mpMax` FROM `parties`, `ManigancesPrincipales` WHERE `mpID`=`pManiPrincipale` AND `pURI`='$partieId'");
@@ -92,25 +93,20 @@ if (isset($_GET['mGet'])) {
   $deck=htmlspecialchars($_GET['mGet']);
   if (substr($deck,0,1)=='h') {
     #récupération des manigances du héros choisi
-    $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='0' AND `maNumero`='".substr($deck,1)."'");}
+    $sqlManigances=sql_get("SELECT * FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId') WHERE `maDeck`='0' AND `maNumero`='".substr($deck,1)."' AND `mnPartie` IS NULL ORDER BY `maNom` ASC");}
   elseif ($deck<>'0') {
     #récupération des manigances du deck choisi
-    $sqlManigances=sql_get("SELECT * FROM `manigances` WHERE `maDeck`='$deck' ORDER BY `maNom`ASC");}
+    $sqlManigances=sql_get("SELECT * FROM `manigances` LEFT JOIN `maniAnnexes` ON `maId`=`mnManigance` WHERE `maDeck`='$deck' AND (`mnPartie`!='$partieId' or `mnPartie` IS NULL) ORDER BY `maNom`ASC");}
   else exit();
-  $sqlDejaEnJeu=sql_get("SELECT * FROM `maniAnnexes` WHERE `mnPartie`='$partieId'");
-  $dejaEnJeu=[]; 
-  while ($Deja=mysqli_fetch_assoc($sqlDejaEnJeu)) {
-  	$dejaEnJeu[]=$Deja['mnManigance'];}
   $xml = new XMLWriter();
   $xml->openURI("php://output");
   $xml->startDocument();
   $xml->setIndent(true);
   $xml->startElement('ajax');
   while ($manigance=mysqli_fetch_assoc($sqlManigances)) {
-  	if (!in_array($manigance['maId'],$dejaEnJeu)) {
   	  $xml->startElement('manigance');
       foreach ($manigance as $cleMani => $valMani) {$xml->writeAttribute($cleMani, $valMani);}
-    $xml->endElement();}}  
+    $xml->endElement();}
   $xml->endElement();
   header('Content-type: text/xml');
   $xml->flush();}
