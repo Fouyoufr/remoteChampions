@@ -33,6 +33,7 @@ Sinon, vous pouvez désormais consulter la rubrique [Utilisation de votre site](
 Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".
 *(En construction)*
 # Utilisation de '*Remote Champions*'
+**Préambule:** L'outil *Remote Champions* n'est en aucun cas prévu pour remplacer la possession des cartes par les joueurs : il  apour seul objectif de fluidifier le déroulement des parties (particulièrement des parties jouée à distance, avec audio/visio conférence) en tenant à jour un maximum des éléments nécessaires au suvi de la partie et en les présentant aux différents joueurs.  
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
 ![Page de connexion](illus1.png "Page de connexion")
 - Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ![1](tag1.png) avant de cliquer sur "*OK*"![2](tag2.png),
@@ -56,7 +57,7 @@ Après que vous avez créé votre nouvelle partie, vous serez dirigé vers la pa
 
 Si une erreur empèche la création de la partie, elle vous sera communiquer sur la même page, afin que vous puissiez retenter la création.
 ## Utilisation du site en partie
-# Présentation de la page de partie
+### Présentation de la page de partie
 La page principale d'une partie qui vient d'être créée ressemble à l'illustration suivante:  
 ![Page principale nouvelle partie](illus2.png "Page principale nouvelle partie")  
 Cette page est divisée en différentes zones:  
@@ -67,11 +68,25 @@ Cette page est divisée en différentes zones:
 ![5](tag5.png)La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)).  
 ![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : En cliquant dessus, il est possible d'ouvrir l'écran d'administration décrit plus loin).  
 ## Paramètrage initial de la partie
-![Initialisation de la partie](illus7.png "Initialisation de la partie")
-Mettez-vous d'accord avec tous les joueurs pour choisir une réprésentation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.  
+![Initialisation de la partie](illus7.png "Initialisation de la partie")  
+1. Il est conseillé de commencer par attribuer les places aux joueurs:
+  - Mettez-vous d'accord avec tous les joueurs (y compris distants) pour trouver une disposition ayant le plus de sens pour l'ensemble des joueurs de la partie.
+  - Cliquez sur le nom de chaque joueur[6](tag6.png). Cela fait appraitre la fenêtre de changement de nom de joueur : saisissez le nouveau nom/surnon du joueur et validez.
+  - Cliquez sur l'image de héros de l'emplacement de joueur pour faire apparaître la fenêtre de sélection de héros.
+  - Seléctionnez le héros qui sera joué par le joueur en question (la liste des héros présentés dépend des boites/packs déclarés disponibles dans l'administration du site -voir plus loin-).
+  - La vie maximum du joeur est affectée automatiquement.
+2. Avant de commencer réellement à jouer, choisissez le méchant qui sera combattu pendant la partie:
+  - Cliquez sur l'image de méchant neutre![1](tag1.png). (Vous pourrez changer de méchant à tout moment en cliquant de nouveau sur son image).
+  - La fenêtre de sélection de méchant apparait[2](tag2.png). Cliquez sur le méchant choisi pour la partie (la liste des méchants présentés dépend des boites/packs déclarés disponibles dans l'administration du site -voir plus loin-)
+  - Une fois le méchant choisi, la fenêtre de sélection de la manigance principale[3](tag3.png) apparait. Sélectionnez la manigance principale dans le menu (la liste présentée dépend des boites/packs déclarés disponibles dans l'administration du site -voir plus loin-) et confirmez. (si vous annulez ou souhaitez changer la manigance principale, cliquez sur son titre[4](tag4.png)).
+  - Après la sélection de la manigance principale, l'indicateur de premier joueur est attribué au hasard, vous pouvez utiliser cette fonction pour décider qui jouera en premier pour débuter la partie.
+  - Si vous jouez une partie dans laquelle le méchant ne commence par à la phase I, cliquez sur l'indication de phase pour passer à la phase suivante dès le début de partie.
+  - La vie du méchant est initialisée, en fonction du nombre de joueurs (Ajustez là si vous utilisez *Remote Champions* pour suivre uniquement la vie du méchant).
+
 **Conseil :** Mettez-vous d'accord avec tous les joueurs pour affecter la responsabilité des diverses mises à jour. Sinon, comme tous les joueurs peuvent éditer la page de la partie en cours, vous risquez d'avoir des modifications multiples.  
+
 En cours de partie, selon l'évolution de celle-ci, la page de partie ressemblera à quelque-chose comme l'illustration suivante:  
-![En cours de partie](illus8.png "Page de partie en cours")
+![En cours de partie](illus8.png|width=100 "Page de partie en cours")
 *(En construction)*
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
@@ -86,4 +101,5 @@ En cours de partie, selon l'évolution de celle-ci, la page de partie ressembler
 
 *(En construction)*
 ## Administration du serveur
+### Activation des boites de jeu
 *(En construction)*
