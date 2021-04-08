@@ -71,14 +71,14 @@ Cette page est divisée en différentes zones:
 ![Initialisation de la partie](illus7.png "Initialisation de la partie")  
 1. Il est conseillé de commencer par attribuer les places aux joueurs:
   - Mettez-vous d'accord avec tous les joueurs (y compris distants) pour trouver une disposition ayant le plus de sens pour l'ensemble des joueurs de la partie.
-  - Cliquez sur le nom de chaque joueur[6](tag6.png). Cela fait appraitre la fenêtre de changement de nom de joueur : saisissez le nouveau nom/surnon du joueur et validez.
-  - Cliquez sur l'image de héros de l'emplacement de joueur pour faire apparaître la fenêtre de sélection de héros.
+  - Cliquez sur le nom de chaque joueur![6](tag6.png). Cela fait appraitre la fenêtre de changement de nom de joueur : saisissez le nouveau nom/surnon du joueur et validez.
+  - Cliquez sur l'image de héros![7](tag7.png) de l'emplacement de joueur pour faire apparaître la fenêtre de sélection de héros.
   - Seléctionnez le héros qui sera joué par le joueur en question (la liste des héros présentés dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu)).
   - La vie maximum du joueur est affectée automatiquement.
 2. Ensuite, choisissez le méchant qui sera combattu pendant la partie:
   - Cliquez sur l'image de méchant neutre![1](tag1.png). (Vous pourrez changer de méchant à tout moment en cliquant de nouveau sur son image).
-  - La fenêtre de sélection de méchant apparait[2](tag2.png). Cliquez sur le méchant choisi pour la partie (la liste des méchants présentés dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu))
-  - Une fois le méchant choisi, la fenêtre de sélection de la manigance principale[3](tag3.png) apparait. Sélectionnez la manigance principale dans le menu (la liste présentée dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu)) et confirmez. (si vous annulez ou souhaitez changer la manigance principale, cliquez sur son titre[4](tag4.png)).
+  - La fenêtre de sélection de méchant apparait![2](tag2.png). Cliquez sur le méchant choisi pour la partie (la liste des méchants présentés dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu))
+  - Une fois le méchant choisi, la fenêtre de sélection de la manigance principale![3](tag3.png) apparait. Sélectionnez la manigance principale dans le menu (la liste présentée dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu)) et confirmez. (si vous annulez ou souhaitez changer la manigance principale, cliquez sur son titre![4](tag4.png)).
   - Après la sélection de la manigance principale, l'indicateur de premier joueur est attribué au hasard, vous pouvez utiliser cette fonction pour décider qui jouera en premier pour débuter la partie.
   - Si vous jouez une partie dans laquelle le méchant ne commence par à la phase I, cliquez sur l'indication de phase![5](tag5.png) pour passer à la phase suivante dès le début de partie.
   - La vie du méchant est initialisée, en fonction du nombre de joueurs (Ajustez là si vous utilisez *Remote Champions* pour suivre uniquement la vie du méchant).
@@ -86,7 +86,7 @@ Cette page est divisée en différentes zones:
 **Conseil :** Mettez-vous d'accord avec tous les joueurs pour affecter la responsabilité des diverses mises à jour. Sinon, comme tous les joueurs peuvent éditer la page de la partie en cours, vous risquez d'avoir des modifications multiples.  
 
 En cours de partie, selon l'évolution de celle-ci, la page de partie ressemblera à quelque-chose comme l'illustration suivante:  
-![En cours de partie](illus8.png|width=100 "Page de partie en cours")
+[<img src="illus8.png" height=100>](https:illus8.png)
 *(En construction)*
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
