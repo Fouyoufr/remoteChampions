@@ -1,4 +1,4 @@
-# Installation de 'Remote Champions'
+# Installation de '*Remote Champions*'
 ## Prérequis
 Pour installer mc sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
 #### Serveur Web PHP
@@ -29,21 +29,35 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 A l'issue de l'installation, votre site devrait être fonctionnel. Si vous appelez de nouveau la page "*/setup.php*" celle-ci vérifiera s'il est utile de mettre à jour votre installation du site et s'occupera [de la mise à jour éventuelle](https:#Mise-à-jour-de-remote-champions).  
 Sinon, vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#Utilisation-de-remote-champions) et vous serez prêt à joueur dans un instant !  
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sur que le site web soit accèssible de tous les joueurs sur Internet.
-# Mise à jour de 'Remote Champions'
+## Mise à jour de '*Remote Champions*'
 Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".
 *(En construction)*
-# Utilisation de 'Remote Champions'
-Une fois votre site installé, vous pouvez simplement y accéder depuis votre navigateur. Vous tomberez dès lors sur l'écran de sélection de fonction suivant
-![Ecran de connexion](illus1.png "Ecran de connexion")
-- Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir son mot-clef dans le premier champ avant de cliquer sur "**OK**". Sinon :
-# Création d'une nouvelle partie
-Pour créer une nouvelle partie, choisissez le *nombre de joueurs* depuis le menu avant de cliquer sur "**Créer**".
- - Vous pouvez héberger le suivi de parties pour 1 à 4 joueurs
- - Vous pouvez suivre seulement le compteur de méchant en choisissant "**Méchant seul**" (utile pour certaines parties spécifique comme le suivi de *Kang*).
-Dans les deux cas, si vous êtes sur pc/Mac, vous serez ensuite dirigé vers l'écran principal de la partie ([voir la section Gestion de la partie](https:#Gestiondelapartie)). Si vous consultez le site depuis un smartphone, vous serez redirigé vers votre fiche de joueur.
-# Comment utiliser le site
-*En construction*
-## Gestion de la partie
+# Utilisation de '*Remote Champions*'
+Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:
+![Page de connexion](illus1.png "Page de connexion")
+- Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ **<span style="color:#700f14">(1)</span>** avant de cliquer sur "*OK*"**<span style="color:#700f14">(2)</span>**,
+- En cliquant sur le bouton "**Créer**"**<span style="color:#700f14">3</span>**, vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie),
+- En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration**<span style="color:#700f14">(4)</span>** vous serez dirigé vers l'écran d'administration, décrit plus loin (A noter, un mot de passe sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
+- Dans tous les écrans du site, en cliquant sur le bouton d'Information**<span style="color:#700f14">(5)</span>**, vous serez directelent dirigé sur la présente aide d'utilisation,
+- Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug**<span style="color:#700f14">(6)</span>**, vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
+## Création d'une nouvelle partie
+La page de création d'une nouvelle partie ressemblera à l'illustration ci-dessous:
+![Page de création de partie](illus6.png "Page de création de partie")
+Pour créer une nouvelle partie, vous pouvez choisir le nombre de joueurs (1 à 4) depuis le menu**<span style="color:#700f14">(1)</span>**.
+À noter : vous pouvez également créer une partie ayant pour seul objectif de suivre les information d'un méchant en cliquant sur la case "*Méchant seul*"**<span style="color:#700f14">(2)</span>**. cela peut, par exemple, être utile pour créer plusieurs parties et suivre plusieurs méchants, dans une partie avec *Kang* par exemple.
+Une clef d'accès par défaut est automatiquement affectée à la partie que vous allez créer. Si vous le souhaitez, vous pouvez modifier la valeur de cette clef proposée dans le champ "*Clef d'accès*"**<span style="color:#700f14">(3)</span>** (A noter: les clefs d'accès doivent impérativement comporter 6 caractères et être uniques).
+Une fois ces informations essentielles saisies, vous pouvez cliquer sur "*Créer*"**<span style="color:#700f14">(4)</span>** pour lancer la création de la partie.
+### Options
+Vous pouvez (cela n'est pas une obligation, mais peut permettre de simplifier la sélection des manigances pendant la partie) également choisir les decks qui seront utilisé pendant votre partie. 
+Pour ce faire, il vous suffit de cliquer sur la case à cocher**<span style="color:#700f14">(5)</span>** en regard d'un deck pour le sélectionner ou le déselectionner avant de cliquer sur le bouton "*Créer*".
+ - Les decks pouvant être selectionnés sont regroupés par boite de jeu/extensions/paquets**<span style="color:#700f14">(6)</span>** pour les retrouver plus facilement. Les boites disponibles sont celles déclarée comme telles dans l'administration du site (voir plus loin).
+ - Vous pouvez (dé)sélectionner tous les decks en un click**<span style="color:#700f14">(7)</span>** pour plus de failité.
+
+Après que vous avez créé votre nouvelle partie, vous serez dirigé vers la page de celle-ci (ou vers votre fiche de joueur si vous êtes sur smartphone).
+
+Si une erreur empèche la création de la partie, elle vous sera communiquer sur la même page, afin que vous puissiez retenter la création.
+
+## Utilisation du site en partie
 ![Ecran principal](illus2.png "Ecran principal")
 L'écran principal présente une synthèse de la partie avec les élements suivants:
  1. La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)). (Mettez-vous d'accord avec tous les joueurs pour choisir une répréntation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.)
