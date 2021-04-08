@@ -1,8 +1,8 @@
 # Installation de '*Remote Champions*'
 ## Prérequis
-Pour installer mc sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
+Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
 #### Serveur Web PHP
-En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.
+En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
 De plus, le moteur php doit permettre les lectures de fichiers distants (http get) pour que l'installation et la mise à jour puissent se dérouler sans problème.  
 Fonctionnement testé avec succès sur les configurations/versions suivantes :
  - Apache 2.4
@@ -12,7 +12,7 @@ Il vous faut un service de base de donnée relationnelle type *mySql*.
 Fonctionnement testé avec succès sur les configuration/versions suivantes :
  - MariaDB 10
 ## Séquence d'installation
-1. Copier tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent repositery vers le dossier choisi sur votre serveur pour héberger le site mc.
+1. Copier tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent repositery vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
 1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.
 1. Il vous faut un identfiant pour vous connecter à votre serveur de base de données.
 1. Si vous avez déja préparé une nouvelle base de données vierge sur votre serveur de base de donnée, vous pouvez passer directement à l'[étape 6](https:#setupLaunch)
@@ -42,7 +42,7 @@ Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smar
 - Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug **(6)**, vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
 ## Création d'une nouvelle partie
 La page de création d'une nouvelle partie ressemblera à l'illustration ci-dessous:  
-![Page de création de partie](illus6.png "Page de création de partie") 
+![Page de création de partie](illus6.png "Page de création de partie")  
 Pour créer une nouvelle partie, vous pouvez choisir le nombre de joueurs (1 à 4) depuis le menu **(1)**.  
 **À noter :** vous pouvez également créer une partie ayant pour seul objectif de suivre les information d'un méchant en cliquant sur la case "*Méchant seul*" **(2)**. cela peut, par exemple, être utile pour créer plusieurs parties et suivre plusieurs méchants, dans une partie avec *Kang*.  
 Une clef d'accès par défaut est automatiquement affectée à la partie que vous allez créer. Si vous le souhaitez, vous pouvez modifier la valeur de cette clef proposée dans le champ "*Clef d'accès*" **(3)** (A noter: les clefs d'accès doivent impérativement comporter 6 caractères et être uniques).  
@@ -57,24 +57,28 @@ Après que vous avez créé votre nouvelle partie, vous serez dirigé vers la pa
 
 Si une erreur empèche la création de la partie, elle vous sera communiquer sur la même page, afin que vous puissiez retenter la création.
 ## Utilisation du site en partie
-![Ecran principal](illus2.png "Ecran principal")
-L'écran principal présente une synthèse de la partie avec les élements suivants:
- 1. La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)). (Mettez-vous d'accord avec tous les joueurs pour choisir une répréntation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.)
- 1. La synthèse du méchant qui fournit plusieurs informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))
- 1. L'indication du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection du méchant. Il suffira ensuite de cliquer sur l'indication du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indication se déplace).
- 1. Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : ce pourra servir pour suivre des éléments spécifiques de certaines missions...
- 1. La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)). En début de partie, aprés avoir choisi le méchant, il faudra choisir la manigance principale en cliquant sur le titre "**Manigance Principale**".
- 1. A tout moment, le mot-clef d'accès à la partie, à communiquer à tous les joueurs pour que ceux-ci accèdent à la partie est rappelé en bas de page. En cliquant sur le mot-clef de la partie, il est possible d'ouvrir l'écran d'administration.
-*En construction*
+# Présentation de la page de partie
+La page pricnipale d'une partie qui vient d'^tre créée ressemble à l'illustration suivante:  
+![Ecran principal](illus2.png "Ecran principal")  
+Cette page est divisée en différentes zones:
+ 1. La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)).
+ 2. La synthèse du méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))
+ 3. L'indicateur du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection de la manigance principale. Il suffira ensuite de cliquer sur l'indicateur du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indicateur se déplace).
+ 4. Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : ce pourra servir pour suivre des éléments spécifiques de certaines missions...
+ 5. La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)).
+ 6. A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : En cliquant dessus, il est possible d'ouvrir l'écran d'administration décrit plus loin).
+## Paramètrage initial de la partie
+Mettez-vous d'accord avec tous les joueurs pour choisir une réprésentation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.
+*(En construction)*
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
 
-*En construction*
+*(En construction)*
 ## Gestion du joueur
 ![Ecran principal](illus4.png "Ecran principal")
 
-*En construction*
+*(En construction)*
 ## Gestion des Manigances
 ![Ecran principal](illus5.png "Ecran principal")
 
-*En construction*
+*(En construction)*
