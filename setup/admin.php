@@ -6,7 +6,7 @@ include 'include.php';
 if (isset($_POST['newPass'])) {
   $adminPassword=hash('sha256',$_POST['newPass']);
   updatePassword();}
-if (isset($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
+if (isset($_POST['adminPassword']) and !empty($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
   echo("<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>");
   displayBottom();
@@ -17,6 +17,7 @@ if (isset($_GET['del'])) {
     sql_get("DELETE FROM `compteurs` WHERE `cPartie`='".$_GET['del']."'");
     sql_get("DELETE FROM `joueurs` WHERE `jPartie`='".$_GET['del']."'");
     sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='".$_GET['del']."'");
+    sql_get("DELETE FROM `deckParties` WHERE `dpPartie`='".$_GET['del']."'");
     sql_get("DELETE FROM `parties` WHERE `puri`='".$_GET['del']."'");}}
 ?>
 

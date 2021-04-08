@@ -21,7 +21,8 @@ if (isset($_GET['pGet'])) {
   $partieId=htmlspecialchars($_GET['pGet']);
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
-  $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks`,`boites` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL AND `bId`=`dBoite` AND `bInclus`='1' GROUP BY `dNom` ORDER BY `dNom` ASC");
+  
+  $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks`,`deckParties` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL AND `dpPartie`='$partieId' AND `dpDeck`=`dId` GROUP BY `dNom` ORDER BY `dNom` ASC");
   $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`joueurs`,heros WHERE `maDeck`=0 AND `jPartie`='$partieId' AND `maNumero`=`jHeros` AND `hId`=`jHeros` AND `mnPartie` IS NULL GROUP BY `hNom` ORDER BY `hNom` ASC");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
   $sqlManiHeros=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`heros` WHERE `mnPartie`='$partieId' AND `maDeck`='0' AND `maId`=`mnManigance` AND `maNumero`=`hId`");

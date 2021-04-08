@@ -6,10 +6,12 @@ function sql_exists($query) {
     if (mysqli_num_rows($sqlQuery)>0) return true; else return false;}
 
 function displayBottom() {
+  global $partieId,$adminPassword;
   $currentScript=basename($_SERVER['PHP_SELF']);
   if ($currentScript<>'admin.php' and $currentScript<>'setup.php') {
-    echo "<form action='admin.php' method='post' id='dispClef' onclick='moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}'>
-  <input type='hidden' name='adminPassword' id='adminPassword'>";
+    echo "<form action='admin.php' method='post' id='dispClef' onclick='";
+    if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) echo "moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}"; else echo "this.submit();";
+    echo "'><input type='hidden' name='adminPassword' id='adminPassword'>";
     if (isset($partieId)) echo "Le mot-clef de cette partie est <span>$partieId</span></form>"; else echo "Administration du site";
     echo "</form>";}
   echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md#utilisation-de-remote-champions' alt='Utilisation de Remote Champions' id='aide' target='_blank'><img src='img/aide.png' alt='Utilisation de Remote Champions'/></a>";
@@ -32,7 +34,7 @@ if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|c
 if (isset($_GET['p'])) $partieId=htmlspecialchars($_GET['p']); elseif (isset($_POST['p'])) $partieId=htmlspecialchars($_POST['p']);
 if (isset($_GET['j'])) $joueurId=htmlspecialchars($_GET['j']); elseif (isset($_POST['j'])) $joueurId=htmlspecialchars($_POST['j']);
 if (isset($partieId)) {if (mysqli_num_rows(sql_get("SELECT `pUri` FROM `parties` WHERE `pUri`='$partieId'"))!=1) {
-  $badPartie=true;
+  $badPartie=$partieId;
   unset($partieId);}}
 if (isset($joueurId)) {
 	if (mysqli_num_rows(sql_get("SELECT `jId` FROM `joueurs` WHERE `jId`='$joueurId'"))!=1) {unset($joueurId);}

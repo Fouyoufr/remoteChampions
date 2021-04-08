@@ -3,33 +3,16 @@ $title='Remote Champions';
 $bodyClass='index';
 include 'include.php';
 if (!isset($partieId)) {
-  if (isset($_POST['nbJoueurs']) and $_POST['nbJoueurs']<>'-1') {
-  	$nbJoueurs=htmlspecialchars($_POST['nbJoueurs']);
-    $caracteres = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $partieId = '';
-    for ($i=0;$i<6;$i++) {$partieId.=$caracteres[mt_rand(0, strlen($caracteres)-1)];}
-    $insertDate=date('Y-m-d H:i:s');
-    if ($nbJoueurs!=0) {
-      for ($i=1;$i<=$nbJoueurs;$i++) {sql_get("INSERT INTO `joueurs` (`jPartie`,`jNom`,`jVie`,`jStatut`,`jHeros`,`jNumero`) VALUES ('$partieId', 'Joueur $i', '10', 'AE','0','$i')");}
-      $premier=mt_rand(1,$nbJoueurs);}
-    else {$premier=0;}
-    sql_get("INSERT INTO `parties` (`pUri`,`pPremier`) VALUES ('$partieId','$premier')");
-    exit ("<script language='JavaScript'>
-    window.location.href = window.location.href+'?p=$partieId'
-    </script>");}
-else {
   echo '<form id="selectPartie" method="post">';
-  if (isset($badPartie)) {echo '<div id="keyError">&#9888; Le mot-clef saisi n\'est pas valide... &#9888;</div>';}
-  echo "<h1>Saisir le mot-clef d'une partie pour l'afficher:</h1>
-    <input type='text' name='p' id='selectPartieName'>
-    <input type='submit' value='OK' onclick='document.getElementById(\"nbJoueurs\").value=\"-1\";' class='bouton'><br/>
-    <h1>Ou créer une nouvelle partie pour</h1>
-    <select id='nbJoueurs' name='nbJoueurs'><option value='1'>1 joueur</option><option value='2'>2 joueur</option><option value='3'>3 joueur</option><option value='4'>4 joueur</option><option value='0'>Méchant seul</option></select>.
-    <input type='submit' value='Créer' onclick='document.getElementById(\"selectPartieName\").value=\"\";' class='bouton'></form>
+  if (isset($badPartie)) {echo "<div id='keyError'>&#9888; Le mot-clef '$badPartie' n'est pas valide... &#9888;</div>";}
+  echo "<h1>Bienvenue sur Remote Champions</h1>
+  <table><tr><td>Saisir le mot-clef d'une partie pour la rejoindre</td>
+  <td><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></td></tr>
+  <tr><td>Ou en créer une nouvelle</td><td><a href='new.php'>Créer</a></td></tr></table></form>
 </body>
 </html>";
 displayBottom();
-exit();}}
+exit();}
 
 if ($mobile) {
   if (!isset($joueurId)) {

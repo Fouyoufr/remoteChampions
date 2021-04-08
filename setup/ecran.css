@@ -1,6 +1,6 @@
 body,html {padding:0px;margin:0px;height:100%;width:100%;position:absolute;}
-#bugReport {position:fixed;bottom:0px;right:0px;}
-#aide {position: fixed;top:0px;right:0px;}
+#bugReport {position:fixed;top:0px;right:0px;}
+#aide {position: fixed;top:0px;right:25px;}
 #bugReport img,#aide img {width:20px;height:20px;}
 /* Mise en forme de l'écan principal*/
 body.index {background: url('img/marvel-fullHD.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size:cover;background-size:cover;}
@@ -42,8 +42,16 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #ajaxLoad.index{top:2px;right:2px;}
 #ajaxSave{position:absolute;width:30px;height:30px;background: url(img/save.png) no-repeat center center;}
 #ajaxSave.index{top:35px;right:2px;}
-#selectPartie {position:relative;margin:auto;margin-top:20px;width:50%;background:red;border:solid 3px white;padding:2%;color:white;}
-#selectPartie input,select {font-variant: small-caps; text-transform: capitalize;font-size:1em;}
+
+#selectPartie {position:relative;margin:auto;margin-top:20px;width:50%;background:antiquewhite;border:solid 3px #555;padding:2%;color:black;}
+#keyError {position:absolute;top:0px;left:0px;width:100%;text-align:center;background-color:red;font-weight:bold;color:white;}
+#selectPartie h1 {display:inline-block;width:100%;margin:0px;color:#555;text-align:center;margin-bottom:10px;}
+#selectPartie input,#selectPartie a {font-variant:small-caps;text-transform:capitalize;font-size:1em;background-color: antiquewhite;font-weight:bold;margin-right:5px;}
+#selectPartie input[type="submit"],#selectPartie a {cursor:pointer;margin-left:10px;background:black;color:white;border:white 2px solid;padding:2px;padding-left:10px;padding-right:10px;text-decoration:none;font-size:1em;font-weight:bold;margin:0px;}
+#selectPartie input[type="submit"]:hover,#selectPartie a:hover {background-color:#555;color:black;border-color:black;}
+#selectPartie td {padding:3px;}
+#selectPartie td:nth-child(1) {text-align:right;}
+
 .selectJoueur {display:block;margin:auto;width:50%;margin-top:2%;font:calc(1vw + 1vh + 1vmin) bold;font-family:Impact,Charcoal,sans-serif;}
 #indexFirst {position:absolute;width:74px;height:60px;font-weight:bold;}
 #indexFirst:hover {cursor:pointer;}
@@ -62,9 +70,9 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 .changeMechant:hover,.changeHeros:hover {cursor: pointer;background:black;color:lightgray;}
 .changeMechant img,.changeHeros img {margin-right:5px;}
 #dispClef {position:absolute;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;text-decoration: none;}
+#dispClef:hover {cursor: pointer;}
 #dispClef span {font-weight:bold;font-size:20px;font-variant: small-caps; text-transform: capitalize;}
-#dispClef span:hover {color:black;background:white;cursor: pointer;}
-#keyError {position:absolute;top:0px;left:0px;width:100%;text-align:center;color:yellow;}
+#dispClef span:hover {color:black;background:white;}
 #manigancesAnnexes {text-align:left;}
 #PlusManigance {position:absolute;top:2px;right:2px;font-weight:bold;font-size:20px;background-color:#f3b723;color:black;width:20px;height:20px;border: solid 1px white;text-align:center;}
 #PlusManigance:hover {border:solid 1px white;background-color:white;cursor:pointer;}
