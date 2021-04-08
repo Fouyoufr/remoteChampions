@@ -12,7 +12,7 @@ Il vous faut un service de base de donnée relationnelle type *mySql*.
 Fonctionnement testé avec succès sur les configuration/versions suivantes :
  - MariaDB 10
 ## Séquence d'installation
-1. Copier tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent repositery vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
+1. Copier tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent dépot vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
 1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.
 1. Il vous faut un identfiant pour vous connecter à votre serveur de base de données.
 1. Si vous avez déja préparé une nouvelle base de données vierge sur votre serveur de base de donnée, vous pouvez passer directement à l'[étape 6](https:#setupLaunch)
@@ -36,7 +36,7 @@ Lorsque le site est installé, vous pouvez vérifier les mises à jours récente
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
 ![Page de connexion](illus1.png "Page de connexion")
 - Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ![1](tag1.png) avant de cliquer sur "*OK*"![2](tag2.png),
-- En cliquant sur le bouton "**Créer**"![3](tag3.png), vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie),
+- En cliquant sur le bouton "**Créer**"![3](tag3.png), vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie)(a noter qu'un mot de passe peut être demandé si la fonction de serveur public a été activé dans l'écran d'administration décrit plus loin),
 - En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration![4](tag4.png) vous serez dirigé vers l'écran d'administration, décrit plus loin (A noter, un mot de passe sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
 - Dans tous les écrans du site, en cliquant sur le bouton d'Informations![5](tag5.png), vous serez directelent dirigé sur la présente aide d'utilisation,
 - Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug![6](tag6.png), vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
@@ -52,14 +52,13 @@ Vous pouvez (cela n'est pas une obligation, mais peut permettre de simplifier la
 Pour ce faire, il vous suffit de cliquer sur la case à cocher![5](tag5.png) en regard d'un deck pour le sélectionner ou le déselectionner avant de cliquer sur le bouton "*Créer*".  
  - Les decks pouvant être selectionnés sont regroupés par boite de jeu/extensions/paquets![6](tag6.png) pour les retrouver plus facilement. Les boites disponibles sont celles déclarée comme telles dans l'administration du site (voir plus loin).
  - Vous pouvez (dé)sélectionner tous les decks en un click![7](tag7.png) pour plus de failité.
-
 Après que vous avez créé votre nouvelle partie, vous serez dirigé vers la page de celle-ci (ou vers votre fiche de joueur si vous êtes sur smartphone).  
 
 Si une erreur empèche la création de la partie, elle vous sera communiquer sur la même page, afin que vous puissiez retenter la création.
 ## Utilisation du site en partie
 # Présentation de la page de partie
-La page pricnipale d'une partie qui vient d'^tre créée ressemble à l'illustration suivante:  
-![Ecran principal](illus2.png "Ecran principal")  
+La page principale d'une partie qui vient d'être créée ressemble à l'illustration suivante:  
+![Page principale nouvelle partie](illus2.png "Page principale nouvelle partie")  
 Cette page est divisée en différentes zones:  
 ![1](tag1.png)La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)).  
 ![2](tag2.png)La synthèse du méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))  
@@ -68,7 +67,11 @@ Cette page est divisée en différentes zones:
 ![5](tag5.png)La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)).  
 ![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : En cliquant dessus, il est possible d'ouvrir l'écran d'administration décrit plus loin).  
 ## Paramètrage initial de la partie
+![Initialisation de la partie](illus7.png "Initialisation de la partie")
 Mettez-vous d'accord avec tous les joueurs pour choisir une réprésentation des fiches de joueur ayant le plus de sens pour tout le monde. A partir de là, il vous suffit de renommer les fiches de joueurs qui portent simplement un numéro en début de partie.  
+**Conseil :** Mettez-vous d'accord avec tous les joueurs pour affecter la responsabilité des diverses mises à jour. Sinon, comme tous les joueurs peuvent éditer la page de la partie en cours, vous risquez d'avoir des modifications multiples.  
+En cours de partie, selon l'évolution de celle-ci, la page de partie ressemblera à quelque-chose comme l'illustration suivante:  
+![En cours de partie](illus8.png "Page de partie en cours")
 *(En construction)*
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
@@ -81,4 +84,6 @@ Mettez-vous d'accord avec tous les joueurs pour choisir une réprésentation des
 ## Gestion des Manigances
 ![Ecran principal](illus5.png "Ecran principal")
 
+*(En construction)*
+## Administration du serveur
 *(En construction)*

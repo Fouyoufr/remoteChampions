@@ -172,7 +172,7 @@ while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick
     <input type='text' id='playerName' minlength="4" maxlength="50" style="width:90%;margin-top:50px;margin-bottom:50px;">
     <input type='hidden' id='changeNameId'>
     <div style="text-align:center;">
-      <input type ="button" value="Confirmer" onclick='ajaxPost("j="+document.getElementById("changeNameId").value+"&changeName",document.getElementById("playerName").value);document.getElementById("changeNameIndex").style.display="none";'>
+      <input type ="button" value="Confirmer" onclick='ajaxPost("j="+document.getElementById("changeNameId").value+"&changeName",document.getElementById("playerName").value);document.getElementById("changeNameIndex").style.display="none";document.getElementById("playerName").value="";'>
       <input type="button" value="Annuler" onclick='document.getElementById("changeNameIndex").style.display="none";'>
     </div>
   </div> 
