@@ -17,21 +17,24 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 1. Il vous faut un identfiant pour vous connecter à votre serveur de base de données.
 1. Si vous avez déja préparé une nouvelle base de données vierge sur votre serveur de base de donnée, vous pouvez passer directement à l'[étape 6](https:#setupLaunch)
 1. Connectez-vous à votre interface de gestion mySQL afin de créer une nouvelle base de donnée. Vous pouvez également passer ce point en forunissant au processus d'installation les informations de connexion d'un utilisateur pouvant créer une base sur votre serveur.
-1. <a name="setupLaunch"></a>Utiliser un navigateur Internet pour vous connecter à la racine de votre site web. (selon votre cas, vous taperez directement le nom de votre dossier ou vous devrez le faire suivre de "*/setup.php*".
+1. <a name="setupLaunch"></a>Utiliser un navigateur Internet pour vous connecter à la racine de votre site web. (selon votre cas, vous taperez directement le nom de votre dossier ou vous devrez le faire suivre de "*/setup.php*".  
+![Installation initiale](illus9.png "Installation initiale")
 1. Dans l'écran d'installation qui vous est présenté renseignez les informations suivantes :
-   - Nom/adresse du serveur mySql : vous pouvez utiliser *localhost* si le serveur de base de données est installé sur la même machine que le serveur web.
-   - Numéro de port du serveur (3007 par défaut)
-   - Nom de connexion au serveur : Nom de connexion de l'utilisateur de la base créée ou pouvant créer une base sur le serveur
-   - Mot de passe de connexion au serveur : Mot de passe du précédent utilisateur
-   - Nom de la base existante : Cochez ce choix si vous avez déjà créé une base mySQL et indiquez ici son nom
-   - Nom de la base à créer : Cochez ce choix pour que le processus d'installation crée une nouvelle base de données sur le serveur
-1. Ensuite, patientez et suivez les indications de la page, le processus d'installation va réellement débuter.
-A l'issue de l'installation, votre site devrait être fonctionnel. Si vous appelez de nouveau la page "*/setup.php*" celle-ci vérifiera s'il est utile de mettre à jour votre installation du site et s'occupera [de la mise à jour éventuelle](https:#Mise-à-jour-de-remote-champions).  
-Sinon, vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#Utilisation-de-remote-champions) et vous serez prêt à joueur dans un instant !  
+   - Nom/adresse du serveur mySql![1](tag1.png) : vous pouvez utiliser *localhost* si le serveur de base de données est installé sur la même machine que le serveur web.
+   - Numéro de port du serveur![2](tag2.png) (3007 par défaut)
+   - Nom de connexion au serveur![3](tag3.png) : Nom de connexion de l'utilisateur de la base créée ou pouvant créer une base sur le serveur
+   - Mot de passe de connexion au serveur![4](tag4.png) : Mot de passe du précédent utilisateur
+   - Nom de la base existante![5](tag5.png) : Cochez ce choix si vous avez déjà créé une base mySQL et indiquez ici son nom
+   - Nom de la base à créer![6](tag6.png) : Cochez ce choix pour que le processus d'installation crée une nouvelle base de données sur le serveur
+1. Si une nouvelle version du script d'installation est détectée, la page suivante apparaitra, cliquez simplement sur "Relancer la mise à jour".  
+![Mise à jour du script d'installation](illus10.png "Mise à jour du script d'installation")
+1. Ensuite, le processus d'installation va réellement débuter.L'écran de synthèse suivant vous indiquera toutes les étapes réalisées et leur résultat.  
+1. A l'issue de l'installation, votre site devrait être fonctionnel!
+1. cliquez sur "*Accéder au site*" pour l'utiliser... Vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#Utilisation-de-remote-champions) et vous serez prêt à joueur dans un instant !  
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sur que le site web soit accèssible de tous les joueurs sur Internet.
 ## Mise à jour de '*Remote Champions*'
-Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".
-*(En construction)*
+Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".  
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 # Utilisation de '*Remote Champions*'
 **Préambule:** L'outil *Remote Champions* n'est en aucun cas prévu pour remplacer la possession des cartes par les joueurs : il  apour seul objectif de fluidifier le déroulement des parties (particulièrement des parties jouée à distance, avec audio/visio conférence) en tenant à jour un maximum des éléments nécessaires au suvi de la partie et en les présentant aux différents joueurs.  
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
@@ -86,20 +89,21 @@ Cette page est divisée en différentes zones:
 **Conseil :** Mettez-vous d'accord avec tous les joueurs pour affecter la responsabilité des diverses mises à jour. Sinon, comme tous les joueurs peuvent éditer la page de la partie en cours, vous risquez d'avoir des modifications multiples.  
 
 En cours de partie, selon l'évolution de celle-ci, la page de partie ressemblera à quelque-chose comme l'illustration suivante:  
-[<img src="illus8.png" height=100>](https:illus8.png)
-*(En construction)*
+[<img src="illus8.png" height=200>](https:illus8.png)  
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Gestion du méchant
 ![Ecran principal](illus3.png "Ecran principal")
 
-*(En construction)*
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Gestion du joueur
 ![Ecran principal](illus4.png "Ecran principal")
 
-*(En construction)*
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Gestion des Manigances
 ![Ecran principal](illus5.png "Ecran principal")
 
-*(En construction)*
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Administration du site
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ### Activation des boites de jeu
-*(En construction)*
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
