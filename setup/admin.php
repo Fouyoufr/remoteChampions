@@ -7,7 +7,10 @@ if (isset($_POST['newPass'])) {
   $adminPassword=hash('sha256',$_POST['newPass']);
   updatePassword();}
 if (isset($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
-if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) exit("<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>");
+if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+  echo("<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>");
+  displayBottom();
+  exit('</body>');}
 if (isset($_GET['del'])) {
   $partie=sql_get("SELECT `pUri` FROM `parties` WHERE `pUri`='".$_GET['del']."'");
   if (mysqli_num_rows($partie)<>0) {
@@ -86,7 +89,7 @@ if (isset($_POST['newPass'])) echo "<div style='width:100%;font-size:2em;text-al
 <div class="pannel">
 <div class="titleAdmin">Mise à jour</div>
 <?php
-
+displayBottom();
 #Récupération des informations du repositery par les API gitHub (le $context permet de psser un userAgent à file_get_contents, requis par gitHub)
 $context = stream_context_create(array('http'=>array('method'=>"GET",'header'=>"Accept-language: en\r\n"."Cookie: foo=bar\r\n"."User-Agent: Fouyoufr")));
 $lastCommit=json_decode(file_get_contents('https://api.github.com/repos/Fouyoufr/remoteChampions/commits?per_page=1',false,$context),true)[0]['commit'];

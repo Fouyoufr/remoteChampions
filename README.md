@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.0a
+Ajout des liens d'aide et bug report vers gitHub
 ## Version 3.0
 Gestion des manigances annexes avec plusieurs icônes.
 ## Version 2.9

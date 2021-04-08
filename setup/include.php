@@ -1,4 +1,22 @@
 <?php
+<<<<<<< Updated upstream
+=======
+function sql_exists($query) {
+  global $sqlConn;
+  if (!isset($sqlConn)) sql_get('SHOW TABLES');
+    $sqlQuery=mysqli_query($sqlConn,"$query LIMIT 1");
+    if (mysqli_num_rows($sqlQuery)>0) return true; else return false;}
+
+function displayBottom() {
+  $currentScript=basename($_SERVER['PHP_SELF']);
+  if ($currentScript<>'admin.php' and $currentScript<>'setup.php') {
+    echo "<form action='admin.php' method='post' id='dispClef' onclick='moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}'>
+  <input type='hidden' name='adminPassword' id='adminPassword'>";
+    if (isset($partieId)) echo "Le mot-clef de cette partie est <span>$partieId</span></form>"; else echo "Administration du site";
+    echo "</form>";}
+  echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md#utilisation-de-remote-champions' alt='Utilisation de Remote Champions' id='aide' target='_blank'><img src='img/aide.png' alt='Utilisation de Remote Champions'/></a>";
+  echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='Rapporter un problème' id='bugReport' target='_blank'><img src='img/bug.png' alt='Rapporter un problème'/></a>";}
+>>>>>>> Stashed changes
 function updatePassword() {
   global $adminPassword;
   $configFile = file('config.inc');

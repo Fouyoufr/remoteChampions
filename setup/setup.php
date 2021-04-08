@@ -66,6 +66,7 @@ if (!file_exists('./config.inc')) {
 	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
 	if ($_POST['newDb']<>'0') {echo ' checked';}
 	echo ">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table>(Nota: le mot de passe administratif initial est 'admin', changez le dans la page d'administration.)</form>";
+	displayBottom();
 exit();}
 
 function remoteFileSize ($phpFile) {
@@ -86,6 +87,7 @@ function imageUpdate($imgFolder,$imgId,$imgNom) {
 	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
 		$nothingToDo=false;
 		echo "<tr><td></td><div class='error'>Création de sous-répertoire dans '/img' impossible...</div></td></tr>";
+		displayBottom();
 		exit();}}
 	$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
 	while ($image=mysqli_fetch_assoc($images)) {
@@ -101,7 +103,10 @@ function updateSQLcontent($tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn,$gitUrl;
 	$file = fopen ("$gitUrl/updates/$tableId", "r");
-	if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
+	if (!$file) {
+		echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>";
+		displayBottom();
+		exit();}
 	$newTable=array();
 	$nothingToDo=true;
 	while (!feof ($file)) {
@@ -159,7 +164,10 @@ function sqlUpdate() {
 	global $sqlConn,$gitUrl;
 	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
 	$file = fopen ("$gitUrl/updates/sqlTables", "r");
-	if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
+	if (!$file) {
+		echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>";
+		displayBottom();
+		exit();}
 	while (!feof ($file)) {
 		$nothingToDo=true;
     	$table=explode('=>',fgets($file),2);
@@ -194,7 +202,10 @@ function sqlUpdate() {
 	
 include 'config.inc';
 #Vérification du mot de passe d'administration.
-if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) exit("<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>");
+if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+	echo "<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>";
+	displayBottom();
+	exit();}
 echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
 #Récupération de la dernière version du présent script
 $localSize=filesize('setup.php');
@@ -202,8 +213,14 @@ $remoteSize = remoteFileSize('setup.php');
 
 if ($localSize<>$remoteSize) {
 	echo "Nouvelle version du script de mise à jour.<br/>";
-	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
-	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+	if (@copy("$gitUrl/setup/setup.php",'setup.php')) {
+		echo "Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>";
+		displayBottom();
+		exit();}
+	else {
+		echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";
+		displayBottom();
+		exit();}}
 else echo "Script Déjà à jour";
 
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
@@ -221,7 +238,7 @@ imageUpdate('boites','bId','bNom');
 imageUpdate('heros','hId','hNom');
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
 #Vérification des fichiers php par leur taille.
-$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','aide.md','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png');
+$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','aide.md','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
 foreach ($phpFiles as $phpFile) {
 	$localSize=@filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
