@@ -1,0 +1,5 @@
+- Le fichier *puce.png contient la puce rouge et blanche à utiliser sur les images explicatives
+- Le texte dans les puces est formatté comme suit :
+  - Police Verdana Bold
+  - Taille 16px
+  - Couleur #700f14
