@@ -26,9 +26,6 @@ else {
     <h1>Ou créer une nouvelle partie pour</h1>
     <select id='nbJoueurs' name='nbJoueurs'><option value='1'>1 joueur</option><option value='2'>2 joueur</option><option value='3'>3 joueur</option><option value='4'>4 joueur</option><option value='0'>Méchant seul</option></select>.
     <input type='submit' value='Créer' onclick='document.getElementById(\"selectPartieName\").value=\"\";' class='bouton'></form>
-  <form action='admin.php' method='post' id='dispClef' onclick='moDePass=prompt(\"Mot de passe administratif\");if(moDePass===null) return; else {getElementById(\"adminPassword\").value=moDePass;this.submit();}'>
-<input type='hidden' name='adminPassword' id='adminPassword'>
-Administration du site</form>
 </body>
 </html>";
 displayBottom();
