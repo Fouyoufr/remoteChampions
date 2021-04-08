@@ -35,11 +35,11 @@ Lorsque le site est installé, vous pouvez vérifier les mises à jours récente
 # Utilisation de '*Remote Champions*'
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
 ![Page de connexion](illus1.png "Page de connexion")
-- Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ **(1)** avant de cliquer sur "*OK*" **(2)**,
-- En cliquant sur le bouton "**Créer**" **(3)**, vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie),
-- En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration **(4)** vous serez dirigé vers l'écran d'administration, décrit plus loin (A noter, un mot de passe sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
-- Dans tous les écrans du site, en cliquant sur le bouton d'Informations **(5)**, vous serez directelent dirigé sur la présente aide d'utilisation,
-- Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug **(6)**, vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
+- Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ![1](tag1.png) avant de cliquer sur "*OK*"![2](tag2.png),
+- En cliquant sur le bouton "**Créer**"![3](tag3.png), vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie),
+- En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration![4](tag4.png) vous serez dirigé vers l'écran d'administration, décrit plus loin (A noter, un mot de passe sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
+- Dans tous les écrans du site, en cliquant sur le bouton d'Informations![5](tag5.png), vous serez directelent dirigé sur la présente aide d'utilisation,
+- Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug![6](tag-.png), vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
 ## Création d'une nouvelle partie
 La page de création d'une nouvelle partie ressemblera à l'illustration ci-dessous:  
 ![Page de création de partie](illus6.png "Page de création de partie")  
