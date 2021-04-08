@@ -1,4 +1,4 @@
-# Installation de votre site
+# Installation de 'Remote Champions'
 ## Prérequis
 Pour installer mc sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
 #### Serveur Web PHP
@@ -29,10 +29,10 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 A l'issue de l'installation, votre site devrait être fonctionnel. Si vous appelez de nouveau la page "*/setup.php*" celle-ci vérifiera s'il est utile de mettre à jour votre installation du site et s'occupera [de la mise à jour éventuelle](https:#Mise-à-jour-de-votre-site).  
 Sinon, vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#Utilisation-de-votre-site) et vous serez prêt à joueur dans un instant !  
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sur que le site web soit accèssible de tous les joueurs sur Internet.
-# Mise à jour de votre site
+# Mise à jour de 'Remote Champions'
 Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".
 *(En construction)*
-# Utilisation de votre site
+# Utilisation de 'Remote Champions'
 Une fois votre site installé, vous pouvez simplement y accéder depuis votre navigateur. Vous tomberez dès lors sur l'écran de sélection de fonction suivant
 ![Ecran de connexion](illus1.png "Ecran de connexion")
 - Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir son mot-clef dans le premier champ avant de cliquer sur "**OK**". Sinon :
