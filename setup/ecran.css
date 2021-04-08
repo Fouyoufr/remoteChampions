@@ -172,8 +172,6 @@ body.mechant {overflow:hidden;background:lightgray;}
 #mechantRiposteME {top:17%;}
 #mechantPercantME {top:25%;}
 #mechantDistanceME {top:33%;}
-<<<<<<< Updated upstream
-=======
 
 /*Mise en forme de l'écran de création de partie */
 body.new {background: url('img/marvel-fullHD.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size:cover;background-size:cover;color:antiquewhite;}
@@ -190,4 +188,3 @@ body.new h1 {display:inline-block;width:100%;text-align:center;margin-top:5px;}
 body.new img {width:40px;}
 div.newError {background-color:red;font-weight:bold;width:100%;text-align:center;font-size:1.5em;padding-top:3px;padding-bottom:3px;margin-bottom:10px;margin-top:-10px;}
 div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgray;font-weight:normal;}
->>>>>>> Stashed changes
