@@ -2,15 +2,27 @@
 $title='Remote Champions - Admin';
 $bodyClass='admin';
 include 'include.php';
-#Vérification du mot de passe d'administration.
-if (isset($_POST['newPass'])) {
+if (isset($_POST['newPass']) and $_POST['newPass']<>'') {
   $adminPassword=hash('sha256',$_POST['newPass']);
   updatePassword();}
+#Vérification du mot de passe d'administration.
 if (isset($_POST['adminPassword']) and !empty($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
   echo("<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>");
   displayBottom();
   exit('</body>');}
+
+if (isset($_POST['publicMode'])) {
+  #Activation/désactivation du mode public
+  if ($_POST['publicMode']=='on') $publicPass=hash('sha256',$_POST['newPublic']); else $publicPass='';
+  $configFile = file('config.inc');
+  function replace_a_line($data) {
+    global $publicPass;
+     if (stristr($data,'$publicPass=')) return "\$publicPass='$publicPass';\n";
+     return $data;}
+  $configFile=array_map('replace_a_line',$configFile);
+  file_put_contents('config.inc', implode('',$configFile));}
+
 if (isset($_GET['del'])) {
   $partie=sql_get("SELECT `pUri` FROM `parties` WHERE `pUri`='".$_GET['del']."'");
   if (mysqli_num_rows($partie)<>0) {
@@ -71,25 +83,49 @@ if (mysqli_num_rows($partiesMechant)<>0) {
     echo '</td><td>';
     if (isset($partiesJoueur[$partie['pUri']])) {echo $partiesJoueur[$partie['pUri']]['COUNT(`jId`)']; }
     else {echo 'aucun';}
-    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td class="adminIcones"><a href=".?p='.$partie['pUri'].'"><img src="img/link.png" alt="Ouvrir"/></a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')"><img src="img/trash.png" alt="Supprimer"/></a></td></tr>';
-  }
+    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td class="adminIcones"><a href=".?p='.$partie['pUri'].'"><img src="img/link.png" alt="Ouvrir"/></a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\'Cette action est irréversible.\nEtes-vous certain(e) de souhaiter détruire les informations de la partie '.$partie['pUri'].'?\')"><img src="img/trash.png" alt="Supprimer"/></a></td></tr>';}
   echo "</table></div>";}
 ?>
+
 <form class="pannel" style="text-align:left;" id='newPassForm' method='post' action=''>
 <div class="titleAdmin">Mot de passe administratif</div>
 <?php
 if (isset($_POST['newPass'])) echo "<div style='width:100%;font-size:2em;text-align:center;background-color:red;color:white;'>Le mot de passe administratif a été modifié.</div>"
 ?>
 <span style="color:red;text-decoration:underline">Attention:</span> Le mot de passe modifié ici n'est pas stocké en clair sur le serveur.<br/>
-(Veillez à le conserver en lieu sur et à ne pas le perdre...)<br/>
-<div style="float:left;margin-right:10px;">Nouveau mot de passe<br/>Vérification<br/> </div>
+(Veillez à le conserver en lieu sur et à ne pas le perdre...)<hr/>
+<div style="float:left;margin-right:10px;text-align:right;">Nouveau mot de passe<br/>Vérification<br/> </div>
 <div>
-<input type='password' name='newPass' id='newPass'><br/>
-<input type='password' name='newPass2' id='newPass2'>
-<input type='submit' onclick="if (document.getElementById('newPass').value == document.getElementById('newPass2').value) return true; else {alert('Le mot de passe saisi et la vérification ne correspondent pas!');return false;}">
+  <input type='password' name='newPass' id='newPass'><br/>
+  <input type='password' name='newPass2' id='newPass2'>
+  <input type='submit' onclick="if (document.getElementById('newPass').value == document.getElementById('newPass2').value) return true; else {alert('Le mot de passe saisi et la vérification ne correspondent pas!');return false;}">
 </div>
 </form>
-<div class="pannel">
+
+<form class="pannel" style="text-align:left;clear:both;" id='publicModeForm' method='post' action=''>
+<div class="titleAdmin">Mode public</div>
+<?php
+if (isset($_POST['publicMode'])) echo "<div style='width:100%;font-size:2em;text-align:center;background-color:red;color:white;'>Modifications sauvegardées.</div>"
+?>
+<span style="clear:left;color:red;text-decoration:underline">Attention:</span> Si vous activez le mode public, le mot de passe ci-dessous sera demandé pour accéder à la création d'une nouvelle partie.<hr/>
+<div style="float:left;margin-right:10px;text-align:right;">Le mode public est<br/>Mot de passe<br/>Vérification</div>
+<div>
+<?php
+  echo "<input type='radio' name='publicMode' value='off' id='publicModeOff' onclick='document.getElementById(\"newPublic\").disabled=true;document.getElementById(\"newPublic2\").disabled=true;document.getElementById(\"newPublic\").value=\"\";document.getElementById(\"newPublic2\").value=\"\";'";
+  if (!isset($publicPass) or $publicPass=='') echo ' checked';
+  echo ">Désactivé / <input type='radio' name='publicMode' value='on' onclick='document.getElementById(\"newPublic\").disabled=false;document.getElementById(\"newPublic2\").disabled=false;'";
+  if ($publicPass!='') echo ' checked';
+  echo ">Activé<br/><input type='password' name='newPublic' id='newPublic'";
+  if (!isset($publicPass) or $publicPass=='') echo ' disabled';
+  echo "><br/><input type='password' name='newPublic2' id='newPublic2'";
+  if (!isset($publicPass) or $publicPass=='') echo ' disabled';
+  echo ">";
+?>
+  <input type='submit' onclick="if (document.getElementById('publicModeOff').checked) return true; else if(document.getElementById('newPublic').value.length<6) {alert('Le mot de passe public doit comporter au moins 6 caractères !');return false;} else if (document.getElementById('newPublic').value == document.getElementById('newPublic2').value) return true; else {alert('Le mot de passe saisi et la vérification ne correspondent pas!');return false;}">
+</div>
+</form>
+
+<div class="pannel" style="clear:both;">
 <div class="titleAdmin">Mise à jour</div>
 <?php
 displayBottom();

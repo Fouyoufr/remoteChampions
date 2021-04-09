@@ -42,16 +42,14 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #ajaxLoad.index{top:2px;right:2px;}
 #ajaxSave{position:absolute;width:30px;height:30px;background: url(img/save.png) no-repeat center center;}
 #ajaxSave.index{top:35px;right:2px;}
-
 #selectPartie {position:relative;margin:auto;margin-top:20px;width:50%;background:antiquewhite;border:solid 3px #555;padding:2%;color:black;}
 #keyError {position:absolute;top:0px;left:0px;width:100%;text-align:center;background-color:red;font-weight:bold;color:white;}
 #selectPartie h1 {display:inline-block;width:100%;margin:0px;color:#555;text-align:center;margin-bottom:10px;}
 #selectPartie input,#selectPartie a {font-variant:small-caps;text-transform:capitalize;font-size:1em;background-color: antiquewhite;font-weight:bold;margin-right:5px;}
-#selectPartie input[type="submit"],#selectPartie a {cursor:pointer;margin-left:10px;background:black;color:white;border:white 2px solid;padding:2px;padding-left:10px;padding-right:10px;text-decoration:none;font-size:1em;font-weight:bold;margin:0px;}
-#selectPartie input[type="submit"]:hover,#selectPartie a:hover {background-color:#555;color:black;border-color:black;}
+#selectPartie input[type="submit"],#selectPartie .creer {display:inline-block;cursor:pointer;margin-left:10px;background:black;color:white;border:white 2px solid;padding:2px;padding-left:10px;padding-right:10px;text-decoration:none;font-size:1em;font-weight:bold;margin:0px;}
+#selectPartie input[type="submit"]:hover,#selectPartie .creer:hover {background-color:#555;color:black;border-color:black;}
 #selectPartie td {padding:3px;}
 #selectPartie td:nth-child(1) {text-align:right;}
-
 #selectPartieMobile {position:absolute;margin:0px;width:100%;height:100%;background-color:antiquewhite;padding:0%;color:black;text-align:center;}
 #selectPartieMobile h1 {display:inline-block;width:100%;margin:0px;color:#555;}
 #selectPartieMobile input {width:80%;font-variant:small-caps;text-transform:capitalize;font-size:1em;background-color:black;color:white;font-weight:bold;border:#555 2px solid;padding:5px;margin:auto;margin-top:10px;}
@@ -117,7 +115,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 
 /* Mise en forme de l'écran d'administration */
 body.admin {background-color:#7e696a;color:white;}
-.pannel {position:relative;border:solid 2px white;padding:2px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;border-color:black;color:black;font-weight:bold;font-size:1em;text-align:center;}
+.pannel {position:relative;border:solid 2px white;padding:2px;color:white;font-family:"Arial", Gadget, sans-serif;background:lightgray;margin-top:2px;margin-bottom:10px;border-color:black;color:black;font-weight:bold;font-size:1em;text-align:center;}
 .pannel table,.pannel tr {border-top: 1px solid #555;width:100%;border-collapse: collapse;}
 .pannel tr:nth-child(odd) {background-color:bisque;}
 .pannel th {background-color: #555;color: #e5d2e5;}

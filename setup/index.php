@@ -3,13 +3,16 @@ $title='Remote Champions';
 $bodyClass='index';
 include 'include.php';
 if (!isset($partieId)) {
-  echo '<form id="selectPartie" method="post">';
+  echo '<div id="selectPartie">';
   if (isset($badPartie)) {echo "<div id='keyError'>&#9888; Le mot-clef '$badPartie' n'est pas valide... &#9888;</div>";}
   echo "<h1>Bienvenue sur Remote Champions</h1>
   <table><tr><td>Saisir le mot-clef d'une partie pour la rejoindre</td>
-  <td><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></td></tr>";
-  if (!$mobile) echo "<tr><td>Ou en créer une nouvelle</td><td><a href='new.php'>Créer</a></td></tr>";
-  echo "</table></form></body></html>";
+  <td><form method='post'><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></form></td></tr>";
+  if (!$mobile) {
+    echo "<tr><td>Ou en créer une nouvelle</td><td><form action='new.php' method='post' class='creer' onclick='";
+    if ($publicPass!='') echo "moDePass=prompt(\"Mot de passe nécessaire pour créer une nouvelle partie\");if(moDePass===null) return; else {getElementById(\"publicPass\").value=moDePass;this.submit();}"; else echo "this.submit();";
+    echo "'><input type='hidden' name='publicPass' id='publicPass'>Créer</form></td></tr>";}
+  echo "</table></div></body></html>";
 displayBottom();
 exit();}
 

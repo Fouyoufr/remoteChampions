@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.4
+Mise en place du mode public (pour serveur disponible à plus de monde : exigence d'un mot de passe pour créer une partie)
 ## Version 3.3
 Aménagement de la fiche joueur sur smartphone selon dernières fonctionnalités ajoutées
 Travail sur la documentation

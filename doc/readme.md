@@ -144,6 +144,9 @@ En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administrat
 ![Mot de passe administratif](illus16.png)  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Mode public
+Si le seveur est plus largement accessible, vous souhaiterez peut-être limiter la possibilité de création de nouvelles parties.  
+C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra y créer autant de nouvelles parties qu'il/elle souhaite.
+Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot de passe (dont seule une empreinte est stockée sur le serveur). Une fois ce paramètre validé, ledit mot de passe sera demandé pour accéder à la page de création de nouvelle partie.  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Mise à jour
 ![Mise à jour](illus17.png)  

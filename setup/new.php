@@ -10,6 +10,15 @@ function displaydeck($deck) {
 $title='Remote Champions - Création de partie';
 $bodyClass='new';
 include 'include.php';
+
+#Gestion du mode public
+if (isset($_POST['publicPass']) and !empty($_POST['publicPass'])) $_SESSION['publicPass']=hash('sha256',$_POST['publicPass']);
+if ($publicPass!='' and (!isset($_SESSION['publicPass']) or $_SESSION['publicPass']<>$publicPass)) {
+  echo"<div class='pannel'><div class='titleAdmin'>Accès restreint</div>Désolé, le serveur est en mode public et la création de nouvelles parties est protégée par un mot de passe...<br/><a class='adminButton' href='.'>Retour au site</a></div>";
+  displayBottom();
+  exit('</body>');}
+else unset($_POST['publicPass']);
+
 $error='';
 $clef='';
 if(!empty($_POST) and empty(array_diff_key($_POST,array_flip(['clef','nbJoueurs','mechantSeul'])))) $error='Vous ne pouvez créer une partie sans sélectionner aucun deck';
