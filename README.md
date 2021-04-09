@@ -6,6 +6,11 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.3
+Aménagement de la fiche joueur sur smartphone selon dernières fonctionnalités ajoutées
+Travail sur la documentation
+## Version 3.2
+Travail sur la documentation.
 ## Version 3.1
 Ajout de l'option de sélection des decks à inclure dans une partie lors de sa création.
 ## Version 3.0a

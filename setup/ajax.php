@@ -138,7 +138,9 @@ if(isset($_POST['heros'])) {
   $heros=htmlspecialchars($_POST['heros']);
   $joueur=htmlspecialchars($_POST['joueur']);
   $newVie=mysqli_fetch_assoc(sql_get("SELECT `hVie` FROM `heros` WHERE `hId`='$heros'"));
-  $joueurId=sql_get("UPDATE `joueurs` SET `jHeros`='$heros', `jVie`='".$newVie['hVie']."' WHERE `jPartie`='$partieId' AND `jNumero`='$joueur'");}
+  $sqlReq="UPDATE `joueurs` SET `jHeros`='$heros', `jVie`='".$newVie['hVie']."' WHERE `jPartie`='$partieId' AND ";
+  if (isset($_POST['joueurNum'])) $sqlReq.='`jNumero`=\''.$_POST['joueurNum'].'\''; else $sqlReq.='`jId`=\''.$_POST['joueur'].'\'';
+  sql_get($sqlReq);}
   
 if(isset($_POST['vieMechant'])) {
   $vieMechant=htmlspecialchars($_POST['vieMechant']);

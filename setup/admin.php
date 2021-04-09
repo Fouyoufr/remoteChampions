@@ -21,18 +21,20 @@ if (isset($_GET['del'])) {
     sql_get("DELETE FROM `parties` WHERE `puri`='".$_GET['del']."'");}}
 ?>
 
-
-<div class="pannel">
+<!--
+  <div class="pannel">
   <div class="titleAdmin">Mise en page</div>
   Choisir l'apparence de l'écran de synthèse du jeu (en travaux): 
   <Select id="selectCSS" onchange='localStorage.setItem("mcCss",this.value);'>
 <?php
-  foreach (glob("*.css") as $filename) {
-    echo '<option>'.basename($filename,'.css');
-    echo '</option>';}
+  #foreach (glob("*.css") as $filename) {
+    #echo '<option>'.basename($filename,'.css');
+    #echo '</option>';}
 ?>
 </select>
 </div>
+  -->
+  
 <div class="pannel">
   <div class="titleAdmin">Activation des boites de jeu</div>
   (paramètre global du serveur)<br/>

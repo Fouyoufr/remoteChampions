@@ -30,8 +30,8 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 .disabledButton {display:inline-block;font:15px;font-family:Impact,Charcoal,sans-serif;background-color:lightgray;color:gray;margin:2px;}
 .disabledButtonMechant {display:inline-block;font-size:2em;font-family:Impact,Charcoal,sans-serif;background-color:lightgray;color:gray;margin:2px;width:30%;height:40px;}
 .bouton:hover {background-color:white;cursor:pointer;}
-.playerName,#mechant,.playerNameBouton {font-size:20px;fontweight:bold;}
-.playerNameBouton:hover {font-size:20px;fontweight:bold;color:black;background-color:lightgray;cursor:pointer;}
+.playerName,#mechant,.playerNameBouton {font-size:20px;font-weight:bold;}
+.playerNameBouton:hover {font-size:20px;font-weight:bold;color:black;background-color:lightgray;cursor:pointer;}
 #mechant {font-variant: small-caps; text-transform: capitalize;}
 #phaseMechant {position:absolute;top:5px;right:8px;color:white;background:black;padding:2px;font-style:oblique;padding-right:6px;border:solid 1px white;}
 #phaseMechant:hover {background:white;border:solid 2px black;color:black;cursor: pointer;}
@@ -52,7 +52,11 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #selectPartie td {padding:3px;}
 #selectPartie td:nth-child(1) {text-align:right;}
 
-.selectJoueur {display:block;margin:auto;width:50%;margin-top:2%;font:calc(1vw + 1vh + 1vmin) bold;font-family:Impact,Charcoal,sans-serif;}
+#selectPartieMobile {position:absolute;margin:0px;width:100%;height:100%;background-color:antiquewhite;padding:0%;color:black;text-align:center;}
+#selectPartieMobile h1 {display:inline-block;width:100%;margin:0px;color:#555;}
+#selectPartieMobile input {width:80%;font-variant:small-caps;text-transform:capitalize;font-size:1em;background-color:black;color:white;font-weight:bold;border:#555 2px solid;padding:5px;margin:auto;margin-top:10px;}
+#selectPartieMobile input.selectMechant {background-color:#555;border-color:black;}
+
 #indexFirst {position:absolute;width:74px;height:60px;font-weight:bold;}
 #indexFirst:hover {cursor:pointer;}
 #indexFirst.first1 {top:50px;left:170px;}
@@ -131,7 +135,7 @@ a.adminEncadre:hover {background-color:#555;color:white;border-color:white;}
 
 /*Mise en forme pour l'écran de joueur */
 #joueurDisp {width:calc(100% - 10px);height:calc(100% - 10px);background:radial-gradient(black,red);background-attachment:fixed;border:solid 5px white;border-radius:50px;color:white;font-family: "Gill Sans", sans-serif;text-align:center;font-size: calc(4vw + 4vh + 2vmin);font-weight:bold;font-variant: small-caps; text-transform: capitalize;overflow: hidden;}
-body.joueur {overflow:hidden;background:lightgray;}
+body.joueur {overflow:hidden;background:lightgray;padding:0px;}
 #mechantPicJoueur{position:absolute;bottom:18px;left:22px;width:50px;height:50px;font-size:12px;border-radius:2px;border:ridge 5px transparent;}
 #mechantPicJoueur.mechantDesJ {border-left-color:#e5d2e5;}
 #mechantPicJoueur.mechantSonJ {border-bottom-color:#afcd53;}
@@ -155,11 +159,18 @@ body.joueur {overflow:hidden;background:lightgray;}
 #joueurFirst{width:12%;height:auto;position:absolute;top:22px;right:22px;}
 #joueurFirst.on{filter:grayscale(0);}
 #joueurFirst.off{filter:grayscale(1);}
-#changeName {position:absolute;top:0px;left:0px;margin:auto;margin-top:20px;margin-left:calc(15% - 5px);width:70%;background:red;border:solid 3px white;padding:5px;color:white;z-index:10;padding-top:5%;font-size: calc(1vw + 1vh + 1vmin);font-variant:none;text-transform:none;text-align:left;display:none;font-weight:normal;}
+
+#changeHerosMobile,#changeNameMobile {position:absolute;top:0px;width:100%;height:100%;margin:0;background-color:antiquewhite;color:black;z-index:10;font-size: calc(2vw + 2vh + 2vmin);font-variant:none;text-transform:none;text-align:left;display:none;font-weight:normal;}
+.mobilePopupContent{position:absolute;top:0px;width:80%;height:80%;margin:10%;}
+.mobilePopuptitle {width:100%;height:10%;text-align:center;padding-top:2%;padding-bottom:2%;vertical-align:middle;background-color:black;color:white;}
+.mobilePopuptitle:before {content: "";display: inline-block;height: 100%;vertical-align: middle;}
+#changeHerosMobile input,#changeNameMobile input,#changeHerosMobile select {font-size: calc(2vw + 2vh + 2vmin);}
+
 #changeName input {font-size: calc(1vw + 1vh + 1vmin);font-weight:bold;}
 #changeName input[type=text] {font-variant: small-caps; text-transform: capitalize;}
 #changeNameOld {font-weight:bold;}
 .boutonsPopup {text-align:center;margin-top:20px;}
+
 
 /*Mise en forme de l'écran Méchant */
 body.mechant {overflow:hidden;background:lightgray;}

@@ -1,3 +1,26 @@
+# Contenu de la documentation
+### 1. [Installation de '*Remote Champions*'](https:installation-de-remote-champions)
+1a. [Prérequis](https:prerequis)  
+1b. [Séquence d'installation](https:séquence-dinstallation)  
+1c. [Mise à jour de '*Remote Champions*'](https:mise-a-jour-de-remote-champions)  
+### 2. [Utilisation de '*Remote Champions*'](https:utilisation-de-remote-champions)
+2a. [Page de connexion](https:page-de-connexion)  
+2b. [Création d'une partie](https:création-dune-partie)  
+2c. [Présentation de la page de partie](https:présentation-de-la-page-de-partie)  
+2d. [Paramètrage initial de la partie](https:paramètrage-initial-de-la-partie)  
+2e. [Gestion du méchant](https:gestion-du-méchant)  
+2f. [Gestion du joueur](https:gestion-du-joueur)  
+2g. [Gestion des Manigances](https:gestion-des-manigances)  
+### 3. [Administration du site](https:administration-du-site)
+3a. [Activation des boites de jeu](https:activation-des-boites-de-jeu)  
+3b. [Liste des parties sur le serveur](https:liste-des-parties-sur-le-serveur)  
+3c. [Mot de passe administratif](https:mot-de-passe-administratif)  
+3d. [Mode public](https:mode-public)  
+3e. [Mise à jour](https:mise-à-jour)  
+### [Accès par smartphone](https:accès-par-smartphone)
+### [Foire aux questions](https:foire-aux-questions)
+
+---
 # Installation de '*Remote Champions*'
 ## Prérequis
 Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de donnée type mySql](https:#base-de-données).
@@ -35,15 +58,18 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 ## Mise à jour de '*Remote Champions*'
 Lorsque le site est installé, vous pouvez vérifier les mises à jours récentes en utilisant le bouton dans l'écran d'administration ou en accèdant à la page "*/setup.php*".  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+
+---
 # Utilisation de '*Remote Champions*'
 **Préambule:** L'outil *Remote Champions* n'est en aucun cas prévu pour remplacer la possession des cartes par les joueurs : il  apour seul objectif de fluidifier le déroulement des parties (particulièrement des parties jouée à distance, avec audio/visio conférence) en tenant à jour un maximum des éléments nécessaires au suvi de la partie et en les présentant aux différents joueurs.  
+## Page de connexion
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
 ![Page de connexion](illus1.png "Page de connexion")
 - Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ![1](tag1.png) avant de cliquer sur "*OK*"![2](tag2.png),
-- En cliquant sur le bouton "**Créer**"![3](tag3.png), vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie)(a noter qu'un mot de passe peut être demandé si la fonction de serveur public a été activé dans l'écran d'administration décrit plus loin),
-- En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration![4](tag4.png) vous serez dirigé vers l'écran d'administration, [décrit plus loin](https:#administration-du-site) (A noter, un mot de passe sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
-- Dans tous les écrans du site, en cliquant sur le bouton d'Informations![5](tag5.png), vous serez directelent dirigé sur la présente aide d'utilisation,
-- Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug![6](tag6.png), vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
+- En cliquant sur le bouton "**Créer**"![3](tag3.png) (non disponible sur smartphone), vous basculez sur la page de [création d'une nouvelle partie](https:#Création-dune-nouvelle-partie)(a noter qu'un mot de passe peut être demandé si la fonction de serveur public a été activé dans l'écran d'administration décrit plus loin),
+- En dehors des écrans d'administration et d'installation/mise à jour, en cliquant sur la barre d'administration![4](tag4.png) (non disponible sur smartphone) vous serez dirigé vers l'écran d'administration, [décrit plus loin](https:#administration-du-site) (A noter, un mot de passe administratif sera nécessaire pour se connecter sur ces pages sensibles, le mot de passe par défaut après installation est **admin**),
+- Dans tous les écrans du site, en cliquant sur le bouton d'Informations![5](tag5.png) (non disponible sur smartphone), vous serez directelent dirigé sur la présente aide d'utilisation,
+- Dans tous les écrans du site, en cliquant sur le bouton de rapport de bug![6](tag6.png) (non disponible sur smartphone), vous serez directement dirigé sur *gitHub* afin de saisir une description du problème que vous rencontrez (Un compte gratuit *gitHub* sera nécessaire. Merci pour vos retours!).
 ## Création d'une nouvelle partie
 La page de création d'une nouvelle partie ressemblera à l'illustration ci-dessous:  
 ![Page de création de partie](illus6.png "Page de création de partie")  
@@ -59,8 +85,7 @@ Pour ce faire, il vous suffit de cliquer sur la case à cocher![5](tag5.png) en 
 Après que vous avez créé votre nouvelle partie, vous serez dirigé vers la page de celle-ci (ou vers votre fiche de joueur si vous êtes sur smartphone).  
 
 Si une erreur empèche la création de la partie, elle vous sera communiquer sur la même page, afin que vous puissiez retenter la création.
-## Utilisation du site en partie
-### Présentation de la page de partie
+## Présentation de la page de partie
 La page principale d'une partie qui vient d'être créée ressemble à l'illustration suivante:  
 ![Page principale nouvelle partie](illus2.png "Page principale nouvelle partie")  
 Cette page est divisée en différentes zones:  
@@ -69,7 +94,7 @@ Cette page est divisée en différentes zones:
 ![3](tag3.png)L'indicateur du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection de la manigance principale. Il suffira ensuite de cliquer sur l'indicateur du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indicateur se déplace).  
 ![4](tag4.png)Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : ce pourra servir pour suivre des éléments spécifiques de certaines missions...  
 ![5](tag5.png)La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)).  
-![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
+![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : Non disponible sur smartphone; En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
 ## Paramètrage initial de la partie
 ![Initialisation de la partie](illus7.png "Initialisation de la partie")  
 1. Il est conseillé de commencer par attribuer les places aux joueurs:
@@ -103,7 +128,28 @@ En cours de partie, selon l'évolution de celle-ci, la page de partie ressembler
 ![Ecran principal](illus5.png "Ecran principal")
 
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
-## Administration du site
+
+---
+# Administration du site
+Dans la plupart des écrans de *Remote Champions*, vous trouverez la barre d'administration (non disponible sur smartphone) illustrée ci-dessous.  
+![barre d'administration](illus13.png)  
+En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administratif (le mot de passe par défaut après installation du site est "**admin**"). Si vous renseignez le bon ot de passe, vous serez redirigé vers la page d'administration, divisée en plusieurs sections dont la déscription suit.
+## Activation des boites de jeu
+![Activation des boite](illus14.png)  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
-### Activation des boites de jeu
+## Liste des parties sur le serveur
+![Liste des parties](illus15.png)  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+## Mot de passe administratif
+![Mot de passe administratif](illus16.png)  
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+## Mode public
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+## Mise à jour
+![Mise à jour](illus17.png)
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+# Accès par smartphone
+# Foire aux questions
+**A quoi correspond l'icône du *Shield* qui apparait fugacement ?**  
+Le contenu du sit est dynamique, cette icône s'affiche lorsqu'une page télécharge de nouveaux éléments pour se mettre à jour.  
+Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).

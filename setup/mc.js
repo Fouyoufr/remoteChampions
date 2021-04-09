@@ -30,11 +30,13 @@ function ajaxSelecSet() {
     var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
     for (i=1;i<=parseInt(nbJoueurs);i++) {
       var numero=parseInt(xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNumero'));
-      if (document.getElementById('selecJ'+numero).style.visibility!='visible') {document.getElementById('selecJ'+numero).style.visibility='visible'}
+      if (document.getElementById('selecJ'+numero).style.display!='block') {document.getElementById('selecJ'+numero).style.display='block'}
       document.getElementById('selecJ'+numero).value=xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNom');
       document.getElementById('selecJ'+numero).setAttribute('onclick','window.location.href="joueur.php?j='+xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jId')+'";');}
-    if (nbJoueurs<4 && document.getElementById('selecJ4').style.visibility!='hidden') {document.getElementById('selecJ4').style.visibility='hidden'}
-    if (nbJoueurs<3 && document.getElementById('selecJ3').style.visibility!='hidden') {document.getElementById('selecJ3').style.visibility='hidden'}
+    if (nbJoueurs<4 && document.getElementById('selecJ4').style.display!='none') {document.getElementById('selecJ4').style.display='none'}
+    if (nbJoueurs<3 && document.getElementById('selecJ3').style.display!='none') {document.getElementById('selecJ3').style.display='none'}
+    if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') {document.getElementById('selecJ2').style.display='none'}
+    if (nbJoueurs==0) {window.location.href='mechant.php?p='+document.getElementById('partie').value;}
     document.getElementById('ajaxLoad').style.display='none';
     document.getElementById('ajaxSave').style.display='none';}}}
 
@@ -131,8 +133,7 @@ function ajaxMainSet() {
       if (!newDeckSeparation && value.getAttribute('dId').charAt(0)=='h') {
         newDeckSeparation=true;
         newDecks+='<option disabled>Manigances des héros</option>';}
-      newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';
-    });
+      newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';});
     if (document.getElementById('NewManigance').style.display!='block') {document.getElementById('deck').innerHTML=newDecks;}
     var manigances = xmlDoc.getElementsByTagName('manigance');
     var manigancesList = Array.prototype.slice.call(manigances);
@@ -158,8 +159,7 @@ function ajaxMainSet() {
         for (let pas=0;pas<value.getAttribute('maAcceleration');pas++) maniAnnexe+='<img src="img/MenaceAcceleration.png" alt="Accelération"/>';
         maniganceAcc=parseInt(maniganceAcc)+parseInt(value.getAttribute('maAcceleration'));}
       if (value.getAttribute('maAmplification')>0) for (let pas=0;pas<value.getAttribute('maAmplification');pas++) maniAnnexe+='<img src="img/amplification.png" alt="Accelération"/>';
-      document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div></div>';
-      });
+      document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div></div>';});
     var compteurs = xmlDoc.getElementsByTagName('compteur');
     var compteursList = Array.prototype.slice.call(compteurs);
     document.getElementById('compteursList').innerHTML='';
@@ -170,8 +170,7 @@ function ajaxMainSet() {
       compteur+='<div class="compteur" id="compteur'+value.getAttribute('cId')+'">'+compteurToDisplay+'</div>';
       compteur+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText=parseInt(document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText)+1;ajaxPost(\'compteur='+value.getAttribute('cId')+'&value\',document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText);">';
       compteur+='<a class="compteurMoins" onclick="ajaxPost(\'delCompteur\',\''+value.getAttribute('cId')+'\');">-</a>';
-      document.getElementById('compteursList').innerHTML+='<li class="compteurLine">'+compteur+'</li>';
-      });
+      document.getElementById('compteursList').innerHTML+='<li class="compteurLine">'+compteur+'</li>';});
     document.getElementById('phaseMechant').innerText=phMechant(partie.getAttribute('pMechPhase'))
     if (partie.getAttribute('pMechDesoriente')==0) { document.getElementById('mechantDesoriente').className='disabledButtonMechant bouton';} else {document.getElementById('mechantDesoriente').className='desorienteMechant';}
     if (partie.getAttribute('pMechSonne')==0) {document.getElementById('mechantSonne').className='disabledButtonMechant bouton';} else {document.getElementById('mechantSonne').className='sonneMechant';}

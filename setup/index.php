@@ -7,21 +7,21 @@ if (!isset($partieId)) {
   if (isset($badPartie)) {echo "<div id='keyError'>&#9888; Le mot-clef '$badPartie' n'est pas valide... &#9888;</div>";}
   echo "<h1>Bienvenue sur Remote Champions</h1>
   <table><tr><td>Saisir le mot-clef d'une partie pour la rejoindre</td>
-  <td><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></td></tr>
-  <tr><td>Ou en créer une nouvelle</td><td><a href='new.php'>Créer</a></td></tr></table></form>
-</body>
-</html>";
+  <td><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></td></tr>";
+  if (!$mobile) echo "<tr><td>Ou en créer une nouvelle</td><td><a href='new.php'>Créer</a></td></tr>";
+  echo "</table></form></body></html>";
 displayBottom();
 exit();}
 
 if ($mobile) {
-  if (!isset($joueurId)) {
-  	exit ('<div id="selectPartie">
-  	  <h1>Choisir votre joueur:<br/>
-   <input type="button" class="selectJoueur" id="selecJ1">
-   <input type="button" class="selectJoueur" id="selecJ2">
-   <input type="button" class="selectJoueur" id="selecJ3">
-   <input type="button" class="selectJoueur" id="selecJ4">
+  if (!isset($joueurId) and !isset($_GET['mechant']) and !isset($_GET['desktop'])) {
+  	exit ('<div id="selectPartieMobile">
+  	  <h1>Choisissez la fiche à afficher:<br/>
+   <input type="button" id="selecJ1">
+   <input type="button" id="selecJ2">
+   <input type="button" id="selecJ3">
+   <input type="button" id="selecJ4">
+   <input type="button" class="selectMechant" id="mechant" value="Méchant" onclick="window.location.href=\'mechant.php?p='.$partieId.'\'">
  </div>
  <script language="JavaScript">
   ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)
@@ -48,7 +48,9 @@ $principales[$principale['mpId']]=$principale['mpNom'];
   <input id="mechantRiposte" type="button" value="Riposte" onclick='ajaxPost("switch","mechantRiposte");'>
   <input id="mechantPercant" type="button" value="Perçant" onclick='ajaxPost("switch","mechantPercant");'>
   <input id="mechantDistance" type="button" value="A distance" onclick='ajaxPost("switch","mechantDistance");'>
-  <div class='smartphoneIcone' onclick='window.open("mechant.php?p="+document.getElementById("partie").value,"","titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px");'></div>
+<?php
+  if (!$mobile) echo "<div class='smartphoneIcone' onclick='window.open(\"mechant.php?p=\"+document.getElementById(\"partie\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>";
+?>
 </div>
 <div id="compteurs">
   Autres Compteurs.<br/>
@@ -59,19 +61,9 @@ $principales[$principale['mpId']]=$principale['mpNom'];
 
 <?php
 for ($i = 1; $i <= 4; $i++) {
-echo "
-<div id='joueur".$i."Disp' class='joueurDisp'>
-  <img class='picJoueur' id='picJoueur$i' onclick=\"document.getElementById('herosAChanger').value=$i;document.getElementById('changeHeros').style.display='block';\"></img>
-  <div><span id='joueur$i'></span></div>
-  <div id='vieDisp$i' class='vieDisp'></div>
-  <input id='desoriente$i' type='button' value='Désorienté'>
-  <input id='sonne$i' type='button' value='Sonné'>
-  <input id='tenace$i' type='button' value='Tenace'>
-  <div id='joueur".$i."Etat' class='joueurEtat'></div>
-  <input id='joueur".$i."Numero' type='hidden' />
-  <div id='online".$i."' class='pointVert'></div>
-  <div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>
-</div>";}
+echo "<div id='joueur".$i."Disp' class='joueurDisp'><img class='picJoueur' id='picJoueur$i' onclick=\"document.getElementById('herosAChanger').value=$i;document.getElementById('changeHeros').style.display='block';\"></img><div><span id='joueur$i'></span></div><div id='vieDisp$i' class='vieDisp'></div><input id='desoriente$i' type='button' value='Désorienté'><input id='sonne$i' type='button' value='Sonné'><input id='tenace$i' type='button' value='Tenace'><div id='joueur".$i."Etat' class='joueurEtat'></div><input id='joueur".$i."Numero' type='hidden' /><div id='online".$i."' class='pointVert'></div>";
+  if (!$mobile) echo "<div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>";
+echo "</div>";}
 displayBottom();
 ?>
 <img id="indexFirst" src='img/first.png'/>
@@ -131,7 +123,7 @@ while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant'
   <div id="herosSelect">
 <?php
 $heros=sql_get("SELECT * FROM `heros`,`boites` WHERE `hId`>0 AND `hBoite`=`bID` AND `bInclus`='1' ORDER BY `hNom` ASC");
-while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueur=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='img/heros/".$hero['hId'].".png' style='background:white;'/>".$hero['hNom'].'</div>';}
+while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueurNum=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='img/heros/".$hero['hId'].".png' style='background:white;'/>".$hero['hNom'].'</div>';}
 ?>
   </div>
   <br/>
