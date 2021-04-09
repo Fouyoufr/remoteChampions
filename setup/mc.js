@@ -192,9 +192,9 @@ function ajaxMainSet() {
       if (jDoc.getAttribute('jDesoriente')==0) { document.getElementById('desoriente'+numero).className='disabledButton';} else {document.getElementById('desoriente'+numero).className='desoriente';}
       if (jDoc.getAttribute('jSonne')==0) {document.getElementById('sonne'+numero).className='disabledButton';} else {document.getElementById('sonne'+numero).className='sonne';}
       if (jDoc.getAttribute('jTenace')==0) {document.getElementById('tenace'+numero).className='disabledButton';} else {document.getElementById('tenace'+numero).className='tenace';}
+      document.getElementById('picJoueur'+numero).src='img/heros/'+jDoc.getAttribute('jHeros')+'.png';
       if (Date.now()-jDoc.getAttribute('jOnline')>5000) {
       	joueurOnline=false;
-        document.getElementById('picJoueur'+numero).src='img/heros/'+jDoc.getAttribute('jHeros')+'.png';
       	document.getElementById('online'+numero).style.display='none';
       	document.getElementById('vieDisp'+numero).innerHTML='<input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText);">';
       	document.getElementById('vieDisp'+numero).innerHTML+='<div id="vie'+numero+'" class="playerLife">'+vie+'</div>'

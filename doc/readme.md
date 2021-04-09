@@ -146,7 +146,7 @@ En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administrat
 ## Mode public
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Mise à jour
-![Mise à jour](illus17.png)
+![Mise à jour](illus17.png)  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 # Accès par smartphone
 # Foire aux questions
