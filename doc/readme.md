@@ -1,11 +1,11 @@
 # Contenu de la documentation
 ### 1. [Installation de '*Remote Champions*'](https:#installation-de-remote-champions)
-1a. [Prérequis](https:#prerequis)  
+1a. [Prérequis](https:#prérequis)  
 1b. [Séquence d'installation](https:#séquence-dinstallation)  
-1c. [Mise à jour de '*Remote Champions*'](https:#mise-a-jour-de-remote-champions)  
+1c. [Mise à jour de '*Remote Champions*'](https:#mise-à-jour-de-remote-champions)  
 ### 2. [Utilisation de '*Remote Champions*'](https:#utilisation-de-remote-champions)
 2a. [Page de connexion](https:#page-de-connexion)  
-2b. [Création d'une partie](https:#création-dune-partie)  
+2b. [Création d'une partie](https:#création-dune-nouvelle-partie)  
 2c. [Présentation de la page de partie](https:#présentation-de-la-page-de-partie)  
 2d. [Paramètrage initial de la partie](https:#paramètrage-initial-de-la-partie)  
 2e. [Gestion du méchant](https:#gestion-du-méchant)  
@@ -17,8 +17,8 @@
 3c. [Mot de passe administratif](https:#mot-de-passe-administratif)  
 3d. [Mode public](https:#mode-public)  
 3e. [Mise à jour](https:#mise-à-jour)  
-### [Accès par smartphone](https:#accès-par-smartphone)
-### [Foire aux questions](https:#foire-aux-questions)
+### 4. [Accès par smartphone](https:#accès-par-smartphone)
+### 5. [Foire aux questions](https:#foire-aux-questions)
 
 ---
 # Installation de '*Remote Champions*'
