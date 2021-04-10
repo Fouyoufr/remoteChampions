@@ -89,18 +89,18 @@ Si une erreur empêche la création de la partie, elle vous sera communiquée su
 La page principale d'une partie qui vient d'être créée ressemble à l'illustration suivante:  
 ![Page principale nouvelle partie](illus2.png "Page principale nouvelle partie")  
 Cette page est divisée en différentes zones:  
-![1](tag1.png)La fiche de joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)).  
-![2](tag2.png)La synthèse du méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))  
+![1](tag1.png)La section joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)).  
+![2](tag2.png)La section méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))  
 ![3](tag3.png)L'indicateur du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection de la manigance principale. Il suffira ensuite de cliquer sur l'indicateur du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indicateur se déplacera alors automatiquement en regard du joueur suivant).  
 ![4](tag4.png)Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : cela pourra servir, par exemple, pour suivre des éléments spécifiques à certaines missions...  
-![5](tag5.png)La gestion des manigances (détaillée [plus loin](https#GestiondesManigances)).  
+![5](tag5.png)La section manigances (détaillée [plus loin](https#GestiondesManigances)).  
 ![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : Non disponible sur smartphone; En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
 ## Paramétrage initial de la partie
 ![Initialisation de la partie](illus7.png "Initialisation de la partie")  
 1. Il est conseillé de commencer par attribuer les places aux joueurs:
   - Mettez-vous d'accord avec tous les joueurs (y compris distants) pour trouver une disposition ayant le plus de sens pour l'ensemble des joueurs de la partie.
   - Cliquez sur le nom de chaque joueur![6](tag6.png). Cela fait appraitre la fenêtre de changement de nom de joueur : saisissez le nouveau nom/surnom du joueur et validez.
-  - Cliquez sur l'image de héros![7](tag7.png) de l'emplacement de joueur pour faire apparaître la fenêtre de sélection de héros.
+  - Cliquez sur l'image de héros![7](tag7.png) de chaque section de joueur pour faire apparaître la fenêtre de sélection de héros.
   - Seléctionnez le héros qui sera joué par le joueur en question (la liste des héros présentés dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu)).
   - La vie maximum du joueur est affectée automatiquement.
 2. Ensuite, choisissez le méchant qui sera combattu pendant la partie:
@@ -121,21 +121,48 @@ La section méchant de la page de partie se présentera comme l'illustration sui
 ![Section Méchant](illus3.png "Section Méchant")  
 Le mini-écran de méchant se présentera, quant à lui, comme l'illustration suivante:  
 ![Mini-écran de méchant](illus12.png "Mini-écran de méchant")  
-
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+- **Image du méchant![1](tag1.png) :** En cliquant dessus (non disponible sur smartphone), vous pourrez changer de méchant comme lors du [paramétrage initial de la partie](https:#paramétrage-initial-de-la-partie). Après avoir changé de méchant (ou resélectionné le même), la partie est réinitialisée à la phase 1, les points de vie du méchant sont automatiquement calculés en fonction du nombre de joueurs et l'indicateur de premier joueur est réaffecté aléatoirement.
+- **Phase du méchant![2](tag2.png) :** Ici est indiquée la phase actuelle du méchant. En cliquant dessus (non disponible sur smartphone), vous avancez le méchant à la phase suivante : ses points de vie seront calculés pour cette nouvelle phase en fonction du nombre de joueurs.
+- **Points de vie du méchant![3](tag3.png) :** Ce compteur permet à l'ensemble des joueurs de suivre les points de vie du méchant pendant la partie. Sa valeur initiale est calculée en fonction de la phase en cours et du nombre de joueurs (Si vous utilisez *Remote Champions* uniquement pour suivre les informations d'un méchant, ses points de vie ne seront pas multipliés par le nombre de joueurs). Vous ajustez à tout momment les points de vie du méchant à la baisse![4](tag4.png) ou à la hausse![5](tag5.png) avec le bouton approprié.
+- **Etat désorienté du méchant![6](tag6.png) :** Ce bouton permet de suivre l'état "*désorienté*" du méchant. Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en mauve et permettre à chacun de savoir que le méchant est désorienté.
+- **Etat sonné du méchant![7](tag7.png) :** Ce bouton permet de suivre l'état "*sonné*" du méchant. Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en vert et permettre à chacun de savoir que le méchant est sonné.
+- **Etat tenace du méchant![8](tag8.png) :** Ce bouton permet de suivre l'état "*tenace*" du méchant. Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en orange et permettre à chacun de savoir que le méchant est tenace (Notez que lorsque le méchant est tenace, le bouton de diminution de vie![4](tag4.png) passera en rouge pour vous rappeler que, lors d'une attaque, le méchant ne doit perdre de points de vie mais perdre son état tenace).
+- **Autres états du méchant![9](tag9.png) :** Ces bouton permettent de suivre divers traits annexes du méchant. Si un bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en noir et permettre à chacun de se rappeler un trait du méchant.
+- **Affichage smatphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans la section méchant de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du méchant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
 ## Gestion du joueur
 Cette section a pour but de décrire les informations et intéractions concernant chaque joueur  disponibles en cours de partie. La plupart de ces informations peuvent, selon le cas être trouvées à deux endroits différents.  
 Chaque section joueur de la page de partie se présentera comme l'illustration suivante:  
 ![Section joueur](illus4.png "Section joueur")
 Le mini-écran de joueur se présentera, quant à lui, comme l'illustration suivante:  
 ![Mini-écran de joueur](illus11.png "Mini-écran de joueur")  
-
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+- **Nom du joueur![1](tag1.png) :** En cliquant sur le nom du joueur, vous pouvez le changer à tout momment pour indiquer quel joueur contrôle le personnage correspondant.
+- **Image du héros![2](tag2.png) :** En cliquant dessus, vous pourrez changer le héros que vous contrôlez (comme lors du [paramétrage initial de la partie](https:#paramétrage-initial-de-la-partie)). Après avoir changé de héros (ou resélectionné le même), ses points de vie sont automatiquement recalculés au maximum du héros.
+- **Indicateur premier joueur![3](tag3.png) :** Cet indicateur n'est présent que sur l'écran *smartphone*. Lorsqu'il est grisé (comme sur la présente illustration) cela indique que vous n'étes pas premier joueur pour ce round. A la fin du round, vous pouvez cliquer dessus pour le faire passer en rouge et indiquer que vous êtes le premier joueur pour le nouveau round le cas échéant.
+- **Points de vie du personnage![4](tag4.png) :** Ce compteur permet à l'ensemble des joueurs de suivre les points de vie de chacun pendant la partie. Sa valeur initiale est calculée en fonction du héros choisi. Vous ajustez à tout momment vos points de vie à la baisse![5](tag5.png) ou à la hausse![6](tag6.png) avec le bouton approprié.
+- **Forme du personnage![7](tag7.png) :** Cette indication permet à chacun de suivre si vous êtes en "*Alter-égo*" ou en "*Super-Héros*". Cliquez simplement dessus pour indiquer un changement de forme pendant votre tour.
+- **Etats du personnage![8](tag8.png) :** Ces boutons permettent de suivre les *états* de votre personnage"*désorienté*". Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en couleur et permettre à chacun de suivre les états de votre personnage(Notez que lorsque vous êtes tenace, le bouton de diminution de vie![5](tag5.png) passera en rouge pour vous rappeler que, lors d'une attaque, vous ne devez pas perdre de points de vie mais perdre votre état tenace à la place).
+- **Image du méchant![9](tag9.png) :** Cette information n'est présente que sur smartphone et permet à un joueur qui utilise *Remote Champions* pour suivre son personnage d'avoir un rapide rappel de diverses informations concernant le méchant provenant de la page de partie:
+   - L'image vous rappelle quel est les méchant actuellement en jeu
+   - L'information de phase, présente en haut à droite, vous rappelle la phase courante de méchant.
+   - La vie du méchant , présente en bas de l'image, vous rappelle le niveau de vie actuel du méchant.
+   - L'image du méchant pourra également être encadrée d'une bordure mauve, verte et/ou orange pour vous rappeler un état correspodan (respectivement *désorienté*, *sonné* et *tenace*) du méchant.
+   - **Nota :** En cliquant sur cette image de méchant sur votre smartphone, celui-ci basculera pour vous afficher la globalité de la page de partie.
+- **Affichage smatphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans les sections joueur de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du joueur correspondant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
+**Nota :** tant qu'un joueur choisit d'afficher ses informations de personnage sur son smartphone, sa section joueur sur la page de partie continuera à être mise à jour, mais ne pourra plus y être directement modifiée. L'affichage d'un tel joueur sur la page de partie ressemblera à l'illustrtation suivante :  
+![Section joueur, affichage seul](illus18.png "Section joueur, affichage seul")
 ## Gestion des Manigances
 Cette section a pour but de décrire les informations et intéractions concernant les manigances qui sont disponibles en cours de partie. La section manigances de la page de partie se présentera comme l'illustration suivante:  
-![Ecran principal](illus5.png "Ecran principal")
-
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+![Section manigances](illus5.png "Section manigances")  
+- **Manigance principale![1](tag1.png) :** En cliquant dessus, vous pourrez changer de manigance principale comme lors du [paramétrage initial de la partie](https:#paramétrage-initial-de-la-partie). Après avoir selectionné une manigance principale, celle-ci sera réinitialisée avec une valeur de menace nulle et une valeur de menace maximale calculée selon la manigance choisie.
+- **Menace principale![2](tag2.png) :** Ici est indiquée la valeur actuelle de menace de la manigance principale. Vous pouvez la modifier à tout momment avec les boutons qui entourent cette valeur (Notez que le bouton de diminution![5](tag5.png) sera affiché en rouge si une manigance secondaire est en jeu, qui contient une crise, pour vous rappeler que vous n'êtes pas sensé contrer la manigance principale tant qu'une crise est en jeu...).
+- **Menace maximum principale![3](tag3.png) :** Ce compteur indique la valeur maximale de menace de la manigance principale actuelle. Sa valeur est automatiquement calculée à la sélection de la manigance principale mais vous pouvez tout de même la modifier avec les boutons correspondant![4](tag4.png) si nécessaire (si, par exemple, vous ne suivez que le méchant sur *Remote Champions*).
+- **Accélération princiaple![6](tag6.png) :** Ce compteur indique la valeur actuelle d'accélération de le manigance principale. Vous pouvez modifier sa valeur à tout moment avec les boutons qui entourent la valeur (notez cependant que la valeur affichée tient automatiquement compte des icônes accélérations éventuellement présentes sur les manigances annexes).
+- **Ajout d'une manigance![7](tag7.png) :** Ce bouton permet d'ajouter une manigance annexe à la partie. Appuyer sur ce bouton fera apparaître la fenêtre de sélection des manigances annexes. Vous devrez dabord choisir un deck, puis une manigance dans celui-ci. La liste des decks présentés ici contiendra ceux sélectionnés en [option](https:#options) lors de la création de la partie et ceux des héros en jeu.
+- **Niveau de menace![8](tag8.png) :** Cette information sera affichée, pour chaque manigance annexe, permettant d'en suivre le niveau de menace. Vous pourrez modifier cette valeur avec les boutons qui l'entourent![9](tag9.png) (Notez que faire descendre le niveau de menace d'une manigance annexe à 0 fera disparaître cette manigance de la partie en cours).
+- **Nom de la manigance![10](tag10.png) :** Cette information indique le nom de chaque manigance annexe. En laissant votre souris sur ce nom, apparaîtra, le cas échéant, le nom du deck et le numéro de la cart manigance dans son deck pour faciliter la récupération de la carte et donc le suivi de toutes les informations présentes sur celle-ci par tous les joueurs.
+- **Icônes de la manigance![11](tag11.png) :** Si une manigance annexe contient une ou plusieurs icônes, celles si seront affichées ici. Notez également les comportements particuliers suivant:
+   - **Icône crise :** Le bouton de diminution de la menace sur la manigance principale![5](tag5.png) sera affiché en rouge pour rappeler à tous les joueurs qu'ils ne sont pas sensé faire de contre sur la manigance principale tant qu'une crise est présente.
+   - **Icône accélération :** La valeur d'accélération de la menace sur la manigance principal![6](tag6.png) est calculée en tenant compte des l'ensemble de ces icônes.
 
 ---
 # Administration du site
@@ -153,18 +180,23 @@ En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administrat
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Mode public
 Si le seveur est plus largement accessible, vous souhaiterez peut-être limiter la possibilité de création de nouvelles parties.  
-C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra y créer autant de nouvelles parties qu'il/elle souhaite.
+C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra y créer autant de nouvelles parties qu'il/elle souhaite.  
+![Mode Public](illus19.png)  
 Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot de passe (dont seule une empreinte est stockée sur le serveur). Une fois ce paramètre validé, ledit mot de passe sera demandé pour accéder à la page de création de nouvelle partie.  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 ## Mise à jour
 ![Mise à jour](illus17.png)  
 Dans cette section, vous pouvez voir la dernière mise à jours disponible![1](tag1.png) (ainsi que sa date de publication).  
 Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).
-En cliquant sur le bouton "*Lancer la mise à jour*"[2](tag2.png), vous lancez le script de mise à jour. Il suivra le même processus que la finalisation de l'installation : Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour et vous pourrez relancer la mise à jour.  
+En cliquant sur le bouton "*Lancer la mise à jour*"![2](tag2.png), vous lancez le script de mise à jour. Il suivra le même processus que la finalisation de l'installation : Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour et vous pourrez relancer la mise à jour.  
 Ensuite, la page de mise à jour vous détaille toutes les étapes réalisées par ledit script et leur résultat.  
 Cette page de mise à jour se termine par un bouton "*Accèder au site*" qui vous permet de retourner à la [page de connexion](https:#page-de-connexion).
 # Accès par smartphone
+En y accèdant depuis un smartphone, le comportement de votre site *Remote Champions* est quelque peu différent.  
+![Sélection sur mobile](mobile1.png "Sélection sur mobile")  
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 # Foire aux questions
 **A quoi correspond l'icône du *Shield* qui apparait fugacement ?**  
 Le contenu du site est dynamique, cette icône s'affiche lorsqu'une page télécharge de nouveaux éléments pour se mettre à jour.  
-Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).
+Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).  
+![En construction](wip.png) *(En construction)* ![En construction](wip.png)
