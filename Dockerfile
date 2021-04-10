@@ -5,12 +5,11 @@ RUN apt-get update
 RUN apt-get install -y nginx
 RUN apt-get install -y git
 
-RUN debconf-set-selections <<< 'mysql-server mysql-server/root_password password remotechampions'
-RUN debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password remotechampions'
-RUN apt-get -y install mysql-server
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 
-RUN apt-get -y php-fpm
-RUN apt-get -y php-mysql
+RUN apt-get install -y php-fpm
+RUN apt-get install -y php-mysql
+
 RUN mkdir /var/wwww/remotechampions
 
 RUN echo 'server {' > /etc/nginx/sites-available/remotechampions
