@@ -41,7 +41,7 @@ RUN echo '$adminPassword="bf6e04f9d6d1d7dba9fc604d0b1692f33d7de9a34f0038018f5172
 RUN echo '$publicPass="";' >> /var/www/html/config.inc
 RUN echo '?>' >> /var/www/html/config.inc
 
-RUN mysqld &
+RUN service mysql start
 RUN ["/bin/bash", "-c", "mysql <<< 'CREATE DATABASE remoteChampions'"]
 
 RUN echo 'service mysql start' > /dockercmd
