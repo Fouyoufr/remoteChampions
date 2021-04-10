@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN apt-get install -y php-fpm
 RUN apt-get install -y php-mysql
 
-RUN mkdir /var/wwww/remotechampions
+RUN mkdir /var/www/remotechampions
 
 RUN echo 'server {' > /etc/nginx/sites-available/remotechampions
 RUN echo 'listen 80;' >> /etc/nginx/sites-available/remotechampions
