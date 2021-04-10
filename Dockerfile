@@ -48,7 +48,5 @@ RUN echo 'service mysql start' > /dockercmd
 RUN echo 'service nginx start' >> /dockercmd
 RUN chmod +x /dockercmd
 
-RUN mysql -u root -v -D remoteChampions
-
 EXPOSE 80 443
 CMD /dockercmd
