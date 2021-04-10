@@ -42,7 +42,7 @@ RUN echo '$publicPass="";' >> /var/www/html/config.inc
 RUN echo '?>' >> /var/www/html/config.inc
 
 RUN mysqld &
-RUN mysql <<< 'CREATE DATABASE remoteChampions'                                                                               
+RUN ["/bin/bash", "-c", "mysql <<< 'CREATE DATABASE remoteChampions'"]
 
 RUN echo 'service mysql start' > /dockercmd
 RUN echo 'service nginx start' >> /dockercmd
