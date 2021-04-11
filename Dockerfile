@@ -42,7 +42,6 @@ RUN echo '<?php\n\
 function sql_get($sqlQuery) {\n\
   global $sqlConn;\n\
   $sqlConn=mysqli_connect("127.0.0.1:3306","root","","remoteChampions");\n\
-  
   if(!$sqlConn) {\n\
     $sqlConn=mysqli_connect("127.0.0.1:3306,"root","");\n\
     @mysqli_query($sqlConn,"CREATE DATABASE `remoteChampions`");\n\
