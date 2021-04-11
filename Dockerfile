@@ -18,7 +18,6 @@ server_name _;\n\
 ssl_certificate /etc/nginx/conf.d/remotechampions.crt;\n\
 ssl_certificate_key /etc/nginx/conf.d/remotechampions.key;\n\
 root /var/www/html;\n\
-server_name _;\n\
 index index.php;\n\
 location / {\n\
   try_files $uri $uri/ =404;\n\
@@ -52,8 +51,6 @@ $publicPass="";\n\
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN apt-get install -y php-mysql
-#RUN service mysql start
-#RUN ["/bin/bash", "-c", "mysql <<< 'CREATE DATABASE remoteChampions'"]
 
 RUN echo 'service mysql start\n\
 service php7.4-fpm start\n\
@@ -61,4 +58,4 @@ service nginx start' > /dockercmd
 RUN chmod +x /dockercmd
 
 EXPOSE 80 443
-CMD /dockercmd
+#CMD /dockercmd
