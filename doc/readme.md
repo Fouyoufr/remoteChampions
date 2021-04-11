@@ -171,19 +171,34 @@ Dans la plupart des écrans de *Remote Champions*, vous trouverez la barre d'adm
 En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administratif (le mot de passe par défaut après installation du site est "**admin**"). Si vous renseignez le bon mot de passe, vous serez redirigé vers la page d'administration, divisée en plusieurs sections dont la description suit.
 ## Activation des boites de jeu
 ![Activation des boite](illus14.png)  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+Cette section vous permet de choisir les boites de jeu en pocession de tous les joueurs dont les éléments (les méchants, héros et manigances) seront sélectionnables sur le site.  
+Vous pouvez à tout moment modifier cette sélection. A l'installation initiale du site, seule la boite de base du jeu![3](tag3.png) est sléectionnée (notez d'ailleurs que celle-ci ne peut être déselctionnée par la suite).  
+Pour sélectionner ou déselectionner une boite de jeu, cliquez simplement sur la case à cocher![1](tag1.png) en regard de son nom.  
+Pour faciliter la sélection les boites de jeu sont présentées dans cette section regroupées par type![2](tag2.png) : base et extension, paquets de scénarii et paquets héros.
 ## Liste des parties sur le serveur
 ![Liste des parties](illus15.png)  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+Cette section vous présente la liste complète des parties de jeu qui on été/sont jouées sur votre serveur.  
+Pour en faciliter la lecture et la gestion, les parties présentées ici sont triées par date de création de la partie (Cette date est enregistrée sur le serveur à la création de la partie et non à sa dernière utilisation).  
+Pour chaque partie listée, vous retrouverez ici les informations suivantes :
+- **Clef d'accès![1](tag1.png) :** Information essentielle de *Remote Champions*, c'est en communiquant cette clef à tous les joueurs que vous leur permettez de rejoindre la partie, depuis un ordinateur ou un smartphone.
+- **Méchant :** Il s'agit du nom du méchant actuellement sélectionné pour la partie.
+- **Joueurs :** Il s'agit du nombre de joueurs pour lequel ladite partie a été pensée lors de sa création (*aucun* représente une partie créée pour seulement suivre les informations d'un méchant).
+- **Créée le :** Il s'agit de la date de création de la partie. C'est ce critère qui est utilisé pour trier les parties affichées dans cette section, de la plus récemment créée à la plus ancienne.
+- **Action :** Pour chaque partie, vous retrouverez une icône d'ouverture ![2](tag2.png) vous permettant daccèder directement à la partie et une icône de suppression ![3](tag3.png) vous permettant de supprimer la partie du serveur (Notez qu'une confirmation vous sera demandée avant suppression, cette dernière étant définitive).
 ## Mot de passe administratif
 ![Mot de passe administratif](illus16.png)  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+Cette section vous permet de modifier le mot de passe administratif de votre serveur.  
+**Nota 1 :** Le mot de passe administratif doit être présent et ne peut être remplaçé par une valeur vide ''  
+**Nota 2 :** Seule une empreinte non réversible du mot de passe est stockée sur le serveur. Si vous oubliez ou perdez votre mot de passe, il faudra refaire complètement la [séquence d'installation de *Remote Champions*](https:séquence-dinstallation) en branchant votre nouvelle installation sur la base de données existante.  
+Pour changer de mot de passe administratif, saisissez sa nouvelle valeur dans le champ "*Nouveau mot de passe*"![1](tag1.png) ansi que dans le champ de "*Vérification*"![2](tag2.png) avant de cliquer sur "*Soumettre*"![3](tag3.png). La page d'administration du site est rechargée avec l'indication dans la présente section de la modification du mot de passe.
 ## Mode public
-Si le seveur est plus largement accessible, vous souhaiterez peut-être limiter la possibilité de création de nouvelles parties.  
-C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra y créer autant de nouvelles parties qu'il/elle souhaite.  
+Si votre seveur est plus largement accessible, vous souhaiterez peut-être limiter la possibilité de création de nouvelles parties.  
+C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra donc créer autant de nouvelles parties qu'il/elle souhaite.  
 ![Mode Public](illus19.png)  
 Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot de passe (dont seule une empreinte est stockée sur le serveur). Une fois ce paramètre validé, ledit mot de passe sera demandé pour accéder à la page de création de nouvelle partie.  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+- Pour activer le *Mode Public*, cliquez sur le bouton d'activation![2](tag2.png), ceci va rendre disponible les champs "*Mot de passe*"![3](tag3.png) et "*Vérification*"[4](tag4.png) dans lequel vous pourrez saisir le nouveau mot de passe d'accès (notez qu'un mot de passe d'accès à la page de création doit contenir au moins 6 caractères) avant de valider en cliquant sur le bouton "*Soumettre*"![5](tag5.png).  
+- Pour désactiver le *Mode Public*, cliquez sur le bouton de désactivation![1](tag1.png) avant de cliquer sur le bouton "*Soumettre*".
+Après validation, la page d'administration du site est rechargée avec l'indication dans la présente section de la modification de paramètrage.
 ## Mise à jour
 ![Mise à jour](illus17.png)  
 Dans cette section, vous pouvez voir la dernière mise à jours disponible![1](tag1.png) (ainsi que sa date de publication).  
@@ -196,7 +211,18 @@ En y accèdant depuis un smartphone, le comportement de votre site *Remote Champ
 ![Sélection sur mobile](mobile1.png "Sélection sur mobile")  
 ![En construction](wip.png) *(En construction)* ![En construction](wip.png)
 # Foire aux questions
-**A quoi correspond l'icône du *Shield* qui apparait fugacement ?**  
+## Mais comment utiliser *Remote Champions* ?
+En début de partie, connectez-vous à votre site *Remote Champions* afin de créer une nouvelle partie. Chaque joueur pourra ensuite se connecter à la partie, depuis un ordinateur (ou il aura une vue synthétique de la partie) ou depuis son smartphone (ou il affichera les informations concernant son personnage).  
+En jeu distant, il est conseillé d'avoir au moins un affichage "ordinateur" face à chaque groupe de joueurs. Chaque joueur pourra choisir de rejoindre la partie depuis un smartphone ou de gérer les informations le concernant depuis l'écran de synthèse (il n'y a théoriquement pas de limitation au nombre de périphériques connectés sur une partie).
+## Puis-je utiliser *Remote Champions* pour jouer avec un ami qui n'a pas le jeu ?
+Ce n'est absolument pas le but de *Remote Champions* : Si chaque joueur peut choisir son héros et n'a, à priori, besoin que du deck de son héros, tous les joueurs vont devoir avoir les cartes du deck rencontre pour prendre connaissance du contenu détaillé de chacune d'entre elles.
+## Comment gérer le deck Rencontre avec *Remote Champions* ?
+L'idée est qu'un seul groupe de joueurs (physiquement réunis au même endroit) gère le deck rencontre. Lorsque ce groupe *responsable* tire une nouvelle carte, il devra aider les autres groupes de joueurs à trouver ladite carte dans leur jeu.  
+C'est d'ailleurs pourquoi les manigances sur *Remote Champions* sont organisées par Deck et qu'il est possible d'afficher le numéro de la carte représentant la manigance annexe dan le deck sur la page de partie.
+## A quoi correspond l'icône du *Shield* qui apparait fugacement ?
 Le contenu du site est dynamique, cette icône s'affiche lorsqu'une page télécharge de nouveaux éléments pour se mettre à jour.  
 Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+## A quoi servent la section "*Autres compteurs*" ?
+La réponse est simple : à suivre tout ce que vous pouvez avoir besoin de suivre avec les autres groupes de joueurs.  
+Par exemple, vous pouvez choisir de créer un nouveau compteur pour suivre les jetons "*Retard*" du scénario de l'homme absorbant...  
+![En construction](wip.png) N'hésitez pas à passer par la section "*Issues*" du présent dépot pour poser d'autres questions ![En construction](wip.png)
