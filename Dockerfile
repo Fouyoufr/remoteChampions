@@ -11,6 +11,8 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
     -subj "/C=FR/ST=Denial/L=PAIRS/O=Self-signed certificate/CN=127.0.0.1" \
     -keyout /etc/nginx/conf.d/remotechampions.key  -out /etc/nginx/conf.d/remotechampions.crt
 
+    /ect/apache2
+
 RUN echo 'server {\n\
 listen 80 default_server;\n\
 listen 443 ssl;\n\
@@ -31,7 +33,8 @@ location ~ .php$ {\n\
 RUN apt-get install -y git
 RUN git clone https://github.com/Fouyoufr/remoteChampions.git
 RUN cp -a /remoteChampions/setup/. /var/www/html
-RUN cp -a /remoteChampions/updates/img/. /var/www/html/img 
+RUN cp -a /remoteChampions/updates/img/. /var/www/html/img
+RUN chmod -R 777 /var/www/html
 
 RUN echo '<?php\n\
 function sql_get($sqlQuery) {\n\
@@ -50,7 +53,6 @@ $publicPass="";\n\
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN apt-get install -y php-mysql
-
 RUN echo '[mysqld]\n\
 skip-grant-tables\n\
 user = mysql\n\
@@ -61,10 +63,12 @@ myisam-recover-options = BACKUP\n\
 log_error = /var/log/mysql/error.log\n\
 max_binlog_size = 100M'> /etc/mysql/mysql.conf.d/mysqld.cnf
 
+RUN apt-get install -y nano
+
 RUN echo 'service mysql start\n\
 service php7.4-fpm start\n\
 service nginx start' > /dockercmd
 RUN chmod +x /dockercmd
 
 EXPOSE 80 443
-#CMD /dockercmd
+CMD /dockercmd

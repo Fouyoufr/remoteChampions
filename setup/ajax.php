@@ -66,7 +66,7 @@ if (isset($_GET['pGet'])) {
       $xml->writeAttribute('dId', 'h'.$heros['hId']);
       $xml->writeAttribute('dNom', $heros['hNom']);
       $xml->endElement();}
-  $xml->endElement();  
+  $xml->endElement();
   header('Content-type: text/xml');
   $xml->flush();}
 if (isset($_GET['phase'])) {
@@ -83,7 +83,7 @@ if (isset($_GET['phase'])) {
     foreach ($phase as $clePhase => $valPhase) {$xml->writeAttribute($clePhase, $valPhase);}
     $xml->writeAttribute('nbJoueurs', $nbJoueurs);
     $xml->endElement();
-  $xml->endElement();  
+  $xml->endElement();
   header('Content-type: text/xml');
   $xml->flush();}
 if (isset($_GET['mGet'])) {
@@ -158,7 +158,7 @@ if(isset($_POST['switch'])) {
         break;
     case 'sonne':
     	sql_get("UPDATE `joueurs` SET `jSonne`=!`jSonne` WHERE `jId`='$joueurId'");
-        break;        
+        break;
     case 'tenace':
     	sql_get("UPDATE `joueurs` SET `jTenace`=!`jTenace` WHERE `jId`='$joueurId'");
         break;
@@ -187,7 +187,7 @@ if (isset($_POST['boite'])) {
   sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");}
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
-  sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");}      
+  sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");}
 if(isset($_POST['changeName'])) {
   $joueur=htmlspecialchars($_POST['changeName']);
   sql_get("UPDATE `joueurs` SET `jNom`='$joueur' WHERE `jId`='$joueurId'");}
@@ -202,7 +202,7 @@ if(isset($_POST['maniganceMax'])) {
   sql_get("UPDATE `parties` SET `pManiMax`='$manigance' WHERE `pUri`='$partieId'");}
 if(isset($_POST['maniganceAcc'])) {
   $maniAccel=mysqli_num_rows(sql_get("SELECT `maId` FROM `manigances`,`maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`=`maId` AND `maAcceleration`='1'"));
-  $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;  
+  $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;
   sql_get("UPDATE `parties` SET `pManiAcceleration`='$manigance' WHERE `pUri`='$partieId'");}
 if(isset($_POST['newManigance'])) {
   $manigance=htmlspecialchars($_POST['newManigance']);
