@@ -1,8 +1,9 @@
 # Contenu de la documentation
 ### 1. [Installation de '*Remote Champions*'](https:#installation-de-remote-champions)
-1a. [Prérequis](https:#prérequis)  
-1b. [Séquence d'installation](https:#séquence-dinstallation)  
-1c. [Mise à jour de '*Remote Champions*'](https:#mise-à-jour-de-remote-champions)  
+1a. [Prérequis serveur](https:#prérequis-serveur)  
+1b. [Docker](https:#docker)  
+1c. [Séquence d'installation](https:#séquence-dinstallation)  
+1d. [Mise à jour de '*Remote Champions*'](https:#mise-à-jour-de-remote-champions)  
 ### 2. [Utilisation de '*Remote Champions*'](https:#utilisation-de-remote-champions)
 2a. [Page de connexion](https:#page-de-connexion)  
 2b. [Création d'une partie](https:#création-dune-nouvelle-partie)  
@@ -22,21 +23,26 @@
 
 ---
 # Installation de '*Remote Champions*'
-## Prérequis
+## Prérequis serveur
 Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de données type mySql](https:#base-de-données).
-## Docker (en cours d'élaboration)
-Si vous n'avez pas de serveur web/php et ou de base de données mySQL à votre disposition mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
-Veuillez noter que ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...
 #### Serveur Web PHP
 En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
 De plus, le moteur php doit permettre les lectures de fichiers distants (http get) pour que l'installation et la mise à jour puissent se dérouler sans problème.  
 Fonctionnement testé avec succès sur les configurations/versions suivantes :
+ - Apache 2.2
  - Apache 2.4
+ - Nginx
  - PHP 7.2
+ - PHP 7.4
 #### Base de données
 Il vous faut un service de base de données relationnel type *mySql*.  
 Fonctionnement testé avec succès sur les configuration/versions suivantes :
  - MariaDB 10
+ ## Docker
+Si vous n'avez pas de serveur web/php et ou de base de données mySQL à votre disposition mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
+Une fois votre conteneur démarré, accédez à votre site en http ou https (comme tous les mots de passe sont transmis en clair au serveur pour que leur empreinte soit comparée à celle stockée, nous vous recommandons fortement de passer par https, même si le certificat du conteneur est un certificat autosigné...)  
+Avant de pouvoir utiliser votre site *Remote Champions*, il faudra d'abord passer par la [procédure de mise à jour](https:mise-à-jour-de-remote-champions), afin qu'elle crée les éléments nécessaires dans la base de données.  
+**Nota :** Ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...
 ## Séquence d'installation
 1. Copiez tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent dépôt vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
 1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.
@@ -60,6 +66,7 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sûr que le site web soit accessible de tous les joueurs sur Internet.
 ## Mise à jour de '*Remote Champions*'
 Lorsque le site est installé, vous pouvez voir la dernière mise à jours disponible (ainsi que sa date de publication) dans la section "[mise à jour](https:#mise-à-jour)" de l'écran d'administration.  
+Cliquez sur le bouton "*Lancer la mise à jour*" lorsque vous le souhaitez.
 Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).
 
 ---
