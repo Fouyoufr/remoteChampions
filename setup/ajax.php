@@ -21,7 +21,6 @@ if (isset($_GET['pGet'])) {
   $partieId=htmlspecialchars($_GET['pGet']);
   $sqlPartie=sql_get("SELECT * FROM parties, mechants WHERE mId = pMechant AND pURI='$partieId'");
   $sqlJoueurs=sql_get("SELECT * FROM joueurs WHERE jPartie='$partieId'");
-  
   $sqlDecks=sql_get("SELECT `dId`,`dNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`decks`,`deckParties` WHERE `maDeck`!=0 AND `dId`=`maDeck` AND `mnPartie` IS NULL AND `dpPartie`='$partieId' AND `dpDeck`=`dId` GROUP BY `dNom` ORDER BY `dNom` ASC");
   $sqlHeros=sql_get("SELECT `hId`,`hNom` FROM `manigances` LEFT JOIN `maniAnnexes` ON (`maId`=`mnManigance` AND `mnPartie`='$partieId'),`joueurs`,heros WHERE `maDeck`=0 AND `jPartie`='$partieId' AND `maNumero`=`jHeros` AND `hId`=`jHeros` AND `mnPartie` IS NULL GROUP BY `hNom` ORDER BY `hNom` ASC");
   $sqlManigances=sql_get("SELECT * FROM `maniAnnexes`,`manigances`,`decks` WHERE `mnPartie`='$partieId' AND `maId`=`mnManigance` AND `dId`=`maDeck`");
@@ -70,7 +69,6 @@ if (isset($_GET['pGet'])) {
   $xml->endElement();  
   header('Content-type: text/xml');
   $xml->flush();}
-
 if (isset($_GET['phase'])) {
   $nbJoueurs=sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'");
   $nbJoueurs=mysqli_num_rows($nbJoueurs);
@@ -88,7 +86,6 @@ if (isset($_GET['phase'])) {
   $xml->endElement();  
   header('Content-type: text/xml');
   $xml->flush();}
-  
 if (isset($_GET['mGet'])) {
   $deck=htmlspecialchars($_GET['mGet']);
   if (substr($deck,0,1)=='h') {
@@ -110,7 +107,6 @@ if (isset($_GET['mGet'])) {
   $xml->endElement();
   header('Content-type: text/xml');
   $xml->flush();}
-  
 if (isset($_POST['phase'])) {
   $phase=htmlspecialchars($_POST['phase']);
   $nbJoueurs=sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'");
@@ -119,7 +115,6 @@ if (isset($_POST['phase'])) {
   $mechant=mysqli_fetch_assoc($mechant);
   $vieMax=$mechant['mVieMax'.$phase]*$nbJoueurs;
   sql_get("UPDATE `parties` SET `pMechPhase`='$phase', `pMechVie`='$vieMax' WHERE `pUri`='$partieId'");}
-
 if (isset($_POST['mechant'])) {
   $mechant=htmlspecialchars($_POST['mechant']);
   $nbJoueurs=sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'");
@@ -133,7 +128,6 @@ if (isset($_POST['mechant'])) {
   $vieMechant=mysqli_fetch_assoc($vieMechant)['mVieMax1']*$nbJoueurs;
   sql_get("UPDATE `parties` SET `pMechDesoriente`=0, `pMechSonne`=0, `pMechTenace`=0, `pMechPhase`='1', `pMechVie`='$vieMechant', `pMechant`='$mechant',`pPremier`='$premier',`pManiPrincipale`='0',`pManiCourant`='0',`pManiMax`='0' WHERE `pUri`='$partieId'");
   echo 'SelectManigance';}
-
 if(isset($_POST['heros'])) {
   $heros=htmlspecialchars($_POST['heros']);
   $joueur=htmlspecialchars($_POST['joueur']);
@@ -141,11 +135,9 @@ if(isset($_POST['heros'])) {
   $sqlReq="UPDATE `joueurs` SET `jHeros`='$heros', `jVie`='".$newVie['hVie']."' WHERE `jPartie`='$partieId' AND ";
   if (isset($_POST['joueurNum'])) $sqlReq.='`jNumero`=\''.$_POST['joueurNum'].'\''; else $sqlReq.='`jId`=\''.$_POST['joueur'].'\'';
   sql_get($sqlReq);}
-  
 if(isset($_POST['vieMechant'])) {
   $vieMechant=htmlspecialchars($_POST['vieMechant']);
   sql_get("UPDATE `parties` SET `pMechVie`='$vieMechant' WHERE `pUri`='$partieId'");}
-  
 if(isset($_POST['switch'])) {
   $switch=htmlspecialchars($_POST['switch']);
   switch ($switch) {
@@ -188,42 +180,30 @@ if(isset($_POST['switch'])) {
     	break;
     case 'mechantDistance':
     	sql_get("UPDATE `parties` SET `pMechDistance`=!`pMechDistance` WHERE `pUri`='$partieId'");
-    	break;    	
-}}
-
+    	break;}}
 if (isset($_POST['boite'])) {
   $boite=htmlspecialchars($_POST['boite']);
   $inclus=htmlspecialchars($_POST['inclus']);
-  sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");
-}
-
+  sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");}
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
-  sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");
-  }
-        
+  sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");}      
 if(isset($_POST['changeName'])) {
   $joueur=htmlspecialchars($_POST['changeName']);
-  sql_get("UPDATE `joueurs` SET `jNom`='$joueur' WHERE `jId`='$joueurId'");
-  }
+  sql_get("UPDATE `joueurs` SET `jNom`='$joueur' WHERE `jId`='$joueurId'");}
 if(isset($_POST['vieJoueur'])) {
   $vie=htmlspecialchars($_POST['vieJoueur']);
   sql_get("UPDATE `joueurs` SET `jVie`='$vie' WHERE `jId`='$joueurId'");}
-  
 if(isset($_POST['manigance'])) {
   $manigance=htmlspecialchars($_POST['manigance']);
   sql_get("UPDATE `parties` SET `pManiCourant`='$manigance' WHERE `pUri`='$partieId'");}
-  
 if(isset($_POST['maniganceMax'])) {
   $manigance=htmlspecialchars($_POST['maniganceMax']);
   sql_get("UPDATE `parties` SET `pManiMax`='$manigance' WHERE `pUri`='$partieId'");}
-  
 if(isset($_POST['maniganceAcc'])) {
-
   $maniAccel=mysqli_num_rows(sql_get("SELECT `maId` FROM `manigances`,`maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`=`maId` AND `maAcceleration`='1'"));
   $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;  
   sql_get("UPDATE `parties` SET `pManiAcceleration`='$manigance' WHERE `pUri`='$partieId'");}
-  
 if(isset($_POST['newManigance'])) {
   $manigance=htmlspecialchars($_POST['newManigance']);
   $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$manigance'"));
@@ -232,13 +212,11 @@ if(isset($_POST['newManigance'])) {
   	 $nbJoueurs=mysqli_num_rows(sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'"));
   	 $maInit=$maInit*$nbJoueurs;}
   sql_get("INSERT INTO `maniAnnexes` (`mnPartie`,`mnManigance`,`mnMenace`) VALUES ('$partieId','$manigance','$maInit')");}
-  
 if(isset($_POST['MA'])) {
   $manigance=htmlspecialchars($_POST['MA']);
   $menace=htmlspecialchars($_POST['menace']);
   if ($menace<1) {sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");}
   else {sql_get("UPDATE `maniAnnexes` SET `mnMenace`='$menace' WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");}}
-  
 if(isset($_POST['NewPrincipale'])) {
   $manigance=htmlspecialchars($_POST['NewPrincipale']);
   $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `ManigancesPrincipales` WHERE `mpId`='$manigance'"));
@@ -249,16 +227,12 @@ if(isset($_POST['NewPrincipale'])) {
   $mpInit=$maniDetail['mpInit'];
   if ($maniDetail['mpMultiplie']==true) $mpInit=$mpInit*$nbJoueurs;
   sql_get("UPDATE `parties` SET `pManiMax`='$mpMax', `pManiCourant`='$mpInit', `pManiPrincipale`='$manigance' WHERE `pUri`='$partieId'");}
-  
 if(isset($_POST['addCompteur'])) {sql_get("INSERT INTO `compteurs` (`cPartie`) VALUES ('$partieId')");}
-
 if (isset($_POST['delCompteur'])) {
   $compteur=htmlspecialchars($_POST['delCompteur']);
   sql_get("DELETE FROM `compteurs` WHERE `cId`='$compteur'");}
-
 if(isset($_POST['compteur'])) {
   $compteur=htmlspecialchars($_POST['compteur']);
   $value=htmlspecialchars($_POST['value']);
   sql_get("UPDATE `compteurs` SET `cValeur`='$value' WHERE `cId`='$compteur'");}
-
 ?>

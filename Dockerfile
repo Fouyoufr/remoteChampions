@@ -36,13 +36,12 @@ RUN cp -a /remoteChampions/updates/img/. /var/www/html/img
 RUN echo '<?php\n\
 function sql_get($sqlQuery) {\n\
   global $sqlConn;\n\
-  $sqlConn=mysqli_connect("127.0.0.1:3306","root","","remoteChampions");\n\
+  $sqlConn=mysqli_connect("","root","","remoteChampions");\n\
   if(!$sqlConn) {\n\
-    $sqlConn=mysqli_connect("127.0.0.1:3306,"root","");\n\
+    $sqlConn=mysqli_connect("","root","");\n\
     @mysqli_query($sqlConn,"CREATE DATABASE `remoteChampions`");\n\
-    $sqlConn=mysqli_connect("127.0.0.1:3306","root","","remoteChampions");\n\
-    if(!$sqlConn ) {die("Could not connect: ".mysqli_error());}\n\
-    }\n\
+    $sqlConn=mysqli_connect("","root","","remoteChampions");\n\
+    if(!$sqlConn ) die("Could not connect: ".mysqli_connect_error());}\n\
   $sqlResult=mysqli_query($sqlConn,$sqlQuery);\n\
   return $sqlResult;}\n\
 $adminPassword="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";\n\
@@ -51,6 +50,16 @@ $publicPass="";\n\
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN apt-get install -y php-mysql
+
+RUN echo '[mysqld]\n\
+skip-grant-tables\n\
+user = mysql\n\
+bind-address = 0.0.0.0\n\
+mysqlx-bind-address = 127.0.0.1\n\
+key_buffer_size = 16M\n\
+myisam-recover-options = BACKUP\n\
+log_error = /var/log/mysql/error.log\n\
+max_binlog_size = 100M'> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 RUN echo 'service mysql start\n\
 service php7.4-fpm start\n\
