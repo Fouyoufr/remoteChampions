@@ -67,7 +67,8 @@ RUN apt-get install -y nano
 RUN echo '#!/bin/sh\n\
 service mysql start\n\
 service php7.4-fpm start\n\
-service nginx start' > /dockercmd.sh
+service nginx start\n\
+/bin/bash' > /dockercmd.sh
 RUN chmod +x /dockercmd.sh
 
 EXPOSE 80 443
