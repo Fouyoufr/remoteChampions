@@ -71,4 +71,4 @@ service nginx start' > /dockercmd.sh
 RUN chmod +x /dockercmd.sh
 
 EXPOSE 80 443
-CMD /dockercmd.sh
+#CMD /dockercmd.sh
