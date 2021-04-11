@@ -72,7 +72,7 @@ if (isset($_GET['del'])) {
 </div>
 <?php
 $partiesMechant=sql_get("SELECT `pUri`,`pDate`,`mNom`,`mId` FROM `parties`,`mechants` WHERE `mId`=`pMechant` ORDER BY `pDate`DESC");
-if $partiesMechant if (mysqli_num_rows($partiesMechant)<>0) {
+if ($partiesMechant) if (mysqli_num_rows($partiesMechant)<>0) {
   echo "<div class='pannel'><div class='titleAdmin'>Liste des parties sur le serveur</div><table style='text-align:left'><tr><th>Clef d'accès</th><th>Méchant</th><th>Joueurs</th><th>Créée le</th><th></th></tr>";
   $partiesJoueur=array();
   $partiesSQL=sql_get("SELECT `pUri`,`pDate`,COUNT(`jId`),`mNom`,`mId` FROM `parties`,`mechants`,`joueurs` WHERE `jPartie`=`pUri` AND `mId`=`pMechant` GROUP BY `jPartie` ORDER BY `pDate` DESC");
