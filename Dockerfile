@@ -8,7 +8,7 @@ RUN apt-get install -y php7.4-fpm
 RUN apt-get install -y php7.4-mysql php7.4-curl php7.4-json php7.4-xml
 RUN sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.4/fpm/php.ini
 
-RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
     -subj "/C=FR/ST=Denial/L=PAIRS/O=Self-signed certificate/CN=127.0.0.1" \
     -keyout /etc/nginx/conf.d/remotechampions.key  -out /etc/nginx/conf.d/remotechampions.crt
 
