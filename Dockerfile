@@ -64,7 +64,8 @@ max_binlog_size = 100M'> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 RUN apt-get install -y nano
 
-RUN echo 'service mysql start\n\
+RUN echo '#!/bin/sh\n\
+service mysql start\n\
 service php7.4-fpm start\n\
 service nginx start' > /dockercmd.sh
 RUN chmod +x /dockercmd.sh

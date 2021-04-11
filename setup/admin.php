@@ -60,7 +60,7 @@ if (isset($_GET['del'])) {
     echo "><label for='boite$boiteId'style='display:inline-block;'><img src='img/boites/$boiteId.png'/><br/>$boiteNom</label></div>";}
     function displayBoxes($dbReq) {
     $boites=sql_get("SELECT * FROM `boites` WHERE $dbReq ORDER BY `bNom`");
-    while ($boite=mysqli_fetch_assoc($boites)) {
+    if ($boites) while ($boite=mysqli_fetch_assoc($boites)) {
       displayBox($boite);}}
   displayBox(array('bId'=>'1','bNom'=>'Boite de base','bInclus'=>'2'));
   displayBoxes("bType='b' AND bId <>'1'");
