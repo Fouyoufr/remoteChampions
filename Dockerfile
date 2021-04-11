@@ -11,8 +11,6 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
     -subj "/C=FR/ST=Denial/L=PAIRS/O=Self-signed certificate/CN=127.0.0.1" \
     -keyout /etc/nginx/conf.d/remotechampions.key  -out /etc/nginx/conf.d/remotechampions.crt
 
-    /ect/apache2
-
 RUN echo 'server {\n\
 listen 80 default_server;\n\
 listen 443 ssl;\n\
