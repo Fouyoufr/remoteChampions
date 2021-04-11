@@ -56,12 +56,12 @@ if (isset($_GET['pGet'])) {
       	if ($clePartie=='jOnline') {$valPartie=strtotime($valPartie)*1000;}
       	$xml->writeAttribute($clePartie, $valPartie);}
       $xml->endElement();}
-    while ($deck=mysqli_fetch_assoc($sqlDecks)) {
+    if ($sqlDecks) while ($deck=mysqli_fetch_assoc($sqlDecks)) {
       $xml->startElement('deck');
       $xml->writeAttribute('dId',$deck['dId']);
       $xml->writeAttribute('dNom',$deck['dNom']);
       $xml->endElement();}
-    while ($heros=mysqli_fetch_assoc($sqlHeros)) {
+    if ($sqlHeros) while ($heros=mysqli_fetch_assoc($sqlHeros)) {
       $xml->startElement('deck');
       $xml->writeAttribute('dId', 'h'.$heros['hId']);
       $xml->writeAttribute('dNom', $heros['hNom']);
