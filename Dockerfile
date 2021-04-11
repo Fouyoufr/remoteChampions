@@ -38,7 +38,7 @@ RUN chmod -R 777 /var/www/html
 RUN echo '<?php\n\
 function sql_get($sqlQuery) {\n\
   global $sqlConn;\n\
-  $sqlConn=mysqli_connect("","root","","remoteChampions");\n\
+  $sqlConn=@mysqli_connect("","root","","remoteChampions");\n\
   if(!$sqlConn) {\n\
     $sqlConn=mysqli_connect("","root","");\n\
     @mysqli_query($sqlConn,"CREATE DATABASE `remoteChampions`");\n\
@@ -71,4 +71,4 @@ service nginx start' > /dockercmd.sh
 RUN chmod +x /dockercmd.sh
 
 EXPOSE 80 443
-#CMD /dockercmd.sh
+CMD /dockercmd.sh
