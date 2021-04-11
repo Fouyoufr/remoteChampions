@@ -26,7 +26,7 @@ if (isset($_POST['clef']) and strlen($_POST['clef'])<>6) $error="La clef d'accè
 if (isset($_POST['clef'])) if (sql_exists("SELECT `pUri` FROM `parties` WHERE `pURI`='".strtoupper($_POST['clef'])."'")) $error="La clef '".strtoupper($_POST['clef'])."' est déjà présente"; else $clef=strtoupper($_POST['clef']);
 if ($clef=='') do {
   $clefCar = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (sql_exists("SELECT `pUri` FROM `parties` WHERE `pURI`='$vlef'"));
+  for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (sql_exists("SELECT `pUri` FROM `parties` WHERE `pURI`='$clef'"));
 if (!empty($_POST) and $error=='') {
   #Création effective de la partie dans la base mySql
     if(!isset($_POST['mechantSeul'])) {
