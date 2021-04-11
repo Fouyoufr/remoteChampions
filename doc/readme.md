@@ -24,6 +24,9 @@
 # Installation de '*Remote Champions*'
 ## Prérequis
 Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de données type mySql](https:#base-de-données).
+## Docker (en cours d'élaboration)
+Si vous n'avez pas de serveur web/php et ou de base de données mySQL à votre disposition mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
+Veuillez noter que ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...
 #### Serveur Web PHP
 En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
 De plus, le moteur php doit permettre les lectures de fichiers distants (http get) pour que l'installation et la mise à jour puissent se dérouler sans problème.  

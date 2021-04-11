@@ -14,8 +14,6 @@ RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
 RUN echo 'server {\n\
 listen 80 default_server;\n\
 listen 443 ssl;\n\
-modsecurity on;\n\
-modsecurity_rule_file /etc/nginx/modsec/main.conf;\n\
 server_name _;\n\
 ssl_certificate /etc/nginx/conf.d/remotechampions.crt;\n\
 ssl_certificate_key /etc/nginx/conf.d/remotechampions.key;\n\
