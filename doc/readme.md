@@ -196,7 +196,7 @@ Si votre seveur est plus largement accessible, vous souhaiterez peut-être limit
 C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra donc créer autant de nouvelles parties qu'il/elle souhaite.  
 ![Mode Public](illus19.png)  
 Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot de passe (dont seule une empreinte est stockée sur le serveur). Une fois ce paramètre validé, ledit mot de passe sera demandé pour accéder à la page de création de nouvelle partie.  
-- Pour activer le *Mode Public*, cliquez sur le bouton d'activation![2](tag2.png), ceci va rendre disponible les champs "*Mot de passe*"![3](tag3.png) et "*Vérification*"[4](tag4.png) dans lequel vous pourrez saisir le nouveau mot de passe d'accès (notez qu'un mot de passe d'accès à la page de création doit contenir au moins 6 caractères) avant de valider en cliquant sur le bouton "*Soumettre*"![5](tag5.png).  
+- Pour activer le *Mode Public*, cliquez sur le bouton d'activation![2](tag2.png), ceci va rendre disponible les champs "*Mot de passe*"![3](tag3.png) et "*Vérification*"![4](tag4.png) dans lequel vous pourrez saisir le nouveau mot de passe d'accès (notez qu'un mot de passe d'accès à la page de création doit contenir au moins 6 caractères) avant de valider en cliquant sur le bouton "*Soumettre*"![5](tag5.png).  
 - Pour désactiver le *Mode Public*, cliquez sur le bouton de désactivation![1](tag1.png) avant de cliquer sur le bouton "*Soumettre*".
 Après validation, la page d'administration du site est rechargée avec l'indication dans la présente section de la modification de paramètrage.
 ## Mise à jour
@@ -225,4 +225,5 @@ Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous fait
 ## A quoi servent la section "*Autres compteurs*" ?
 La réponse est simple : à suivre tout ce que vous pouvez avoir besoin de suivre avec les autres groupes de joueurs.  
 Par exemple, vous pouvez choisir de créer un nouveau compteur pour suivre les jetons "*Retard*" du scénario de l'homme absorbant...  
+
 ![En construction](wip.png) N'hésitez pas à passer par la section "*Issues*" du présent dépot pour poser d'autres questions ![En construction](wip.png)
