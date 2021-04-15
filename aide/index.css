@@ -1,0 +1,10 @@
+body {background-color:darkgoldenrod;color:white;}
+div.aideChapter {border:solid 2px blanchedalmond;margin:5px;background-color: darkolivegreen;font-weight:normal;font-size:1em;}
+div.aideChapter div.title {background-color: blanchedalmond;color:darkolivegreen;font-weight:bold;font-size:1.8em;cursor:pointer;padding-left:10px;}
+div.aideChapter div.content {padding:3px;padding-bottom:10px;display:none;}
+div.aideChapter ul, div.aideChapter ol {margin:0px;}
+a#moveUp{display:block;height:30px;width:30px;position:fixed;bottom:5px;right:5px;z-index: 999;-moz-transform: rotate(270deg);-webkit-transform: rotate(270deg);-o-transform: rotate(270deg);-ms-transform: rotate(270deg);transform:rotate(270deg);font-size:20px;text-decoration:none;text-align:center;background-color:darkolivegreen;color:lightgray;}
+a#collapse{display:block;height:30px;width:30px;position:fixed;top:5px;right:5px;z-index: 999;font-size:30px;text-decoration:none;text-align:center;font-weight:bold;background-color:darkolivegreen;color:lightgray;}
+
+.error {background-color:red;color:white;font-weight:bold;width:100%;text-align:center;font-size:1.5em;margin:-2px;padding:3px;}
+.subError {text-align:left;font-size:.5em;font-style:italic;color:lightgray;font-weight:normal;}

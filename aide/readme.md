@@ -18,7 +18,7 @@ Un héros ne s'incline pas lorsque cette capacité est utilisé (sauf si précis
 - Une fois révélée
 - Une fois déjouée
 - Une fois vaincu
-nterruption forçée
+- Interruption forçée
 - Réponse forçée
 - Boost
 # Capacités Optionnelles
@@ -104,12 +104,12 @@ Si un joueur est éliminé, cette valeur ne change pas.
    - Redressent chacune de leurs cartes inclinées.
 # Phase du méchant
 1. Placer de la menace sur la manigance principale.
-2. Le méchant (ainsi que chaque sbire engagé) s'active une fois par joueur, dans l'ordre des joueurs.
+1. Le méchant (ainsi que chaque sbire engagé) s'active une fois par joueur, dans l'ordre des joueurs.
    - Si vous êtes sous forme de héros, les ennemis vous attaquent (vous pouvez défendre avant que la carte de boost ne soit défaussée).
    - Si vous êtes sous forme d'alter ego, les ennemis manigancent.
-3. Attribuer une carte Rencontre à chaque joueur.
-4. Dans l'ordre des joueurs, chaque joueur révèle et résout sa carte rencontre.
-5. Passer le pion Premier Joueur.
+1. Attribuer une carte Rencontre à chaque joueur.
+1. Dans l'ordre des joueurs, chaque joueur révèle et résout sa carte rencontre.
+1. Passer le pion Premier Joueur.
 # Patrouille
 Tant qu'un sbire avec ce mot-clé est engagé, le joueur ne peut pas contrer la Manigance Principale.
 # Perçant
