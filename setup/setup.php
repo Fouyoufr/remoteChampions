@@ -25,6 +25,7 @@
 </head>
 <body>
 <?php
+include_once('functions.php');
 session_start();
 $gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
 $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
@@ -198,13 +199,13 @@ if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPass
 	exit("<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>");}
 echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
 #Récupération de la dernière version du présent script
-$localSize=filesize('setup.php');
-$remoteSize = remoteFileSize('setup.php');
-
-if ($localSize<>$remoteSize) {
-	echo "Nouvelle version du script de mise à jour.<br/>";
-	if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
-	else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+clearstatcache();
+$setupDate=gitFileDate('/setup/setup.php');
+if (isset($setupDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$setupDate['erreur']."</div></div>";
+elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
+  echo "Nouvelle version du script de mise à jour.<br/>";
+  if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+  else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
 else echo "Script Déjà à jour";
 
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
@@ -222,7 +223,7 @@ imageUpdate('boites','bId','bNom');
 imageUpdate('heros','hId','hNom');
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
 #Vérification des fichiers php par leur taille.
-$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.md','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
+$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
 foreach ($phpFiles as $phpFile) {
 	$localSize=@filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

@@ -4,8 +4,7 @@
   <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
   <meta charset='UTF-8'>
-  <script type='text/javascript' src='index.js'></script>
-  <link rel='stylesheet' href='index.css'>
+  <link rel='stylesheet' href='aide.css'>
   <link rel='icon' href='../favicon.ico'/>
   <title>Remote Champions - Aide</title>
 </head>
@@ -13,9 +12,9 @@
 <div id="TDMUp"></div>
 <?php
 #Récupération des éléments d'aide depuis référence gitHub avant création de la page
-$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/aide';
+$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/update';
 $gitUrl='.';
-$file = @fopen ("$gitUrl/readme.md", "r");
+$file = @fopen ("$gitUrl/aide.md", "r");
 if (!$file) exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>La mise en forme de l'aide a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");
 $luEncours=false;
 $entryId=0;
