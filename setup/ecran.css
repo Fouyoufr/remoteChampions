@@ -75,6 +75,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #dispClef:hover {cursor: pointer;}
 #dispClef span {font-weight:bold;font-size:20px;font-variant: small-caps; text-transform: capitalize;}
 #dispClef span:hover {color:black;background:white;}
+#aideDeJeu {position:absolute;bottom:5px;left:calc(50% + 210px);background:blanchedalmond;color:darkolivegreen;border:solid 2px darkolivegreen;width:50px;text-align:center;font-size:15px;padding:1px;text-decoration: none;display:inline-block;font-weight:bold;}
 #manigancesAnnexes {text-align:left;}
 #PlusManigance {position:absolute;top:2px;right:2px;font-weight:bold;font-size:20px;background-color:#f3b723;color:black;width:20px;height:20px;border: solid 1px white;text-align:center;}
 #PlusManigance:hover {border:solid 1px white;background-color:white;cursor:pointer;}

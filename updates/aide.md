@@ -4,9 +4,9 @@ Ignorer le mot-clef riposte.
 Limite de 3 sur la zone de jeu (défausse possible).  
 Peut attaquer, Contrer ou Défendre (incliner).
 # Action
-Possibilité de déclenchement d'une capacité à son tour ou au tour d'un autre joueur après une requête (ceraines sont liées à la form de l'Identité : action de Héros/action d'Alter Ego).
+Possibilité de déclenchement d'une capacité à son tour ou au tour d'un autre joueur après une requête (ceraines sont liées à la forme de l'Identité : action de Héros/action d'Alter Ego).
 # Ant-Man / La Guêpe
-- Changement de forme selon la règle habituelle. Peut passer de a forme d'Alter-Ego à n'importe laquelle des 2 formes de Super-Héros et vice versa, comme de l'une des 2 formes de Super-Héros à l'autre.
+- Changement de forme selon la règle habituelle. Peut passer de la forme d'Alter-Ego à n'importe laquelle des 2 formes de Super-Héros et vice versa, comme de l'une des 2 formes de Super-Héros à l'autre.
 - Evènement Changer de taille : ne compte pas dans le changement de forme volontaire auquel un joueur a le droit une fois par round lors de son tour.
 # Attribuer une carte Rencontre
 Quand une carte Rencontre est attribuée à un joueur, elle n'est pas immédiatement révélée. Elle le sera lors de la phase correspondante du méchant.

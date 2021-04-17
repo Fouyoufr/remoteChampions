@@ -206,8 +206,44 @@ elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
   echo "Nouvelle version du script de mise à jour.<br/>";
   if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
   else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
-else echo "Script Déjà à jour";
-
+else echo "Script Déjà à jour.";
+echo "</div><div class='pannel'><div class='pannelTitle'>Mise à jour de l'aide</div>";
+$helpDate=gitFileDate('/update/aide.md');
+if (isset($helpDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$helpDate['erreur']."</div></div>";
+elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$helpDate['date']))  {
+  echo "Mise à jour de l'aide de jeu.";
+  $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
+  $file = @fopen ("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/aide.md", "r");
+  if (!$file) echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>La mise en forme de l'aide a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>";
+  else {
+    $luEncours=false;
+    $entryId=0;
+    $numbEncours=false;
+	$table='';
+    while (!feof ($file)) {
+	  $line=str_replace(["\r","\n"],'',fgets($file));
+	  if (substr($line,0,2)=='# ') {
+	    if ($luEncours) { $table.="</ul>\n"; $luEncours=false;}
+	    if ($numbEncours) { $table.="</ol>"; $numbEncours=false;}
+		$entryId++;
+		$table.="</div></div>\n<div id='aide$entryId' class='aideChapter'><div class='title' onclick='contentStyle=document.getElementById(this.parentElement.getElementsByClassName(\"content\")[0].id).style;if (contentStyle.display==\"block\") contentStyle.display=\"none\"; else contentStyle.display=\"block\";'>".substr($line,2)."</div>\n<div id='content$entryId' class='content'>\n";}
+	  elseif (substr($line,0,2)=='- ' or substr($line,0,5)=='   - ') {
+	    if (!$luEncours) {$luEncours=true; $table.="<ul>\n";}
+	    if (substr($line,0,5)=='   - ') $line=substr($line,3); elseif ($numbEncours) $table.="</ol>\n";
+	    $table.='<li>'.substr($line,2)."</li>\n";}
+	  elseif (substr($line,0,3)=='1. ') {
+	    if (!$numbEncours) {$numbEncours=true; $table.="<ol>\n";}
+	    if ($luEncours) {$luEncours=false; $table.="</ul>\n";}
+		$table.='<li>'.substr($line,3)."</li>\n";}
+	  else {
+	    if ($luEncours) {$table.="</ul>\n";	$luEncours=false;}
+	    if ($numbEncours) {$table.="</ol>\n"; $numbEncours=false;}
+	    $table.=$line;
+	    if (substr($line,-2)=='  ') $table.="<br/>\n";}}
+    fclose($file);
+	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
+	file_put_contents ('aide.html', $helpFile);}}
+else echo "Aide de jeu déjà à jour.";
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
 sqlUpdate();
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour du contenu fixe de la base SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
@@ -223,7 +259,7 @@ imageUpdate('boites','bId','bNom');
 imageUpdate('heros','hId','hNom');
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
 #Vérification des fichiers php par leur taille.
-$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
+$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
 foreach ($phpFiles as $phpFile) {
 	$localSize=@filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

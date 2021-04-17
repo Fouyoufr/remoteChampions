@@ -25,6 +25,7 @@ function displayBottom() {
       echo "'><input type='hidden' name='adminPassword' id='adminPassword'>";
     if (isset($partieId)) echo "Le mot-clef de cette partie est <span>$partieId</span></form>"; else echo "Administration du site";
       echo "</form>";}
+    echo "<a href='aide.html' target='_blank' id='aideDeJeu'>Aide</a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md#utilisation-de-remote-champions' alt='Utilisation de Remote Champions' id='aide' target='_blank'><img src='img/aide.png' alt='Utilisation de Remote Champions'/></a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='Rapporter un problème' id='bugReport' target='_blank'><img src='img/bug.png' alt='Rapporter un problème'/></a>";}}
 
