@@ -96,12 +96,12 @@ function imageUpdate($imgFolder,$imgId,$imgNom) {
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>dossier $imgFolder</td><td>Images au complet</td></tr>";}
 
-function updateSQLcontent($tableId) {
+function updateSQLcontent($tableFile,$tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
-	global $sqlConn,$gitUrl;
-	$file = fopen ("$gitUrl/updates/$tableId", "r");
+	global $sqlConn;
+	$file = fopen ($tableFile, "r");
 	if (!$file) {
-		exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");}
+		exit("<div class='error'>Ouverture de fichier impossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire le fichier $tableFile'.</div></div>");}
 	$newTable=array();
 	$nothingToDo=true;
 	while (!feof ($file)) {
@@ -154,13 +154,13 @@ function updateSQLcontent($tableId) {
 			echo "</td></tr>";}}
 	if ($nothingToDo) echo "<tr><td>$tableId</td><td>Tout est en ordre</td></tr>";}
 
-function sqlUpdate() {
+function sqlUpdate($sqlUpdateFile) {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
 	global $sqlConn,$gitUrl;
 	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
-	$file = fopen ("$gitUrl/updates/sqlTables", "r");
+	$file = fopen ($sqlUpdateFile, "r");
 	if (!$file) {
-		exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>");}
+		exit("<div class='error'>Ouverture de fichier ipossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire le fichier '$sqlUpdateFile'.</div></div>");}
 	while (!feof ($file)) {
 		$nothingToDo=true;
     	$table=explode('=>',fgets($file),2);
@@ -197,23 +197,39 @@ include 'config.inc';
 #Vérification du mot de passe d'administration.
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
 	exit("<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>");}
+clearstatcache();
+#Gestion de la mise à jour par utilisation de fichiers locaux.
+if (isset($_POST['localUpdate'])) {
+  $updateDir=$_POST['localUpdate'];
+  if (!file_exists ($updateDir) or !@is_dir($updateDir)) exit("<div class='error'>Dossier introuvable.<div class='subError'>Le dossier local '$updateDir' choisi pour les mises à jour locales n'a pu être trouvé...</div></div>");
+  else {
+	  #Informations de mise à jour locale.
+	  $updateSourcePath="$updateDir";
+	  $setupSourcePath="$updateDir";
+	  $setupDate=array('date'=>new dateTime('@'.filemtime("$updateDir/setup.php")));
+	  $helpDate=array('date' => new dateTime('@'.filemtime("$updateDir/aide.md")));
+  }}
+else {
+  $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
+  $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
+  $setupDate=gitFileDate('/setup/setup.php');
+  $helpDate=gitFileDate('/update/aide.md');
+}
+
 echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
 #Récupération de la dernière version du présent script
-clearstatcache();
-$setupDate=gitFileDate('/setup/setup.php');
 if (isset($setupDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$setupDate['erreur']."</div></div>";
 elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
   echo "Nouvelle version du script de mise à jour.<br/>";
-  if (@copy("$gitUrl/setup/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+  if (@copy("$setupSourcePath/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
   else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
 else echo "Script Déjà à jour.";
 echo "</div><div class='pannel'><div class='pannelTitle'>Mise à jour de l'aide</div>";
-$helpDate=gitFileDate('/update/aide.md');
 if (isset($helpDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$helpDate['erreur']."</div></div>";
 elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$helpDate['date']))  {
   echo "Mise à jour de l'aide de jeu.";
   $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
-  $file = @fopen ("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates/aide.md", "r");
+  $file = @fopen ("$updateSourcePath/aide.md", "r");
   if (!$file) echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>La mise en forme de l'aide a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>";
   else {
     $luEncours=false;
@@ -245,14 +261,14 @@ elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$
 	file_put_contents ('aide.html', $helpFile);}}
 else echo "Aide de jeu déjà à jour.";
 echo "</div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour des tables SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
-sqlUpdate();
+sqlUpdate("$updateSourcePath/sqlTables");
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification/mise à jour du contenu fixe de la base SQL</div><table><tr><th>Table</th><th>Action</th></tr>";
-updateSQLcontent('boites');
-updateSQLcontent('mechants');
-updateSQLcontent('ManigancesPrincipales');
-updateSQLcontent('manigances');
-updateSQLcontent('decks');
-updateSQLcontent('heros');
+updateSQLcontent("$updateSourcePath/boites",'boites');
+updateSQLcontent("$updateSourcePath/mechants",'mechants');
+updateSQLcontent("$updateSourcePath/ManigancesPrincipales",'ManigancesPrincipales');
+updateSQLcontent("$updateSourcePath/manigances",'manigances');
+updateSQLcontent("$updateSourcePath/decks",'decks');
+updateSQLcontent("$updateSourcePath/heros",'heros');
 echo "</table></div><div class='pannel'><div class='pannelTitle'>Ajout des images manquantes</div><table><tr><th>Image</th><th></th></tr>";
 imageUpdate('mechants','mId','mNom');
 imageUpdate('boites','bId','bNom');
