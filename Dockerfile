@@ -5,7 +5,7 @@ RUN apt-get update
 
 RUN apt-get install -y nginx
 RUN apt-get install -y php7.4-fpm
-RUN apt-get install -y php7.4-mysql php7.4-curl php7.4-json php7.4-xml
+RUN apt-get install -y php7.4-mysql php7.4-curl php7.4-json php7.4-xml php7.4-zip
 RUN sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.4/fpm/php.ini
 
 RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
@@ -33,6 +33,8 @@ RUN apt-get install -y git
 RUN git clone https://github.com/Fouyoufr/remoteChampions.git
 RUN cp -a /remoteChampions/setup/. /var/www/html
 RUN cp -a /remoteChampions/updates/img/. /var/www/html/img
+RUN mkdir /var/www/html/dockerSetup
+RUN cp -a /remoteChampions/updates/. /var/www/html/dockerSetup
 RUN chmod -R 777 /var/www/html
 
 RUN echo '<?php\n\

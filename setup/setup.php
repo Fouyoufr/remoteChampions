@@ -59,29 +59,31 @@ if (!file_exists('./config.inc')) {
 				file_put_contents ('config.inc',$configContent);
 				$_SESSION['adminPassword']=$adminPasswordInitial;
 				header("Refresh:0");}}}
-	if (!isset($_POST['serverPort'])) {$_POST['serverPort']='3306';}
+	if (!isset($_POST['serverPort'])) $_POST['serverPort']='3306';
 	echo "<form action='' method='post'>";
 	if ($error<>'') echo"<div class='error'>$error</div>";
 	echo "Le site n'est pas installé, veuillez saisir les informations de connexion au serveur mySql:<br/><table><tr><td>Nom/adresse du serveur :</td><td><input type='text' name='serverName' value='".$_POST['serverName']."'></td></tr><tr><td>Numéro de port du serveur :</td><td><input type='text' name='serverPort' value='".$_POST['serverPort']."'></td></tr><tr><td>Nom de connexion au serveur :</td><td><input type='text' name='serverUser' value='".$_POST['serverUser']."'></td></tr><tr><td>Mot de passe de connexion au serveur :</td><td><input type='password' name='serverPass' value='".$_POST['serverPass']."'></td></tr><tr><td><input type='radio' name='newDb' value='0'";
-	if ($_POST['newDb']=='0') {echo ' checked';}
+	if ($_POST['newDb']=='0') echo ' checked';
 	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
-	if ($_POST['newDb']<>'0') {echo ' checked';}
+	if ($_POST['newDb']<>'0') echo ' checked';
 	exit(">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table>(Nota: le mot de passe administratif initial est 'admin', changez le dans la page d'administration.)</form>");}
 
 function remoteFileSize ($phpFile) {
-	global $gitUrl;
-	$remoteCall = curl_init("$gitUrl/setup/$phpFile");
-	curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
-	curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
-   	$data = curl_exec($remoteCall);
-	$remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-	curl_close($remoteCall);
+	global $setupSourcePath;
+	if (substr($setupSourcePath,0,4)=='http') {
+	  $remoteCall = curl_init("$setupSourcePath/$phpFile");
+	  curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
+	  curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
+	  curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
+   	  $data = curl_exec($remoteCall);
+	  $remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+	  curl_close($remoteCall);}
+	else $remoteSize=filesize("$setupSourcePath/$phpFile");
 	return $remoteSize;}
 
 function imageUpdate($imgFolder,$imgId,$imgNom) {
 	#Mise à jour des images du dossier
-	global $gitUrl;
+	global $updateSourcePath;
 	$nothingToDo=true;
 	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
 		$nothingToDo=false;
@@ -92,7 +94,7 @@ function imageUpdate($imgFolder,$imgId,$imgNom) {
 		if (!file_exists($imageFile)) {
 			$nothingToDo=false;
 			echo "<tr><td>".$image[$imgNom]."</td><td>Ajout";
-			if (!@copy("$gitUrl/updates/$imageFile",$imageFile)) {echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
+			if (!@copy("$updateSourcePath/$imageFile",$imageFile)) {echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>dossier $imgFolder</td><td>Images au complet</td></tr>";}
 
@@ -100,8 +102,7 @@ function updateSQLcontent($tableFile,$tableId) {
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
 	$file = fopen ($tableFile, "r");
-	if (!$file) {
-		exit("<div class='error'>Ouverture de fichier impossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire le fichier $tableFile'.</div></div>");}
+	if (!$file) exit("<div class='error'>Ouverture de fichier impossible.<div class='subError'>L'installation/Mise à jour de remoteChampions a besoin que le moteur php puisse lire le fichier $tableFile'.</div></div>");
 	$newTable=array();
 	$nothingToDo=true;
 	while (!feof ($file)) {
@@ -199,29 +200,40 @@ if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPass
 	exit("<div class='pannel'><div class='pannelTitle'>Accès restreint</div>Désolé, l'accès à cette partie du site est protégé par un mot de passe...<br/><a class='button' href='.'>Retour au site</a></div>");}
 clearstatcache();
 #Gestion de la mise à jour par utilisation de fichiers locaux.
-if (isset($_POST['localUpdate'])) {
-  $updateDir=$_POST['localUpdate'];
-  if (!file_exists ($updateDir) or !@is_dir($updateDir)) exit("<div class='error'>Dossier introuvable.<div class='subError'>Le dossier local '$updateDir' choisi pour les mises à jour locales n'a pu être trouvé...</div></div>");
-  else {
-	  #Informations de mise à jour locale.
-	  $updateSourcePath="$updateDir";
-	  $setupSourcePath="$updateDir";
-	  $setupDate=array('date'=>new dateTime('@'.filemtime("$updateDir/setup.php")));
-	  $helpDate=array('date' => new dateTime('@'.filemtime("$updateDir/aide.md")));
-  }}
+if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') {
+  if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>Création de sous-répertoire 'updates' impossible...</div>");}
+  $target_file = 'updates/'.basename($_FILES['zipUpdate']['name']);
+  if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION)) != 'zip') exit("<div class='error'>Fichier incorrect.<div class='subError'>Le fchier de mise à jour fourni ne semble pas être un fichier ZIP.<br/>Merci de consulter la documentation...</div></div>");
+  $zip = new ZipArchive;
+  if ($zip->open($_FILES['zipUpdate']['tmp_name']) === TRUE) {
+      $zip->extractTo('updates/');
+	  $zipFolder = $zip->getNameIndex(0);
+      $zip->close();}
+  else exit("<div class='error'>Décompression impossible.<div class='subError'>".error_get_last()['message']."</div></div>");
+  if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>Format incorrect.<div class='subError'>Le fichier zip fourni ne comprend pas de sous-répertoire avec l'ensemble du débot gitHub.<br/>Merci de consulter la documentation.</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
+  $updateSourcePath="updates/$zipFolder/updates";
+  $setupSourcePath="updates/$zipFolder/setup";
+  $setupDate=array('date'=>new dateTime('@'.filemtime("updates/$zipFolder/setup/setup.php")));
+  $helpDate=array('date' => new dateTime('@'.filemtime("updates/$zipFolder/updates/aide.md")));}
+elseif (file_exists('dockerSetup')) {
+	#insertion initiale de contenu pour Docker
+	$updateSourcePath='dockerSetup';
+	$setupSourcePath='dockersetup';
+	$setupDate=array('date'=>0);
+	$helpDate=array('date'=>0);}
 else {
   $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
   $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
   $setupDate=gitFileDate('/setup/setup.php');
-  $helpDate=gitFileDate('/update/aide.md');
-}
-
+  $helpDate=gitFileDate('/update/aide.md');}
 echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
 #Récupération de la dernière version du présent script
 if (isset($setupDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$setupDate['erreur']."</div></div>";
 elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
   echo "Nouvelle version du script de mise à jour.<br/>";
-  if (@copy("$setupSourcePath/setup.php",'setup.php')) exit("Mise à jour du script de mise à jour !<br><a href='' class='button'>Relancer la mise à jour</a>");
+  if (@copy("$setupSourcePath/setup.php",'setup.php')) {
+	  echo "Mise à jour du script de mise à jour !<br>";
+	  if (!isset($_POST['autoUpdate']) or $_POST['autoUpdate']=='oui') exit ("<a href='' class='button'>Relancer la mise à jour</a>");}
   else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
 else echo "Script Déjà à jour.";
 echo "</div><div class='pannel'><div class='pannelTitle'>Mise à jour de l'aide</div>";
@@ -230,7 +242,7 @@ elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$
   echo "Mise à jour de l'aide de jeu.";
   $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
   $file = @fopen ("$updateSourcePath/aide.md", "r");
-  if (!$file) echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>La mise en forme de l'aide a besoin que le moteur php puisse lire un fichier distant (http get).</div></div>";
+  if (!$file) echo "<div class='error'>Ouverture de fichier ipossible.<div class='subError'>La mise en forme de l'aide a besoin que le moteur php puisse lire le fichier '$updateSourcePath/aide.md'.</div></div>";
   else {
     $luEncours=false;
     $entryId=0;
@@ -269,15 +281,21 @@ updateSQLcontent("$updateSourcePath/ManigancesPrincipales",'ManigancesPrincipale
 updateSQLcontent("$updateSourcePath/manigances",'manigances');
 updateSQLcontent("$updateSourcePath/decks",'decks');
 updateSQLcontent("$updateSourcePath/heros",'heros');
-echo "</table></div><div class='pannel'><div class='pannelTitle'>Ajout des images manquantes</div><table><tr><th>Image</th><th></th></tr>";
-imageUpdate('mechants','mId','mNom');
-imageUpdate('boites','bId','bNom');
-imageUpdate('heros','hId','hNom');
-echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
-#Vérification des fichiers php par leur taille.
-$phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
-foreach ($phpFiles as $phpFile) {
-	$localSize=@filesize($phpFile);
+if ($updateSourcePath=='dockerSetup') {
+	#Fin d'insertion Docker : nettoyage
+    $files = glob($updateSourcePath.'/*',GLOB_MARK);
+    foreach ($files as $file) unlink($file);
+    rmdir($updateSourcePath);}
+else {
+  echo "</table></div><div class='pannel'><div class='pannelTitle'>Ajout des images manquantes</div><table><tr><th>Image</th><th></th></tr>";
+  imageUpdate('mechants','mId','mNom');
+  imageUpdate('boites','bId','bNom');
+  imageUpdate('heros','hId','hNom');
+  echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
+  #Vérification des fichiers php par leur taille.
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
+  foreach ($phpFiles as $phpFile) {
+	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
 	echo "<tr><td>$phpFile</td><td>";
 	if ($localSize<>$remoteSize) {
@@ -285,7 +303,8 @@ foreach ($phpFiles as $phpFile) {
 		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo "Déjà à jour";
 	echo "</td></tr>";}
-echo "</table></div><div class='pannel'><div class='pannelTitle'>Fin d'installation/mise à jour</div><a class='button' href='.'>Accéder au site</a></div>";
+echo "</table></div>";}
+echo "<div class='pannel'><div class='pannelTitle'>Fin d'installation/mise à jour</div><a class='button' href='.'>Accéder au site</a></div>";
 ?>
 </body>
 </html>
