@@ -42,7 +42,8 @@ Fonctionnement testé avec succès sur les configuration/versions suivantes :
 Si vous n'avez pas de serveur web/php et ou de base de données mySQL à votre disposition mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
 Une fois votre conteneur démarré, accédez à votre site en http ou https (comme tous les mots de passe sont transmis en clair au serveur pour que leur empreinte soit comparée à celle stockée, nous vous recommandons fortement de passer par https, même si le certificat du conteneur est un certificat autosigné...)  
 Avant de pouvoir utiliser votre site *Remote Champions*, il faudra d'abord passer par la [procédure de mise à jour](https:mise-à-jour-de-remote-champions), afin qu'elle crée les éléments nécessaires dans la base de données.  
-**Nota :** Ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...
+**Nota :** Ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...  
+**Nota2 :** La procédure de mise à jour suite à démarrage de votre conteneur ne se connectera pas sur le présent dépot gitHub mais se contentera de peupler votre conteneur des éléments nécessaires à son utilisation. Vous pourrez, par la suite si vous le souhaitez, mettre à jour votre installation vers une installation plus récente.
 ## Séquence d'installation
 1. Copiez tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent dépôt vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
 1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.
@@ -105,6 +106,7 @@ Cette page est divisée en différentes zones:
 ![4](tag4.png)Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : cela pourra servir, par exemple, pour suivre des éléments spécifiques à certaines missions...  
 ![5](tag5.png)La section manigances (détaillée [plus loin](https#GestiondesManigances)).  
 ![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : Non disponible sur smartphone; En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
+![7](tag7.png)A tout moment, pendant une partie, vous pouvez cliquer sur le bouton **"Aide"** afin d'ouvrir la fenêtre d'aide de jeu qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
 ## Paramétrage initial de la partie
 ![Initialisation de la partie](illus7.png "Initialisation de la partie")  
 1. Il est conseillé de commencer par attribuer les places aux joueurs:
@@ -211,9 +213,11 @@ Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot 
 Après validation, la page d'administration du site est rechargée avec l'indication dans la présente section de la modification de paramètrage.
 ## Mise à jour
 ![Mise à jour](illus17.png)  
-Dans cette section, vous pouvez voir la dernière mise à jours disponible![1](tag1.png) (ainsi que sa date de publication).  
-Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).
-En cliquant sur le bouton "*Lancer la mise à jour*"![2](tag2.png), vous lancez le script de mise à jour. Il suivra le même processus que la finalisation de l'installation : Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour et vous pourrez relancer la mise à jour.  
+Dans cette section, vous pouvez voir le propos de la dernière mise à jours disponible![1](tag1.png) (ainsi que sa date de publication).  
+Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros).  Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).  
+Vous pouvez choisir de réaliser les mises à jour automatiquement ![3](tag3.png). Dans ce cas, tous les éléments de mise à jour seront automatiquement récupérés depuis le présent dépot gitHub.  
+Si vous préférez une mise à jour manuelle ![4](tag4.png), il vous faudra au préalable sélectionner le fichier zip ![5](tag5.png) contenant [l'export du dépot gitHub](https:#comment-récupérer-le-fichier-zip-pour-la-mise-à-jour-locale).  
+En cliquant ensuite sur le bouton "*Lancer la mise à jour*"![2](tag2.png), vous lancez le script de mise à jour. Il suivra le même processus que la finalisation de l'installation : Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour (vous devrez relancer la mise à jour par la suite pour une mise à jour par fichier Zip, ou il vous sera proposé de le faire immédiatement dans le processus de mise à jour automatique).  
 Ensuite, la page de mise à jour vous détaille toutes les étapes réalisées par ledit script et leur résultat.  
 Cette page de mise à jour se termine par un bouton "*Accèder au site*" qui vous permet de retourner à la [page de connexion](https:#page-de-connexion).
 # Accès par smartphone
@@ -235,5 +239,10 @@ Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous fait
 ## A quoi servent la section "*Autres compteurs*" ?
 La réponse est simple : à suivre tout ce que vous pouvez avoir besoin de suivre avec les autres groupes de joueurs.  
 Par exemple, vous pouvez choisir de créer un nouveau compteur pour suivre les jetons "*Retard*" du scénario de l'homme absorbant...  
+## Comment récupérer le fichier *Zip* pour la mise à jour locale ?
+![Récupérer le zip sur gitHub](illus20.png)  
+Si vous préférez effectuer une mise à jour de votre site *Remote Champions* sans que celui-ci ne copie d'informations depuis le présent dépot gitHub, il vous faudra récupérer le contenu du dépot sous la forme d'un fichier *.zip*.  
+Pour ce faire, rendez-vous à la racine du dépot, assurez-vous d'être positionné sur l'onglet "Code" ![1](tag1.png) et cliquez sur le bouton "Code" ![2](tag2.png). Ensuite, cliquez simplement sur le bouton de téléchargement de Zip ![3](tag3.png) afin de récupérer le fichier zip sur votre machine.  
+Rendez-vous ensuite dans l'[écran d'administration](https:mise-à-jour), afin de procéder à une mise à jour manuelle, en fournissant le fichier zip récupéré.
 
 ![En construction](wip.png) N'hésitez pas à passer par la section "*Issues*" du présent dépot pour poser d'autres questions ![En construction](wip.png)

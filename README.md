@@ -6,13 +6,16 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.6
+Gestion de la mise à jour indépendante (locale)  
+Aide de jeu  
 ## Version 3.5
-Première version complète de la documentation
+Première version complète de la documentation  
 Création automatique de conteneur Docker
 ## Version 3.4
 Mise en place du mode public (pour serveur disponible à plus de monde : exigence d'un mot de passe pour créer une partie)
 ## Version 3.3
-Aménagement de la fiche joueur sur smartphone selon dernières fonctionnalités ajoutées
+Aménagement de la fiche joueur sur smartphone selon dernières fonctionnalités ajoutées  
 Travail sur la documentation
 ## Version 3.2
 Travail sur la documentation.

@@ -34,7 +34,7 @@ RUN git clone https://github.com/Fouyoufr/remoteChampions.git
 RUN cp -a /remoteChampions/setup/. /var/www/html
 RUN cp -a /remoteChampions/updates/img/. /var/www/html/img
 RUN mkdir /var/www/html/dockerSetup
-RUN cp -a /remoteChampions/updates/. /var/www/html/dockerSetup
+RUN cp /remoteChampions/updates/. /var/www/html/dockerSetup
 RUN chmod -R 777 /var/www/html
 
 RUN echo '<?php\n\

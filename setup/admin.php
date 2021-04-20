@@ -135,9 +135,9 @@ if (isset($gitCommit['erreur'])) echo "<div class='error'>Echec de la requête g
 echo "<div>Mise à jour : Automatique <input type='radio' name='autoUpdate' value='oui'";
 if (!isset($_POST['autoUpdate']) or $_POST['autoUpdate']=='oui') echo ' checked';
 echo " onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ Par fichier zip: <input type='radio' name='autoUpdate' value='non'";
-if ($_POST['autoUpdate']=='non') echo ' checked';
+if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') echo ' checked';
 echo " onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip'";
-if ($_POST['autoUpdate']=='non') echo " enabled"; else echo " disabled";
+if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') echo " enabled"; else echo " disabled";
 echo "></div>\n<input type='submit' class='adminButton' value='Lancer la mise à jour'>\n</form>";
 displayBottom();
 ?>

@@ -219,8 +219,8 @@ elseif (file_exists('dockerSetup')) {
 	#insertion initiale de contenu pour Docker
 	$updateSourcePath='dockerSetup';
 	$setupSourcePath='dockersetup';
-	$setupDate=array('date'=>0);
-	$helpDate=array('date'=>0);}
+	$setupDate=array('date'=>new dateTime('@0'));
+	$helpDate=array('date'=>new dateTime('@0'));}
 else {
   $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
   $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
