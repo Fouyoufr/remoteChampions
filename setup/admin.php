@@ -132,13 +132,7 @@ if (isset($_POST['publicMode'])) echo "<div style='width:100%;font-size:2em;text
 $gitCommit=gitFileDate();
 if (isset($gitCommit['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$gitCommit['erreur']."</div></div>"; else echo "<a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>Dernière mise à jour gitHub : version ".$gitCommit['version'].", il y a ".date_diff($gitCommit['date'],new DateTime())->format('%m mois,%a jours, %h heures et %i minutes').":<br/>".$gitCommit['comments']."</a><br/><br/>";
 
-echo "<div>Mise à jour : Automatique <input type='radio' name='autoUpdate' value='oui'";
-if (!isset($_POST['autoUpdate']) or $_POST['autoUpdate']=='oui') echo ' checked';
-echo " onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ Par fichier zip: <input type='radio' name='autoUpdate' value='non'";
-if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') echo ' checked';
-echo " onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip'";
-if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') echo " enabled"; else echo " disabled";
-echo "></div>\n<input type='submit' class='adminButton' value='Lancer la mise à jour'>\n</form>";
+echo "<div>Mise à jour : Automatique <input type='radio' name='autoUpdate' value='oui' checked onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ Par fichier zip: <input type='radio' name='autoUpdate' value='non' onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip' disabled></div>\n<input type='submit' class='adminButton' value='Lancer la mise à jour'>\n</form>";
 displayBottom();
 ?>
 <script language="JavaScript">

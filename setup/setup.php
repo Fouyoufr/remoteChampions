@@ -219,8 +219,8 @@ elseif (file_exists('dockerSetup')) {
 	#insertion initiale de contenu pour Docker
 	$updateSourcePath='dockerSetup';
 	$setupSourcePath='dockersetup';
-	$setupDate=array('date'=>new dateTime('@0'));
-	$helpDate=array('date'=>new dateTime('@0'));}
+	$setupDate=array('date'=>new dateTime());
+	$helpDate=array('date'=>new dateTime());}
 else {
   $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
   $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
@@ -285,7 +285,8 @@ if ($updateSourcePath=='dockerSetup') {
 	#Fin d'insertion Docker : nettoyage
     $files = glob($updateSourcePath.'/*',GLOB_MARK);
     foreach ($files as $file) unlink($file);
-    rmdir($updateSourcePath);}
+    rmdir($updateSourcePath);
+	echo "</table></div>";}
 else {
   echo "</table></div><div class='pannel'><div class='pannelTitle'>Ajout des images manquantes</div><table><tr><th>Image</th><th></th></tr>";
   imageUpdate('mechants','mId','mNom');
