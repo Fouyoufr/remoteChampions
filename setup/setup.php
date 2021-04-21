@@ -35,8 +35,6 @@ if (!file_exists('./config.inc')) {
 	$error='';
 	if (file_exists('dockerSetup')) {
 	  #Gestion de la mise en place initiale du contenu dans un conteneur Docker.
-	  $sqlConn=mysqli_connect("","root","");
-      @mysqli_query($sqlConn,"CREATE DATABASE `remoteChampions`");
 	  $_POST['serverName']='';
 	  $_POST['serverUser']='root';
 	  $_POST['serverPass']='';
