@@ -70,11 +70,12 @@ if (!file_exists('./config.inc')) {
 	if (!isset($_POST['serverPort'])) $_POST['serverPort']='3306';
 	echo "<form action='' method='post'>";
 	if ($error<>'') echo"<div class='error'>$error</div>";
-	echo "Le site n'est pas installé, veuillez saisir les informations de connexion au serveur mySql:<br/><table><tr><td>Nom/adresse du serveur :</td><td><input type='text' name='serverName' value='".$_POST['serverName']."'></td></tr><tr><td>Numéro de port du serveur :</td><td><input type='text' name='serverPort' value='".$_POST['serverPort']."'></td></tr><tr><td>Nom de connexion au serveur :</td><td><input type='text' name='serverUser' value='".$_POST['serverUser']."'></td></tr><tr><td>Mot de passe de connexion au serveur :</td><td><input type='password' name='serverPass' value='".$_POST['serverPass']."'></td></tr><tr><td><input type='radio' name='newDb' value='0'";
-	if ($_POST['newDb']=='0') echo ' checked';
-	echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
-	if ($_POST['newDb']<>'0') echo ' checked';
-	exit(">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table>(Nota: le mot de passe administratif initial est 'admin', changez le dans la page d'administration.)</form>");}
+	if (!isset($_POST['serverName']) or (isset($_POST['serverName']) and $error<>'')) {
+	  echo "Le site n'est pas installé, veuillez saisir les informations de connexion au serveur mySql:<br/><table><tr><td>Nom/adresse du serveur :</td><td><input type='text' name='serverName' value='".$_POST['serverName']."'></td></tr><tr><td>Numéro de port du serveur :</td><td><input type='text' name='serverPort' value='".$_POST['serverPort']."'></td></tr><tr><td>Nom de connexion au serveur :</td><td><input type='text' name='serverUser' value='".$_POST['serverUser']."'></td></tr><tr><td>Mot de passe de connexion au serveur :</td><td><input type='password' name='serverPass' value='".$_POST['serverPass']."'></td></tr><tr><td><input type='radio' name='newDb' value='0'";
+	  if ($_POST['newDb']=='0') echo ' checked';
+	  echo ">Nom de la base existante<br><input type='radio' name='newDb' value='1'";
+	  if ($_POST['newDb']<>'0') echo ' checked';
+	exit(">Nom de la base à créer :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='valider'></td></tr></table>(Nota: le mot de passe administratif initial est 'admin', changez le dans la page d'administration.)</form>");}}
 
 function remoteFileSize ($phpFile) {
 	global $setupSourcePath;
@@ -233,7 +234,7 @@ else {
   $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
   $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
   $setupDate=gitFileDate('/setup/setup.php');
-  $helpDate=gitFileDate('/update/aide.md');}
+  $helpDate=gitFileDate('/updates/aide.md');}
 if ($setupSourcePath=='docker') echo "<div class='pannel'><div class='pannelTitle'>Installation initiale via Docker</div>\nFinalisation de l'installation pour conteneur Docker.";
 else {
   echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";

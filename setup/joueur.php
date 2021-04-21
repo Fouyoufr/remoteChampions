@@ -21,6 +21,7 @@ echo ">";
   <input id="tenJoueur" type="button" value="Tenace" onclick='ajaxPost("switch","tenace");'>
   <div id="etatJoueur" onclick='ajaxPost("switch","etat");'></div>
   <img src="img/first.png" id="joueurFirst" onclick='ajaxPost("switch","premier");'/>
+  <a href="aide.html" target="_blank" class="joueurAide">&nbsp;</a>
 </div>
 
 <div id="changeHerosMobile">
