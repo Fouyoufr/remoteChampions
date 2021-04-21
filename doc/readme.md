@@ -12,6 +12,7 @@
 2e. [Gestion du méchant](https:#gestion-du-méchant)  
 2f. [Gestion du joueur](https:#gestion-du-joueur)  
 2g. [Gestion des Manigances](https:#gestion-des-manigances)  
+2h. [Aides de jeu](https:#aides-de-jeu)
 ### 3. [Administration du site](https:#administration-du-site)
 3a. [Activation des boites de jeu](https:#activation-des-boites-de-jeu)  
 3b. [Liste des parties sur le serveur](https:#liste-des-parties-sur-le-serveur)  
@@ -140,7 +141,7 @@ Le mini-écran de méchant se présentera, quant à lui, comme l'illustration su
 - **Etat sonné du méchant![7](tag7.png) :** Ce bouton permet de suivre l'état "*sonné*" du méchant. Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en vert et permettre à chacun de savoir que le méchant est sonné.
 - **Etat tenace du méchant![8](tag8.png) :** Ce bouton permet de suivre l'état "*tenace*" du méchant. Si le bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en orange et permettre à chacun de savoir que le méchant est tenace (Notez que lorsque le méchant est tenace, le bouton de diminution de vie![4](tag4.png) passera en rouge pour vous rappeler que, lors d'une attaque, le méchant ne doit perdre de points de vie mais perdre son état tenace).
 - **Autres états du méchant![9](tag9.png) :** Ces bouton permettent de suivre divers traits annexes du méchant. Si un bouton est grisé (comme sur la présente illustration), cliquez dessus pour le faire passer en noir et permettre à chacun de se rappeler un trait du méchant.
-- **Affichage smatphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans la section méchant de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du méchant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
+- **Affichage smartphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans la section méchant de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du méchant, telles qu'elles seraient  affichées sur l'écran d'un smartphone.
 ## Gestion du joueur
 Cette section a pour but de décrire les informations et intéractions concernant chaque joueur  disponibles en cours de partie. La plupart de ces informations peuvent, selon le cas être trouvées à deux endroits différents.  
 Chaque section joueur de la page de partie se présentera comme l'illustration suivante:  
@@ -159,7 +160,8 @@ Le mini-écran de joueur se présentera, quant à lui, comme l'illustration suiv
    - La vie du méchant , présente en bas de l'image, vous rappelle le niveau de vie actuel du méchant.
    - L'image du méchant pourra également être encadrée d'une bordure mauve, verte et/ou orange pour vous rappeler un état correspodan (respectivement *désorienté*, *sonné* et *tenace*) du méchant.
    - **Nota :** En cliquant sur cette image de méchant sur votre smartphone, celui-ci basculera pour vous afficher la globalité de la page de partie.
-- **Affichage smatphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans les sections joueur de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du joueur correspondant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
+- **Affichage smartphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans les sections joueur de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du joueur correspondant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
+- **Aide![11](tag11.png) :** Ce bouton n'est disponible que sur l'affichage smartphone (pas dans la page de partie) du joueur et permet d'ouvrir la fenêtre d'aide de jeu qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
 **Nota :** tant qu'un joueur choisit d'afficher ses informations de personnage sur son smartphone, sa section joueur sur la page de partie continuera à être mise à jour, mais ne pourra plus y être directement modifiée. L'affichage d'un tel joueur sur la page de partie ressemblera à l'illustrtation suivante :  
 ![Section joueur, affichage seul](illus18.png "Section joueur, affichage seul")
 ## Gestion des Manigances
@@ -175,7 +177,8 @@ Cette section a pour but de décrire les informations et intéractions concernan
 - **Icônes de la manigance![11](tag11.png) :** Si une manigance annexe contient une ou plusieurs icônes, celles si seront affichées ici. Notez également les comportements particuliers suivant:
    - **Icône crise :** Le bouton de diminution de la menace sur la manigance principale![5](tag5.png) sera affiché en rouge pour rappeler à tous les joueurs qu'ils ne sont pas sensé faire de contre sur la manigance principale tant qu'une crise est présente.
    - **Icône accélération :** La valeur d'accélération de la menace sur la manigance principal![6](tag6.png) est calculée en tenant compte des l'ensemble de ces icônes.
-
+## Aides de jeu
+![En construction](wip.png) En travaux ![En construction](wip.png)
 ---
 # Administration du site
 Dans la plupart des écrans de *Remote Champions*, vous trouverez la barre d'administration (non disponible sur smartphone) illustrée ci-dessous.  

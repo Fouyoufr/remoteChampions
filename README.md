@@ -6,6 +6,9 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.7
+Aide de jeu
+Gestion du conteneur en mode local
 ## Version 3.6
 Gestion de la mise à jour indépendante (locale)  
 Aide de jeu  
