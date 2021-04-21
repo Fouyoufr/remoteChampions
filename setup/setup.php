@@ -33,13 +33,23 @@ if (!file_exists('./config.inc')) {
 	#Le fichier de paramètrage n'existe pas
 	echo "<div class='pannel'><div class='pannelTitle'>Installation initiale</div>";
 	$error='';
+	if (file_exists('dockerSetup')) {
+	  #Gestion de la mise en place initiale du contenu dans un conteneur Docker.
+	  $sqlConn=mysqli_connect("","root","");
+      @mysqli_query($sqlConn,"CREATE DATABASE `remoteChampions`");
+	  $_POST['serverName']='';
+	  $_POST['serverUser']='root';
+	  $_POST['serverPass']='';
+	  $_POST['serverDb']='remoteChampions';
+	  $_POST['newDb']='1';}
 	if(!is_writable(__DIR__)) {$error="Ecriture impossible dans le répertoire '".__DIR__."', merci de vérifier!";}
 	elseif (isset($_POST['serverName'])) {
-		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName'].":".$_POST['serverPort']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysqli_connect_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n\$adminPassword='$adminPasswordInitial';\n\$publicPass='';\n?>";
+		if (isset($_POST['serverPort'])) $_POST['serverName'].=':'.$_POST['serverPort'];
+		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('Could not connect: '.mysqli_connect_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n\$adminPassword='$adminPasswordInitial';\n\$publicPass='';\n?>";
 		if (!isset($_POST['serverDb']) or $_POST['serverDb']==''){$error="Vous n'avez pas saisi de nom pour la base...";}
 		elseif ($_POST['newDb']=='1') {
 			#Création d'une nouvelle base de donnée
-			$sqlConn=@mysqli_connect($_POST['serverName'].':'.$_POST['serverPort'],$_POST['serverUser'],$_POST['serverPass']);
+			$sqlConn=@mysqli_connect($_POST['serverName'],$_POST['serverUser'],$_POST['serverPass']);
 			if (!$sqlConn){$error="Erreur,Connection impossible, merci de vérifier.<br/><div class='subError'>".mysqli_connect_error()."</div>";}
 			else {
 				$sqlQuery="CREATE DATABASE `".$_POST['serverDb']."`";
@@ -218,7 +228,7 @@ if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') {
 elseif (file_exists('dockerSetup')) {
 	#insertion initiale de contenu pour Docker
 	$updateSourcePath='dockerSetup';
-	$setupSourcePath='dockersetup';
+	$setupSourcePath='docker';
 	$setupDate=array('date'=>new dateTime());
 	$helpDate=array('date'=>new dateTime());}
 else {
@@ -226,16 +236,18 @@ else {
   $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
   $setupDate=gitFileDate('/setup/setup.php');
   $helpDate=gitFileDate('/update/aide.md');}
-echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
-#Récupération de la dernière version du présent script
-if (isset($setupDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$setupDate['erreur']."</div></div>";
-elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
-  echo "Nouvelle version du script de mise à jour.<br/>";
-  if (@copy("$setupSourcePath/setup.php",'setup.php')) {
+if ($setupSourcePath=='docker') echo "<div class='pannel'><div class='pannelTitle'>Installation initiale via Docker</div>\nFinalisation de l'installation pour conteneur Docker.";
+else {
+  echo "<div class='pannel'><div class='pannelTitle'>Mise à jour du script d'installation</div>";
+  #Récupération de la dernière version du présent script
+  if (isset($setupDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$setupDate['erreur']."</div></div>";
+  elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
+    echo "Nouvelle version du script de mise à jour.<br/>";
+    if (@copy("$setupSourcePath/setup.php",'setup.php')) {
 	  echo "Mise à jour du script de mise à jour !<br>";
 	  if (!isset($_POST['autoUpdate']) or $_POST['autoUpdate']=='oui') exit ("<a href='' class='button'>Relancer la mise à jour</a>");}
-  else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
-else echo "Script Déjà à jour.";
+    else exit("<div class='error'>Copie échouée....<div class='subError'>".error_get_last()['message']."</div></div>");}
+  else echo "Script Déjà à jour.";}
 echo "</div><div class='pannel'><div class='pannelTitle'>Mise à jour de l'aide</div>";
 if (isset($helpDate['erreur'])) echo "<div class='error'>Echec de la requête gitHub....<div class='subError'>".$helpDate['erreur']."</div></div>";
 elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$helpDate['date']))  {
