@@ -107,7 +107,7 @@ Cette page est divisée en différentes zones:
 ![4](tag4.png)Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : cela pourra servir, par exemple, pour suivre des éléments spécifiques à certaines missions...  
 ![5](tag5.png)La section manigances (détaillée [plus loin](https#GestiondesManigances)).  
 ![6](tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : Non disponible sur smartphone; En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
-![7](tag7.png)A tout moment, pendant une partie, vous pouvez cliquer sur le bouton **"Aide"** afin d'ouvrir la fenêtre d'aide de jeu qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
+![7](tag7.png)A tout moment, pendant une partie, vous pouvez cliquer sur le bouton **"Aide"** afin d'ouvrir la fenêtre d'[aides de jeu](https:#aides-de-jeu) qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
 ## Paramétrage initial de la partie
 ![Initialisation de la partie](illus7.png "Initialisation de la partie")  
 1. Il est conseillé de commencer par attribuer les places aux joueurs:
@@ -161,7 +161,7 @@ Le mini-écran de joueur se présentera, quant à lui, comme l'illustration suiv
    - L'image du méchant pourra également être encadrée d'une bordure mauve, verte et/ou orange pour vous rappeler un état correspodan (respectivement *désorienté*, *sonné* et *tenace*) du méchant.
    - **Nota :** En cliquant sur cette image de méchant sur votre smartphone, celui-ci basculera pour vous afficher la globalité de la page de partie.
 - **Affichage smartphone![10](tag10.png) :** Ce pictogramme n'est disponible que dans les sections joueur de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du joueur correspondant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
-- **Aide![11](tag11.png) :** Ce bouton n'est disponible que sur l'affichage smartphone (pas dans la page de partie) du joueur et permet d'ouvrir la fenêtre d'aide de jeu qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
+- **Aide![11](tag11.png) :** Ce bouton n'est disponible que sur l'affichage smartphone (pas dans la page de partie) du joueur et permet d'ouvrir la fenêtre d'[aides de jeu](https:#aides-de-jeu) qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
 **Nota :** tant qu'un joueur choisit d'afficher ses informations de personnage sur son smartphone, sa section joueur sur la page de partie continuera à être mise à jour, mais ne pourra plus y être directement modifiée. L'affichage d'un tel joueur sur la page de partie ressemblera à l'illustrtation suivante :  
 ![Section joueur, affichage seul](illus18.png "Section joueur, affichage seul")
 ## Gestion des Manigances
@@ -178,7 +178,12 @@ Cette section a pour but de décrire les informations et intéractions concernan
    - **Icône crise :** Le bouton de diminution de la menace sur la manigance principale![5](tag5.png) sera affiché en rouge pour rappeler à tous les joueurs qu'ils ne sont pas sensé faire de contre sur la manigance principale tant qu'une crise est présente.
    - **Icône accélération :** La valeur d'accélération de la menace sur la manigance principal![6](tag6.png) est calculée en tenant compte des l'ensemble de ces icônes.
 ## Aides de jeu
-![En construction](wip.png) En travaux ![En construction](wip.png)
+La fenêtre d'aides de jeu s'afichera cxomme nouvelle fenêtre sur votre odinateur ou comme nouvel onglet sur votre smartphone. elle ressemble à l'illustration ci-dessous:  
+![aides de jeu](illus21.png "Aides de jeu")  
+- **Mot-clef![1](tag1.png) :** La fnêtre des aides de jeu est organisée comme une suite de mot-clefs classés alphabétiquement. En cliquant sur l'un d'entre eux, vous afficherez ou masquerez la définition/aide de jeu correspondante.  
+- **Définition![2](tag2.png) :** A chaque mot-clef correspond une définition ou une brève aide de jeu.
+- **Tout ouvrir![3](tag3.png) :** En cliquant sur cette icône vous afficherez toutes les définitions de tous les mots-clef de la liste.
+- **Haut![4](tag4.png) :**  Cliquez sur cette icône pour retourner au début de la liste des mot-clefs.
 ---
 # Administration du site
 Dans la plupart des écrans de *Remote Champions*, vous trouverez la barre d'administration (non disponible sur smartphone) illustrée ci-dessous.  
