@@ -178,7 +178,7 @@ Cette section a pour but de décrire les informations et intéractions concernan
    - **Icône crise :** Le bouton de diminution de la menace sur la manigance principale![5](tag5.png) sera affiché en rouge pour rappeler à tous les joueurs qu'ils ne sont pas sensé faire de contre sur la manigance principale tant qu'une crise est présente.
    - **Icône accélération :** La valeur d'accélération de la menace sur la manigance principal![6](tag6.png) est calculée en tenant compte des l'ensemble de ces icônes.
 ## Aides de jeu
-La fenêtre d'aides de jeu s'afichera cxomme nouvelle fenêtre sur votre odinateur ou comme nouvel onglet sur votre smartphone. elle ressemble à l'illustration ci-dessous:  
+La fenêtre d'aides de jeu s'afichera comme nouvelle fenêtre sur votre ordinateur ou comme nouvel onglet sur votre smartphone. elle ressemble à l'illustration ci-dessous:  
 ![aides de jeu](illus21.png "Aides de jeu")  
 - **Mot-clef![1](tag1.png) :** La fnêtre des aides de jeu est organisée comme une suite de mot-clefs classés alphabétiquement. En cliquant sur l'un d'entre eux, vous afficherez ou masquerez la définition/aide de jeu correspondante.  
 - **Définition![2](tag2.png) :** A chaque mot-clef correspond une définition ou une brève aide de jeu.
