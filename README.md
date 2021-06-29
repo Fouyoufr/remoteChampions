@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.8
+Ajout de StarLord, Drax et Gamora
 ## Version 3.7
 Aides de jeu
 Gestion du conteneur en mode local
