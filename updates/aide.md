@@ -81,6 +81,8 @@ Le gain est immédiat.
 Bloque un joueur qui ne peut plus attaquer le méchant tant que ce sbire est en jeu.
 # Incitation X
 Placer X menaces sur la manigance principale.
+# Interruption
+Interromp la condition de déclenchement spécifiée et se résout avant dans l’ordre des joueurs.
 # Mettre en jeu / révélé
 Mettre en jeu une carte ne signifie pas la révéler.  
 On ne tient donc pas compte des mots-clés correspondant à une révélation (ex: renfort).
@@ -131,7 +133,7 @@ Il y a 3 types de ressource (Force, Mental et Energie)  $La ressource libre peut
 # Restreint
 Un joueur ne peut pas contrôler plus de 2 cartes avec ce mot-clé simultanément (défausse possible).
 # Riposte X
-Le personnage attaqué (et uniquement lui) inflige X dégâts en retour à son attaquant.
+S’il a survécu, le personnage attaqué (et uniquement lui) inflige X dégâts en retour à son attaquant.
 # Robuste
 Le personnage ne peut être ni sonné, ni désorienté.
 # Ténacité
