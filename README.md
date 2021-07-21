@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.9.1
+Prévision de la boite "Titan Fou" (images des héros)
 ## Version 3.9
 Ajout de Venom, prévision de Nebula (images)
 ## Version 3.8

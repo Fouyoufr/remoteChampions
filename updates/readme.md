@@ -27,7 +27,7 @@
 ## Les types de boite
 (valeurs pour le champ bType)
 - b = boite de base et extensions
-- s = paquets de scénari
+- s = paquets de scénario
 - h = paquet héros
 
 ## Taille des images
