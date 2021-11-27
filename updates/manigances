@@ -8,9 +8,9 @@
 7,3,18,Offensive de Crossbones,2,1,0,0,0,0,0
 8,3,19,Employés Pris au Piège,3,0,1,0,0,0,0
 9,0,1,Désignée pour Mourir,5,0,0,0,1,0,0
-10,0,2,Les Ambitions De La Vipère,2,0,0,1,0,0,0
+10,0,2,Les Ambitions De La Vipère,2,0,0,1,0,0,1
 11,0,3,Commando Armé,3,1,0,0,1,0,0
-12,0,4,Tueur à Louer,3,0,0,0,1,0,0
+12,0,4,Tueur à Louer,3,0,0,0,1,0,1
 13,5,1,Légions D'Hydra,3,0,0,1,0,0,0
 14,5,2,Légions D'Hydra,3,0,0,1,0,0,0
 15,6,1,Ingérence En Cours,1,1,1,0,0,0,0
@@ -70,9 +70,9 @@
 69,27,7,Les Anachronautes,3,1,0,1,0,0,0
 70,28,7,Portail Temporel,2,1,0,1,0,0,0
 71,0,5,Cambriolage De Haut Vol,3,1,0,0,1,0,0
-72,0,6,Le Psycho-Magnitron,3,0,0,1,0,0,0
-73,0,7,Défi Personnel,3,0,1,0,0,0,0
-74,0,8,Surcharge Imminente,3,0,0,0,1,0,0
+72,0,6,Le Psycho-Magnitron,3,0,0,1,0,0,1
+73,0,7,Défi Personnel,3,0,1,0,0,0,1
+74,0,8,Surcharge Imminente,3,0,0,0,1,0,1
 75,0,9,Usurper Le Trône,3,1,0,1,0,0,0
 76,0,10,Génération Y,2,1,0,1,0,0,0
 77,0,11,Querelle Familiale,2,0,0,0,1,0,0
@@ -111,14 +111,14 @@
 110,30,16,Intentions meurtrières,2,1,0,1,0,0,0
 111,31,11,Pris en tenaille,3,0,0,0,2,0,0
 112,37,0,Attaque surprise des Badoon,3,0,0,0,1,0,0
-113,0,20,Syndicat du crime en devenir,2,0,0,1,0,0,0
+113,0,20,Syndicat du crime en devenir,2,0,0,1,0,0,2
 114,0,21,Eliminer les faibles,2,1,0,0,0,0,0
 115,0,22,Rivalité entre soeurs,4,0,0,0,0,0,0
 116,0,23,Frénésie Klyntar,2,1,0,1,0,0,0
 117,0,26,Réacteut en fusion,2,1,1,0,0,0,0
 118,0,25,Eglise universelle de la vérité,2,1,0,0,1,0,0
 119,0,28,Courtiser la mort,4,0,0,0,0,0,0
-120,0,27,Evil Morales,2,0,1,0,0,0,0
+120,0,27,Evil Morales,2,0,1,0,0,0,1
 121,39,26,La ville est attaquée,2,0,1,0,0,0,0
 122,39,27,La ville est attaquée,2,0,1,0,0,0,0
 123,40,6,Sanctuaire,3,0,0,0,0,0,0

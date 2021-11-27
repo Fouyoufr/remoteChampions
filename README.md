@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.14
+Entrave des manigances des héros
 ## Version 3.13b
 Essai mise en oeuvre entrave
 ## Version 3.13

@@ -35,3 +35,7 @@
 - Héros = 50x50px
 - Méchants = 50x50px
 - Boites = Hauteur 100px
+
+## Prochaines étapes envisagées :
+- Ajouter la capacité "Entrave" de toutes les manigances annexes
+- Créer une fonction de "popup" pour afficher les "une fois révélé" (et/ou une fois résolu) des manigances.
