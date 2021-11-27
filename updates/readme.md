@@ -23,6 +23,7 @@
 - maRencontre = Si est à 1, cette manigance comporte un symbole *rencontre*,
 - maAcceleration = Si est à 1, cette manigance comporte un symbole *accélération*,
 - maAmplification = Si est à 1, cette manigance comporte un symbole *amplification*.
+- maEntrave = Nombre de menace par joueur ajoutée lors de la mise en jeu
 
 ## Les types de boite
 (valeurs pour le champ bType)

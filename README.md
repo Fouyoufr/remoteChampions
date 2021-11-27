@@ -6,6 +6,12 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 3.13
+Prévision de Valkyrie (images), Entrave OK pour les 4 nouvelles boites
+## Version 3.12
+Ajout des extensions Nebula, War Machine et The Hood
+## Versio 3.11
+Préparation de la gestion de la capacité "Entrave" des manigances.
 ## Version 3.10
 Ajout de l'Ombre du Titan Fou
 Ajout du package "Fan Print" 1
