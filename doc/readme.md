@@ -177,6 +177,7 @@ Cette section a pour but de décrire les informations et intéractions concernan
 - **Icônes de la manigance![11](tag11.png) :** Si une manigance annexe contient une ou plusieurs icônes, celles si seront affichées ici. Notez également les comportements particuliers suivant:
    - **Icône crise :** Le bouton de diminution de la menace sur la manigance principale![5](tag5.png) sera affiché en rouge pour rappeler à tous les joueurs qu'ils ne sont pas sensé faire de contre sur la manigance principale tant qu'une crise est présente.
    - **Icône accélération :** La valeur d'accélération de la menace sur la manigance principal![6](tag6.png) est calculée en tenant compte des l'ensemble de ces icônes.
+- **Information sur la manigance![12](tag12.png) :** Sur certaines maingances annexes, cette icone indique la présence d'informations complétenaires. cela peut concerner des actions à faire lorsque la manigance est révélée (Ces informations seront automatiquement affichées par Remote Champions sur tous les écrans de jeu lors de l'ajout de ladite manigance) ou qu'elle est déjouée par exemple.
 ## Aides de jeu
 La fenêtre d'aides de jeu s'afichera comme nouvelle fenêtre sur votre ordinateur ou comme nouvel onglet sur votre smartphone. elle ressemble à l'illustration ci-dessous:  
 ![aides de jeu](illus21.png "Aides de jeu")  

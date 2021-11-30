@@ -24,6 +24,9 @@
 - maAcceleration = Si est à 1, cette manigance comporte un symbole *accélération*,
 - maAmplification = Si est à 1, cette manigance comporte un symbole *amplification*.
 - maEntrave = Nombre de menace par joueur ajoutée lors de la mise en jeu
+- maRevele = Information affichée en popup lorsque manigance révélée
+- maDejoue = Information affichée en popup à disparition de la manigance
+- maInfo = Information affichée en popup concernant cette manigance
 
 ## Les types de boite
 (valeurs pour le champ bType)
@@ -36,6 +39,10 @@
 - Méchants = 50x50px
 - Boites = Hauteur 100px
 
+## Evolution(s) en cours
+- Création d'une fonction d'information sur les informations des manigances annexes (popup auto sur "une fois révélé").
+
 ## Prochaines étapes envisagées :
 - Ajouter la capacité "Entrave" de toutes les manigances annexes
-- Créer une fonction de "popup" pour afficher les "une fois révélé" (et/ou une fois résolu) des manigances.
+- Popup auto pour afficher les "une fois déjoué" des manigances annexes.
+- Indication des sbires engagés avec les héros ???

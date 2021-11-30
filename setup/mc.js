@@ -15,8 +15,7 @@ function ajaxPost (key,value) {
   	if (document.getElementById('changeName')) {document.getElementById('changeName').style.display='none';}
     if (document.getElementById('changeHeros')) {document.getElementById('changeHeros').style.display='none';}
   	if (ajaxReqPost.responseText!='') {
-  		if (ajaxReqPost.responseText=='SelectManigance') {document.getElementById('NewPrincipale').style.display='block';}
-  		console.log(ajaxReqPost.responseText);}}
+  		if (ajaxReqPost.responseText=='SelectManigance') {document.getElementById('NewPrincipale').style.display='block';}}}
   ajaxReqPost.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   uri=key+'='+encodeURIComponent(value);
   if (document.getElementById('partie')) {uri+='&p='+encodeURIComponent(document.getElementById('partie').value);}
@@ -139,13 +138,36 @@ function ajaxMainSet() {
     var manigancesList = Array.prototype.slice.call(manigances);
     document.getElementById('manigancesAnnexes').innerHTML='';
     document.getElementById('maCrise').className='vieBtn';
+
+    //Popup si nouvelle manigance "une fois révélée"
+    var lastManigance=0;
+    if (xmlDoc.getElementsByTagName('lastManigance').length!=0) {
+      lastManigance=xmlDoc.getElementsByTagName('lastManigance')[0].getAttribute('id');
+      console.log(lastManigance);
+      if (document.getElementById('popupNewManigance').value!=lastManigance) {
+        document.getElementById('popupNewManigance').value=lastManigance;}
+      else {lastManigance=0;}}
+
     manigancesList.forEach(function(value,index,array) {
       maniAnnexe='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
       menaceToDisplay=value.getAttribute('mnMenace');
       if (menaceToDisplay<10) {menaceToDisplay='0'+menaceToDisplay;}
       maniAnnexe+='<div class="MA" id="MA'+value.getAttribute('maId')+'">'+menaceToDisplay+'</div>';
       maniAnnexe+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText=parseInt(document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText)+1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
-      maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom')+'<span class="tooltiptext">';
+      maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom');
+
+      //Informations sur la manigance annexe
+      maInfo='';
+      if (value.getAttribute('maRevele')!='') {maInfo='<b>Une fois révélée :</b> '+value.getAttribute('maRevele').replaceAll("'", "\\'")+'<br/>';}
+      if (value.getAttribute('maDejoue')!='') {maInfo+='<b>Une fois déjouée :</b> '+value.getAttribute('maDejoue').replaceAll("'", "\\'")+'<br/>';}
+      if (value.getAttribute('maInfo')!='') {maInfo+='<b>Informations :</b> '+value.getAttribute('maInfo').replaceAll("'", "\\'")+'<br/>';}
+      if (maInfo!='') {maniAnnexe+='<a onclick="document.getElementById(\'manigancePopup\').style.display=\'block\';document.getElementById(\'manigancePopupText\').innerHTML=\'<h2>'+value.getAttribute('maNom')+'</h2>'+maInfo+'\';"><img src=\'img/aide.png\' alt=\'Informations sur la manigance\' style=\'margin-left:10px;width:20px;height:20px;cursor:pointer;\'></a>';}
+      if (value.getAttribute('maId')==lastManigance && value.getAttribute('maRevele')!='') {
+        //Popup
+        document.getElementById('manigancePopup').style.display='block';
+        document.getElementById('manigancePopupText').innerHTML='<h2>'+value.getAttribute('maNom')+'</h2><b>Une fois révélée :</b> '+value.getAttribute('maRevele').replaceAll("'", "\\'");}
+
+      maniAnnexe+='<span class="tooltiptext">';
       if (value.getAttribute('maDeck')==0) {maniAnnexe+=value.getAttribute('hNom');}
       else {
         maniAnnexe+=value.getAttribute('dNom');
@@ -160,6 +182,7 @@ function ajaxMainSet() {
         maniganceAcc=parseInt(maniganceAcc)+parseInt(value.getAttribute('maAcceleration'));}
       if (value.getAttribute('maAmplification')>0) for (let pas=0;pas<value.getAttribute('maAmplification');pas++) maniAnnexe+='<img src="img/amplification.png" alt="Accelération"/>';
       document.getElementById('manigancesAnnexes').innerHTML+='<div class="maniganceLine'+maniAnnexe+'</div></div>';});
+
     var compteurs = xmlDoc.getElementsByTagName('compteur');
     var compteursList = Array.prototype.slice.call(compteurs);
     document.getElementById('compteursList').innerHTML='';

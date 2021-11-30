@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 4.0
+Préparation de la fonction "Une fois révélée" sur les manigances annexes.
 ## Version 3.15
 Ajout de Valkyrie
 ## Version 3.14
