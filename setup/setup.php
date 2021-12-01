@@ -222,8 +222,8 @@ if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') {
   if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>Format incorrect.<div class='subError'>Le fichier zip fourni ne comprend pas de sous-répertoire avec l'ensemble du débot gitHub.<br/>Merci de consulter la documentation.</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
   $updateSourcePath="updates/$zipFolder/updates";
   $setupSourcePath="updates/$zipFolder/setup";
-  $setupDate=array('date'=>new dateTime('@'.filemtime("updates/$zipFolder/setup/setup.php")));
-  $helpDate=array('date' => new dateTime('@'.filemtime("updates/$zipFolder/updates/aide.md")));}
+  $setupDate=array('date'=>new dateTime());
+  $helpDate=array('date' => new dateTime());}
 elseif (file_exists('dockerSetup')) {
 	#insertion initiale de contenu pour Docker
 	$updateSourcePath='dockerSetup';

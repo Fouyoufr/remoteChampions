@@ -39,10 +39,22 @@
 - Méchants = 50x50px
 - Boites = Hauteur 100px
 
+## Création de la nouvelle image Docker
+- Installer Docker for Windows
+- Reboot/installer WSL2 si nécessaire
+- Dans l'invite de commande docker, se placer dans le dossier Git contenant le fichier DockerFile puis lancer :
+    ```docker build -t fouyou/remotechampions .```
+- Se connecter à Docker Hub :
+    ```docker login```
+- Envoyer la nouvelle image sur le hub :
+    ```docker push fouyou/remotechampions```
+
 ## Evolution(s) en cours
-- Création d'une fonction d'information sur les informations des manigances annexes (popup auto sur "une fois révélé").
+- Ajouter les informations essentielles des manigances annexes :
+  - Entraves
+  - Une fois révélée
+  - Une fois déjouée
 
 ## Prochaines étapes envisagées :
-- Ajouter la capacité "Entrave" de toutes les manigances annexes
-- Popup auto pour afficher les "une fois déjoué" des manigances annexes.
 - Indication des sbires engagés avec les héros ???
+- Mise en cache Ajax ??

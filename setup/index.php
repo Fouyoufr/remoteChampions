@@ -173,7 +173,7 @@ while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick
   </div>
 
 <input id='popupNewManigance' type='hidden' value=''/>
-<input id='popupDelManigance' type='hidden' value=''/>
+<input id='popupDelManigance' type='hidden' value='0'/>
 <div id='manigancePopup'>
   <h1>Information sur la manigance annexe</h1>
   <span id='manigancePopupText'></span>

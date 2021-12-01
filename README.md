@@ -6,6 +6,10 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 4.1
+Forcer la mise à jour des fichiers .php depuis le fichier Zip si celui-ci est sélectionné.
+Gestion des informations principales sur les manigances, avec automatisation de l'affichage des "une fois révélée" et "une fois déjouée".
+(Informations non encore saisies dans la base...)
 ## Version 4.0
 Préparation de la fonction "Une fois révélée" sur les manigances annexes.
 ## Version 3.15

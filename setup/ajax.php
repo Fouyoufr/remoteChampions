@@ -34,7 +34,9 @@ if (isset($_GET['pGet'])) {
   $xml->setIndent(true);
   $xml->startElement('ajax');
     $xml->startElement('partie');
-    foreach (mysqli_fetch_assoc($sqlPartie) as $clePartie => $valPartie) {$xml->writeAttribute($clePartie, $valPartie);}
+    foreach (mysqli_fetch_assoc($sqlPartie) as $clePartie => $valPartie) {
+      $xml->writeAttribute($clePartie, $valPartie);
+      if ($clePartie=='pManiDelete') {$maniDelete=$valPartie;}}
     $xml->endElement();
     $xml->startElement('principale');
     foreach (mysqli_fetch_assoc($sqlPrincipale) as $clePrincipale => $valPrincipale) {$xml->writeAttribute($clePrincipale, $valPrincipale);}
@@ -45,11 +47,11 @@ if (isset($_GET['pGet'])) {
       $xml->endElement();}
     while ($manigance=mysqli_fetch_assoc($sqlManigances)) {
       $xml->startElement('manigance');
-      foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance, $valManigance);}
+      foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance,$valManigance);}
       $xml->endElement();}
     while ($manigance=mysqli_fetch_assoc($sqlManiHeros)) {
         $xml->startElement('manigance');
-        foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance, $valManigance);}
+        foreach ($manigance as $cleManigance => $valManigance) {$xml->writeAttribute($cleManigance,$valManigance);}
         $xml->endElement();}
     while ($joueur=mysqli_fetch_assoc($sqlJoueurs)) {
       $xml->startElement('joueur');
@@ -70,6 +72,12 @@ if (isset($_GET['pGet'])) {
     if ($sqlLastManigance) while ($lastManigance=mysqli_fetch_assoc($sqlLastManigance)) {
       $xml->startElement('lastManigance');
       $xml->writeAttribute('id',$lastManigance['mnManigance']);
+      $xml->endElement();}
+    if ($maniDelete<>0) {
+      $sqlManiDelete=mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$maniDelete'"));
+      $maniDelete='<h2>'.$sqlManiDelete['maNom'].'</h2><b>Une fois déjouée :</b> '.nl2br($sqlManiDelete['maDejoue']);
+      $xml->startElement('maniDelete');
+      $xml->writeAttribute('text',$maniDelete);
       $xml->endElement();}
   $xml->endElement();
   header('Content-type: text/xml');
@@ -234,13 +242,19 @@ if(isset($_POST['newManigance'])) {
   if ($maniDetail['maEntrave']!=0) {
      $nbJoueurs=mysqli_num_rows(sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'"));
      $maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];  }
-  sql_get("INSERT INTO `maniAnnexes` (`mnPartie`,`mnManigance`,`mnMenace`) VALUES ('$partieId','$manigance','$maInit')");}
+  sql_get("INSERT INTO `maniAnnexes` (`mnPartie`,`mnManigance`,`mnMenace`) VALUES ('$partieId','$manigance','$maInit')");
+  sql_get("UPDATE `parties` SET `pManiDelete`='0' WHERE `pUri`='$partieId'");}
 
 if(isset($_POST['MA'])) {
   $manigance=htmlspecialchars($_POST['MA']);
   $menace=htmlspecialchars($_POST['menace']);
-  if ($menace<1) {sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");}
-  else {sql_get("UPDATE `maniAnnexes` SET `mnMenace`='$menace' WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");}}
+  if ($menace<1) {
+    sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");
+    if (mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$manigance'"))['maDejoue']<>'') {sql_get("UPDATE `parties` SET `pManiDelete`='$manigance' WHERE `pUri`='$partieId'");}
+  else {sql_get("UPDATE `parties`SET `pManiDelete`='0' WHERE `pUri`='$partieId'");}}
+  else {
+    sql_get("UPDATE `maniAnnexes` SET `mnMenace`='$menace' WHERE `mnPartie`='$partieId' AND `mnManigance`='$manigance'");
+    sql_get("UPDATE `parties`SET `pManiDelete`='0' WHERE `pUri`='$partieId'");}}
 
 if(isset($_POST['NewPrincipale'])) {
   $manigance=htmlspecialchars($_POST['NewPrincipale']);
