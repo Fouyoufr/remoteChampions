@@ -17,6 +17,7 @@
 	.pannelTitle {background-color:black;color:white;font-weight:bold;font-size:2em;margin:-2px;margin-bottom:2px;padding-left:10px;text-align:left;}
 	.error {background-color:red;color:white;font-weight:bold;width:100%;text-align:center;font-size:1.5em;margin:-2px;padding:3px;}
 	.subError {text-align:left;font-size:.5em;font-style:italic;color:lightgray;font-weight:normal;}
+	.gras {font-weight:bold;}
 	input {background:transparent;}
 	input[type=submit] {font-size:1.5em;font-weight:bold;color:white;background-color:black;margin-top:10px;display:inline-block;}
 	a.button {margin-left:calc(50% - 100px);width:200px;font-size:1.5em;font-weight:bold;color:black;background-color:darkgray;margin-top:10px;display:inline-block;padding:4px;text-decoration:none;border:solid 2px black;text-align:center;}
@@ -135,7 +136,7 @@ function updateSQLcontent($tableFile,$tableId) {
 				$sqlQuery="INSERT INTO `$tableId` (".substr($sqlQuery1,0,-2).substr($sqlQuery2,0,-2).')';
 				sql_get($sqlQuery);
 				$sqlError=mysqli_error($sqlConn);
-				if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
+				if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
 				echo "</td></tr>";}
 			else {
 				$news=false;
@@ -150,7 +151,7 @@ function updateSQLcontent($tableFile,$tableId) {
 					$sqlQuery=substr($sqlQuery,0,-2)." WHERE `$cols[0]`='".mysqli_real_escape_string($sqlConn,rtrim($line[0]))."'";
 					sql_get($sqlQuery);
 					$sqlError=mysqli_error($sqlConn);
-					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
+					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
 					echo '<br/>';}}}}
 	#Supression des enregistrements dipsarus.
 	$oldTable=sql_get("SELECT `$cols[0]`, `$cols[1]` FROM $tableId");
@@ -160,7 +161,7 @@ function updateSQLcontent($tableFile,$tableId) {
 			echo "<tr><td>$tableId</td><td>Suppression de l'entrée '".$oldLine[$cols[0]]."'";
 			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
 			$sqlError=mysqli_error($sqlConn);
-			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><b>$sqlError</b></div></div>";}
+			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
 			echo "</td></tr>";}}
 	if ($nothingToDo) echo "<tr><td>$tableId</td><td>Tout est en ordre</td></tr>";}
 
@@ -191,14 +192,14 @@ function sqlUpdate($sqlUpdateFile) {
 					$columnAdd="ALTER TABLE $tableId ADD COLUMN `$key` $value;";
 					sql_get($columnAdd);
 					$sqlError=mysqli_error($sqlConn);
-					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$columnAdd<br/><b>$sqlError</b></div></div>";}
+					if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$columnAdd<br/><span class='gras'>$sqlError</span></div></div>";}
 					echo "</td></tr>";}}}
 		if ($addTab) {
 			echo "<tr><td>$tableId</td><td>Création de la table dans la base de donnée.";
 			$tableAdd=substr($tableAdd,0,-2).") $engine";
 			sql_get($tableAdd);
 			$sqlError=mysqli_error($sqlConn);
-			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$tableAdd<br/><b>$sqlError</b></div></div>";}
+			if ($sqlError!='') {echo "<div class='error'>Erreur<div class='subError'>$tableAdd<br/><span class='gras'>$sqlError</span></div></div>";}
 			echo "</td></tr>";}
 		elseif($nothingToDo) echo "<tr><td>$tableId</td><td>Déja à jour</td></tr>";}
 	fclose($file);}	
@@ -305,7 +306,7 @@ else {
   imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>Vérification des fichiers PHP</div><table><tr><th>Fichier</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

@@ -165,14 +165,14 @@ function ajaxMainSet() {
       maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom');
       //Informations sur la manigance annexe
       maInfo='';
-      if (value.getAttribute('maRevele')!='') {maInfo='<b>Une fois révélée :</b> '+value.getAttribute('maRevele')+'<br/>';}
-      if (value.getAttribute('maDejoue')!='') {maInfo+='<b>Une fois déjouée :</b> '+value.getAttribute('maDejoue')+'<br/>';}
-      if (value.getAttribute('maInfo')!='') {maInfo+='<b>Informations :</b> '+value.getAttribute('maInfo')+'<br/>';}
-      if (maInfo!='') {maniAnnexe+='<a onclick="document.getElementById(\'manigancePopup\').style.display=\'block\';document.getElementById(\'manigancePopupText\').innerHTML=\'<h2>'+value.getAttribute('maNom')+'</h2>'+maInfo.replaceAll('"','&quot;').replace("'","\\'")+'\';"><img src=\'img/aide.png\' alt=\'Informations sur la manigance\' style=\'margin-left:10px;width:20px;height:20px;cursor:pointer;\'></a>';}
+      if (value.getAttribute('maRevele')!='') {maInfo='<span class="manigancePopupType">Une fois révélée :</span> '+value.getAttribute('maRevele')+'<br/>';}
+      if (value.getAttribute('maDejoue')!='') {maInfo+='<span class="manigancePopupType">Une fois déjouée :</span> '+value.getAttribute('maDejoue')+'<br/>';}
+      if (value.getAttribute('maInfo')!='') {maInfo+='<span class="manigancePopupType">Informations :</span> '+value.getAttribute('maInfo')+'<br/>';}
+      if (maInfo!='') {maniAnnexe+='<a onclick="document.getElementById(\'manigancePopup\').style.display=\'block\';document.getElementById(\'manigancePopupText\').innerHTML=\'<h2>'+value.getAttribute('maNom')+'</h2>'+maInfo.replaceAll("'","\\'").replaceAll('[pp]','<img src="img/pp.png" alt="par joueur" class="pp"/>').replaceAll('"','&quot;')+'\';"><img src=\'img/aide.png\' alt=\'Informations sur la manigance\' class=\'maniPopupInfo\'></a>';}
       if (value.getAttribute('maId')==lastManigance && value.getAttribute('maRevele')!='') {
         //Popup
         document.getElementById('manigancePopup').style.display='block';
-        document.getElementById('manigancePopupText').innerHTML='<h2>'+value.getAttribute('maNom')+'</h2><b>Une fois révélée :</b> '+value.getAttribute('maRevele').replaceAll("'", "\\'");}
+        document.getElementById('manigancePopupText').innerHTML='<h2>'+value.getAttribute('maNom')+'</h2><span class="manigancePopupType">Une fois révélée :</span> '+value.getAttribute('maRevele').replaceAll('[pp]','<img src="img/pp.png" alt="par joueur" class="pp"/>').replace("'","\'");}
       maniAnnexe+='<span class="tooltiptext">';
       if (value.getAttribute('maDeck')==0) {maniAnnexe+=value.getAttribute('hNom');}
       else {

@@ -6,6 +6,9 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## version 4.1a
+Nettoyage des styles inclus dans les fichiers pour complèter le css
+Début déplacement des textes dans fichiers à part
 ## Version 4.1
 Forcer la mise à jour des fichiers .php depuis le fichier Zip si celui-ci est sélectionné.
 Gestion des informations principales sur les manigances, avec automatisation de l'affichage des "une fois révélée" et "une fois déjouée".

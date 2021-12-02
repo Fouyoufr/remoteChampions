@@ -1,5 +1,6 @@
 <?php
 include 'include.php';
+global $str;
 
 if (isset($_GET['jGet'])) {
   $jId=htmlspecialchars($_GET['jGet']);
@@ -75,7 +76,7 @@ if (isset($_GET['pGet'])) {
       $xml->endElement();}
     if ($maniDelete<>0) {
       $sqlManiDelete=mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$maniDelete'"));
-      $maniDelete='<h2>'.$sqlManiDelete['maNom'].'</h2><b>Une fois déjouée :</b> '.nl2br($sqlManiDelete['maDejoue']);
+      $maniDelete=str_replace('[pp]','<img src="img/pp.png" alt="'.$str['perPlayer'].'" class="pp"/>','<h2>'.$sqlManiDelete['maNom'].'</h2><span class="manigancePopupType">'.$str['Foiled'].' :</span> '.nl2br($sqlManiDelete['maDejoue']));
       $xml->startElement('maniDelete');
       $xml->writeAttribute('text',$maniDelete);
       $xml->endElement();}

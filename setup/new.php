@@ -6,7 +6,7 @@ function displaydeck($deck) {
     $imageBoite=$deck['dBoite'];}
   echo "<div class='newEncadre'><input type='checkbox' name='deck".$deck['dId']."' class='deckCheck'";
   if (empty($_POST) or $_POST['deck'.$deck['dId']]=='on') echo ' checked';
-  echo "><label for='deck".$deck['dId']."'style='display:inline-block;'>".$deck['dNom']."</label></div>";}
+  echo "><label for='deck".$deck['dId']."'>".$deck['dNom']."</label></div>";}
 $title='Remote Champions - Création de partie';
 $bodyClass='new';
 include 'include.php';

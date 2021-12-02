@@ -24,9 +24,9 @@
 - maAcceleration = Si est à 1, cette manigance comporte un symbole *accélération*,
 - maAmplification = Si est à 1, cette manigance comporte un symbole *amplification*.
 - maEntrave = Nombre de menace par joueur ajoutée lors de la mise en jeu
-- maRevele = Information affichée en popup lorsque manigance révélée
-- maDejoue = Information affichée en popup à disparition de la manigance
-- maInfo = Information affichée en popup concernant cette manigance
+- maRevele = Information affichée en popup lorsque manigance révélée ([pp]affiche le symbole "par joueur")
+- maDejoue = Information affichée en popup à disparition de la manigance ([pp]affiche le symbole "par joueur")
+- maInfo = Information affichée en popup concernant cette manigance ([pp]affiche le symbole "par joueur")
 
 ## Les types de boite
 (valeurs pour le champ bType)
@@ -54,6 +54,7 @@
   - Entraves
   - Une fois révélée
   - Une fois déjouée
+  - Déplacement des textes dans des fcihers de langue
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???

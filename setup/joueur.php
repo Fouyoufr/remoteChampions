@@ -11,7 +11,7 @@ echo ">";
   </div>
   <div id="picJoueur" onclick='document.getElementById("changeHerosMobile").style.display="block";'></div>
   <div id="joueur" onclick='document.getElementById("changeNameOld").innerText=document.getElementById("joueur").innerText;document.getElementById("changeNameMobile").style.display="block";document.getElementById("playerName").focus();'></div>
-  <div style='text-align:center;margin:2%;'>
+  <div class='vieJoueur'>
     <input class="vieJoueur" id="vieJoueurMoins" type="button" value="<" onclick='document.getElementById("vieJoueur").innerText-=1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText);'>
     <div id="vieJoueur"></div>
     <input class="vieJoueur" type="button" value=">" onclick='document.getElementById("vieJoueur").innerText=parseInt(document.getElementById("vieJoueur").innerText)+1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText);'>
@@ -34,7 +34,7 @@ echo ">";
   while ($hero=mysqli_fetch_assoc($heros)) echo '<option value="'.$hero['hId'].'">'.$hero['hNom'].'</option>';7
 ?>
     </select>
-    <div style="text-align:center;margin-top:10%;">
+    <div class="buttonChange">
     <input type ="submit" value="Confirmer">
     <input type="button" value="Annuler" onclick='document.getElementById("changeHerosMobile").style.display="none";' class='bouton'>
     </div>
@@ -46,7 +46,7 @@ echo ">";
   <form class="mobilePopupContent" onsubmit='ajaxPost("changeName",document.getElementById("playerName").value);document.getElementById("changeNameMobile").style.display="none";return false;'>
     Entrez le nouveau nom à affecter à <span id="changeNameOld"></span><br/><br/>
     <input type='text' id='playerName' minlength="4" maxlength="50"><br/><br/>
-    <div style="text-align:center;">
+    <div class="centre">
       <input type ="submit" value="Confirmer">
       <input type="button" value="Annuler" onclick='document.getElementById("changeNameMobile").style.display="none";'>
     </div>
