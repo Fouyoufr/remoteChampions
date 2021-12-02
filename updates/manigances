@@ -7,9 +7,9 @@
 6,3,17,Offensive De Crossbones,2,1,0,0,1,0,0,,,
 7,3,18,Offensive de Crossbones,2,1,0,0,0,0,0,,,
 8,3,19,Employés Pris au Piège,3,0,1,0,0,0,0,,,
-9,0,1,Désignée pour Mourir,5,0,0,0,1,0,0,,,
-10,0,2,Les Ambitions De La Vipère,2,0,0,1,0,0,1,,,
-11,0,3,Commando Armé,3,1,0,0,1,0,0,,,
+9,0,1,Désignée pour Mourir,5,0,0,0,1,0,0,Le joueur de Clint Barton cherche Mockingbird dans sa main; son deck; sa pile de défausse ou zone de jeu et la place; face visible; sous cette carte.,Renvoyez Mockingbird dans la main de son propriétaire,
+10,0,2,Les Ambitions De La Vipère,2,0,0,1,0,0,1,Placez 1[pp] menace supplémentaire sur cette carte (déja calculé sur Remote Champions),,
+11,0,3,Commando Armé,3,1,0,0,1,0,0,Dans l'ordre des joueurs; chaque joueur défausse la carte du dessus du deck rencontre et subit 1 dégât pour chaque icône de boost défaussée par cet effet.,,
 12,0,4,Tueur à Louer,3,0,0,0,1,0,1,,,
 13,5,1,Légions D'Hydra,3,0,0,1,0,0,0,,,
 14,5,2,Légions D'Hydra,3,0,0,1,0,0,0,,,
@@ -69,21 +69,21 @@
 68,27,6,Les Anachronautes,3,1,0,1,0,0,0,,,
 69,27,7,Les Anachronautes,3,1,0,1,0,0,0,,,
 70,28,7,Portail Temporel,2,1,0,1,0,0,0,,,
-71,0,5,Cambriolage De Haut Vol,3,1,0,0,1,0,0,,,
-72,0,6,Le Psycho-Magnitron,3,0,0,1,0,0,1,,,
-73,0,7,Défi Personnel,3,0,1,0,0,0,1,,,
-74,0,8,Surcharge Imminente,3,0,0,0,1,0,1,,,
+71,0,5,Cambriolage De Haut Vol,3,1,0,0,1,0,0,Chaque joueur place face cachée sur cette carte une carte prise au hasard dans sa main.,Renvoyez dans la main de son propriétaire chaque carte face cachée qui est sur cette carte.,
+72,0,6,Le Psycho-Magnitron,3,0,0,1,0,0,1,Placez 1[pp] menace supplémentaire sur cette carte (déja calculé sur Remote Champions),,
+73,0,7,Défi Personnel,3,0,1,0,0,0,1,Placez 1[pp] menace supplémentaire sur cette carte (déja calculé sur Remote Champions),,
+74,0,8,Surcharge Imminente,3,0,0,0,1,0,1,Placez 1[pp] menace supplémentaire sur cette carte (déja calculé sur Remote Champions),,
 75,0,9,Usurper Le Trône,3,1,0,1,0,0,0,,,
-76,0,10,Génération Y,2,1,0,1,0,0,0,,,
-77,0,11,Querelle Familiale,2,0,0,0,1,0,0,,,
-78,0,12,Ouvrir La Dimension Noire,3,1,0,0,1,0,0,,,
-79,0,13,Destruction Totale,2,1,0,1,0,0,0,,,
-80,0,14,Vol de technologie,2,1,0,0,0,0,0,,,
+76,0,10,Génération Y,2,1,0,1,0,0,0,Défaussez une carte du dessus du deck de chaque joueur pour chaque allié et chaque soutien INDIVIDU en jeu.,,
+77,0,11,Querelle Familiale,2,0,0,0,1,0,0,Placez 1 menace supplémentaire sur cette carte pour chaque carte ASGARD en jeu,,
+78,0,12,Ouvrir La Dimension Noire,3,1,0,0,1,0,0,Placez face cachée sous cette manigance la carte du dessus du deck INVOCATION.,Mélangez dans le deck INVOCATION la carte INVOCATION qui était située sous cette manigance.,
+79,0,13,Destruction Totale,2,1,0,1,0,0,0,,,Aucune menace ne peut être retirée de cette manigance tant que l'Abomination est en jeu.
+80,0,14,Vol de technologie,2,1,0,0,0,0,0,,,Chaque carte TECH perd le texte imprimé dans sa boite de texte.
 81,0,15,Vendetta,2,1,0,0,0,1,0,,,
-82,0,16,Brasier infernal,3,1,0,0,0,0,0,,,
-83,0,17,Les ordres de mère,2,1,0,0,0,0,0,,,
-84,0,18,Extorsion Cataclysmique,2,1,1,0,0,0,0,,,
-85,0,19,La prochaine évolution,2,1,0,0,0,0,0,,,
+82,0,16,Brasier infernal,3,1,0,0,0,0,0,,,REPONSE FORCEE : Après le début de la phase du méchant, infligez 2 dégâts indirects à chaque joueur.
+83,0,17,Les ordres de mère,2,1,0,0,0,0,0,,,En tant que coût supplémentaire pour effectuer une attaque de base; le héros qui effectue l'attaque doit dépenser 1 ressource de n'importe quel type.
+84,0,18,Extorsion Cataclysmique,2,1,1,0,0,0,0,Incitation 1. (Quand cette carte est révélée; placez 1 menace sur la manigance principale.),,
+85,0,19,La prochaine évolution,2,1,0,0,0,0,0,,,Augmentez de 1 le nombre d'icônes de boost sur chaque carte Rencontre
 86,29,10,Blocus,2,0,1,0,0,0,0,,,
 87,29,11,Bombardement,3,1,0,0,0,0,0,,,
 88,29,12,Flotte surpuissante,1,0,0,1,0,0,0,,,
@@ -112,13 +112,13 @@
 111,31,11,Pris en tenaille,3,0,0,0,2,0,0,,,
 112,37,0,Attaque surprise des Badoon,3,0,0,0,1,0,0,,,
 113,0,20,Syndicat du crime en devenir,2,0,0,1,0,0,2,,,
-114,0,21,Eliminer les faibles,2,1,0,0,0,0,0,,,
-115,0,22,Rivalité entre soeurs,4,0,0,0,0,0,0,,,
-116,0,23,Frénésie Klyntar,2,1,0,1,0,0,0,,,
-117,0,26,Réacteut en fusion,2,1,1,0,0,0,0,,,
-118,0,25,Eglise universelle de la vérité,2,1,0,0,1,0,0,,,
-119,0,28,Courtiser la mort,4,0,0,0,0,0,0,,,
-120,0,27,Evil Morales,2,0,1,0,0,0,1,,,
+114,0,21,Eliminer les faibles,2,1,0,0,0,0,0,,,Chaque ennemi gagne +2 ATQ.
+115,0,22,Rivalité entre soeurs,4,0,0,0,0,0,0,,,Les joueurs autres que Gamora ne peuvent retirer de menaces de "Rivalité entre soeurs".<br/>REPONSE FORCEE : Après le début de la phase du méchant; attribuez 1 carte rencontre face cachée à Gamora.
+116,0,23,Frénésie Klyntar,2,1,0,1,0,0,0,,,Les menaces sur cette manigance ne peuvent pas être retirées tant qu'il y a un ennemi SYMBIOTE en jeu.
+117,0,26,Réacteur en fusion,2,1,1,0,0,0,0,,Infligez 1 dégât à chaque personnage ami en jeu.,
+118,0,25,Eglise universelle de la vérité,2,1,0,0,1,0,0,,,REPONSE FORCEE : Après qu'un joueur a réinitialisé son deck; inclinez l'identité de ce joueur et sonnez-la.
+119,0,28,Courtiser la mort,4,0,0,0,0,0,0,,,Traitez les zones de texte imprimées des héros comme si elles étaient vierges
+120,0,27,Evil Morales,2,0,1,0,0,0,1,Placez 1[pp] menace supplémentaire sur cette carte (déja calculé sur Remote Champions),,Ultimatum ne peut être sonné.
 121,39,26,La ville est attaquée,2,0,1,0,0,0,0,,,
 122,39,27,La ville est attaquée,2,0,1,0,0,0,0,,,
 123,40,6,Sanctuaire,3,0,0,0,0,0,0,,,
@@ -135,16 +135,16 @@
 134,42,8,Guerre sur Asgard,6,0,0,0,1,0,0,,,
 135,42,9,Folie sur Midgard,5,0,1,0,0,0,0,,,
 137,42,10,Ouvrir le Bifrost,3,0,0,1,0,0,0,,,
-138,50,2,Brèche de sécurité,2,0,0,0,0,1,0,,,
+138,50,2,Brèche de sécurité,2,0,0,0,0,1,2,Chaque joueur place face cachée sur cette carte une carte prise au hasard dans sa main.,Renvoyez dans la main de son propriétaire chaque carte face cachée qui est sur cette carte.,Victoire 2
 139,50,8,Protocoles de Défense,2,0,0,0,0,0,0,,,
 140,50,13,Récupérer l'armure d'Odin,2,0,0,0,0,0,0,,,
-141,38,21,Réacteur en surchauffe,3,0,1,0,0,0,0,,,
-142,38,22,Réacteur en surchauffe,3,0,1,0,0,0,0,,,
-143,43,3,L'ordre Noir,2,1,0,1,0,0,0,,,
-144,44,5,Vaisseau de débarquement,2,1,0,0,1,0,0,,,
-145,44,6,Vaisseau de débarquement,2,1,0,0,1,0,0,,,
-146,0,24,Instinct de Préservation,2,1,0,0,0,0,0,,,
-147,0,29,Spectacle lumineux mortel,3,0,1,0,0,0,1,,,
+141,38,21,Réacteur en surchauffe,3,0,1,0,0,0,0,Chaque joueur doit choisir : soit subir 2 dégâts; soit placer 2 menaces sur cette carte,,
+142,38,22,Réacteur en surchauffe,3,0,1,0,0,0,0,Chaque joueur doit choisir : soit subir 2 dégâts; soit placer 2 menaces sur cette carte,,
+143,43,3,L'ordre Noir,2,1,0,1,0,0,0,,,Tant qu'un sbire ORDRE NOIR est en jeu; aucune menace ne peut être retirée de cette manigance annexe.
+144,44,5,Vaisseau de débarquement,2,1,0,0,1,0,0,,Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire; engagé avec le joueur qui a déjoué cette manigance.,
+145,44,6,Vaisseau de débarquement,2,1,0,0,1,0,0,,Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire; engagé avec le joueur qui a déjoué cette manigance.,
+146,0,24,Instinct de Préservation,2,1,0,0,0,0,0,,,Nebula perd -1 CTR; -1 ATQ et -1 DEF<br/>Gamora gagne +1 ATQ et ses attaques gagnent Perçant.
+147,0,29,Spectacle lumineux mortel,3,0,1,0,0,0,1,,Infligez 1 dégât à chaque identité.,
 148,52,12,Ambition démesurée,2,0,0,0,0,0,2,,,
 149,53,1,Mode bestial,3,1,0,0,0,0,0,,,
 150,54,1,En quête de sang,2,1,0,1,0,0,0,,,
@@ -155,4 +155,6 @@
 155,57,3,Incendie au large,3,1,0,0,1,0,0,,,
 156,57,4,Course poursuite,3,1,0,0,1,0,0,,,
 157,58,1,Les meilleurs talents,3,0,0,0,0,0,2,,,
-158,0,30,Puissants enchantements,2,0,0,0,1,0,1,,,
+158,0,30,Puissants enchantements,2,0,0,0,1,0,1,,,Les joueurs ne peuvent pas défausser les attachements qui sont attachés à des personnages amis.
+159,50,1,Sécuriser l'aire d'atterrissage,2,0,0,0,0,0,1,Retournez cette carte,
+160,23,2,Juge; juré et bourreau,3,1,0,0,1,0,0,,,REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie; placez 2 menaces sur la manigance principale.

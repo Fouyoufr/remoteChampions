@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 4.1b
+Complément d'informations sur les manigances annexes de tous les héros.
 ## version 4.1a
 Nettoyage des styles inclus dans les fichiers pour complèter le css
 Début déplacement des textes dans fichiers à part

@@ -54,7 +54,7 @@
   - Entraves
   - Une fois révélée
   - Une fois déjouée
-  - Déplacement des textes dans des fcihers de langue
+- Déplacement des textes dans des fcihers de langue
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
