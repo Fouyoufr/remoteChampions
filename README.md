@@ -7,7 +7,7 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 
 # Historique des changements
 ## Version 4.2
-Informations sur les maniganecs annexes à date.
+Informations sur les manigances annexes à date.
 ## Version 4.1c
 Travail sur externalisation des chaines de caractères
 ## Version 4.1b
