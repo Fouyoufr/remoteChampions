@@ -160,5 +160,5 @@
 160,23,2,Juge; juré et bourreau,3,1,0,0,1,0,0,,,REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie; placez 2 menaces sur la manigance principale.
 161,50,3,Sauver le resto de Shawarmas,2,0,0,0,0,0,1,,Chaque joueur mélange 1 exemplaire de Shawarma dans son deck. Retournez cette carte.,
 162,50,8,Pirater l'ordinateur du Sanctuaire,2,0,1,0,0,0,1,,Chaque joueur cherche 1 carte dans son deck ou sa pile de défausse; l'ajoute à sa main et mélange son deck. Retournez cette carte.
-163,50,13,Trouver les pierres des Nornes,3,1,0,0,1,0,,Chaque joueur met en jeu sous son Contrôle; un exemplaire de l'amélioration pierre des Nornes; face Mise en place visible. Retournez cette carte,Aucune menace ne peut être retirée de cette manigance à moins qu'Hela n'ait le trait BLESSE.
-164,50,Ouvrir les cachots,3,1,0,0,0,1,0,,Chaque joueur choisit 1 allié CAPTIF du set Campagne et le met en jeu sous son contrôle. Retournez cette carte.,
+163,50,13,Trouver les pierres des Nornes,3,1,0,0,1,0,0,,Chaque joueur met en jeu sous son Contrôle; un exemplaire de l'amélioration pierre des Nornes; face Mise en place visible. Retournez cette carte,Aucune menace ne peut être retirée de cette manigance à moins qu'Hela n'ait le trait BLESSE.
+164,50,19,Ouvrir les cachots,3,1,0,0,0,1,0,,Chaque joueur choisit 1 allié CAPTIF du set Campagne et le met en jeu sous son contrôle. Retournez cette carte.,
