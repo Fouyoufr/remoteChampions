@@ -105,10 +105,10 @@
       'gameUri'=>'Clef d\'accès',
       'availableDecks'=>'Decks disponibles pour cette partie',
       'unselectAll'=>'Tout déselectionner',
-      'selectAll'=>'Tout sélectionner'
-
-
-
-
+      'selectAll'=>'Tout sélectionner',
+      'alter'=>'Alter-Égo',
+      'heros'=>'Super-Héros',
+      'SelectDeck'=>'Choisissez le deck',
+      'heroSchemes'=>'Manigances des héros'
   );
 ?>

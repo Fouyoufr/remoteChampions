@@ -105,8 +105,10 @@
       'gameUri'=>'Access key',
       'availableDecks'=>'Available decks for this game',
       'unselectAll'=>'Unselect all',
-      'selectAll'=>'Salect all'
-
-
+      'selectAll'=>'Salect all',
+      'alter'=>'Alter-Ego',
+      'heros'=>'Heros',
+      'SelectDeck'=>'Select Deck',
+      'heroSchemes'=>'Heros\' Schemes'
   );
 ?>

@@ -83,7 +83,7 @@ function ajaxJoueurSet() {
       var vie=xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jVie');
       if (vie<10) {vie="0"+vie;}
       var etat=xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jStatut');
-      if (etat=='AE') {etat='Alter-Égo';} else {etat='Super-Héros';}
+      if (etat=='AE') {etat=lang['alter'];} else {etat=lang['heros'];}
       var jId=xmlDoc.getElementsByTagName('joueur')[0].getAttribute('jId');
       document.getElementById('joueur').innerText=joueur;
       document.getElementById('vieJoueur').innerText=vie;
@@ -125,13 +125,13 @@ function ajaxMainSet() {
     var maniganceAcc=partie.getAttribute('pManiAcceleration');
     var Decks=xmlDoc.getElementsByTagName('deck');
     var DeckList=Array.prototype.slice.call(Decks);
-    var newDecks="<option value='0'>--Choisissez le deck--</option>";
+    var newDecks="<option value='0'>--"+lang['selectDeck']+"--</option>";
     var newDeckSeparation=false;
     //document.getElementById('deck').innerHTML=document.getElementById('deckOptionsInit').value;
     DeckList.forEach(function(value,index,array) {
       if (!newDeckSeparation && value.getAttribute('dId').charAt(0)=='h') {
         newDeckSeparation=true;
-        newDecks+='<option disabled>Manigances des héros</option>';}
+        newDecks+='<option disabled>'+lang['heroSchemes']+'</option>';}
       newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';});
     if (document.getElementById('NewManigance').style.display!='block') {document.getElementById('deck').innerHTML=newDecks;}
     var manigances = xmlDoc.getElementsByTagName('manigance');
@@ -216,7 +216,7 @@ function ajaxMainSet() {
       var vie=jDoc.getAttribute('jVie');
       if (vie<10) {vie="0"+vie;}
       var etat=jDoc.getAttribute('jStatut');
-      if (etat=='AE') {etat='Alter-Égo';} else {etat='Super-Héros';}
+      if (etat=='AE') {etat=lang['alter'];} else {etat=lang['hero'];}
       if (jDoc.getAttribute('jDesoriente')==0) { document.getElementById('desoriente'+numero).className='disabledButton';} else {document.getElementById('desoriente'+numero).className='desoriente';}
       if (jDoc.getAttribute('jSonne')==0) {document.getElementById('sonne'+numero).className='disabledButton';} else {document.getElementById('sonne'+numero).className='sonne';}
       if (jDoc.getAttribute('jTenace')==0) {document.getElementById('tenace'+numero).className='disabledButton';} else {document.getElementById('tenace'+numero).className='tenace';}
@@ -263,7 +263,6 @@ function ajaxMainSet() {
     if (nbJoueurs<2 && document.getElementById('joueur2Disp').style.visibility!='hidden') {document.getElementById('joueur2Disp').style.visibility='hidden'}
     if (nbJoueurs<1 && document.getElementById('joueur1Disp').style.visibility!='hidden') {document.getElementById('joueur1Disp').style.visibility='hidden'}
     if (nbJoueurs<2) {document.getElementById('indexFirst').style.visibility='hidden';}
- 
 }}}
 
 function ajaxMechantSet() {

@@ -54,7 +54,7 @@
   - Entraves
   - Une fois révélée
   - Une fois déjouée
-- Déplacement des textes dans des fcihers de langue (reste à traiter pour le moteur: setup et javascript)
+- Déplacement des textes dans des fcihers de langue (reste à traiter pour le moteur: setup)
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
