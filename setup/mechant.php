@@ -2,6 +2,7 @@
 $title='Remote Champions';
 $bodyClass='mechant';
 include 'include.php';
+global $str;
 ?>
 <div id="mechantDispME">
   <span id="mechantME"></span>
@@ -12,14 +13,10 @@ include 'include.php';
     <div id="mechantLifeME"></div>
     <input class='vieBtnME' type='button' value='>' onclick='document.getElementById("mechantLifeME").innerText=parseInt(document.getElementById("mechantLifeME").innerText)+1;ajaxPost("vieMechant",document.getElementById("mechantLifeME").innerText);'>
   </div>
-  <input id="mechantDesorienteME" type="button" value="Désor."  onclick='ajaxPost("switch","mechantDesoriente");'>
-  <input id="mechantSonneME" type="button" value="Sonné" onclick='ajaxPost("switch","mechantSonne");'>
-  <input id="mechantTenaceME" type="button" value="Tenace" onclick='ajaxPost("switch","mechantTenace");'>
-  <input id="mechantRiposteME" type="button" value="Riposte" onclick='ajaxPost("switch","mechantRiposte");'>
-  <input id="mechantPercantME" type="button" value="Perçant" onclick='ajaxPost("switch","mechantPercant");'>
-  <input id="mechantDistanceME" type="button" value="A distance" onclick='ajaxPost("switch","mechantDistance");'>
+<?php
+echo '<input id="mechantDesorienteME" type="button" value="'.$str['villainConfused'].'"  onclick=\'ajaxPost("switch","mechantDesoriente");\'><input id="mechantSonneME" type="button" value="'.$str['villainStunned'].'" onclick=\'ajaxPost("switch","mechantSonne");\'><input id="mechantTenaceME" type="button" value="'.$str['villainTough'].'" onclick=\'ajaxPost("switch","mechantTenace");\'><input id="mechantRiposteME" type="button" value="'.$str['villainRetaliate'].'" onclick=\'ajaxPost("switch","mechantRiposte");\'><input id="mechantPercantME" type="button" value="'.$str['villainPiercing'].'" onclick=\'ajaxPost("switch","mechantPercant");\'><input id="mechantDistanceME" type="button" value="'.$str['villainRanged'].'" onclick=\'ajaxPost("switch","mechantDistance");\'>';
+?>
 </div>
-
 
 <script language="JavaScript">
   ajaxCall(ajaxMechantSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)
