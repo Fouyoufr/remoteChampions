@@ -107,16 +107,19 @@ function ajaxMainSet() {
     if (vieMechant<10) {vieMechant="0"+vieMechant;}
     //refresh du menu des manigances
     deckId=document.getElementById('deck').value;
-    if (deckId=='0') {document.getElementById('newManiganceId').style.display='none';}
-    else {
+    if (deckId!='0') {
       oldManiList=document.getElementById('newManiganceId').innerHTML;
       newManiList='';
       Array.prototype.slice.call(xmlDoc.getElementsByTagName('deck')).forEach(function(deckValue,index,array) {
         if (deckValue.getAttribute('dId')==deckId) {
           Array.prototype.slice.call(deckValue.getElementsByTagName('maniChoice')).forEach(function(maniChoice,index,array) {
-            newManiList+='<option vlaue="'+maniChoice.getAttribute('maId')+'">'+maniChoice.getAttribute('maNom')+'</option>';})}})
+            newManiList+='<option value="'+maniChoice.getAttribute('maId')+'">'+maniChoice.getAttribute('maNom')+'</option>';})}})
       if (newManiList!=oldManiList) {document.getElementById('newManiganceId').innerHTML=newManiList;}
-      document.getElementById('newManiganceId').style.display='inline-block';}
+      document.getElementById('newManiganceId').style.display='inline-block';
+      document.getElementById('NewManiganceConfirm').disabled=false;}
+    else {
+      document.getElementById('NewManiganceConfirm').disabled=true;
+      document.getElementById('newManiganceId').style.display='none';}
       
     document.getElementById('mechantRiposte').className='mechantRiposte'+partie.getAttribute('pMechRiposte');
     document.getElementById('mechantPercant').className='mechantPercant'+partie.getAttribute('pMechPercant');

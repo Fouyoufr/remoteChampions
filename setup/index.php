@@ -108,7 +108,7 @@ echo '<div id="NewPrincipale"><div class="titlePopup">'.$str['ChangeMScheme'].'<
 echo '<div id="NewManigance">
   <div class="titlePopup">'.$str['AddSideScheme'].'</div><select name=\'deck\' id=\'deck\'></select><select name="manigance" id="newManiganceId"></select><br/>
   <div class="boutonsPopup">
-    <input type ="button" value="'.$str['confirm'].'" onclick=\'ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("newManiganceId").style.display="none";document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";\' class=\'bouton\'>
+    <input type ="button" value="'.$str['confirm'].'" onclick=\'ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("newManiganceId").style.display="none";document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";\' class=\'bouton\' id=\'NewManiganceConfirm\' disabled>
     <input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("NewManigance").style.display="none";document.getElementById("newManiganceId").style.display="none";\' class=\'bouton\'></div></div>';
 
 echo '<div id="changeNameIndex"><div class="titlePopup">'.$str['changePlayerName'].'</div>'.$str['newPlayerName'].' <span id="changeNameOld"></span> :<br/><input type=\'text\' id=\'playerName\' minlength="4" maxlength="50"><input type=\'hidden\' id=\'changeNameId\'>

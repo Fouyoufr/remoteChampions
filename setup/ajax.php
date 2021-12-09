@@ -87,18 +87,17 @@ if(isset($_POST['heros'])) {
         $dom->parentNode->removeChild($dom);}
        //Ajouter nouveau deck Héros... 
       $xmlDeck=$xml->addChild('deck');
-      $xmlDeck->addAttribute('dId','h'.$heros);
-      $xmlDeck->addAttribute('dNom',$newHeros['hNom']);
+      xmlAttr($xmlDeck,array('dId'=>'h'.$heros,'dNom'=>$newHeros['hNom']));
       #récupération des manigances du héros choisi
       $sqlManigances=sql_get("SELECT `maId`,`maNom` FROM `manigances` WHERE `maDeck`='0' AND `maNumero`='$heros' ORDER BY `maNom` ASC");
       while ($manigance=mysqli_fetch_assoc($sqlManigances)) {
         $xmlMani=$xmlDeck->addChild('maniChoice');
-        $xmlMani->addAttribute('maId',$manigance['maId']);
-        $xmlMani->addAttribute('maNom',$manigance['maNom']);}
+        xmlAttr($xmlMani,array('maId'=>$manigance['maId'],'maNom'=>$manigance['maNom']));}
       $jValue['jHeros']=$heros;
-      $jValue['jVie']=$newVie['hVie'];}
+      $jValue['jVie']=$newHeros['hVie'];
+      $jValue['hNom']=$newHeros['hNom'];}
   if (isset($_POST['joueurNum'])) {$sqlReq.='`jNumero`=\''.$_POST['joueurNum'].'\'';} else {$sqlReq.='`jId`=\''.$_POST['joueur'].'\'';}
-  $xml->asXML('ajax/'.$partieId.'.xml');  
+  $xml->saveXML('ajax/'.$partieId.'.xml');  
   sql_get($sqlReq);}
 
 if(isset($_POST['vieMechant'])) {
@@ -169,11 +168,9 @@ if (isset($_POST['boite'])) {
 
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
-
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pPremier']=$joueur;
   $xml->saveXML('ajax/'.$partieId.'.xml');
-
   sql_get("UPDATE `parties` SET `pPremier`='$joueur' WHERE `pUri`='$partieId'");}
 
 if(isset($_POST['changeName'])) {
@@ -223,9 +220,30 @@ if(isset($_POST['newManigance'])) {
   	 $maInit=$maInit*$nbJoueurs;}
   if ($maniDetail['maEntrave']!=0) {
      $nbJoueurs=mysqli_num_rows(sql_get("SELECT `jId`FROM `joueurs` WHERE `jPartie`='$partieId'"));
-     $maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];  }
+     $maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];}
   sql_get("INSERT INTO `maniAnnexes` (`mnPartie`,`mnManigance`,`mnMenace`) VALUES ('$partieId','$manigance','$maInit')");
-  sql_get("UPDATE `parties` SET `pManiDelete`='0' WHERE `pUri`='$partieId'");}
+  sql_get("UPDATE `parties` SET `pManiDelete`='0' WHERE `pUri`='$partieId'");
+  $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
+  $xml['pManiDelete']=0;
+  
+  foreach ($xml->deck as $maniDeck) {
+    echo $maniDeck['dId'].' -';
+    foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) {
+    //supprimer manigance des choix possibles.
+    $dom=dom_import_simplexml($mValue);
+    $dom->parentNode->removeChild($dom);
+    $fromDeck=$maniDeck['dId'];}
+    if ($maniDeck->maniChoice->count()==0) {
+      //Plus de manigance sur ce deck !
+      $dom=dom_import_simplexml($maniDeck);
+      $dom->parentNode->removeChild($dom);}}
+  //Ajouter nouvelle manigance en jeu...
+  $xmlManigance=$xml->addChild('manigance');
+  xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$maniDetail['maNom'],'mnMenace'=>$maInit,'fromDeck'=>$fromDeck,'maRevele'=>$maniDetail['maRevele'],'maDejoue'=>$maniDetail['maDejoue'],'maInfo'=>$maniDetail['maInfo'],'maNumero'=>$maniDetail['maNumero'],'maCrise'=>$maniDetail['maCrise'],'maRencontre'=>$maniDetail['maRencontre'],'maAcceleration'=>$maniDetail['maAcceleration'],'maAmplification'=>$maniDetail['maAmplification'],'maDeck'=>$maniDetail['maDeck']));
+  if ($maniDetail['maDeck']==0) {
+    foreach($xml->joueur as $maniJoueur) if ($maniDetail['maNumero']==$maniJoueur['jHeros']) {$xmlManigance->addAttribute('hNom',$maniJoueur['hNom']);}}
+  else {$xmlManigance->addAttribute('dNom',deckNames()[$maniDetail['maDeck']]);}
+  $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['MA'])) {
   $manigance=htmlspecialchars($_POST['MA']);

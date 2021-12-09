@@ -1,6 +1,9 @@
 <?php
 include_once('lang-fr.php');
 
+function xmlAttr($xaObj,$xaToadd) {
+  foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}
+
 function xmlDoc($xdObj,$xdAdd) {
   global $xml;
   foreach ($xdAdd as $xdKey=>$xdValue) {
