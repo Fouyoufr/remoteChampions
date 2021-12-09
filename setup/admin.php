@@ -31,7 +31,10 @@ if (isset($_GET['del'])) {
     sql_get("DELETE FROM `joueurs` WHERE `jPartie`='".$_GET['del']."'");
     sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='".$_GET['del']."'");
     sql_get("DELETE FROM `deckParties` WHERE `dpPartie`='".$_GET['del']."'");
-    sql_get("DELETE FROM `parties` WHERE `puri`='".$_GET['del']."'");}}
+    sql_get("DELETE FROM `parties` WHERE `puri`='".$_GET['del']."'");
+    unlink('ajax/'.$_GET['del'].'.xml');
+  
+  }}
 ?>
 
 <!--

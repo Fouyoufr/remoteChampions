@@ -4,6 +4,13 @@ function ajaxCall (ajaxTraite,getParam) {
   ajaxReq.open('GET','ajax.php?'+getParam);
   ajaxReq.onreadystatechange=ajaxTraite;
   ajaxReq.send();}
+
+function ajaxCallCache (ajaxTraite,ajaxUrl) {
+    document.getElementById('ajaxLoad').style.display='block';
+    ajaxReq=new XMLHttpRequest();
+    ajaxReq.open('GET',ajaxUrl);
+    ajaxReq.onreadystatechange=ajaxTraite;
+    ajaxReq.send();}
   
 function ajaxPost (key,value) {
   if (document.getElementById('ajaxSave')) {document.getElementById('ajaxSave').style.display='block';}
@@ -38,16 +45,6 @@ function ajaxSelecSet() {
     if (nbJoueurs==0) {window.location.href='mechant.php?p='+document.getElementById('partie').value;}
     document.getElementById('ajaxLoad').style.display='none';
     document.getElementById('ajaxSave').style.display='none';}}}
-
-function ajaxManigancesMenu () {
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	var xmlDoc = ajaxReq.responseXML;
-    var manigances = xmlDoc.getElementsByTagName('manigance');
-    var manigancesList = Array.prototype.slice.call(manigances);
-    document.getElementById('newManiganceId').innerHTML='';
-    manigancesList.forEach(function(value,index,array) {document.getElementById('newManiganceId').innerHTML+='<option value="'+value.getAttribute('maId')+'">'+value.getAttribute('maNom')+'</option>';});
-    document.getElementById('newManiganceId').style.display='inline-block';}}}
 
 function ajaxPhase () {
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
@@ -108,6 +105,19 @@ function ajaxMainSet() {
     var vieMechant=partie.getAttribute('pMechVie');
     var premier=partie.getAttribute('pPremier');
     if (vieMechant<10) {vieMechant="0"+vieMechant;}
+    //refresh du menu des manigances
+    deckId=document.getElementById('deck').value;
+    if (deckId=='0') {document.getElementById('newManiganceId').style.display='none';}
+    else {
+      oldManiList=document.getElementById('newManiganceId').innerHTML;
+      newManiList='';
+      Array.prototype.slice.call(xmlDoc.getElementsByTagName('deck')).forEach(function(deckValue,index,array) {
+        if (deckValue.getAttribute('dId')==deckId) {
+          Array.prototype.slice.call(deckValue.getElementsByTagName('maniChoice')).forEach(function(maniChoice,index,array) {
+            newManiList+='<option vlaue="'+maniChoice.getAttribute('maId')+'">'+maniChoice.getAttribute('maNom')+'</option>';})}})
+      if (newManiList!=oldManiList) {document.getElementById('newManiganceId').innerHTML=newManiList;}
+      document.getElementById('newManiganceId').style.display='inline-block';}
+      
     document.getElementById('mechantRiposte').className='mechantRiposte'+partie.getAttribute('pMechRiposte');
     document.getElementById('mechantPercant').className='mechantPercant'+partie.getAttribute('pMechPercant');
     document.getElementById('mechantDistance').className='mechantDistance'+partie.getAttribute('pMechDistance');
@@ -146,7 +156,6 @@ function ajaxMainSet() {
         document.getElementById('popupNewManigance').value=lastManigance;}
       else {lastManigance=0;}}
 
-
     //Popup si nouvelle manigance "une fois déjouée" 
     //(++ rajouter attribut de date pour éviter de réafficher au refresh ?)
     if (partie.getAttribute('pManiDelete')!=document.getElementById('popupDelManigance').value) {
@@ -154,7 +163,6 @@ function ajaxMainSet() {
       if (partie.getAttribute('pManiDelete')!=0) {
         document.getElementById('manigancePopupText').innerHTML=xmlDoc.getElementsByTagName('maniDelete')[0].getAttribute('text');
         document.getElementById('manigancePopup').style.display='block';}}
-
 
     manigancesList.forEach(function(value,index,array) {
       maniAnnexe='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
@@ -200,9 +208,9 @@ function ajaxMainSet() {
       compteur+='<a class="compteurMoins" onclick="ajaxPost(\'delCompteur\',\''+value.getAttribute('cId')+'\');">-</a>';
       document.getElementById('compteursList').innerHTML+='<li class="compteurLine">'+compteur+'</li>';});
     document.getElementById('phaseMechant').innerText=phMechant(partie.getAttribute('pMechPhase'))
-    if (partie.getAttribute('pMechDesoriente')==0) { document.getElementById('mechantDesoriente').className='disabledButtonMechant bouton';} else {document.getElementById('mechantDesoriente').className='desorienteMechant';}
-    if (partie.getAttribute('pMechSonne')==0) {document.getElementById('mechantSonne').className='disabledButtonMechant bouton';} else {document.getElementById('mechantSonne').className='sonneMechant';}
-    if (partie.getAttribute('pMechTenace')==0) {
+    if (partie.getAttribute('pMechDesoriente')!='1') { document.getElementById('mechantDesoriente').className='disabledButtonMechant bouton';} else {document.getElementById('mechantDesoriente').className='desorienteMechant';}
+    if (partie.getAttribute('pMechSonne')!='1') {document.getElementById('mechantSonne').className='disabledButtonMechant bouton';} else {document.getElementById('mechantSonne').className='sonneMechant';}
+    if (partie.getAttribute('pMechTenace')!='1') {
     	document.getElementById('mechantTenace').className='disabledButtonMechant bouton';
     	document.getElementById('vieMechantMoins').className='vieBtn';}
     else {
