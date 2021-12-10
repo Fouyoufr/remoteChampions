@@ -64,7 +64,7 @@ if (!empty($_POST) and $error=='') {
         $xmlMani->appendChild($xdAttr2);}}
     sql_get(substr($sqlDecks,0,-1));
     sql_get("INSERT INTO `parties` (`pUri`,`pPremier`) VALUES ('$clef','$premier')");
-    xmlDoc($xmlPartie,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant'));
+    xmlDoc($xmlPartie,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>''));
     if (!is_dir('/ajax')) {mkdir('ajax');}
     $xml->save('ajax/'.$clef.'.xml');
     exit ("<script language='JavaScript'>window.location.href='.?p=$clef'</script>");}

@@ -124,7 +124,7 @@ function ajaxMainSet() {
     document.getElementById('mechantRiposte').className='mechantRiposte'+partie.getAttribute('pMechRiposte');
     document.getElementById('mechantPercant').className='mechantPercant'+partie.getAttribute('pMechPercant');
     document.getElementById('mechantDistance').className='mechantDistance'+partie.getAttribute('pMechDistance');
-    document.getElementById('NewPrincipaleButton').innerText=xmlDoc.getElementsByTagName('principale')[0].getAttribute('mpNom');
+    document.getElementById('NewPrincipaleButton').innerText=partie.getAttribute('mpNom');
     document.getElementById('mechantPic').src='img/mechants/'+partie.getAttribute('pMechant')+'.png';
     document.getElementById('mechantLife').innerText=vieMechant;
     document.getElementById('mechant').innerText=partie.getAttribute('mNom');
@@ -139,13 +139,21 @@ function ajaxMainSet() {
     var Decks=xmlDoc.getElementsByTagName('deck');
     var DeckList=Array.prototype.slice.call(Decks);
     var newDecks="<option value='0'>--"+lang['selectDeck']+"--</option>";
+    var newDecksHeros='<option disabled>'+lang['heroSchemes']+'</option>';
     var newDeckSeparation=false;
-    //document.getElementById('deck').innerHTML=document.getElementById('deckOptionsInit').value;
     DeckList.forEach(function(value,index,array) {
-      if (!newDeckSeparation && value.getAttribute('dId').charAt(0)=='h') {
+      if (value.getAttribute('dId').charAt(0)!='h') {       
+    newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';}});
+
+    DeckList.forEach(function(value,index,array) {
+      if (value.getAttribute('dId').charAt(0)=='h') {
         newDeckSeparation=true;
-        newDecks+='<option disabled>'+lang['heroSchemes']+'</option>';}
-      newDecks+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';});
+        newDecksHeros+='<option value="'+value.getAttribute('dId')+'">'+value.getAttribute('dNom')+'</option>';}});
+
+    if (newDeckSeparation) {newDecks+=newDecksHeros;}
+
+
+
     if (document.getElementById('NewManigance').style.display!='block') {document.getElementById('deck').innerHTML=newDecks;}
     var manigances = xmlDoc.getElementsByTagName('manigance');
     var manigancesList = Array.prototype.slice.call(manigances);
@@ -164,7 +172,7 @@ function ajaxMainSet() {
     if (partie.getAttribute('pManiDelete')!=document.getElementById('popupDelManigance').value) {
       document.getElementById('popupDelManigance').value=partie.getAttribute('pManiDelete');
       if (partie.getAttribute('pManiDelete')!=0) {
-        document.getElementById('manigancePopupText').innerHTML=xmlDoc.getElementsByTagName('maniDelete')[0].getAttribute('text');
+        document.getElementById('manigancePopupText').innerHTML=partie.getAttribute('maniDelete');
         document.getElementById('manigancePopup').style.display='block';}}
 
     manigancesList.forEach(function(value,index,array) {
