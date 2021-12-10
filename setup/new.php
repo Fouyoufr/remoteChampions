@@ -40,13 +40,11 @@ if (!empty($_POST) and $error=='') {
         sql_get($sqlJoueurs."('$clef','Joueur $i','10','AE','0','$i')");
         xmlDoc($xmlPartie,array('joueur'=>array('jId'=>mysqli_insert_id($sqlConn),'jNom'=>"Joueur $i",'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jOnline'=>0,'jHeros'=>0)));}}
     else {$premier=0;}
-    $sqlDecks="INSERT INTO `deckParties` (`dpPartie`,`dpDeck`) VALUES ";
     //Création de la liste des decks et manigances
     $maniganceList=[];
     $sqlManigances=sql_get("SELECT `maId`,`maNom`,`dId` FROM `boites`,`decks`,`manigances` WHERE `dBoite`=`bId` AND `bInclus`='1' AND `maDeck`=`dId` ORDER BY `maNom`");
     while ($manigance=mysqli_fetch_assoc($sqlManigances)) {$maniganceList[]=array('maId'=>$manigance['maId'],'maNom'=>$manigance['maNom'],'dId'=>$manigance['dId']);}
     foreach($_POST as $post=>$postValue) if (substr($post,0,4)=='deck') {
-      $sqlDecks.="('$clef','".substr($post,4)."'),";
       $xmlDeck=$xmlPartie->appendChild($xml->createElement('deck'));
       $xdAttr1=$xml->createAttribute('dId');
       $xdAttr1->appendChild($xml->createTextNode(substr($post,4)));
@@ -62,8 +60,6 @@ if (!empty($_POST) and $error=='') {
         $xmlMani=$xmlDeck->appendChild($xml->createElement('maniChoice'));
         $xmlMani->appendChild($xdAttr1);
         $xmlMani->appendChild($xdAttr2);}}
-    sql_get(substr($sqlDecks,0,-1));
-    sql_get("INSERT INTO `parties` (`pUri`,`pPremier`) VALUES ('$clef','$premier')");
     xmlDoc($xmlPartie,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>''));
     if (!is_dir('/ajax')) {mkdir('ajax');}
     $xml->save('ajax/'.$clef.'.xml');

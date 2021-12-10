@@ -52,10 +52,11 @@
 ## Evolution(s) en cours
 - Déplacement des textes dans des fcihers de langue (reste à traiter pour le moteur: setup)
 - Mise en cache AJAX :
+  - Gerer les id utilisateur...
+  - Admin en mode "AjaxCache"
   - (re)faire fonctionner les infos sur les manigances dans l'Index
-  - faire les compteurs en mode cache dans l'Index
-  - virer les requètes SQL inutiles suite au cache 
-  - traiter les fichier Joueur et méchant (écrans mobiles)
+  - faire les compteurs en mode cache dans l'Index (et virer l'équivalent SQL)
+  - Mettre à jour les anciennes parties.
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???

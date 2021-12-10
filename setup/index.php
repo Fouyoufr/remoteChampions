@@ -21,8 +21,8 @@ if ($mobile) {
    <input type="button" id="selecJ1"><input type="button" id="selecJ2"><input type="button" id="selecJ3"><input type="button" id="selecJ4">
    <input type="button" class="selectMechant" id="mechant" value="'.$str['villain'].'" onclick="window.location.href=\'mechant.php?p='.$partieId.'\'"></div>
  <script language="JavaScript">
- ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)
- setInterval("ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)",2000); 
+ ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true);
+ setInterval("ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true)",2000); 
  </script>');}}
 $sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales`,`boites` WHERE `mpId`!=0 AND `bInclus`='1' AND `bId`=`mpBoite` ORDER By `mpNom` ASC");
 while ($principale=mysqli_fetch_assoc($sqlPrincipales))

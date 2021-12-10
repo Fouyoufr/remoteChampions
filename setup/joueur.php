@@ -37,8 +37,8 @@ echo '<div id="changeNameMobile"><div class="mobilePopuptitle">'.$str['changePla
 ?>
 
 <script language="JavaScript">
-  ajaxCall(ajaxJoueurSet,'jGet='+encodeURIComponent(document.getElementById('jId').value),true)
-  setInterval("ajaxCall(ajaxJoueurSet,'jGet='+encodeURIComponent(document.getElementById('jId').value),true)",2000); 
+  ajaxCallCache(ajaxJoueurSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random());
+  setInterval("ajaxCallCache(ajaxJoueurSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random())",2000); 
 </script>
 </body>
 </html>
