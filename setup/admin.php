@@ -24,17 +24,7 @@ if (isset($_POST['publicMode'])) {
   $configFile=array_map('replace_a_line',$configFile);
   file_put_contents('config.inc', implode('',$configFile));}
 
-if (isset($_GET['del'])) {
-  $partie=sql_get("SELECT `pUri` FROM `parties` WHERE `pUri`='".$_GET['del']."'");
-  if (mysqli_num_rows($partie)<>0) {
-    sql_get("DELETE FROM `compteurs` WHERE `cPartie`='".$_GET['del']."'");
-    sql_get("DELETE FROM `joueurs` WHERE `jPartie`='".$_GET['del']."'");
-    sql_get("DELETE FROM `maniAnnexes` WHERE `mnPartie`='".$_GET['del']."'");
-    sql_get("DELETE FROM `deckParties` WHERE `dpPartie`='".$_GET['del']."'");
-    sql_get("DELETE FROM `parties` WHERE `puri`='".$_GET['del']."'");
-    unlink('ajax/'.$_GET['del'].'.xml');
-  
-  }}
+if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
 ?>
 
 <!--
@@ -73,20 +63,18 @@ if (isset($_GET['del'])) {
   ?>
 </div>
 <?php
-$partiesMechant=sql_get("SELECT `pUri`,`pDate`,`mNom`,`mId` FROM `parties`,`mechants` WHERE `mId`=`pMechant` ORDER BY `pDate`DESC");
-if ($partiesMechant) if (mysqli_num_rows($partiesMechant)<>0) {
+$gameList=glob('ajax/*.xml');
+if ($gameList) {
   echo "<div class='pannel'><div class='titleAdmin'>".$str['gamesList']."</div><table><tr><th>".$str['gamePassAdmin']."</th><th>".$str['villain']."</th><th>".$str['players']."</th><th>".$str['gameDate']."</th><th></th></tr>";
-  $partiesJoueur=array();
-  $partiesSQL=sql_get("SELECT `pUri`,`pDate`,COUNT(`jId`),`mNom`,`mId` FROM `parties`,`mechants`,`joueurs` WHERE `jPartie`=`pUri` AND `mId`=`pMechant` GROUP BY `jPartie` ORDER BY `pDate` DESC");
-  while ($partie=mysqli_fetch_assoc($partiesSQL)) {$partiesJoueur[$partie['pUri']]=$partie;}
-  while ($partie=mysqli_fetch_assoc($partiesMechant)) {
-    echo '<tr><td>'.$partie['pUri'].'</td><td>';
-    if ($partie['mId']<>0) {echo $partie['mNom'];} else {echo $str['noVillain'];}
-    echo '</td><td>';
-    if (isset($partiesJoueur[$partie['pUri']])) {echo $partiesJoueur[$partie['pUri']]['COUNT(`jId`)']; }
-    else {echo $str['noPlayer'];}
-    echo '</td><td>le '.date('d/m/Y à H:i',strtotime($partie['pDate'])).'</td><td class="adminIcones"><a href=".?p='.$partie['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$partie['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$partie['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a></td></tr>';}
-  echo "</table></div><form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';}
+  foreach($gameList as $game) {
+    $xml=simplexml_load_file($game);
+    echo '<tr><td>'.$xml['pUri'].'</td><td>';
+    if ($xml['pMechant']==0) echo 'Aucun'; else echo $xml['mNom'];
+    if ($xml->joueur->count()>0) echo '</td><td>'.$xml->joueur->count();  else echo '</td><td>'.$str['noPlayer'];
+    echo '</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a></td></tr>';}
+  echo "</table></div>";}
+
+echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
 if (isset($_POST['newPass'])) echo "<div class='redMessage'>".$str['adminPassChanged']."</div>";
 echo '<span class="redUnderline">'.$str['warning'].':</span>'.$str['passwordNotStored'];
 echo '<hr/><div class="publicStatus">'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'<br/> </div><div><input type=\'password\' name=\'newPass\' id=\'newPass\'><br/><input type=\'password\' name=\'newPass2\' id=\'newPass2\'><input type=\'submit\' onclick="if (document.getElementById(\'newPass\').value == document.getElementById(\'newPass2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>

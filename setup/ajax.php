@@ -213,8 +213,7 @@ if(isset($_POST['MA'])) {
       xmlAttr($addDeck,array('dId'=>$nodeToDelete['fromDeckId'],'dNom'=>$nodeToDelete['fromDeckNom']));
       $addMani=$addDeck->addChild('maniChoice');
       xmlAttr($addMani,array('maId'=>$manigance,'maNom'=>$nodeToDelete['maNom']));}
-    if (isset($nodeToDelete)) {unset($nodeToDelete[0]);}
-    if (mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$manigance'"))['maDejoue']<>'') {sql_get("UPDATE `parties` SET `pManiDelete`='$manigance' WHERE `pUri`='$partieId'");}}
+    if (isset($nodeToDelete)) {unset($nodeToDelete[0]);}}
   else {
     foreach ($xml->manigance as $maniXML) if ($maniXML['maId']==$manigance) {$maniXML['mnMenace']=$menace;}}
 $xml['pManiDelete']=$maniDelete;
@@ -235,15 +234,25 @@ if(isset($_POST['NewPrincipale'])) {
   $xml['mpNom']=$maniDetail['mpNom'];
   $xml->saveXML('ajax/'.$partieId.'.xml');}
 
-//A traiter en mode cache
-if(isset($_POST['addCompteur'])) {sql_get("INSERT INTO `compteurs` (`cPartie`) VALUES ('$partieId')");}
+if(isset($_POST['addCompteur'])) {
+  $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
+  $cId=0;
+  foreach ($xml->compteur as $XMLcompteur) if ($cId<=$XMLcompteur['cId']) {$cId=$XMLcompteur['cId']+1;}
+  $xmlCompteur=$xml->addChild('compteur');
+  xmlAttr($xmlCompteur,array('cId'=>$cId,'cValeur'=>0));  
+  $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['delCompteur'])) {
   $compteur=htmlspecialchars($_POST['delCompteur']);
-  sql_get("DELETE FROM `compteurs` WHERE `cId`='$compteur'");}
+  $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
+  foreach ($xml->compteur as $XMLcompteur) if ($XMLcompteur['cId']==$compteur) {$nodeToDelete=$XMLcompteur;}
+  unset($nodeToDelete[0]);
+  $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['compteur'])) {
   $compteur=htmlspecialchars($_POST['compteur']);
   $value=htmlspecialchars($_POST['value']);
-  sql_get("UPDATE `compteurs` SET `cValeur`='$value' WHERE `cId`='$compteur'");}
+  $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
+  foreach ($xml->compteur as $XMLcompteur) if ($XMLcompteur['cId']==$compteur) {$XMLcompteur['cValeur']=$value;}
+  $xml->saveXML('ajax/'.$partieId.'.xml');}
 ?>
