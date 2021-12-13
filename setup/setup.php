@@ -31,7 +31,7 @@ global $str;
 session_start();
 //Version avec URL temporaira de la branche "xmlCache". A modifier avant finalisation.
 //$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
-$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/xmlCache';'
+$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/xmlCache';
 $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
 if (!file_exists('./config.inc')) {
 	#Le fichier de paramètrage n'existe pas
@@ -172,7 +172,7 @@ function updateSQLcontent($tableFile,$tableId) {
 
 function sqlUpdate($sqlUpdateFile) {
 #Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
-	global $sqlConn,$gitUrl;
+	global $sqlConn,$gitUrl,$str;
 	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
 	$file = fopen ($sqlUpdateFile, "r");
 	if (!$file) {
