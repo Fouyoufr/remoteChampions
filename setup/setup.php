@@ -29,7 +29,9 @@
 include_once('functions.php');
 global $str;
 session_start();
-$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
+//Version avec URL temporaira de la branche "xmlCache". A modifier avant finalisation.
+//$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
+$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/xmlCache';'
 $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
 if (!file_exists('./config.inc')) {
 	#Le fichier de paramètrage n'existe pas
@@ -375,7 +377,7 @@ else {
   imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

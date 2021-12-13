@@ -10,6 +10,7 @@ function displaydeck($deck) {
 $title='Remote Champions - New';
 $bodyClass='new';
 include 'include.php';
+include_once 'maniganceInfo.php';
 global $str;
 #Gestion du mode public
 if (isset($_POST['publicPass']) and !empty($_POST['publicPass'])) $_SESSION['publicPass']=hash('sha256',$_POST['publicPass']);
