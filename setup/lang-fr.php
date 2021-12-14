@@ -138,6 +138,7 @@
       'sqlDeleteEntry'=>'Suppression de l\'entrée',
       'allFine'=>'Tout est en ordre',
       'sqladdCol'=>'Ajout de la colonne',
+      'sqlChangeCol'=>'Changement de type de la colonne',
       'sqladdTable'=>'Création de la table dans la base de donnée',
       'noUpdatesDir'=>'Création de sous-répertoire \'updates\' impossible',
       'readDoc'=>'Merci de consulter la documentation',

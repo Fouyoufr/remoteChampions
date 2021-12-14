@@ -4,4 +4,4 @@ manigances=>maId=>int(8) NOT NULL,maDeck=>int(8) NOT NULL,maNumero=>varchar(50) 
 ManigancesPrincipales=>mpId=>int(11) NOT NULL,mpNom=>varchar(50) NOT NULL,mpMax=>int(3) NOT NULL DEFAULT 0,mpMaxMultiplie=>tinyint(1) NOT NULL DEFAULT 0,mpInit=>int(3) NOT NULL DEFAULT 0,mpMultiplie=>tinyint(1) NOT NULL DEFAULT 0,mpBoite=>int(8),PRIMARY KEY=>mpId
 mechants=>mId=>int(8) NOT NULL,mNom=>varchar(50) NOT NULL,mVieMax1=>int(3) NOT NULL,mVieMax2=>int(3) NOT NULL,mVieMax3=>int(3) NOT NULL,mBoite =>int(8),PRIMARY KEY=>mId
 config=>cfName=>varchar(50) NOT NULL,cfValue=>varchar(255) NOT NULL,PRIMARY KEY=>cfName
-boites=>bId=>int(8) NOT NULL,bNom=>varchar(50) NOT NULL,bInclus=>bool,bType=>varchar(1) NOT NULL,PRIMARY KEY=>bId
+boites=>bId=>int(8) NOT NULL,bNom=>varchar(50) NOT NULL,bInclus=>tinyint(1),bType=>varchar(1) NOT NULL,PRIMARY KEY=>bId

@@ -138,6 +138,7 @@
       'sqlDeleteEntry'=>'Entry deleted',
       'allFine'=>'Tout est en ordre',
       'sqladdCol'=>'Adding column',
+      'sqlChangeCol'=>'Changing column type',
       'sqladdTable'=>'Creating table in the database',
       'noUpdatesDir'=>'Unable to create the \'updates\' subdirectory',
       'readDoc'=>'Please refer to the documentation',

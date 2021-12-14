@@ -116,7 +116,6 @@ function updateSQLcontent($tableFile,$tableId) {
 	global $str;
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
-	echo $tableFile.':<br/>';
 	$file = fopen ($tableFile, "r");
 	if (!$file) exit("<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['openFileErrsub']." $tableFile'.</div></div>");
 	$newTable=array();
@@ -199,7 +198,15 @@ function sqlUpdate($sqlUpdateFile) {
 					sql_get($columnAdd);
 					$sqlError=mysqli_error($sqlConn);
 					if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$columnAdd<br/><span class='gras'>$sqlError</span></div></div>";}
-					echo "</td></tr>";}}}
+					echo "</td></tr>";}
+				elseif (!$addTab) {
+					$oldType=mysqli_fetch_assoc(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'"))['Type'];
+					if (strtoupper($oldType) <> strtoupper(substr($value,0,strlen($oldType)))) {
+						#Changement du type de la colonne.
+						echo "<tr><td>$tableId</td><td>".$str['sqlChangeCol']." '$key'";
+						echo "<br/>ALTER TABLE `$tableId` MODIFY `$key` $value"; 
+						$nothingToDo=false;
+					}}}}
 		if ($addTab) {
 			echo "<tr><td>$tableId</td><td>".$str['sqladdTable'].".";
 			$tableAdd=substr($tableAdd,0,-2).") $engine";
@@ -207,7 +214,13 @@ function sqlUpdate($sqlUpdateFile) {
 			$sqlError=mysqli_error($sqlConn);
 			if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$tableAdd<br/><span class='gras'>$sqlError</span></div></div>";}
 			echo "</td></tr>";}
-		elseif($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}
+		elseif ($nothingToDo) {
+		  #Supression des colonne dipsarues (à faire).
+          $oldTable=sql_get("SHOW COLUMNS FROM `$tableId`");
+		  while($oldCol=mysqli_fetch_assoc($oldTable)) {
+
+			}
+		if($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}}
 	fclose($file);}	
 	
 include 'config.inc';
