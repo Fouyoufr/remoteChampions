@@ -146,7 +146,7 @@ function updateSQLcontent($tableFile,$tableId) {
 			else {
 				$news=false;
 				$entry=mysqli_fetch_assoc($entry);
-				foreach ($cols as $key=>$value) if ($entry[rtrim($value)]<>rtrim($line[$key]) and $value<>'bInclus') $news=true;
+				foreach ($cols as $key=>$value) if (!($entry[rtrim($value)]===rtrim($line[$key])) and $value<>'bInclus') $news=true;
 				#L'ajout $key<>'bInclus' permet de ne pas remplacer la valeur 'possédée' de la boite...
 				if ($news) {
 					$nothingToDo=false;
@@ -220,7 +220,14 @@ function sqlUpdate($sqlUpdateFile) {
 
 			}
 		if($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}}
-	fclose($file);}	
+	fclose($file);
+
+	###
+	#Reste à faire : suppression des bases historiques !
+	# parties, maniAnnexes, joueurs, compteurs,deckParties,config
+	###
+
+}	
 	
 include 'config.inc';
 #Vérification du mot de passe d'administration.

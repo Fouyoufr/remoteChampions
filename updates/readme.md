@@ -50,7 +50,7 @@
     ```docker push fouyou/remotechampions```
 
 ## Evolution(s) en cours
-- Finaliser/nettoyer le setup.
+- Suppression des bases obsolètes dans le setup par comparaison avec update de sqlTables
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
