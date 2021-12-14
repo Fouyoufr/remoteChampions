@@ -116,6 +116,7 @@ function updateSQLcontent($tableFile,$tableId) {
 	global $str;
 	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
 	global $sqlConn;
+	echo $tableFile.':<br/>';
 	$file = fopen ($tableFile, "r");
 	if (!$file) exit("<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['openFileErrsub']." $tableFile'.</div></div>");
 	$newTable=array();
@@ -146,7 +147,7 @@ function updateSQLcontent($tableFile,$tableId) {
 			else {
 				$news=false;
 				$entry=mysqli_fetch_assoc($entry);
-				foreach ($cols as $key=> $value) if ($entry[rtrim($value)]<>rtrim($line[$key]) and $value<>'bInclus') $news=true;
+				foreach ($cols as $key=>$value) if ($entry[rtrim($value)]<>rtrim($line[$key]) and $value<>'bInclus') $news=true;
 				#L'ajout $key<>'bInclus' permet de ne pas remplacer la valeur 'possédée' de la boite...
 				if ($news) {
 					$nothingToDo=false;
@@ -237,8 +238,8 @@ elseif (file_exists('dockerSetup')) {
 	$setupDate=array('date'=>new dateTime());
 	$helpDate=array('date'=>new dateTime());}
 else {
-  $updateSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/updates';
-  $setupSourcePath='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main/setup';
+  $updateSourcePath=$gitUrl.'/updates';
+  $setupSourcePath=$gitUrl.'/setup';
   $setupDate=gitFileDate('/setup/setup.php');
   $helpDate=gitFileDate('/updates/aide.md');}
 if ($setupSourcePath=='docker') echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
@@ -254,7 +255,7 @@ else {
     else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
   else echo $str['allreadyUp'].".";}
 
-
+#Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
 	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
 	$sqlParties=sql_get('SELECT * FROM `parties`');
