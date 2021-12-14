@@ -204,6 +204,7 @@ function sqlUpdate($sqlUpdateFile) {
 					if (strtoupper($oldType) <> strtoupper(substr($value,0,strlen($oldType)))) {
 						#Changement du type de la colonne.
 						echo "<tr><td>$tableId</td><td>".$str['sqlChangeCol']." '$key'";
+						echo "<br/>ALTER TABLE `$tableId` MODIFY `$key` $value";
 						sql_get("ALTER TABLE `$tableId` MODIFY `$key` $value"); 
 						$nothingToDo=false;
 					}}}}
