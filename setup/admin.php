@@ -66,12 +66,16 @@ if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
 $gameList=glob('ajax/*.xml');
 if ($gameList) {
   echo "<div class='pannel'><div class='titleAdmin'>".$str['gamesList']."</div><table><tr><th>".$str['gamePassAdmin']."</th><th>".$str['villain']."</th><th>".$str['players']."</th><th>".$str['gameDate']."</th><th></th></tr>";
+  $gamesList=array();
   foreach($gameList as $game) {
     $xml=simplexml_load_file($game);
-    echo '<tr><td>'.$xml['pUri'].'</td><td>';
-    if ($xml['pMechant']==0) echo 'Aucun'; else echo $xml['mNom'];
-    if ($xml->joueur->count()>0) echo '</td><td>'.$xml->joueur->count();  else echo '</td><td>'.$str['noPlayer'];
-    echo '</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a></td></tr>';}
+    $gameLine='<tr><td>'.$xml['pUri'].'</td><td>';
+    if ($xml['pMechant']==0) $gameLine.='Aucun'; else $gameLine.=$xml['mNom'];
+    if ($xml->joueur->count()>0) $gameLine.='</td><td>'.$xml->joueur->count();  else $gameLine.='</td><td>'.$str['noPlayer'];
+    $gameLine.='</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a></td></tr>';
+    $gamesList[]=array('date'=>$xml['pDate']->__toString(),'gameLine'=>$gameLine);}
+  usort($gamesList,create_function('$a,$b','return $b[\'date\']-$a[\'date\'];'));
+  foreach ($gamesList as $gameLine) echo $gameLine['gameLine'];
   echo "</table></div>";}
 
 echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';

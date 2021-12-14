@@ -181,10 +181,11 @@ function ajaxMainSet() {
       maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom');
       //Informations sur la manigance annexe
       maInfo='';
+
       if (value.getAttribute('maRevele')!='') {maInfo='<span class="manigancePopupType">Une fois révélée :</span> '+value.getAttribute('maRevele')+'<br/>';}
       if (value.getAttribute('maDejoue')!='') {maInfo+='<span class="manigancePopupType">Une fois déjouée :</span> '+value.getAttribute('maDejoue')+'<br/>';}
       if (value.getAttribute('maInfo')!='') {maInfo+='<span class="manigancePopupType">Informations :</span> '+value.getAttribute('maInfo')+'<br/>';}
-      if (maInfo!='') {maniAnnexe+='<a onclick="document.getElementById(\'manigancePopup\').style.display=\'block\';document.getElementById(\'manigancePopupText\').innerHTML=\'<h2>'+value.getAttribute('maNom')+'</h2>'+maInfo.replaceAll("'","\\'").replaceAll('[pp]','<img src="img/pp.png" alt="par joueur" class="pp"/>').replaceAll('"','&quot;')+'\';"><img src=\'img/aide.png\' alt=\'Informations sur la manigance\' class=\'maniPopupInfo\'></a>';}
+      if (maInfo!='') {maniAnnexe+='<a onclick="document.getElementById(\'manigancePopup\').style.display=\'block\';document.getElementById(\'manigancePopupText\').innerHTML=\'<h2>'+value.getAttribute('maNom').replaceAll("'","\\'").replaceAll('"','&quot;')+'</h2>'+maInfo.replaceAll("'","\\'").replaceAll('[pp]','<img src="img/pp.png" alt="par joueur" class="pp"/>').replaceAll('"','&quot;')+'\';"><img src=\'img/aide.png\' alt=\'Informations sur la manigance\' class=\'maniPopupInfo\'></a>';}
       if (value.getAttribute('maId')==lastManigance && value.getAttribute('maRevele')!='') {
         //Popup
         document.getElementById('manigancePopup').style.display='block';

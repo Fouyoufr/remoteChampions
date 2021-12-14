@@ -1,5 +1,6 @@
 <?php
 include 'include.php';
+include_once 'maniganceInfo.php';
 global $str;
 
 if (isset($_GET['phase'])) {
@@ -175,6 +176,12 @@ if(isset($_POST['newManigance'])) {
   if ($maniDetail['maMultiplie']==true) {$maInit=$maInit*$nbJoueurs;}
   if ($maniDetail['maEntrave']!=0) {$maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];}
   $xml['pManiDelete']=0;
+  if (!isset($xml->lastManigance)) {
+    $xml->addChild('lastManigance');
+    xmlAttr($xml->lastManigance,array('id'=>$manigance,'title'=>$maniDetail['maNom'],'text'=>$maniDetail['maRevele']));}
+  else {
+    $xml->lastManigance['id']=$manigance;
+    $xml->lastManigance['text']=$maniDetail['maRevele'];}
   foreach ($xml->deck as $maniDeck) {
     $nodesToDelete=array();
     foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) {
@@ -184,7 +191,7 @@ if(isset($_POST['newManigance'])) {
     unset($nodeToDelete[0]);
   //Ajouter nouvelle manigance en jeu...
   $xmlManigance=$xml->addChild('manigance');
-  xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$maniDetail['maNom'],'mnMenace'=>$maInit,'fromDeckId'=>$fromDeckId,'fromDeckNom'=>$fromDeckNom,'maRevele'=>$maniDetail['maRevele'],'maDejoue'=>$maniDetail['maDejoue'],'maInfo'=>$maniDetail['maInfo'],'maNumero'=>$maniDetail['maNumero'],'maCrise'=>$maniDetail['maCrise'],'maRencontre'=>$maniDetail['maRencontre'],'maAcceleration'=>$maniDetail['maAcceleration'],'maAmplification'=>$maniDetail['maAmplification'],'maDeck'=>$maniDetail['maDeck']));
+  xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$maniDetail['maNom'],'mnMenace'=>$maInit,'fromDeckId'=>$fromDeckId,'fromDeckNom'=>$fromDeckNom,'maRevele'=>$maniTxt[$maniDetail['maRevele']],'maDejoue'=>$maniTxt[$maniDetail['maDejoue']],'maInfo'=>$maniTxt[$maniDetail['maInfo']],'maNumero'=>$maniDetail['maNumero'],'maCrise'=>$maniDetail['maCrise'],'maRencontre'=>$maniDetail['maRencontre'],'maAcceleration'=>$maniDetail['maAcceleration'],'maAmplification'=>$maniDetail['maAmplification'],'maDeck'=>$maniDetail['maDeck']));
   if ($maniDetail['maDeck']==0) {
     foreach($xml->joueur as $maniJoueur) if ($maniDetail['maNumero']==$maniJoueur['jHeros']) {
       xmlAttr($xmlManigance,array('hNom'=>$maniJoueur['hNom']));}}
@@ -201,7 +208,7 @@ if(isset($_POST['MA'])) {
   if ($menace<1) {
     foreach ($xml->manigance as $maniXML) if ($maniXML['maId']==$manigance) {$nodeToDelete=$maniXML;}
     if ($nodeToDelete['maDejoue']<>'') {
-      $xml['maniDelete']=$nodeToDelete['maDejoue'];
+      $xml['maniDelete']='<h2>'.$nodeToDelete['maNom'].'</h2>'.$nodeToDelete['maDejoue'];
       $maniDelete=$manigance;}
     foreach ($xml->deck as $maniDeck) if ($maniDeck['dId']->__toString()==$nodeToDelete['fromDeckId']->__toString()) {
       //replacer la manigance dans son deck

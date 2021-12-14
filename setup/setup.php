@@ -204,10 +204,8 @@ function sqlUpdate($sqlUpdateFile) {
 					if (strtoupper($oldType) <> strtoupper(substr($value,0,strlen($oldType)))) {
 						#Changement du type de la colonne.
 						echo "<tr><td>$tableId</td><td>".$str['sqlChangeCol']." '$key'";
-						echo "<br/>ALTER TABLE `$tableId` MODIFY `$key` $value";
 						sql_get("ALTER TABLE `$tableId` MODIFY `$key` $value"); 
-						$nothingToDo=false;
-					}}}}
+						$nothingToDo=false;}}}}
 		if ($addTab) {
 			echo "<tr><td>$tableId</td><td>".$str['sqladdTable'].".";
 			$tableAdd=substr($tableAdd,0,-2).") $engine";

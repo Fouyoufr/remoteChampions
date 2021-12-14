@@ -50,8 +50,7 @@
     ```docker push fouyou/remotechampions```
 
 ## Evolution(s) en cours
-- Mise en cache AJAX :
-  - (re)faire fonctionner les infos sur les manigances dans l'Index
+- Finaliser/nettoyer le setup.
 
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
