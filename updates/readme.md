@@ -52,3 +52,4 @@
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
 - Bypass de l'économiseur d'écran sur smartphone ?
+- Application HTML installable ?
