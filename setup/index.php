@@ -21,8 +21,8 @@ if ($mobile) {
    <input type="button" id="selecJ1"><input type="button" id="selecJ2"><input type="button" id="selecJ3"><input type="button" id="selecJ4">
    <input type="button" class="selectMechant" id="mechant" value="'.$str['villain'].'" onclick="window.location.href=\'mechant.php?p='.$partieId.'\'"></div>
  <script language="JavaScript">
- ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)
- setInterval("ajaxCall(ajaxSelecSet,\'pGet=\'+encodeURIComponent(document.getElementById(\'partie\').value),true)",2000); 
+ ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true);
+ setInterval("ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true)",2000); 
  </script>');}}
 $sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales`,`boites` WHERE `mpId`!=0 AND `bInclus`='1' AND `bId`=`mpBoite` ORDER By `mpNom` ASC");
 while ($principale=mysqli_fetch_assoc($sqlPrincipales))
@@ -106,9 +106,9 @@ echo '<div id="NewPrincipale"><div class="titlePopup">'.$str['ChangeMScheme'].'<
   echo '</select><div class="boutonsPopup"><input type ="button" value="'.$str['confirm'].'" onclick=\'ajaxPost("NewPrincipale",document.getElementById("NewPrincipaleId").value);document.getElementById("NewPrincipale").style.display="none";\' class=\'bouton\'><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("NewPrincipale").style.display="none";\' class=\'bouton\'></div></div>';
 
 echo '<div id="NewManigance">
-  <div class="titlePopup">'.$str['AddSideScheme'].'</div><select name=\'deck\' id=\'deck\' onchange=\'if (this.value=="0") {getElementById("newManiganceId").style.display="none";} else {ajaxCall(ajaxManigancesMenu,"p="+document.getElementById("partie").value+"&mGet="+(this.value));}\'></select><select name="manigance" id="newManiganceId"></select><br/>
+  <div class="titlePopup">'.$str['AddSideScheme'].'</div><select name=\'deck\' id=\'deck\'></select><select name="manigance" id="newManiganceId"></select><br/>
   <div class="boutonsPopup">
-    <input type ="button" value="'.$str['confirm'].'" onclick=\'ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("newManiganceId").style.display="none";document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";\' class=\'bouton\'>
+    <input type ="button" value="'.$str['confirm'].'" onclick=\'ajaxPost("newManigance",document.getElementById("newManiganceId").value);document.getElementById("newManiganceId").style.display="none";document.getElementById("NewManigance").style.display="none";document.getElementById("deck").value="0";\' class=\'bouton\' id=\'NewManiganceConfirm\' disabled>
     <input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("NewManigance").style.display="none";document.getElementById("newManiganceId").style.display="none";\' class=\'bouton\'></div></div>';
 
 echo '<div id="changeNameIndex"><div class="titlePopup">'.$str['changePlayerName'].'</div>'.$str['newPlayerName'].' <span id="changeNameOld"></span> :<br/><input type=\'text\' id=\'playerName\' minlength="4" maxlength="50"><input type=\'hidden\' id=\'changeNameId\'>
@@ -117,8 +117,8 @@ echo '<div id="changeNameIndex"><div class="titlePopup">'.$str['changePlayerName
 echo '<input id=\'popupNewManigance\' type=\'hidden\' value=\'\'/><input id=\'popupDelManigance\' type=\'hidden\' value=\'0\'/><div id=\'manigancePopup\'><h1>'.$str['sideSchemeInfo'].'</h1><span id=\'manigancePopupText\'></span><div class="boutonsPopup"><input type="button" value="OK" onclick=\'document.getElementById("manigancePopup").style.display="none";\'></div></div>';
 ?>
 <script language="JavaScript">
-  ajaxCall(ajaxMainSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)
-  setInterval("ajaxCall(ajaxMainSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)",2000); 
+  ajaxCallCache(ajaxMainSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random());
+  setInterval("ajaxCallCache(ajaxMainSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random())",2000); 
 </script>
 </body>
 </html>

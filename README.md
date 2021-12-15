@@ -6,6 +6,11 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 5
+Refonte complète du moteur, tout en mode direct sur les fichiers XML, en faisant un cache AJAX, de fait nettement plus efficace.
+Suppressions des bases SQL devenues inutiles par le setup.
+Mise en place du moteur d'affichage (avec automatisme) des informations sur les manigances annexes.
+Mise en place d'un système de sauvegarde/restauration des parties du serveur.
 ## Version 4.2
 Informations sur les manigances annexes à date.
 ## Version 4.1c

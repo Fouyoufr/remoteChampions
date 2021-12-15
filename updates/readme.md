@@ -49,13 +49,7 @@
 - Envoyer la nouvelle image sur le hub :
     ```docker push fouyou/remotechampions```
 
-## Evolution(s) en cours
-- Ajouter les informations essentielles des manigances annexes :
-  - Entraves
-  - Une fois révélée
-  - Une fois déjouée
-- Déplacement des textes dans des fcihers de langue (reste à traiter pour le moteur: setup)
-
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
-- Mise en cache Ajax ??
+- Bypass de l'économiseur d'écran sur smartphone ?
+- Application HTML installable ?

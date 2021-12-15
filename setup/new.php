@@ -18,27 +18,48 @@ if ($publicPass!='' and (!isset($_SESSION['publicPass']) or $_SESSION['publicPas
   displayBottom();
   exit('</body>');}
 else unset($_POST['publicPass']);
-
 $error='';
 $clef='';
 if(!empty($_POST) and empty(array_diff_key($_POST,array_flip(['clef','nbJoueurs','mechantSeul'])))) $error=$str['noDeckNoGame'];
 if (isset($_POST['clef']) and strlen($_POST['clef'])<>6) $error=$str['6charUri'];
-if (isset($_POST['clef'])) if (sql_exists("SELECT `pUri` FROM `parties` WHERE `pURI`='".strtoupper($_POST['clef'])."'")) $error=$str['existentKey1']." '".strtoupper($_POST['clef'])."' ".$str['existentKey2']; else $clef=strtoupper($_POST['clef']);
+if (isset($_POST['clef']) and file_exists('ajax/'.strtoupper($_POST['clef']).'.xml')) $error=$str['existentKey1']." '".strtoupper($_POST['clef'])."' ".$str['existentKey2']; else $clef=strtoupper($_POST['clef']);
 if ($clef=='') do {
   $clefCar = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (sql_exists("SELECT `pUri` FROM `parties` WHERE `pURI`='$clef'"));
+  for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (file_exists('ajax/'.$clef.'.xml'));
 if (!empty($_POST) and $error=='') {
-  #Création effective de la partie dans la base mySql
+  #Création effective de la partie /dans le cache AJAX
+  $xml = new DomDocument('1.0', 'UTF-8');
+  $xml->preserveWhiteSpace = false;
+  $xml->formatOutput = true;
+  $xmlPartie = $xml->appendChild($xml->createElement('partie'));
+  $xmlPrinciaple=$xmlPartie->appendChild($xml->createElement('principale'));
     if(!isset($_POST['mechantSeul'])) {
-      $sqlJoueurs="INSERT INTO `joueurs` (`jPartie`,`jNom`,`jVie`,`jStatut`,`jHeros`,`jNumero`) VALUES ";
-      for ($i=1;$i<=$_POST['nbJoueurs'];$i++) $sqlJoueurs.="('$clef','Joueur $i','10','AE','0','$i'),";
-      sql_get(substr($sqlJoueurs,0,-1));
-      $premier=mt_rand(1,$_POST['nbJoueurs']);}
+      $premier=mt_rand(1,$_POST['nbJoueurs']);
+      for ($i=1;$i<=$_POST['nbJoueurs'];$i++) {xmlDoc($xmlPartie,array('joueur'=>array('jId'=>$i,'jNom'=>"Joueur $i",'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jOnline'=>0,'jHeros'=>0)));}}
     else {$premier=0;}
-    $sqlDecks="INSERT INTO `deckParties` (`dpPartie`,`dpDeck`) VALUES ";
-    foreach($_POST as $post=>$postValue) if (substr($post,0,4)=='deck') $sqlDecks.="('$clef','".substr($post,4)."'),";
-    sql_get(substr($sqlDecks,0,-1));
-    sql_get("INSERT INTO `parties` (`pUri`,`pPremier`) VALUES ('$clef','$premier')");
+    //Création de la liste des decks et manigances
+    $maniganceList=[];
+    $sqlManigances=sql_get("SELECT `maId`,`maNom`,`dId` FROM `boites`,`decks`,`manigances` WHERE `dBoite`=`bId` AND `bInclus`='1' AND `maDeck`=`dId` ORDER BY `maNom`");
+    while ($manigance=mysqli_fetch_assoc($sqlManigances)) {$maniganceList[]=array('maId'=>$manigance['maId'],'maNom'=>$manigance['maNom'],'dId'=>$manigance['dId']);}
+    foreach($_POST as $post=>$postValue) if (substr($post,0,4)=='deck') {
+      $xmlDeck=$xmlPartie->appendChild($xml->createElement('deck'));
+      $xdAttr1=$xml->createAttribute('dId');
+      $xdAttr1->appendChild($xml->createTextNode(substr($post,4)));
+      $xdAttr2=$xml->createAttribute('dNom');
+      $xdAttr2->appendChild($xml->createTextNode(deckNames()[substr($post,4)]));
+      $xmlDeck->appendChild($xdAttr1);
+      $xmlDeck->appendChild($xdAttr2);
+      foreach ($maniganceList as $mlId=>$mlValue) if ($mlValue['dId']==substr($post,4)) {
+        $xdAttr1=$xml->createAttribute('maId');
+        $xdAttr1->appendChild($xml->createTextNode($mlValue['maId']));
+        $xdAttr2=$xml->createAttribute('maNom');
+        $xdAttr2->appendChild($xml->createTextNode($mlValue['maNom']));
+        $xmlMani=$xmlDeck->appendChild($xml->createElement('maniChoice'));
+        $xmlMani->appendChild($xdAttr1);
+        $xmlMani->appendChild($xdAttr2);}}
+    xmlDoc($xmlPartie,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>''));
+    if (!is_dir('/ajax')) {mkdir('ajax');}
+    $xml->save('ajax/'.$clef.'.xml');
     exit ("<script language='JavaScript'>window.location.href='.?p=$clef'</script>");}
 echo "<form id='newPartie' method='post'><h1>".$str['newGameTitle']."</h1>";
 if ($error<>'') echo "<div class='newError'>".$str['error'].": $error.</div>";

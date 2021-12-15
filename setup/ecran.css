@@ -70,7 +70,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #indexFirst.first4 {bottom:100px;left:170px;}
 #changeMechant,#changeHeros {position:relative;margin:auto;margin-top:20px;width:70%;background:red;border:solid 3px white;padding:10px;color:white;z-index:10;padding-top:0px;display:none;}
 #changePhase,#NewManigance,#NewPrincipale {position:relative;margin:auto;margin-top:20px;width:40%;background:red;border:solid 3px white;padding:10px;color:white;z-index:10;padding-top:0px;display:none;}
-#newManiganceId {display:none;}
+#newManiganceId {display: none;}
 #changePhaseNext {font-weight:bold;font-style:italic;}
 #changePhaseVie,#changeMechantNom {font-weight:bold;}
 .titlePopup {position:relative;width:calc(100% + 20px);top:0px;left:-10px;background-color:black;color:white;font-weight:bold;font-size:30px;margin:0px;display:block;margin-bottom:3px;text-align:center;}
@@ -153,7 +153,7 @@ a.adminEncadre:hover {background-color:#555;color:white;border-color:white;}
 .adminIcones a img {max-height:20px;}
 .redMessage {width:100%;font-size:2em;text-align:center;background-color:red;color:white;}
 .publicWarning {clear:left;color:red;text-decoration:underline}
-#publicModeForm,#newPassForm {text-align:left;clear:both;}
+#publicModeForm,#newPassForm,#adminSaveDiv,#restored{text-align:left;clear:both;}
 .publicStatus {float:left;margin-right:10px;text-align:right;}
 .miseAJour {clear:both;}
 

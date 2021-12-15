@@ -7,7 +7,7 @@ global $str;
 <div id="mechantDispME">
   <span id="mechantME"></span>
   <img id="mechantPicME"></img>
-  <div id="phaseMechantME" onclick="ajaxCall(ajaxPhase,'p='+encodeURIComponent(document.getElementById('partie').value)+'&phase')"></div>
+  <div id="phaseMechantME"></div>
   <div>
     <input id='vieMechantMoinsME' type='button' value='<' onclick='document.getElementById("mechantLifeME").innerText-=1;ajaxPost("vieMechant",document.getElementById("mechantLifeME").innerText);'>
     <div id="mechantLifeME"></div>
@@ -19,8 +19,8 @@ echo '<input id="mechantDesorienteME" type="button" value="'.$str['villainConfus
 </div>
 
 <script language="JavaScript">
-  ajaxCall(ajaxMechantSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)
-  setInterval("ajaxCall(ajaxMechantSet,'pGet='+encodeURIComponent(document.getElementById('partie').value),true)",2000); 
+  ajaxCallCache(ajaxMechantSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random());
+  setInterval("ajaxCallCache(ajaxMechantSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random())",2000); 
 </script>
 </body>
 </html>
