@@ -399,7 +399,7 @@ else {
   imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png''img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
