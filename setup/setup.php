@@ -177,19 +177,23 @@ function sqlUpdate($sqlUpdateFile) {
 	$file = fopen ($sqlUpdateFile, "r");
 	if (!$file) {
 		exit("<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['openFileErrsub']." '$sqlUpdateFile'.</div></div>");}
+	$fileTable=array();
 	while (!feof ($file)) {
 		$nothingToDo=true;
     	$table=explode('=>',fgets($file),2);
     	$tableId=$table[0];
+		$fileTable[]=$tableId;
     	$addTab=(!mysqli_num_rows(sql_get("SHOW TABLES LIKE '$tableId';")));
 		$tableAdd="CREATE TABLE `$tableId` (";
 		$tableContent=explode(',',$table[1]);
+		$fileColumn=array();
 		foreach ($tableContent as $line) {
 			$line=explode('=>',$line,2);
 			$key=rtrim($line[0]);
 			$value=rtrim(str_replace(';',',',$line[1]));
 			if ($key=='PRIMARY KEY') {$tableAdd.="PRIMARY KEY (`$value`), ";}
 			else {
+				$fileColumn[]=$key;
 				$tableAdd.="`$key` $value, ";
 				if (!$addTab AND !(mysqli_num_rows(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'") ))) {
 					$nothingToDo=false;
@@ -214,20 +218,20 @@ function sqlUpdate($sqlUpdateFile) {
 			if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$tableAdd<br/><span class='gras'>$sqlError</span></div></div>";}
 			echo "</td></tr>";}
 		elseif ($nothingToDo) {
-		  #Supression des colonne dipsarues (à faire).
+		  #Supression des colonne dipsarues.
           $oldTable=sql_get("SHOW COLUMNS FROM `$tableId`");
-		  while($oldCol=mysqli_fetch_assoc($oldTable)) {
-
-			}
+		  while($oldCol=mysqli_fetch_assoc($oldTable)) if (!in_array($oldCol['Field'],$fileColumn)) {
+			sql_get('ALTER TABLE `'.$tableId.'` DROP COLUMN `'.$oldCol['Field'].'`');
+			echo "<tr><td>$tableId</td><td>".$str['sqlDelCol']."</td></tr>";
+			$nothingToDo=false;}
 		if($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}}
 	fclose($file);
-
-	###
-	#Reste à faire : suppression des bases historiques !
-	# parties, maniAnnexes, joueurs, compteurs,deckParties,config
-	###
-
-}	
+	##Suppression des bases disparues.
+	$oldTables=sql_get("SHOW TABLES");
+	while($oldTable=mysqli_fetch_array($oldTables)) {
+		if (!in_array($oldTable[0],$fileTable)) {
+	  sql_get('DROP TABLE `'.$oldTable[0].'`');
+	  echo '<tr><td>'.$oldTable[0].'</td><td>'.$str['sqlDelTable'].'</td></tr>';}}}	
 	
 include 'config.inc';
 #Vérification du mot de passe d'administration.
@@ -397,7 +401,7 @@ else {
   imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png''img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

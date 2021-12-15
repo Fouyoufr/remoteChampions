@@ -49,8 +49,6 @@
 - Envoyer la nouvelle image sur le hub :
     ```docker push fouyou/remotechampions```
 
-## Evolution(s) en cours
-- Suppression des bases obsolètes dans le setup par comparaison avec update de sqlTables
-
 ## Prochaines étapes envisagées :
 - Indication des sbires engagés avec les héros ???
+- Bypass de l'économiseur d'écran sur smartphone ?

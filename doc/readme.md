@@ -205,7 +205,13 @@ Pour chaque partie listée, vous retrouverez ici les informations suivantes :
 - **Méchant :** Il s'agit du nom du méchant actuellement sélectionné pour la partie.
 - **Joueurs :** Il s'agit du nombre de joueurs pour lequel ladite partie a été pensée lors de sa création (*aucun* représente une partie créée pour seulement suivre les informations d'un méchant).
 - **Créée le :** Il s'agit de la date de création de la partie. C'est ce critère qui est utilisé pour trier les parties affichées dans cette section, de la plus récemment créée à la plus ancienne.
-- **Action :** Pour chaque partie, vous retrouverez une icône d'ouverture ![2](tag2.png) vous permettant daccèder directement à la partie et une icône de suppression ![3](tag3.png) vous permettant de supprimer la partie du serveur (Notez qu'une confirmation vous sera demandée avant suppression, cette dernière étant définitive).
+- **Action :** Pour chaque partie, vous retrouverez une icône d'ouverture ![2](tag2.png) vous permettant daccèder directement à la partie, une icône de suppression ![3](tag3.png) vous permettant de supprimer la partie du serveur (Notez qu'une confirmation vous sera demandée avant suppression, cette dernière étant définitive) et une icône de sauvegarde ![4](tag4.pn) vous permettant de sauvegarder/exporter la partie pour la restaurer plus tard (voir ci-dessous).
+## Sauvegarde / Restauration
+![Sauvegarde / Restauration](illus22.png)
+Cette section vous permet de sauvegarder et/ou resturer les parties présentes sur votre serveur Remote Champions.
+En cliquant sur le lien de sauvegarde ![1](tag1.png), vous pouvez télécharger un fichier .ZIP contenant une sauvegarde de toutes les parties présentes sur votre serveur Remote Champions.
+Pour restaurer une partie (fichier .XML récupéré en cliquant sur l'icône présente sur la ligne d'une partie) ou un ensemble de parties (fichier .ZIP antérieurement récupéré depuis le lien précédent), commencez par cliquer sur le bouton ![2](tag2.png) (l'apparence et le nom peuvent chnager selon votre navigateur Internet) puis cliquer sur le bouton de restauration ![3](tag3.png).
+**Nota :** Une partie sauvegardée depuis un serveur Remote Champions peut ainsi être aisément restaurée sur un autre serveur (des limitations à cette fonction, qui n'est opérationnelle que depuis la version 5 peuvent exister dans le cas de versions de serveurs différentes.)
 ## Mot de passe administratif
 ![Mot de passe administratif](illus16.png)  
 Cette section vous permet de modifier le mot de passe administratif de votre serveur.  

@@ -1,7 +1,64 @@
 <?php
+$restored='';
+if (isset($_FILES['zipRestore'])) {
+  include_once('functions.php');
+  if (!file_exists('./config.inc')) header("Refresh:0; url=setup.php"); else include_once 'config.inc';
+  session_start();
+  global $str;
+  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
+    displayBottom();
+    exit('</body>');}
+  if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>".$str['noUpdatesDir']."...</div>");}
+  $target_file='updates/'.basename($_FILES['zipRestore']['name']);
+  if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION))!='zip' and strtolower(pathinfo($target_file,PATHINFO_EXTENSION))!='xml') $restored="<div class='error'>".$str['incorrectFile'].".<div class='subError'>".$str['noZipXML'].".<br/>".$str['readDoc']."...</div></div>";
+  else {
+    if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION))=='zip') {
+      #Restauration depuis ZIP sauvegardé
+      $zip = new ZipArchive;
+      if ($zip->open($_FILES['zipRestore']['tmp_name']) === TRUE) {
+        if (substr($zip->getNameIndex(0),0,5)<>'ajax/') exit("<div class='error'>".$str['nozip4']."</div>");
+        $zip->extractTo('.');
+        $zip->close();
+        $restored="<div class='redMessage'>".$str['restored']." : '".$_FILES['zipRestore']['name']."'.</div>";}
+      else $restored="<div class='error'>".$str['nozip2'].".<div class='subError'>".error_get_last()['message']."</div></div>";
+      unlink($_FILES['zipRestore']['tmp_name']);}
+    else {
+      #Import d'un fichier XML unitaire
+      $newGameFile='updates/'.$_FILES['zipRestore']['name'];
+      if (move_uploaded_file($_FILES['zipRestore']['tmp_name'],$newGameFile)) {
+        $xml=simplexml_load_file($newGameFile);
+        if (isset($xml['pUri'])) {
+          rename($newGameFile, 'ajax/'.$xml['pUri'].'.xml');
+          $restored="<div class='redMessage'>".$str['restored']." : '".$_FILES['zipRestore']['name']."'.</div>";}
+        else {
+          unlink($newGameFile);
+          $restored="<div class='error'>".$str['xmlError'].".<div class='subError'>".$_FILES['zipRestore']['name'].' : '.$str['xmlError2']."</div></div>";}}}}}
+
+if (isset($_GET['save'])) {
+  include 'include.php';
+  global $str;
+  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
+    displayBottom();
+    exit('</body>');}
+    $zip=new ZipArchive();
+    if ($zip->open('ajax/save.zip',ziparchive::CREATE)!==TRUE) {
+      echo("<div class='pannel'><div class='titleAdmin'>".$str['error']."</div>".$str['zipError'].".<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
+      displayBottom();
+      exit('</body>');}
+    $gameList=glob('ajax/*.xml');
+    foreach($gameList as $game)  $zip->addFile($game);
+    $zip->close();
+    header('Content-Type: application/zip');
+    header('Content-Length: '.filesize('ajax/save.zip'));
+    header('Content-Disposition: attachment;filename="remoteChampion-'.date('Y-m-d').'.zip"');
+    readfile('ajax/save.zip');
+ exit();}
+
 $title='Remote Champions - Admin';
 $bodyClass='admin';
-include 'include.php';
+include_once 'include.php';
 global $str;
 if (isset($_POST['newPass']) and $_POST['newPass']<>'') {
   $adminPassword=hash('sha256',$_POST['newPass']);
@@ -23,7 +80,6 @@ if (isset($_POST['publicMode'])) {
      return $data;}
   $configFile=array_map('replace_a_line',$configFile);
   file_put_contents('config.inc', implode('',$configFile));}
-
 if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
 ?>
 
@@ -72,11 +128,14 @@ if ($gameList) {
     $gameLine='<tr><td>'.$xml['pUri'].'</td><td>';
     if ($xml['pMechant']==0) $gameLine.='Aucun'; else $gameLine.=$xml['mNom'];
     if ($xml->joueur->count()>0) $gameLine.='</td><td>'.$xml->joueur->count();  else $gameLine.='</td><td>'.$str['noPlayer'];
-    $gameLine.='</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a></td></tr>';
+    $gameLine.='</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a> / <a href="ajax/'.$xml['pUri'].'.xml" download><img src="img/saveB.png" alt="'.$str['save'].'"/></a></td></tr>';
     $gamesList[]=array('date'=>$xml['pDate']->__toString(),'gameLine'=>$gameLine);}
   usort($gamesList,create_function('$a,$b','return $b[\'date\']-$a[\'date\'];'));
   foreach ($gamesList as $gameLine) echo $gameLine['gameLine'];
   echo "</table></div>";}
+
+echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' enctype=\'multipart/form-data\'><div class=\'titleAdmin\'>'.$str['saveRestore'].'</div>'.$restored.$str['saveText'].' <a href="?save" download>'.$str['saveText2'].'</a><br/>('.$str['saveText3'].' <img src=\'img/saveB\' alt=\''.$str['save'].'\'/>'.$str['saveText4'].'.)<hr/>'.$str['zipRestore'].' : <input type=\'file\' name=\'zipRestore\' id=\'zipRestore\' accept=\'.zip,.xml\'><input type=\'image\' src=\'img/load.png\'></form>';
+#<input type=\'submit\' class=\'restoreButton\'></form>';
 
 echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
 if (isset($_POST['newPass'])) echo "<div class='redMessage'>".$str['adminPassChanged']."</div>";
