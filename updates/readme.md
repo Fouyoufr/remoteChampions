@@ -50,7 +50,7 @@
     ```docker push fouyou/remotechampions```
 
 ## Prochaines étapes envisagées :
-- Lors de restauration : vérifier que les boites nécessaires sont incluses.
 - Indication des sbires engagés avec les héros ???
 - Bypass de l'économiseur d'écran sur smartphone ?
 - Application HTML installable ?
+- Journal d'installation/mise à jour ?

@@ -1,14 +1,34 @@
 <?php
+function restrictAccess(){
+  global $str,$adminPassword;
+  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
+    displayBottom();
+    exit('</body>');}}
+
+function restoreXML($restoreFileName){
+  global $str,$restored;
+  $xml=simplexml_load_file($restoreFileName);
+        if (isset($xml['pUri'])) {          
+          rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
+          $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
+          #La boite contenant le Deck est-elle notée comme incluse ?
+          foreach($xml->deck as $deck) if ($deck['dId']<>0) {
+            $sqlBox=mysqli_fetch_assoc(sql_get("SELECT * FROM `boites`,`decks` WHERE `dId`='".$deck['dId']."' AND `dBoite`=`bId`"));
+            if ($sqlBox['bInclus']<>1) {
+              $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$sqlBox['bNom']."'.)</div>";
+              sql_get("UPDATE `boites` SET `bInclus`=1 WHERE `bId`='".$sqlBox['bId']."'");}}}
+        else {
+          unlink($restoreFileName);
+          $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
+
 $restored='';
 if (isset($_FILES['zipRestore'])) {
   include_once('functions.php');
   if (!file_exists('./config.inc')) header("Refresh:0; url=setup.php"); else include_once 'config.inc';
   session_start();
   global $str;
-  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
-    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
-    displayBottom();
-    exit('</body>');}
+  restrictAccess();
   if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>".$str['noUpdatesDir']."...</div>");}
   $target_file='updates/'.basename($_FILES['zipRestore']['name']);
   if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION))!='zip' and strtolower(pathinfo($target_file,PATHINFO_EXTENSION))!='xml') $restored="<div class='error'>".$str['incorrectFile'].".<div class='subError'>".$str['noZipXML'].".<br/>".$str['readDoc']."...</div></div>";
@@ -18,30 +38,27 @@ if (isset($_FILES['zipRestore'])) {
       $zip = new ZipArchive;
       if ($zip->open($_FILES['zipRestore']['tmp_name']) === TRUE) {
         if (substr($zip->getNameIndex(0),0,5)<>'ajax/') exit("<div class='error'>".$str['nozip4']."</div>");
-        $zip->extractTo('.');
+        for($i=0;$i<$zip->numFiles;$i++) {
+          $filename=$zip->getNameIndex($i);
+          $fileinfo=pathinfo($filename);
+          $tempFile='updates/'.$fileinfo['basename'];
+          copy('zip://'.$_FILES['zipRestore']['tmp_name'].'#'.$filename,$tempFile);
+          restoreXML($tempFile);}          
         $zip->close();
-        $restored="<div class='redMessage'>".$str['restored']." : '".$_FILES['zipRestore']['name']."'.</div>";}
+        $restored="<div class='redMessage'>".$str['restored']." : '".$_FILES['zipRestore']['name']."'.$restored</div>";}
       else $restored="<div class='error'>".$str['nozip2'].".<div class='subError'>".error_get_last()['message']."</div></div>";
       unlink($_FILES['zipRestore']['tmp_name']);}
     else {
       #Import d'un fichier XML unitaire
       $newGameFile='updates/'.$_FILES['zipRestore']['name'];
       if (move_uploaded_file($_FILES['zipRestore']['tmp_name'],$newGameFile)) {
-        $xml=simplexml_load_file($newGameFile);
-        if (isset($xml['pUri'])) {
-          rename($newGameFile, 'ajax/'.$xml['pUri'].'.xml');
-          $restored="<div class='redMessage'>".$str['restored']." : '".$_FILES['zipRestore']['name']."'.</div>";}
-        else {
-          unlink($newGameFile);
-          $restored="<div class='error'>".$str['xmlError'].".<div class='subError'>".$_FILES['zipRestore']['name'].' : '.$str['xmlError2']."</div></div>";}}}}}
+        restoreXML($newGameFile);
+        $restored="<div class='redMessage'>$restored</div>";}}}}
 
 if (isset($_GET['save'])) {
   include 'include.php';
   global $str;
-  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
-    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
-    displayBottom();
-    exit('</body>');}
+  restrictAccess();
     $zip=new ZipArchive();
     if ($zip->open('ajax/save.zip',ziparchive::CREATE)!==TRUE) {
       echo("<div class='pannel'><div class='titleAdmin'>".$str['error']."</div>".$str['zipError'].".<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
@@ -134,7 +151,7 @@ if ($gameList) {
   foreach ($gamesList as $gameLine) echo $gameLine['gameLine'];
   echo "</table></div>";}
 
-echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' enctype=\'multipart/form-data\'><div class=\'titleAdmin\'>'.$str['saveRestore'].'</div>'.$restored.$str['saveText'].' <a href="?save" download>'.$str['saveText2'].'</a><br/>('.$str['saveText3'].' <img src=\'img/saveB\' alt=\''.$str['save'].'\'/>'.$str['saveText4'].'.)<hr/>'.$str['zipRestore'].' : <input type=\'file\' name=\'zipRestore\' id=\'zipRestore\' accept=\'.zip,.xml\'><input type=\'image\' src=\'img/load.png\'></form>';
+echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' enctype=\'multipart/form-data\'><div class=\'titleAdmin\'>'.$str['saveRestore'].'</div>'.$restored.$str['saveText'].' <a href="?save" download>'.$str['saveText2'].'</a><br/>('.$str['saveText3'].' <img src=\'img/saveB.png\' alt=\''.$str['save'].'\'/>'.$str['saveText4'].'.)<hr/>'.$str['zipRestore'].' : <input type=\'file\' name=\'zipRestore\' id=\'zipRestore\' accept=\'.zip,.xml\'><input type=\'image\' src=\'img/load.png\'></form>';
 #<input type=\'submit\' class=\'restoreButton\'></form>';
 
 echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
