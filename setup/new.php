@@ -22,7 +22,7 @@ $error='';
 $clef='';
 if(!empty($_POST) and empty(array_diff_key($_POST,array_flip(['clef','nbJoueurs','mechantSeul'])))) $error=$str['noDeckNoGame'];
 if (isset($_POST['clef']) and strlen($_POST['clef'])<>6) $error=$str['6charUri'];
-if (isset($_POST['clef']) and file_exists('ajax/'.strtoupper($_POST['clef']).'.xml')) $error=$str['existentKey1']." '".strtoupper($_POST['clef'])."' ".$str['existentKey2']; else $clef=strtoupper($_POST['clef']);
+if (isset($_POST['clef']) and file_exists('ajax/'.strtoupper($_POST['clef']).'.xml')) $error=$str['existentKey1']." '".strtoupper($_POST['clef'])."' ".$str['existentKey2']; elseif (isset($_POST['clef'])) $clef=strtoupper($_POST['clef']);
 if ($clef=='') do {
   $clefCar = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (file_exists('ajax/'.$clef.'.xml'));
