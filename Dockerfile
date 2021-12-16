@@ -11,7 +11,7 @@ RUN apt-get install -y php7.4-mysql php7.4-curl php7.4-json php7.4-xml php7.4-zi
 RUN sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.4/fpm/php.ini
 
 RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
-    -subj "/C=FR/ST=Denial/L=PAIRS/O=Self-signed certificate/CN=127.0.0.1" \
+    -subj "/C=FR/ST=Denial/L=PAIRS/O=Self-signed certificate/CN=localhost" \
     -keyout /etc/nginx/conf.d/remotechampions.key  -out /etc/nginx/conf.d/remotechampions.crt
 
 RUN echo 'server {\n\
@@ -58,5 +58,6 @@ service nginx start\n\
 /bin/bash' > /dockercmd.sh
 RUN chmod +x /dockercmd.sh
 
-EXPOSE 80 443
+EXPOSE 80
+EXPOSE 443
 CMD /dockercmd.sh

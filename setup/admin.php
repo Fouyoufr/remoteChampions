@@ -10,7 +10,7 @@ function restoreXML($restoreFileName){
   global $str,$restored;
   $xml=simplexml_load_file($restoreFileName);
         if (isset($xml['pUri'])) {
-          if (!is_dir('/ajax')) mkdir('ajax');         
+          if (!is_dir('ajax')) mkdir('ajax'); 
           rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
           $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
           #La boite contenant le Deck est-elle notée comme incluse ?

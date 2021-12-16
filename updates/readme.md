@@ -43,7 +43,7 @@
 - Installer Docker for Windows
 - Reboot/installer WSL2 si nécessaire
 - Dans l'invite de commande docker, se placer dans le dossier Git contenant le fichier DockerFile puis lancer :
-    ```docker build -t fouyou/remotechampions .```
+    ```docker build -t fouyou/remotechampions . --no-cache```
 - Se connecter à Docker Hub :
     ```docker login```
 - Envoyer la nouvelle image sur le hub :
