@@ -2,8 +2,8 @@
 include 'include.php';
 include_once 'maniganceInfo.php';
 include_once 'deckNames.php';
-global $str;
 
+global $str;
 if (isset($_POST['phase'])) {
   #Changement de phase du méchant
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
@@ -113,9 +113,13 @@ if(isset($_POST['switch'])) {
   $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {
-  $boite=htmlspecialchars($_POST['boite']);
-  $inclus=htmlspecialchars($_POST['inclus']);
-  sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");}
+  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $changedBoxes=false;
+  if (htmlspecialchars($_POST['inclus'])=='true') $boxOwn=1; else $boxOwn=0;
+  foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']==htmlspecialchars($_POST['boite']) and $xmlBox['own']<>$boxOwn) {
+    $xmlBox['own']=$boxOwn;
+    $changedBoxes=true;}
+  if ($changedBoxes) xmlSave($xmlBoxes,'boxes.xml');}
 
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);

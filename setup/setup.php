@@ -29,55 +29,17 @@
 include_once('functions.php');
 global $str;
 session_start();
-$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/main';
+$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/fullXML';
 $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
 if (!file_exists('./config.inc')) {
 	#Le fichier de paramètrage n'existe pas
 	echo "<div class='pannel'><div class='pannelTitle'>".$str['firstSetup']."</div>";
 	$error='';
-	if (file_exists('dockerSetup')) {
-	  #Gestion de la mise en place initiale du contenu dans un conteneur Docker.
-	  $_POST['serverName']='';
-	  $_POST['serverUser']='root';
-	  $_POST['serverPass']='';
-	  $_POST['serverDb']='remoteChampions';
-	  $_POST['newDb']='1';}
 	if(!is_writable(__DIR__)) {$error=$str['dirNoWrite']." '".__DIR__."', ".$str['pleaseCheck']."!";}
-	elseif (isset($_POST['serverName'])) {
-		if (isset($_POST['serverPort'])) $_POST['serverName'].=':'.$_POST['serverPort'];
-		$configContent="<?php\nfunction sql_get(\$sqlQuery) {\n  global \$sqlConn;\n  \$sqlConn=mysqli_connect('".$_POST['serverName']."','".$_POST['serverUser']."','".$_POST['serverPass']."','".$_POST['serverDb']."');\n  if(!\$sqlConn ) {die('".$str['sqlNoConnect'].": '.mysqli_connect_error());}\n  \$sqlResult=mysqli_query(\$sqlConn,\$sqlQuery);\n  return \$sqlResult;}\n\$adminPassword='$adminPasswordInitial';\n\$publicPass='';\n?>";
-		if (!isset($_POST['serverDb']) or $_POST['serverDb']==''){$error=$str['dbNoName']."...";}
-		elseif ($_POST['newDb']=='1') {
-			#Création d'une nouvelle base de donnée
-			$sqlConn=@mysqli_connect($_POST['serverName'],$_POST['serverUser'],$_POST['serverPass']);
-			if (!$sqlConn){$error=$str['sqlNoConnect'].', '.$str['pleaseCheck'].".<br/><div class='subError'>".mysqli_connect_error()."</div>";}
-			else {
-				$sqlQuery="CREATE DATABASE `".$_POST['serverDb']."`";
-				mysqli_query($sqlConn,$sqlQuery);
-				$sqlError=mysqli_error($sqlConn);
-				if ($sqlError!='') {
-					$error=$str['dbCreateImpossible']." '".$_POST['serverDb']."'.<div class='subError'><i>$sqlQuery</i> : $sqlError</div>";}
-				else {
-					file_put_contents ('config.inc',$configContent);
-					$_SESSION['adminPassword']=$adminPasswordInitial;
-					header("Refresh:0");}}}
-		else {
-			#Utilisation d'une base de donnée existante
-			$sqlConn=@mysqli_connect($_POST['serverName'].':'.$_POST['serverPort'],$_POST['serverUser'],$_POST['serverPass'],$_POST['serverDb']);
-			if (!$sqlConn){$error=$str['sqlNoConnect'].', '.$str['pleaseCheck'].".<br/><div class='subError'>".mysqli_connect_error()."</div>";}
-			else {
-				file_put_contents ('config.inc',$configContent);
-				$_SESSION['adminPassword']=$adminPasswordInitial;
-				header("Refresh:0");}}}
-	if (!isset($_POST['serverPort'])) $_POST['serverPort']='3306';
-	echo "<form action='' method='post'>";
-	if ($error<>'') echo"<div class='error'>$error</div>";
-	if (!isset($_POST['serverName']) or (isset($_POST['serverName']) and $error<>'')) {
-	  echo $str['notInstalled'].", ".$str['sqlServInfoAsk'].":<br/><table><tr><td>".$str['serverName']." :</td><td><input type='text' name='serverName' value='".$_POST['serverName']."'></td></tr><tr><td>".$str['serverPort']." :</td><td><input type='text' name='serverPort' value='".$_POST['serverPort']."'></td></tr><tr><td>".$str['serverUser']." :</td><td><input type='text' name='serverUser' value='".$_POST['serverUser']."'></td></tr><tr><td>".$str['serverPass']." :</td><td><input type='password' name='serverPass' value='".$_POST['serverPass']."'></td></tr><tr><td><input type='radio' name='newDb' value='0'";
-	  if ($_POST['newDb']=='0') echo ' checked';
-	  echo ">".$str['existingDB']."<br><input type='radio' name='newDb' value='1'";
-	  if ($_POST['newDb']<>'0') echo ' checked';
-	exit(">".$str['newDB']." :</td><td><input type='text' name='serverDb' value='".$_POST['serverDb']."'></td></tr><tr><td></td><td><input type='submit' value='".$str['ok']."'></td></tr></table>".$str['initialPassNote']."</form>");}}
+	else {
+      file_put_contents ('config.inc',"<?php\n\$adminPassword='$adminPasswordInitial';\n\$publicPass='';\n?>");
+	  $_SESSION['adminPassword']=$adminPasswordInitial;
+	  header("Refresh:0; url=index.php");}}
 
 function remoteFileSize ($phpFile) {
 	global $setupSourcePath;
@@ -92,145 +54,22 @@ function remoteFileSize ($phpFile) {
 	else $remoteSize=filesize("$setupSourcePath/$phpFile");
 	return $remoteSize;}
 
-function imageUpdate($imgFolder,$imgId,$imgNom) {
-	global $str;
+function imageUpdate($imgFolder,$imgObject) {
+	global $str,$updateSourcePath,$xmlBoxes;
 	#Mise à jour des images du dossier
-	global $updateSourcePath;
 	$nothingToDo=true;
 	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
 		$nothingToDo=false;
 		exit("<tr><td></td><div class='error'>".$str['noImgDir']."...</div></td></tr>");}}
-	$images=sql_get("SELECT `$imgId`,`$imgNom` FROM `$imgFolder`");
-	while ($image=mysqli_fetch_assoc($images)) {
-		$imageFile="img/$imgFolder/".$image[$imgId].'.png';
+	foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->$imgObject as $xmlObject) {
+		$imageFile="img/$imgFolder/".$xmlObject[$'id'].'.png';
 		if (!file_exists($imageFile)) {
 			$nothingToDo=false;
-			echo "<tr><td>".$image[$imgNom]."</td><td>Ajout";
+			echo "<tr><td>".$xmlObject[$'name']."</td><td>Ajout";
 			if (!@copy("$updateSourcePath/$imageFile",$imageFile)) {echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
 
-function updateSQLcontent($tableFile,$tableId) {
-	global $str;
-	#Mise à jour (ajout, modification et suppression) du contenu d'une table fixe.
-	global $sqlConn;
-	$file = fopen ($tableFile, "r");
-	if (!$file) exit("<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['openFileErrsub']." $tableFile'.</div></div>");
-	$newTable=array();
-	$nothingToDo=true;
-	while (!feof ($file)) {
-		$line=explode(',',fgets($file));
-		if ($line[0][0]=='#') {
-			$line[0]=substr($line[0],1);
-			$cols=$line;
-			$cols[count($cols)-1]=rtrim($cols[count($cols)-1]);}
-		else {
-			$newTable[$line[0]]=$line[1];
-			$entry=sql_get("SELECT * FROM $tableId WHERE `$cols[0]`='$line[0]'");
-			if ((!mysqli_num_rows($entry))) {
-				$nothingToDo=false;
-				echo "<tr><td>$tableId</td><td>".$str['sqlAddEntry']." `$cols[0]`='$line[0]'";
-				$sqlQuery1='';
-				$sqlQuery2=") VALUES (";
-				foreach ($cols as $key=>$value) {
-					$value=rtrim($value);
-					$sqlQuery1.="`$value`, ";
-					$sqlQuery2.="'".mysqli_real_escape_string($sqlConn,rtrim($line[$key]))."', ";}
-				$sqlQuery="INSERT INTO `$tableId` (".substr($sqlQuery1,0,-2).substr($sqlQuery2,0,-2).')';
-				sql_get($sqlQuery);
-				$sqlError=mysqli_error($sqlConn);
-				if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
-				echo "</td></tr>";}
-			else {
-				$news=false;
-				$entry=mysqli_fetch_assoc($entry);
-				foreach ($cols as $key=>$value) if (!($entry[rtrim($value)]===rtrim($line[$key])) and $value<>'bInclus') $news=true;
-				#L'ajout $key<>'bInclus' permet de ne pas remplacer la valeur 'possédée' de la boite...
-				if ($news) {
-					$nothingToDo=false;
-					echo"<tr><td>$tableId</td><td>".$str['sqlChangeEntry']." `$cols[0]`='$line[0]'";
-					$sqlQuery="UPDATE `$tableId` SET ";
-					foreach ($cols as $key=>$value) {if ($key<>0) {$sqlQuery.="`".rtrim($value)."`='".mysqli_real_escape_string($sqlConn,rtrim($line[$key]))."', ";}}
-					$sqlQuery=substr($sqlQuery,0,-2)." WHERE `$cols[0]`='".mysqli_real_escape_string($sqlConn,rtrim($line[0]))."'";
-					sql_get($sqlQuery);
-					$sqlError=mysqli_error($sqlConn);
-					if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
-					echo '<br/>';}}}}
-	#Supression des enregistrements dipsarus.
-	$oldTable=sql_get("SELECT `$cols[0]`, `$cols[1]` FROM $tableId");
-	while($oldLine=mysqli_fetch_assoc($oldTable)) {
-		if(!isset($newTable[$oldLine[$cols[0]]])) {
-			$nothingToDo=false;
-			echo "<tr><td>$tableId</td><td>".$str['sqlDeleteEntry']." '".$oldLine[$cols[0]]."'";
-			sql_get ("DELETE FROM `$tableId` WHERE `$cols[0]`='".$oldLine[$cols[0]]."' AND `$cols[1]`='".$oldLine[$cols[1]]."'");
-			$sqlError=mysqli_error($sqlConn);
-			if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$sqlQuery<br/><span class='gras'>$sqlError</span></div></div>";}
-			echo "</td></tr>";}}
-	if ($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}
-
-function sqlUpdate($sqlUpdateFile) {
-#Récupération des éléments de structure SQL depuis référence gitHub et mise à jour/création dans la base
-	global $sqlConn,$gitUrl,$str;
-	$engine='ENGINE=InnoDB DEFAULT CHARSET=utf8';
-	$file = fopen ($sqlUpdateFile, "r");
-	if (!$file) {
-		exit("<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['openFileErrsub']." '$sqlUpdateFile'.</div></div>");}
-	$fileTable=array();
-	while (!feof ($file)) {
-		$nothingToDo=true;
-    	$table=explode('=>',fgets($file),2);
-    	$tableId=$table[0];
-		$fileTable[]=$tableId;
-    	$addTab=(!mysqli_num_rows(sql_get("SHOW TABLES LIKE '$tableId';")));
-		$tableAdd="CREATE TABLE `$tableId` (";
-		$tableContent=explode(',',$table[1]);
-		$fileColumn=array();
-		foreach ($tableContent as $line) {
-			$line=explode('=>',$line,2);
-			$key=rtrim($line[0]);
-			$value=rtrim(str_replace(';',',',$line[1]));
-			if ($key=='PRIMARY KEY') {$tableAdd.="PRIMARY KEY (`$value`), ";}
-			else {
-				$fileColumn[]=$key;
-				$tableAdd.="`$key` $value, ";
-				if (!$addTab AND !(mysqli_num_rows(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'") ))) {
-					$nothingToDo=false;
-					echo "<tr><td>$tableId</td><td>".$str['sqladdCol']." '$key'";
-					$columnAdd="ALTER TABLE $tableId ADD COLUMN `$key` $value;";
-					sql_get($columnAdd);
-					$sqlError=mysqli_error($sqlConn);
-					if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$columnAdd<br/><span class='gras'>$sqlError</span></div></div>";}
-					echo "</td></tr>";}
-				elseif (!$addTab) {
-					$oldType=mysqli_fetch_assoc(sql_get("SHOW COLUMNS FROM `$tableId` LIKE '$key'"))['Type'];
-					if (strtoupper($oldType) <> strtoupper(substr($value,0,strlen($oldType)))) {
-						#Changement du type de la colonne.
-						echo "<tr><td>$tableId</td><td>".$str['sqlChangeCol']." '$key'";
-						sql_get("ALTER TABLE `$tableId` MODIFY `$key` $value"); 
-						$nothingToDo=false;}}}}
-		if ($addTab) {
-			echo "<tr><td>$tableId</td><td>".$str['sqladdTable'].".";
-			$tableAdd=substr($tableAdd,0,-2).") $engine";
-			sql_get($tableAdd);
-			$sqlError=mysqli_error($sqlConn);
-			if ($sqlError!='') {echo "<div class='error'>".$str['error']."<div class='subError'>$tableAdd<br/><span class='gras'>$sqlError</span></div></div>";}
-			echo "</td></tr>";}
-		elseif ($nothingToDo) {
-		  #Supression des colonne dipsarues.
-          $oldTable=sql_get("SHOW COLUMNS FROM `$tableId`");
-		  while($oldCol=mysqli_fetch_assoc($oldTable)) if (!in_array($oldCol['Field'],$fileColumn)) {
-			sql_get('ALTER TABLE `'.$tableId.'` DROP COLUMN `'.$oldCol['Field'].'`');
-			echo "<tr><td>$tableId</td><td>".$str['sqlDelCol']."</td></tr>";
-			$nothingToDo=false;}
-		if($nothingToDo) echo "<tr><td>$tableId</td><td>".$str['allFine']."</td></tr>";}}
-	fclose($file);
-	##Suppression des bases disparues.
-	$oldTables=sql_get("SHOW TABLES");
-	while($oldTable=mysqli_fetch_array($oldTables)) {
-		if (!in_array($oldTable[0],$fileTable)) {
-	  sql_get('DROP TABLE `'.$oldTable[0].'`');
-	  echo '<tr><td>'.$oldTable[0].'</td><td>'.$str['sqlDelTable'].'</td></tr>';}}}	
-	
 include 'config.inc';
 #Vérification du mot de passe d'administration.
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
@@ -277,7 +116,7 @@ else {
   else echo $str['allreadyUp'].".";}
 
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
-if (mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
+if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
 	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
 	$sqlParties=sql_get('SELECT * FROM `parties`');
 	while ($sqlPartie=mysqli_fetch_assoc($sqlParties)) {
@@ -380,15 +219,6 @@ elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$
 	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
 	file_put_contents ('aide.html', $helpFile);}}
 else echo $str['gameHelpUp3'].".";
-echo "</div><div class='pannel'><div class='pannelTitle'>".$str['sqlDBUp']."</div><table><tr><th>Table</th><th>Action</th></tr>";
-sqlUpdate("$updateSourcePath/sqlTables");
-echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['sqlDBUp2']."</div><table><tr><th>Table</th><th>Action</th></tr>";
-updateSQLcontent("$updateSourcePath/boites",'boites');
-updateSQLcontent("$updateSourcePath/mechants",'mechants');
-updateSQLcontent("$updateSourcePath/ManigancesPrincipales",'ManigancesPrincipales');
-updateSQLcontent("$updateSourcePath/manigances",'manigances');
-updateSQLcontent("$updateSourcePath/decks",'decks');
-updateSQLcontent("$updateSourcePath/heros",'heros');
 if ($updateSourcePath=='dockerSetup') {
 	#Fin d'insertion Docker : nettoyage
     $files = glob($updateSourcePath.'/*',GLOB_MARK);
@@ -396,13 +226,9 @@ if ($updateSourcePath=='dockerSetup') {
     rmdir($updateSourcePath);
 	echo "</table></div>";}
 else {
-  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
-  imageUpdate('mechants','mId','mNom');
-  imageUpdate('boites','bId','bNom');
-  imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','deckNames.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php','boxes.xml');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
@@ -412,6 +238,11 @@ else {
 		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo $str['noUpdate'];
 	echo "</td></tr>";}
+  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
+  $xmlBoxes=simplexml_load_file('boxes.xml');
+  imageUpdate('mechants','mechant');
+  imageUpdate('boites','box');
+  imageUpdate('heros','heros');
 echo "</table></div>";}
 echo "<div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";
 ?>

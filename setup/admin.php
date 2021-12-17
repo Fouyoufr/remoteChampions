@@ -7,23 +7,30 @@ function restrictAccess(){
     exit('</body>');}}
 
 function restoreXML($restoreFileName){
-  global $str,$restored;
+  global $str,$restored,$xmlBoxes;
+  $changedBoxes=false;
   $xml=simplexml_load_file($restoreFileName);
-        if (isset($xml['pUri'])) {
-          if (!is_dir('ajax')) mkdir('ajax'); 
-          rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
-          $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
-          #La boite contenant le Deck est-elle notée comme incluse ?
-          foreach($xml->deck as $deck) if ($deck['dId']<>0) {
-            $sqlBox=mysqli_fetch_assoc(sql_get("SELECT * FROM `boites`,`decks` WHERE `dId`='".$deck['dId']."' AND `dBoite`=`bId`"));
-            if ($sqlBox['bInclus']<>1) {
-              $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$sqlBox['bNom']."'.)</div>";
-              sql_get("UPDATE `boites` SET `bInclus`=1 WHERE `bId`='".$sqlBox['bId']."'");}}}
-        else {
-          unlink($restoreFileName);
-          $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
+  if (isset($xml['pUri'])) {
+    if (!is_dir('ajax')) mkdir('ajax'); 
+    rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
+    $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
+    #La boite contenant le Deck est-elle notée comme incluse ?
+    foreach($xml->deck as $deck) if ($deck['dId']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
+      $xmlBox['own']=1;
+      $changedBoxes=true;
+      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+    #La boite contenant le Héros est-elle notée comme incluse ?
+    foreach($xml->joueur as $joueur) if ($joueur['jHeros']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $ownHeros) if ($ownHeros['id']->__toString()==$joueur['jHeros']->__toString() and $xmlBox['own']<>1) {
+      $xmlBox['own']=1;
+      $changedBoxes=true;
+      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+    if ($changedBoxes) xmlSave($xmlBoxes,'boxes.xml');}
+  else {
+    unlink($restoreFileName);
+    $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
 
 $restored='';
+$xmlBoxes=simplexml_load_file('boxes.xml');
 if (isset($_FILES['zipRestore'])) {
   include_once('functions.php');
   if (!file_exists('./config.inc')) header("Refresh:0; url=setup.php"); else include_once 'config.inc';
@@ -117,23 +124,18 @@ if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
 <div class="pannel">
   <?php
   echo '<div class="titleAdmin">'.$str['boxesTitle'].'</div>('.$str['globalParam'].')<br/>';
-  function displayBox($boite) {
-    $boiteId=$boite['bId'];
-    $boiteNom=$boite['bNom'];
-    echo "<div class='adminEncadre'><input type='checkbox' id='boite$boiteId' onclick='ajaxPost(\"boite=$boiteId&inclus\",document.getElementById(\"boite$boiteId\").checked);'";
-    if ($boite['bInclus']=='1') {echo ' checked ';}
-    if ($boite['bInclus']=='2') {echo ' checked disabled';}
-    echo "><label for='boite$boiteId'><img src='img/boites/$boiteId.png'/><br/>$boiteNom</label></div>";}
-    function displayBoxes($dbReq) {
-    $boites=sql_get("SELECT * FROM `boites` WHERE $dbReq ORDER BY `bNom`");
-    if ($boites) while ($boite=mysqli_fetch_assoc($boites)) {
-      displayBox($boite);}}
-  displayBox(array('bId'=>'1','bNom'=>$str['baseBox'],'bInclus'=>'2'));
-  displayBoxes("bType='b' AND bId <>'1'");
+  function displayBoxes($boxType) {
+    global $xmlBoxes;
+    foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']<>1 and $xmlBox['type']==$boxType) {
+      echo "<div class='adminEncadre'><input type='checkbox' id='boite".$xmlBox['id']."' onclick='ajaxPost(\"boite=".$xmlBox['id']."&inclus\",document.getElementById(\"boite".$xmlBox['id']."\").checked);'";
+      if ($xmlBox['own']==1) echo ' checked ';
+      echo "><label for='boite".$xmlBox['id']."'><img src='img/boites/".$xmlBox['id'].".png'/><br/>".$xmlBox['name']."</label></div>";}}
+  echo "<div class='adminEncadre'><input type='checkbox' id='boite1' checked disabled><label for='boite1'><img src='img/boites/1.png'/><br/>Base</label></div>";
+  displayBoxes('b');
   echo '<hr/>';
-  displayBoxes("bType='s'");
+  displayBoxes('s');
   echo '<hr/>';
-  displayBoxes("bType='h'");
+  displayBoxes('h');
   ?>
 </div>
 <?php

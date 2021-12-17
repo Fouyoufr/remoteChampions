@@ -10,10 +10,6 @@ if (isset($_GET['j'])) $joueurId=htmlspecialchars($_GET['j']); elseif (isset($_P
 if (isset($partieId) and !file_exists("ajax/$partieId.xml")) {
   $badPartie=$partieId;
   unset($partieId);}
-if (isset($joueurId)) {
-  $seekJoueur=sql_get("SELECT `jId`,`jPartie` FROM `joueurs` WHERE `jId`='$joueurId'");
-	if (mysqli_num_rows($seekJoueur)!=1) unset($joueurId);
-	else $partieId=mysqli_fetch_assoc($seekJoueur)['jPartie'];}
 if (isset($title)) {
   echo "<!doctype html>
 <html lang='fr'>

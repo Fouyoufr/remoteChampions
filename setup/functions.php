@@ -4,6 +4,11 @@ include_once('lang-fr.php');
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}
 
+function xmlSave($xsObject,$xsFile) {
+  $dom = dom_import_simplexml($xsObject)->ownerDocument;
+  $dom->formatOutput = TRUE;
+  $dom->save($xsFile);}
+
 function gitFileDate($gitFile=null){
   global $str;
   #Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)

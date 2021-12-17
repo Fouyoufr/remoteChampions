@@ -3,6 +3,7 @@ $title='Remote Champions';
 $bodyClass='index';
 include 'include.php';
 global $str;
+$xml=simplexml_load_file('boxes.xml');
 if (!isset($partieId)) {
   echo '<div id="selectPartie">';
   if (isset($badPartie)) {echo "<div id='keyError'>&#9888; ".$str['badKey1']." '$badPartie' ".$str['badKey2']."... &#9888;</div>";}
@@ -24,9 +25,7 @@ if ($mobile) {
  ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true);
  setInterval("ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true)",2000); 
  </script>');}}
-$sqlPrincipales=sql_get("SELECT * FROM `ManigancesPrincipales`,`boites` WHERE `mpId`!=0 AND `bInclus`='1' AND `bId`=`mpBoite` ORDER By `mpNom` ASC");
-while ($principale=mysqli_fetch_assoc($sqlPrincipales))
-$principales[$principale['mpId']]=$principale['mpNom'];
+foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->principale as $principale) $principales[$principale['id']->__tostring()]=$principale['name'];
 ?>
 
 <div id="mechantDisp">
@@ -50,7 +49,7 @@ echo '<input id="mechantDesoriente" type="button" value="'.$str['villainConfused
 echo '</div><div id="compteurs">'.$str['counters'].'<br/><a  onclick=\'ajaxPost("addCompteur","");\' id="NewCompteurBtn">+</a><div id="compteursList"></div></div>';
 for ($i = 1; $i <= 4; $i++) {
 echo "<div id='joueur".$i."Disp' class='joueurDisp'><img class='picJoueur' id='picJoueur$i' onclick=\"document.getElementById('herosAChanger').value=$i;document.getElementById('changeHeros').style.display='block';\"></img><div><span id='joueur$i'></span></div><div id='vieDisp$i' class='vieDisp'></div><input id='desoriente$i' type='button' value='".$str['playerConfused']."'><input id='sonne$i' type='button' value='".$str['playerStunned']."'><input id='tenace$i' type='button' value='".$str['playerTough']."'><div id='joueur".$i."Etat' class='joueurEtat'></div><input id='joueur".$i."Numero' type='hidden' /><div id='online".$i."' class='pointVert'></div>";
-  if (!$mobile) echo "<div class='smartphoneIcone' onclick='window.open(\"joueur.php?j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>";
+  if (!$mobile) echo "<div class='smartphoneIcone' onclick='window.open(\"joueur.php?p=\"+document.getElementById(\"partie\").value+\"&j=\"+document.getElementById(\"joueur".$i."Numero\").value,\"\",\"titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,height=170px,width=400px\");'></div>";
 echo "</div>";}
 displayBottom();
 ?>
@@ -89,16 +88,14 @@ echo '<div id="changePhase"><div class="titlePopup">'.$str['changePhase'].'</div
   <div class="titlePopup">'.$str['changeVillain'].'</div>
   <div class="centre">&#9888; '.$str['changeVillain1'].' &#9888;<br/>'.$str['changeVillain2'].'.</div><br/>
   <div id="mechantSelect">';
-$mechants=sql_get("SELECT * FROM `mechants`,`boites` WHERE `mID`>0 AND `mBoite`=`bID` AND `bInclus`='1' ORDER BY `mNom` ASC");
-while ($mechant=mysqli_fetch_assoc($mechants)) {echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['mId'].");'><img src='img/mechants/".$mechant['mId'].".png'/>".$mechant['mNom'].'</div>';}
+foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->mechant as $mechant) echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['id'].");'><img src='img/mechants/".$mechant['id'].".png'/>".$mechant['name'].'</div>';
 echo '</div><br/><div class="boutonsPopup"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeMechant").style.display="none";\' class=\'bouton\'></div></div>';
 
 echo '<div id="changeHeros">
   <div class="titlePopup">'.$str['changeHeros'].'</div>
   <input type="hidden" id="herosAChanger" value="0">
   <div class="centre">&#9888; '.$str['confirmHeroChange'].'.</div><br/><div id="herosSelect">';
-$heros=sql_get("SELECT * FROM `heros`,`boites` WHERE `hId`>0 AND `hBoite`=`bID` AND `bInclus`='1' ORDER BY `hNom` ASC");
-while ($hero=mysqli_fetch_assoc($heros)) {echo "<div class='changeHeros' onclick='ajaxPost(\"joueurNum=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$hero['hId'].");'><img src='img/heros/".$hero['hId'].".png'/>".$hero['hNom'].'</div>';}
+foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->heros as $heros) echo "<div class='changeHeros' onclick='ajaxPost(\"joueurNum=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$heros['id'].");'><img src='img/heros/".$heros['id'].".png'/>".$heros['name'].'</div>';
 echo '</div><br/><div class="boutonsPopup">
     <input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeHeros").style.display="none";\' class=\'bouton\'></div></div>';
 echo '<div id="NewPrincipale"><div class="titlePopup">'.$str['ChangeMScheme'].'</div><div class="centre">&#9888; '.$str['confirmMScheme'].' &#9888;</div><br/><select name="NewPrincipaleId" id="NewPrincipaleId"><option value="">--'.$str['mainScheme'].'--</option>';
