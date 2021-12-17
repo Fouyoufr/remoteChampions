@@ -1,7 +1,6 @@
 <?php
 include 'include.php';
 include_once 'maniganceInfo.php';
-include_once 'deckNames.php';
 
 global $str;
 if (isset($_POST['phase'])) {
@@ -160,37 +159,37 @@ if(isset($_POST['maniganceAcc'])) {
   $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['newManigance'])) {
+  $xmlBoxes=simplexml_load_file('boxes.xml');
   $manigance=htmlspecialchars($_POST['newManigance']);
-  $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$manigance'"));
-  $maInit=$maniDetail['maInit'];
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
-  if ($maniDetail['maMultiplie']==true) {$maInit=$maInit*$nbJoueurs;}
-  if ($maniDetail['maEntrave']!=0) {$maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];}
-  $xml['pManiDelete']=0;
-  if (!isset($xml->lastManigance)) {
-    $xml->addChild('lastManigance');
-    xmlAttr($xml->lastManigance,array('id'=>$manigance,'title'=>$maniDetail['maNom'],'text'=>$maniDetail['maRevele']));}
-  else {
-    $xml->lastManigance['id']=$manigance;
-    $xml->lastManigance['text']=$maniDetail['maRevele'];}
-  foreach ($xml->deck as $maniDeck) {
-    $nodesToDelete=array();
-    foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) {
-      $nodeToDelete=$mValue; //supprimer manigance des choix possibles.
-      $fromDeckId=$maniDeck['dId'];
-      $fromDeckNom=$maniDeck['dNom'];}}
+  foreach($xmlBoxes as $xmlBox) foreach ($xmlBox->deck as $xmlDeck) foreach ($xmlDeck->scheme as $xmlScheme) if ($xmlScheme['id']==$manigance) {
+    $newScheme=$xmlScheme;
+    $newDeck=$xmlDeck;}
+  if (!isset($newScheme)) foreach($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $xmlHeros) foreach ($xmlHeros->scheme as $xmlScheme) if ($xmlScheme['id']==$manigance) {
+    $newScheme=$xmlScheme;
+    $newDeck=array('id'=>'h'.$xmlHeros['id'],'name'=>$xmlHeros['name']);}
+  if (isset($newScheme)) {
+    $maInit=$newScheme['init'];
+    if ($newScheme['initX']==1) $maInit=$maInit*$nbJoueurs;
+    if ($newScheme['entrave']<>0) $maInit=$maInit+$nbJoueurs*$newScheme['entrave'];
+    $xml['pManiDelete']=0;
+    if (!isset($xml->lastManigance)) {
+      $xml->addChild('lastManigance');
+      xmlAttr($xml->lastManigance,array('id'=>$manigance,'title'=>$newScheme['name'],'text'=>$newScheme['revele']));}
+    else {
+      $xml->lastManigance['id']=$manigance;
+      $xml->lastManigance['text']=$newScheme['revele'];}
+    foreach ($xml->deck as $maniDeck) foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) $nodeToDelete=$mValue; 
     unset($nodeToDelete[0]);
-  //Ajouter nouvelle manigance en jeu...
-  $xmlManigance=$xml->addChild('manigance');
-  xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$maniDetail['maNom'],'mnMenace'=>$maInit,'fromDeckId'=>$fromDeckId,'fromDeckNom'=>$fromDeckNom,'maRevele'=>$maniTxt[$maniDetail['maRevele']],'maDejoue'=>$maniTxt[$maniDetail['maDejoue']],'maInfo'=>$maniTxt[$maniDetail['maInfo']],'maNumero'=>$maniDetail['maNumero'],'maCrise'=>$maniDetail['maCrise'],'maRencontre'=>$maniDetail['maRencontre'],'maAcceleration'=>$maniDetail['maAcceleration'],'maAmplification'=>$maniDetail['maAmplification'],'maDeck'=>$maniDetail['maDeck']));
-  if ($maniDetail['maDeck']==0) {
-    foreach($xml->joueur as $maniJoueur) if ($maniDetail['maNumero']==$maniJoueur['jHeros']) {
-      xmlAttr($xmlManigance,array('hNom'=>$maniJoueur['hNom']));}}
-  else {xmlAttr($xmlManigance,array('dNom'=>$deckNames[$maniDetail['maDeck']]['dNom']));}
-  foreach ($xml->deck as $maniDeck) if ($maniDeck->maniChoice->count()==0) {$nodesToDelete[]=$maniDeck;} //Plus de manigance sur ce deck !
-  foreach ($nodesToDelete as $nodeToDelete) {unset($nodeToDelete[0]);} // Suppression du deck vide.
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+    //Ajouter nouvelle manigance en jeu...
+    $xmlManigance=$xml->addChild('manigance');
+    xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$newScheme['name'],'mnMenace'=>$maInit,'fromDeckId'=>$newDeck['id'],'fromDeckNom'=>$newDeck['name'],'maRevele'=>$newScheme['revele'],'maDejoue'=>$newScheme['dejoue'],'maInfo'=>$newScheme['info'],'maNumero'=>$newScheme['card'],'maCrise'=>$newScheme['crise'],'maRencontre'=>$newScheme['rencontre'],'maAcceleration'=>$newScheme['accel'],'maAmplification'=>$newScheme['ampli'],'maDeck'=>$newDeck['id']));
+    if ($newDeck['id']==0) xmlAttr($xmlManigance,array('hNom'=>$newDeck['name']));
+    else xmlAttr($xmlManigance,array('dNom'=>$newDeck['name']));
+  foreach ($xml->deck as $maniDeck) if ($maniDeck->maniChoice->count()==0) $nodesToDelete[]=$maniDeck; //Plus de manigance sur ce deck !
+  if (isset($nodesToDelete)) foreach ($nodesToDelete as $nodeToDelete) unset($nodeToDelete[0]); // Suppression du deck vide.
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}}
 
 if(isset($_POST['MA'])) {
   $manigance=htmlspecialchars($_POST['MA']);
