@@ -62,10 +62,10 @@ function imageUpdate($imgFolder,$imgObject) {
 		$nothingToDo=false;
 		exit("<tr><td></td><div class='error'>".$str['noImgDir']."...</div></td></tr>");}}
 	foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->$imgObject as $xmlObject) {
-		$imageFile="img/$imgFolder/".$xmlObject[$'id'].'.png';
+		$imageFile="img/$imgFolder/".$xmlObject['id'].'.png';
 		if (!file_exists($imageFile)) {
 			$nothingToDo=false;
-			echo "<tr><td>".$xmlObject[$'name']."</td><td>Ajout";
+			echo "<tr><td>".$xmlObject['name']."</td><td>Ajout";
 			if (!@copy("$updateSourcePath/$imageFile",$imageFile)) {echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
