@@ -1,39 +1,26 @@
 <?php
 include 'include.php';
 include_once 'maniganceInfo.php';
+include_once 'deckNames.php';
 global $str;
 
-if (isset($_GET['phase'])) {
-  $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
-  $nbJoueurs=$xml->joueur->count();
-  $phaseSql=sql_get("SELECT `mVieMax1`,`mVieMax2`,`mVieMax3`,`mNom` FROM `mechants` WHERE `mId`=".$xml['pMechant']);
-  $phase=mysqli_fetch_assoc($phaseSql);
-  $phase['pMechPhase']=$xml['pMechPhase'];
-  $xml = new XMLWriter();
-  $xml->openURI("php://output");
-  $xml->startDocument();
-  $xml->setIndent(true);
-  $xml->startElement('ajax');
-    $xml->startElement('phase');
-    foreach ($phase as $clePhase => $valPhase) {$xml->writeAttribute($clePhase, $valPhase);}
-    $xml->writeAttribute('nbJoueurs', $nbJoueurs);
-    $xml->endElement();
-  $xml->endElement();
-  header('Content-type: text/xml');
-  $xml->flush();}
-
 if (isset($_POST['phase'])) {
+  #Changement de phase du méchant
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
   $phase=htmlspecialchars($_POST['phase']);
   $mechant=sql_get("SELECT `mVieMax1`,`mVieMax2`,`mVieMax3` FROM `mechants` WHERE `mId`=".$xml['pMechant']);
   $mechant=mysqli_fetch_assoc($mechant);
   $vieMax=$mechant['mVieMax'.$phase]*$nbJoueurs;
+  $nextPhase=$phase+1;
+  if ($nextPhase==4) $nextPhase=1;
   $xml['pMechPhase']=$phase;
   $xml['pMechVie']=$vieMax;
+  $xml['nextPhaseVie']=$mechant['mVieMax'.$nextPhase];
   $xml->saveXML('ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['mechant'])) {
+  #Changement de méchant
   $mechant=htmlspecialchars($_POST['mechant']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
@@ -41,10 +28,11 @@ if (isset($_POST['mechant'])) {
   	$premier=0;
   	$nbJoueurs=1;}
   foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jNumero']==$premier) {$premier=$jValue['jId'];}
-  $mechantSql=mysqli_fetch_assoc(sql_get("SELECT `mVieMax1`,`mNom` FROM `mechants` WHERE `mId`='$mechant'"));
+  $mechantSql=mysqli_fetch_assoc(sql_get("SELECT `mVieMax1`,`mVieMax2`,`mNom` FROM `mechants` WHERE `mId`='$mechant'"));
   $vieMechant=$mechantSql['mVieMax1']*$nbJoueurs;
   $xml['pMechant']=$mechant;
   $xml['pMechVie']=$vieMechant;
+  $xml['nextPhaseVie']=$mechantSql['mVieMax2'];
   $xml['pPremier']=$premier;
   $xml['pMechDesoriente']=0;
   $xml['pMechSonne']=0;
@@ -195,7 +183,7 @@ if(isset($_POST['newManigance'])) {
   if ($maniDetail['maDeck']==0) {
     foreach($xml->joueur as $maniJoueur) if ($maniDetail['maNumero']==$maniJoueur['jHeros']) {
       xmlAttr($xmlManigance,array('hNom'=>$maniJoueur['hNom']));}}
-  else {xmlAttr($xmlManigance,array('dNom'=>deckNames()[$maniDetail['maDeck']]));}
+  else {xmlAttr($xmlManigance,array('dNom'=>$deckNames[$maniDetail['maDeck']]['dNom']));}
   foreach ($xml->deck as $maniDeck) if ($maniDeck->maniChoice->count()==0) {$nodesToDelete[]=$maniDeck;} //Plus de manigance sur ce deck !
   foreach ($nodesToDelete as $nodeToDelete) {unset($nodeToDelete[0]);} // Suppression du deck vide.
   $xml->saveXML('ajax/'.$partieId.'.xml');}

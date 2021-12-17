@@ -290,7 +290,10 @@ if (mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
 		</partie>
 		XML;
 		$xml=new SimpleXMLElement($partieXML);
-		xmlAttr($xml,array('pUri'=>$sqlPartie['pUri'],'pMechant'=>$sqlPartie['pMechant'],'pMechVie'=>$sqlPartie['pMechVie'],'pMechPhase'=>$sqlPartie['pMechPhase'],'pDate'=>strtotime($sqlPartie['pDate']),'pPremier'=>$sqlPartie['pPremier'],'pManiDelete'=>$sqlPartie['pManiDelete'],'pManiCourant'=>$sqlPartie['pManiCourant'],'pManiMax'=>$sqlPartie['pManiMax'],'pManiAcceleration'=>$sqlPartie['pManiAcceleration'],'pMechRiposte'=>$sqlPartie['pMechRiposte'],'pMechPercant'=>$sqlPartie['pMechPercant'],'pMechDistance'=>$sqlPartie['pMechDistance'],'mNom'=>$mNom,'mpNom'=>$mpNom,'pMechDesoriente'=>$sqlPartie['pMechDesoriente'],'pMechSonne'=>$sqlPartie['pMechSonne'],'pMechTenace'=>$sqlPartie['pMechTenace']));
+		$nextPhaseVie=$sqlPartie['pMechPhase']+1;
+		if ($nextPhaseVie==4) $nextPhaseVie=1;
+		$nextPhaseVie=mysqli_fetch_assoc(sql_get("SELECT `mVie".$nextPhaseVie."` FROM `mechants` WHERE `mId`='".$sqlPartie['pMechant']."'"))['mVie'.$nextPhaseVie];
+		xmlAttr($xml,array('pUri'=>$sqlPartie['pUri'],'pMechant'=>$sqlPartie['pMechant'],'pMechVie'=>$sqlPartie['pMechVie'],'pMechPhase'=>$sqlPartie['pMechPhase'],'pDate'=>strtotime($sqlPartie['pDate']),'pPremier'=>$sqlPartie['pPremier'],'pManiDelete'=>$sqlPartie['pManiDelete'],'pManiCourant'=>$sqlPartie['pManiCourant'],'pManiMax'=>$sqlPartie['pManiMax'],'pManiAcceleration'=>$sqlPartie['pManiAcceleration'],'pMechRiposte'=>$sqlPartie['pMechRiposte'],'pMechPercant'=>$sqlPartie['pMechPercant'],'pMechDistance'=>$sqlPartie['pMechDistance'],'mNom'=>$mNom,'mpNom'=>$mpNom,'pMechDesoriente'=>$sqlPartie['pMechDesoriente'],'pMechSonne'=>$sqlPartie['pMechSonne'],'pMechTenace'=>$sqlPartie['pMechTenace'],'nextPhaseVie'=>$nextPhaseVie));
 		$sqlManigances=sql_get("SELECT * From `maniAnnexes`,`manigances` WHERE `mnPartie`='".$sqlPartie['pUri']."' AND `mnManigance`=`maId`");
 		$maniEnJeu=array();
 		//Ajout des manigances en jeu
@@ -399,7 +402,7 @@ else {
   imageUpdate('heros','hId','hNom');
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
   #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
+  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','maniganceInfo.php','deckNames.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php');
   foreach ($phpFiles as $phpFile) {
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);

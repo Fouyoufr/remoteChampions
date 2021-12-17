@@ -10,6 +10,7 @@ function displaydeck($deck) {
 $title='Remote Champions - New';
 $bodyClass='new';
 include 'include.php';
+include_once 'deckNames.php';
 global $str;
 #Gestion du mode public
 if (isset($_POST['publicPass']) and !empty($_POST['publicPass'])) $_SESSION['publicPass']=hash('sha256',$_POST['publicPass']);
@@ -28,38 +29,31 @@ if ($clef=='') do {
   for ($i=0;$i<6;$i++) $clef.=$clefCar[mt_rand(0, strlen($clefCar)-1)];} while (file_exists('ajax/'.$clef.'.xml'));
 if (!empty($_POST) and $error=='') {
   #Création effective de la partie /dans le cache AJAX
-  $xml = new DomDocument('1.0', 'UTF-8');
-  $xml->preserveWhiteSpace = false;
-  $xml->formatOutput = true;
-  $xmlPartie = $xml->appendChild($xml->createElement('partie'));
-  $xmlPrinciaple=$xmlPartie->appendChild($xml->createElement('principale'));
+  $partieXML=<<<XML
+		<?xml version='1.0' encoding='UTF-8'?>
+		<partie>
+		</partie>
+		XML;
+	$xml=new SimpleXMLElement($partieXML);
     if(!isset($_POST['mechantSeul'])) {
       $premier=mt_rand(1,$_POST['nbJoueurs']);
-      for ($i=1;$i<=$_POST['nbJoueurs'];$i++) {xmlDoc($xmlPartie,array('joueur'=>array('jId'=>$i,'jNom'=>"Joueur $i",'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jOnline'=>0,'jHeros'=>0)));}}
+      for ($i=1;$i<=$_POST['nbJoueurs'];$i++) {
+        $xmlJoueur=$xml->addChild('joueur');
+        xmlAttr($xmlJoueur,array('jId'=>$i,'jNom'=>"Joueur $i",'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jOnline'=>0,'jHeros'=>0));}}
     else {$premier=0;}
     //Création de la liste des decks et manigances
     $maniganceList=[];
     $sqlManigances=sql_get("SELECT `maId`,`maNom`,`dId` FROM `boites`,`decks`,`manigances` WHERE `dBoite`=`bId` AND `bInclus`='1' AND `maDeck`=`dId` ORDER BY `maNom`");
     while ($manigance=mysqli_fetch_assoc($sqlManigances)) {$maniganceList[]=array('maId'=>$manigance['maId'],'maNom'=>$manigance['maNom'],'dId'=>$manigance['dId']);}
     foreach($_POST as $post=>$postValue) if (substr($post,0,4)=='deck') {
-      $xmlDeck=$xmlPartie->appendChild($xml->createElement('deck'));
-      $xdAttr1=$xml->createAttribute('dId');
-      $xdAttr1->appendChild($xml->createTextNode(substr($post,4)));
-      $xdAttr2=$xml->createAttribute('dNom');
-      $xdAttr2->appendChild($xml->createTextNode(deckNames()[substr($post,4)]));
-      $xmlDeck->appendChild($xdAttr1);
-      $xmlDeck->appendChild($xdAttr2);
+      $xmlDeck=$xml->addChild('deck');
+      xmlAttr($xmlDeck,array('dId'=>substr($post,4),'dNom'=>$deckNames[substr($post,4)]['dNom']));
       foreach ($maniganceList as $mlId=>$mlValue) if ($mlValue['dId']==substr($post,4)) {
-        $xdAttr1=$xml->createAttribute('maId');
-        $xdAttr1->appendChild($xml->createTextNode($mlValue['maId']));
-        $xdAttr2=$xml->createAttribute('maNom');
-        $xdAttr2->appendChild($xml->createTextNode($mlValue['maNom']));
-        $xmlMani=$xmlDeck->appendChild($xml->createElement('maniChoice'));
-        $xmlMani->appendChild($xdAttr1);
-        $xmlMani->appendChild($xdAttr2);}}
-    xmlDoc($xmlPartie,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>''));
-    if (!is_dir('/ajax')) {mkdir('ajax');}
-    $xml->save('ajax/'.$clef.'.xml');
+        $xmlMani=$xmlDeck->addChild('maniChoice');
+        xmlAttr($xmlMani,array('maId'=>$mlValue['maId'],'maNom'=>$mlValue['maNom']));}}
+    xmlAttr($xml,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>'','nextPhaseVie'=>0));
+    if (!is_dir('ajax')) {mkdir('ajax');}
+    $xml->saveXML('ajax/'.$clef.'.xml');
     exit ("<script language='JavaScript'>window.location.href='.?p=$clef'</script>");}
 echo "<form id='newPartie' method='post'><h1>".$str['newGameTitle']."</h1>";
 if ($error<>'') echo "<div class='newError'>".$str['error'].": $error.</div>";

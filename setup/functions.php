@@ -4,24 +4,6 @@ include_once('lang-fr.php');
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}
 
-function xmlDoc($xdObj,$xdAdd) {
-  global $xml;
-  foreach ($xdAdd as $xdKey=>$xdValue) {
-    if (is_array($xdValue)) {
-      $xdSubObj=$xdObj->appendChild($xml->createElement($xdKey));
-      xmlDoc($xdSubObj,$xdValue);}
-    else {
-      $xdAttr=$xml->createAttribute($xdKey);
-      $xdAttr->appendChild($xml->createTextNode($xdValue));
-      $xdObj->appendChild($xdAttr);}}
-    return $xdObj;}
-
-function deckNames() {
-  $sqlDeckNames=sql_get("SELECT `dId`,`dNom` FROM `boites`,`decks` WHERE `dBoite`=`bId` AND `bInclus`='1' ORDER BY `dNom`");
-  $deckNames=[];
-  while ($sqlDeckName=mysqli_fetch_assoc($sqlDeckNames)) {$deckNames[$sqlDeckName['dId']]=$sqlDeckName['dNom'];}
-  return $deckNames;}
-
 function gitFileDate($gitFile=null){
   global $str;
   #Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)

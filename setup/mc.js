@@ -30,6 +30,7 @@ function ajaxPost (key,value) {
   ajaxReqPost.send(uri);}
   
 function ajaxSelecSet() {
+  //Remplissage de l'écran de sélection pour l'affichage mobile.
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
   	if (ajaxReq.status === 200) {
   	var xmlDoc = ajaxReq.responseXML;
@@ -44,22 +45,10 @@ function ajaxSelecSet() {
     if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') {document.getElementById('selecJ2').style.display='none'}
     if (nbJoueurs==0) {window.location.href='mechant.php?p='+document.getElementById('partie').value;}
     document.getElementById('ajaxLoad').style.display='none';
-    document.getElementById('ajaxSave').style.display='none';
-  }}}
+    document.getElementById('ajaxSave').style.display='none';}}}
 
-function ajaxPhase () {
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	var xmlDoc = ajaxReq.responseXML;
-  	document.getElementById('changePhaseMechant').innerText=xmlDoc.getElementsByTagName('phase')[0].getAttribute('mNom');
-  	var changePhaseNext=parseInt(xmlDoc.getElementsByTagName('phase')[0].getAttribute('pMechPhase'))+1;
-  	if (changePhaseNext==4) {changePhaseNext=1;}
-  	document.getElementById('changePhaseNext').innerText=changePhaseNext;
-  	var changePhaseVie=xmlDoc.getElementsByTagName('phase')[0].getAttribute('mVieMax'+changePhaseNext)*xmlDoc.getElementsByTagName('phase')[0].getAttribute('nbJoueurs');
-  	document.getElementById('changePhaseVie').innerText=changePhaseVie;
-  	document.getElementById('changePhase').style.display='block';}}}
-  
 function ajaxJoueurSet() {
+  //Remplissage de l'écran mobile de joueur.
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
   	if (ajaxReq.status === 200) {
   	  var xmlDoc = ajaxReq.responseXML;
@@ -102,6 +91,7 @@ function ajaxJoueurSet() {
     document.getElementById('ajaxSave').style.display='none';}}}
   
 function ajaxMainSet() {
+  //Remplissage de l'écran principal d'affichage de partie
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
   	if (ajaxReq.status === 200) {
   	var xmlDoc = ajaxReq.responseXML;
@@ -181,7 +171,6 @@ function ajaxMainSet() {
       maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom');
       //Informations sur la manigance annexe
       maInfo='';
-
       if (value.getAttribute('maRevele')!='') {maInfo='<span class="manigancePopupType">Une fois révélée :</span> '+value.getAttribute('maRevele')+'<br/>';}
       if (value.getAttribute('maDejoue')!='') {maInfo+='<span class="manigancePopupType">Une fois déjouée :</span> '+value.getAttribute('maDejoue')+'<br/>';}
       if (value.getAttribute('maInfo')!='') {maInfo+='<span class="manigancePopupType">Informations :</span> '+value.getAttribute('maInfo')+'<br/>';}
@@ -193,7 +182,7 @@ function ajaxMainSet() {
       maniAnnexe+='<span class="tooltiptext">';
       if (value.getAttribute('maDeck')==0) {maniAnnexe+=value.getAttribute('hNom');}
       else {
-        maniAnnexe+=value.getAttribute('dNom');
+        maniAnnexe+=value.getAttribute('fromDeckNom');
         if (value.getAttribute('maNumero')!=0) maniAnnexe+=' N°'+value.getAttribute('maNumero');}
       maniAnnexe+='</div><div class="maniganceIcones">';
       if (value.getAttribute('maCrise')==1) {
@@ -216,7 +205,14 @@ function ajaxMainSet() {
       compteur+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText=parseInt(document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText)+1;ajaxPost(\'compteur='+value.getAttribute('cId')+'&value\',document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText);">';
       compteur+='<a class="compteurMoins" onclick="ajaxPost(\'delCompteur\',\''+value.getAttribute('cId')+'\');">-</a>';
       document.getElementById('compteursList').innerHTML+='<li class="compteurLine">'+compteur+'</li>';});
-    document.getElementById('phaseMechant').innerText=phMechant(partie.getAttribute('pMechPhase'))
+    currentPhase=partie.getAttribute('pMechPhase');
+    document.getElementById('phaseMechant').innerText=phMechant(currentPhase);
+    //prochaine phase
+    currentPhase++;
+    if (currentPhase==4) {currentPhase=1;}
+    document.getElementById('changePhaseNext').innerText=currentPhase;
+    document.getElementById('changePhaseMechant').innerText=partie.getAttribute('mNom');
+    document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie')*nbJoueurs;
     if (partie.getAttribute('pMechDesoriente')!='1') { document.getElementById('mechantDesoriente').className='disabledButtonMechant bouton';} else {document.getElementById('mechantDesoriente').className='desorienteMechant';}
     if (partie.getAttribute('pMechSonne')!='1') {document.getElementById('mechantSonne').className='disabledButtonMechant bouton';} else {document.getElementById('mechantSonne').className='sonneMechant';}
     if (partie.getAttribute('pMechTenace')!='1') {
@@ -282,6 +278,7 @@ function ajaxMainSet() {
     if (nbJoueurs<2) {document.getElementById('indexFirst').style.visibility='hidden';}}}}
 
 function ajaxMechantSet() {
+  //Remplissage de l'écran d'affichage de l'état du machant (mobile)
   if (ajaxReq.readyState === XMLHttpRequest.DONE) {
   	if (ajaxReq.status === 200) {
   	var xmlDoc = ajaxReq.responseXML;

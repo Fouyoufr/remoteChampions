@@ -24,9 +24,18 @@
 - maAcceleration = Si est à 1, cette manigance comporte un symbole *accélération*,
 - maAmplification = Si est à 1, cette manigance comporte un symbole *amplification*.
 - maEntrave = Nombre de menace par joueur ajoutée lors de la mise en jeu
-- maRevele = Information affichée en popup lorsque manigance révélée ([pp]affiche le symbole "par joueur")
-- maDejoue = Information affichée en popup à disparition de la manigance ([pp]affiche le symbole "par joueur")
-- maInfo = Information affichée en popup concernant cette manigance ([pp]affiche le symbole "par joueur")
+- maRevele = Information affichée en popup lorsque manigance révélée ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
+- maDejoue = Information affichée en popup à disparition de la manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
+- maInfo = Information affichée en popup concernant cette manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
+
+## Contenu de maniganceInfo.php
+Un tableau de chaines de caractères dont l'index est utilisé dans les champs maRevele, maDejoue et maInfo
+
+## Contenu de deckNames.php
+Un tableau des decks :
+ - l'index du tableau correspond au 'dId',
+ - Le champ 'dNom' comtient le no du deck,
+ - le champ 'dBoite' contient la référence de la boite depuis la base sql 'boites'
 
 ## Les types de boite
 (valeurs pour le champ bType)

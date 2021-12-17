@@ -32,7 +32,7 @@ $principales[$principale['mpId']]=$principale['mpNom'];
 <div id="mechantDisp">
   <span id="mechant"></span>
   <img id="mechantPic" onclick="document.getElementById('changeMechant').style.display='block';"></img>
-  <div id="phaseMechant" onclick="ajaxCall(ajaxPhase,'p='+encodeURIComponent(document.getElementById('partie').value)+'&phase')"></div>
+  <div id="phaseMechant" onclick="if (document.getElementById('changePhaseVie').innerText!=0) document.getElementById('changePhase').style.display='block';"></div>
   <div>
     <input id='vieMechantMoins' type='button' value='<' onclick='document.getElementById("mechantLife").innerText-=1;ajaxPost("vieMechant",document.getElementById("mechantLife").innerText);'>
     <div id="mechantLife"></div>
