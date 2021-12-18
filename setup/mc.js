@@ -208,8 +208,10 @@ function ajaxMainSet() {
     currentPhase=partie.getAttribute('pMechPhase');
     document.getElementById('phaseMechant').innerText=phMechant(currentPhase);
     //prochaine phase
-    currentPhase++;
-    if (currentPhase==4) {currentPhase=1;}
+    if (typeof partie.getAttribute('newtPhase')!=='undefined') {currentPhase=partie.getAttribute('newtPhase');}
+    else {
+      currentPhase++;
+      if (currentPhase==4) {currentPhase=1;}}
     document.getElementById('changePhaseNext').innerText=currentPhase;
     document.getElementById('changePhaseMechant').innerText=partie.getAttribute('mNom');
     document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie')*nbJoueurs;

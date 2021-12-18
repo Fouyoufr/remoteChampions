@@ -1,6 +1,5 @@
 # Ce dossier contient le nécessaire permettant de mettre à jour remoteChampions
 - Le fichier **changelog** contient les descriptions des mises à jour (la première ligne référence la dernière version en cours)
-- Le fichier **sqlTables** est utilisé pour la déclaration de la structure de la base SQL de remoteChampions
 - Les fichiers **boites,decks,manigances,ManigancesPrincipales,heros et mechants** contiennent le contenu prédéfini des tables SQL de meme nom.
 
 ## Structure de la table "manigancesPrincipales":
@@ -27,15 +26,6 @@
 - maRevele = Information affichée en popup lorsque manigance révélée ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
 - maDejoue = Information affichée en popup à disparition de la manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
 - maInfo = Information affichée en popup concernant cette manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
-
-## Contenu de maniganceInfo.php
-Un tableau de chaines de caractères dont l'index est utilisé dans les champs maRevele, maDejoue et maInfo
-
-## Contenu de deckNames.php
-Un tableau des decks :
- - l'index du tableau correspond au 'dId',
- - Le champ 'dNom' comtient le no du deck,
- - le champ 'dBoite' contient la référence de la boite depuis la base sql 'boites'
 
 ## Les types de boite
 (valeurs pour le champ bType)
@@ -64,4 +54,4 @@ Un tableau des decks :
 - Application HTML installable ?
 - Journal d'installation/mise à jour ?
 
-A chercher : 'sql', 'deckNames' et 'maniganceInfo' (et 'maniTxt') ==> tester la mise à jour depuis 1.5 et depuis < 1.5
+==> tester la mise à jour depuis 1.5 et depuis < 1.5

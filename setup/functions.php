@@ -20,12 +20,6 @@ function gitFileDate($gitFile=null){
   $lastCommit=json_decode($jsonContent,true)[0]['commit'];
   return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}
 
-function sql_exists($query) {
-  global $sqlConn,$str;
-  if (!isset($sqlConn)) sql_get('SHOW TABLES');
-    $sqlQuery=mysqli_query($sqlConn,"$query LIMIT 1");
-    if (mysqli_num_rows($sqlQuery)>0) return true; else return false;}
-
 function displayBottom() {
   global $partieId,$adminPassword,$mobile,$str;
   $currentScript=basename($_SERVER['PHP_SELF']);

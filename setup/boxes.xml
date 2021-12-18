@@ -62,15 +62,15 @@
     <mechant id="17" name="Le Collectionneur" vie1="13" vie2="14" vie3="18"/>
     <mechant id="18" name="Nebula" vie1="14" vie2="17" vie3="20"/>
     <mechant id="19" name="Ronan l'accusateur" vie1="14" vie2="18" vie3="25"/>
-    <principale id="29" name="Invasion terrestre" init="2" initX="2" max="8" maxX="1"/>
-    <principale id="30" name="Protéger la planète" init="4" initX="4" max="8" maxX="1"/>
-    <principale id="31" name="La grande collection" init="4" initX="4" max="10" maxX="1"/>
-    <principale id="32" name="Retrouver le Milano" init="7" initX="7" max="11" maxX="1"/>
-    <principale id="33" name="Perdus dans le musée" init="11" initX="11" max="15" maxX="1"/>
-    <principale id="34" name="La grande évasion" init="8" initX="8" max="12" maxX="1"/>
-    <principale id="35" name="L'art de la fuite" init="2" initX="2" max="6" maxX="1"/>
-    <principale id="36" name="Mode Distorsion activé" init="3" initX="3" max="9" maxX="1"/>
-    <principale id="37" name="Interception imminente" init="2" initX="2" max="7" maxX="1"/>
+    <principale id="29" name="Invasion terrestre" init="2" initX="1" max="8" maxX="1"/>
+    <principale id="30" name="Protéger la planète" init="4" initX="1" max="8" maxX="1"/>
+    <principale id="31" name="La grande collection" init="4" initX="1" max="10" maxX="1"/>
+    <principale id="32" name="Retrouver le Milano" init="7" initX="1" max="11" maxX="1"/>
+    <principale id="33" name="Perdus dans le musée" init="11" initX="1" max="15" maxX="1"/>
+    <principale id="34" name="La grande évasion" init="8" initX="1" max="12" maxX="1"/>
+    <principale id="35" name="L'art de la fuite" init="2" initX="1" max="6" maxX="1"/>
+    <principale id="36" name="Mode Distorsion activé" init="3" initX="1" max="9" maxX="1"/>
+    <principale id="37" name="Interception imminente" init="2" initX="1" max="7" maxX="1"/>
     <principale id="38" name="Je reprends ce qui m'appartient" init="1" initX="1" max="10" maxX="1"/>
     <heros id="15" name="Rocket Raccoon" vie="9">
       <scheme id="81" card="15" name="Vendetta" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="" info=""/>
@@ -148,7 +148,7 @@
     <principale id="12" name="Attaque Sur Le Mont Athéna" init="0" initX="0" max="3" maxX="1"/>
     <principale id="13" name="La Pierre D'Infinité" init="1" initX="1" max="6" maxX="1"/>
     <principale id="14" name="La Fuite" init="1" initX="1" max="5" maxX="1"/>
-    <principale id="15" name="Personne Ne Passe" init="2" initX="2" max="12" maxX="1"/>
+    <principale id="15" name="Personne Ne Passe" init="2" initX="1" max="12" maxX="1"/>
     <principale id="16" name="Traquer les Héros" init="1" initX="1" max="12" maxX="1"/>
     <principale id="17" name="L'Île Du Dr Zola" init="0" initX="0" max="6" maxX="1"/>
     <principale id="18" name="Le Savant Fou" init="1" initX="1" max="8" maxX="1"/>
@@ -199,10 +199,10 @@
   <box id="7" name="Le Bouffon Vert" type="s" own="0">
     <mechant id="4" name="Le Bouffon Vert (EaR)" vie1="14" vie2="18" vie3="22"/>
     <mechant id="5" name="Le Bouffon Vert (FM)" vie1="16" vie2="18" vie3="20"/>
-    <principale id="7" name="Prise De Contrôle Hostile" init="2" initX="2" max="7" maxX="1"/>
+    <principale id="7" name="Prise De Contrôle Hostile" init="2" initX="1" max="7" maxX="1"/>
     <principale id="8" name="Acquisition D'Entreprise" init="1" initX="1" max="10" maxX="1"/>
-    <principale id="9" name="Répandre Le Mutagène" init="2" initX="2" max="7" maxX="1"/>
-    <principale id="10" name="Nuage Mutagène" init="4" initX="4" max="11" maxX="1"/>
+    <principale id="9" name="Répandre Le Mutagène" init="2" initX="1" max="7" maxX="1"/>
+    <principale id="10" name="Nuage Mutagène" init="4" initX="1" max="11" maxX="1"/>
     <deck id="6" name="Ingérence En Cours">
       <scheme id="15" card="1" name="Ingérence En Cours" init="1" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit il dépense les ressources suivantes : SCIENCE et FORCE, soit il place 2 menaces sur cette carte." dejoue="" info=""/>
     </deck>
@@ -282,9 +282,9 @@
     <principale id="21" name="L'Arrivée de Kang" init="0" initX="0" max="7" maxX="1"/>
     <principale id="23" name="La Colère De Kang" init="0" initX="0" max="10" maxX="1"/>
     <principale id="25" name="Chronopolis" init="0" initX="0" max="9" maxX="0"/>
-    <principale id="26" name="Destin Inéluctable" init="1" initX="1" max="9" maxX="0"/>
-    <principale id="27" name="Le royaume de Rama-Tut" init="1" initX="1" max="9" maxX="0"/>
-    <principale id="28" name="La guerre Présent-Futur" init="2" initX="2" max="9" maxX="0"/>
+    <principale id="26" name="Destin Inéluctable" init="1" initX="0" max="9" maxX="0"/>
+    <principale id="27" name="Le royaume de Rama-Tut" init="1" initX="0" max="9" maxX="0"/>
+    <principale id="28" name="La guerre Présent-Futur" init="2" initX="0" max="9" maxX="0"/>
     <deck id="25" name="Kang">
       <scheme id="59" card="30" name="Flux Temporel Perverti" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit soit défausser 1 carte prise au hasard dans sa main, soit placer 2 menaces sur cette carte." dejoue="" info="Les joueurs ne peuvent pas déclencher les capacités &quot;ACTION D'ALTER-EGO&quot; sur les cartes obligation."/>
       <scheme id="60" card="31" name="Empire De Kang" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte Rencontre au joueur qui a déjoué cette manigance." info=""/>
@@ -433,8 +433,8 @@
   <box id="26" name="The Hood" type="s" own="0">
     <mechant id="26" name="The Hood" vie1="14" vie2="16" vie3="18"/>
     <principale id="47" name="Se faire des relations" init="1" initX="1" max="5" maxX="1"/>
-    <principale id="48" name="Promesse de prospérité" init="2" initX="2" max="8" maxX="1"/>
-    <principale id="49" name="Etat criminel" init="3" initX="3" max="10" maxX="1"/>
+    <principale id="48" name="Promesse de prospérité" init="2" initX="1" max="8" maxX="1"/>
+    <principale id="49" name="Etat criminel" init="3" initX="1" max="10" maxX="1"/>
     <deck id="52" name="The Hood">
       <scheme id="148" card="12" name="Ambition démesurée" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="INTERRUPTION FORCEE : Quand la phase du Méchant commence, chaque joueur doit résoudre la capacité &quot;Tricherie&quot; de The Hood, dans l'ordre des joueurs."/>
     </deck>

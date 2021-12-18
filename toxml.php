@@ -21,7 +21,7 @@ while ($box=mysqli_fetch_assoc($boxes)) {
   $principales=sql_get('SELECT * FROM `ManigancesPrincipales` WHERE `mpBoite`=\''.$box['bId'].'\'');
   while($principale=mysqli_fetch_assoc($principales)) {
     $xmlPrincipale=$xmlBox->addChild('principale');
-    xmlAttr($xmlPrincipale,array('id'=>$principale['mpId'],'name'=>$principale['mpNom'],'init'=>$principale['mpInit'],'initX'=>$principale['mpInit'],'max'=>$principale['mpMax'],'maxX'=>$principale['mpMaxMultiplie']));}
+    xmlAttr($xmlPrincipale,array('id'=>$principale['mpId'],'name'=>$principale['mpNom'],'init'=>$principale['mpInit'],'initX'=>$principale['mpMultiplie'],'max'=>$principale['mpMax'],'maxX'=>$principale['mpMaxMultiplie']));}
 
   $heros=sql_get('SELECT * FROM `heros` WHERE `hBoite`=\''.$box['bId'].'\'');
   while($hero=mysqli_fetch_assoc($heros)) {
