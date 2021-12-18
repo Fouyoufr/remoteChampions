@@ -1,5 +1,9 @@
 <?php
-include_once('lang-fr.php');
+$rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+$rcLangs=array('fr','en');
+$rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
+require_once($rcLang.'/lang.php');
+$boxFile=$rcLang.'/boxes.xml';
 
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}

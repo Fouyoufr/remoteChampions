@@ -1,11 +1,9 @@
 <?php
-include 'include.php';
-include_once 'maniganceInfo.php';
+include 'include.inc';
 
-global $str;
 if (isset($_POST['phase'])) {
   #Changement de phase du méchant
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
   $phase=htmlspecialchars($_POST['phase']);
@@ -21,7 +19,7 @@ if (isset($_POST['phase'])) {
 
 if (isset($_POST['mechant'])) {
   #Changement de méchant
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   $mechant=htmlspecialchars($_POST['mechant']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
@@ -48,7 +46,7 @@ if (isset($_POST['mechant'])) {
 if(isset($_POST['heros'])) {
   $heros=htmlspecialchars($_POST['heros']);
   $joueur=htmlspecialchars($_POST['joueur']);
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->heros as $xmlHeros) if ($xmlHeros['id']==$heros) $newHeros=$xmlHeros;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->joueur as $jId=>$jValue) if ((isset($_POST['joueurNum']) and $jValue['jNumero']->__toString()==$_POST['joueurNum']) or $jValue['jId']->__toString()==$_POST['joueur']) {
@@ -113,13 +111,13 @@ if(isset($_POST['switch'])) {
     xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   $changedBoxes=false;
   if (htmlspecialchars($_POST['inclus'])=='true') $boxOwn=1; else $boxOwn=0;
   foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']==htmlspecialchars($_POST['boite']) and $xmlBox['own']<>$boxOwn) {
     $xmlBox['own']=$boxOwn;
     $changedBoxes=true;}
-  if ($changedBoxes) xmlSave($xmlBoxes,'boxes.xml');}
+  if ($changedBoxes) xmlSave($xmlBoxes,$boxFile);}
 
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
@@ -160,7 +158,7 @@ if(isset($_POST['maniganceAcc'])) {
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['newManigance'])) {
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   $manigance=htmlspecialchars($_POST['newManigance']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
@@ -220,7 +218,7 @@ xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['NewPrincipale'])) {
   $manigance=htmlspecialchars($_POST['NewPrincipale']);
-  $xmlBoxes=simplexml_load_file('boxes.xml');
+  $xmlBoxes=simplexml_load_file($boxFile);
   foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->principale as $xmlPrincipale) if ($xmlPrincipale['id']==$manigance) $newPrincipale=$xmlPrincipale;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();

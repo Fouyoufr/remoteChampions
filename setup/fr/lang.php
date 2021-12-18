@@ -1,6 +1,7 @@
 <?php
   $str=array(
       'adminPwd'=>'Mot de passe administratif',
+      'defaultAdminPass'=>'Le mot de passe administratif est à sa valeur par défaut !',
       'gamePass'=>'Le mot-clef de cette partie est',
       'siteAdmin'=>'Administration du site',
       'help'=>'Aide',
@@ -183,12 +184,12 @@
       'sqlDBUp2'=>'Vérification/mise à jour du contenu fixe de la base SQL',
       'imgUp'=>'Ajout des images manquantes',
       'pic'=>'Image',
-      'phpUp'=>'Vérification des fichiers PHP',
+      'phpUp'=>'Vérification des fichiers locaux',
       'file'=>'Fichier',
       'update'=>'Mise à jour',
       'noUpdate'=>'Déjà à jour',
-      'endUpdate'=>'Fin d\'installation/mise à jour'
-
+      'endUpdate'=>'Fin d\'installation/mise à jour',
+      'boxesUpdate'=>'Mise à jour des boites de jeu depuis la source.'
 
   );
 ?>

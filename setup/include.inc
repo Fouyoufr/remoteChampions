@@ -1,6 +1,6 @@
 <?php
-include_once('functions.php');
-if (!file_exists('./config.inc')) header("Refresh:0; url=setup.php"); else include_once 'config.inc';
+include_once('functions.inc');
+include_once 'config.inc';
 if(!isset($_SESSION)) session_start();
 global $str;
 $useragent=$_SERVER['HTTP_USER_AGENT'];

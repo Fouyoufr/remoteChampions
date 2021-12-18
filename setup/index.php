@@ -1,9 +1,8 @@
 <?php
 $title='Remote Champions';
 $bodyClass='index';
-include 'include.php';
-global $str;
-$xml=simplexml_load_file('boxes.xml');
+include_once 'include.inc';
+$xmlBoxes=simplexml_load_file($boxFile);
 if (!isset($partieId)) {
   echo '<div id="selectPartie">';
   if (isset($badPartie)) {echo "<div id='keyError'>&#9888; ".$str['badKey1']." '$badPartie' ".$str['badKey2']."... &#9888;</div>";}
@@ -25,7 +24,7 @@ if ($mobile) {
  ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true);
  setInterval("ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true)",2000); 
  </script>');}}
-foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->principale as $principale) $principales[$principale['id']->__tostring()]=$principale['name'];
+foreach ($xmlBoxes->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->principale as $principale) $principales[$principale['id']->__tostring()]=$principale['name'];
 ?>
 
 <div id="mechantDisp">
@@ -88,14 +87,14 @@ echo '<div id="changePhase"><div class="titlePopup">'.$str['changePhase'].'</div
   <div class="titlePopup">'.$str['changeVillain'].'</div>
   <div class="centre">&#9888; '.$str['changeVillain1'].' &#9888;<br/>'.$str['changeVillain2'].'.</div><br/>
   <div id="mechantSelect">';
-foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->mechant as $mechant) echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['id'].");'><img src='img/mechants/".$mechant['id'].".png'/>".$mechant['name'].'</div>';
+foreach ($xmlBoxes->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->mechant as $mechant) echo "<div class='changeMechant' onclick='ajaxPost(\"mechant\",".$mechant['id'].");'><img src='img/mechants/".$mechant['id'].".png'/>".$mechant['name'].'</div>';
 echo '</div><br/><div class="boutonsPopup"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeMechant").style.display="none";\' class=\'bouton\'></div></div>';
 
 echo '<div id="changeHeros">
   <div class="titlePopup">'.$str['changeHeros'].'</div>
   <input type="hidden" id="herosAChanger" value="0">
   <div class="centre">&#9888; '.$str['confirmHeroChange'].'.</div><br/><div id="herosSelect">';
-foreach ($xml->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->heros as $heros) echo "<div class='changeHeros' onclick='ajaxPost(\"joueurNum=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$heros['id'].");'><img src='img/heros/".$heros['id'].".png'/>".$heros['name'].'</div>';
+foreach ($xmlBoxes->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->heros as $heros) echo "<div class='changeHeros' onclick='ajaxPost(\"joueurNum=\"+document.getElementById(\"herosAChanger\").value+\"&heros\",".$heros['id'].");'><img src='img/heros/".$heros['id'].".png'/>".$heros['name'].'</div>';
 echo '</div><br/><div class="boutonsPopup">
     <input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeHeros").style.display="none";\' class=\'bouton\'></div></div>';
 echo '<div id="NewPrincipale"><div class="titlePopup">'.$str['ChangeMScheme'].'</div><div class="centre">&#9888; '.$str['confirmMScheme'].' &#9888;</div><br/><select name="NewPrincipaleId" id="NewPrincipaleId"><option value="">--'.$str['mainScheme'].'--</option>';

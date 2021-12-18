@@ -1,5 +1,46 @@
-<!doctype html>
-<html lang='fr'>
+<?php
+  $gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/fullXML';
+  $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+  $phpFiles=array(
+    'admin.php','aide.css','ajax.php','fucntions.inc','include.inc','index.php','joueur.php','mechant.php','new.php',
+    'aide.css','ecran.css',
+	'mc.js',
+	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png');
+  error_reporting(E_ERROR | E_PARSE);
+
+  function remoteFileSize ($phpFile) {
+	global $setupSourcePath;
+	if (substr($setupSourcePath,0,4)=='http') {
+	  $remoteCall = curl_init("$setupSourcePath/$phpFile");
+	  curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
+	  curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
+	  curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
+   	  $data = curl_exec($remoteCall);
+	  $remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+	  curl_close($remoteCall);}
+	else $remoteSize=filesize("$setupSourcePath/$phpFile");
+	return $remoteSize;}
+
+function imageUpdate($imgFolder,$imgObject) {
+	global $str,$setupSourcePath,$xmlBoxes;
+	#Mise à jour des images du dossier
+	$nothingToDo=true;
+	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
+		$nothingToDo=false;
+		exit("<tr><td></td><div class='error'>".$str['noImgDir']."...</div></td></tr>");}}
+	foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->$imgObject as $xmlObject) {
+		$imageFile="img/$imgFolder/".$xmlObject['id'].'.png';
+		if (!file_exists($imageFile)) {
+			$nothingToDo=false;
+			echo "<tr><td>".$xmlObject['name']."</td><td>Ajout";
+			if (!@copy("$setupSourcePath/$imageFile",$imageFile)) {echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
+			echo '</td></tr>';}}
+	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
+
+  include_once('functions.inc');
+  session_start();
+  echo "<!doctype html>\n<html lang='$rcLang'>\n";
+?>
 <head>
   <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
@@ -26,51 +67,9 @@
 </head>
 <body>
 <?php
-include_once('functions.php');
-global $str;
-session_start();
-$gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/fullXML';
-$adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
-if (!file_exists('./config.inc')) {
-	#Le fichier de paramètrage n'existe pas
-	echo "<div class='pannel'><div class='pannelTitle'>".$str['firstSetup']."</div>";
-	$error='';
-	if(!is_writable(__DIR__)) {$error=$str['dirNoWrite']." '".__DIR__."', ".$str['pleaseCheck']."!";}
-	else {
-      file_put_contents ('config.inc',"<?php\n\$adminPassword='$adminPasswordInitial';\n\$publicPass='';\n?>");
-	  $_SESSION['adminPassword']=$adminPasswordInitial;
-	  header("Refresh:0; url=index.php");}}
-
-function remoteFileSize ($phpFile) {
-	global $setupSourcePath;
-	if (substr($setupSourcePath,0,4)=='http') {
-	  $remoteCall = curl_init("$setupSourcePath/$phpFile");
-	  curl_setopt($remoteCall, CURLOPT_RETURNTRANSFER, TRUE);
-	  curl_setopt($remoteCall, CURLOPT_HEADER, TRUE);
-	  curl_setopt($remoteCall, CURLOPT_NOBODY, TRUE);
-   	  $data = curl_exec($remoteCall);
-	  $remoteSize = curl_getinfo($remoteCall, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-	  curl_close($remoteCall);}
-	else $remoteSize=filesize("$setupSourcePath/$phpFile");
-	return $remoteSize;}
-
-function imageUpdate($imgFolder,$imgObject) {
-	global $str,$updateSourcePath,$xmlBoxes;
-	#Mise à jour des images du dossier
-	$nothingToDo=true;
-	if (!file_exists("img/$imgFolder")) {if(!mkdir("img/$imgFolder",0777,true)) {
-		$nothingToDo=false;
-		exit("<tr><td></td><div class='error'>".$str['noImgDir']."...</div></td></tr>");}}
-	foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->$imgObject as $xmlObject) {
-		$imageFile="img/$imgFolder/".$xmlObject['id'].'.png';
-		if (!file_exists($imageFile)) {
-			$nothingToDo=false;
-			echo "<tr><td>".$xmlObject['name']."</td><td>Ajout";
-			if (!@copy("$updateSourcePath/$imageFile",$imageFile)) {echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
-			echo '</td></tr>';}}
-	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
-
 include 'config.inc';
+$dockerSetup=false;
+$localUpdate=false;
 #Vérification du mot de passe d'administration.
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
 	exit("<div class='pannel'><div class='pannelTitle'>".$str['restrictedTitle']."</div>".$str['restricted']."...<br/><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
@@ -83,35 +82,28 @@ if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') {
   $zip = new ZipArchive;
   if ($zip->open($_FILES['zipUpdate']['tmp_name']) === TRUE) {
       $zip->extractTo('updates/');
-	  $zipFolder = $zip->getNameIndex(0);
+	  $zipFolder=$zip->getNameIndex(0);
       $zip->close();}
   else exit("<div class='error'>".$str['nozip2'].".<div class='subError'>".error_get_last()['message']."</div></div>");
   if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>".$str['incorrectFormat'].".<div class='subError'>".$str['nozip3']."<br/>".$str['readDoc'].".</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
-  $updateSourcePath="updates/$zipFolder/updates";
   $setupSourcePath="updates/$zipFolder/setup";
-  $setupDate=array('date'=>new dateTime());
-  $helpDate=array('date' => new dateTime());}
+  $localUpdate=true;}
 elseif (file_exists('dockerSetup')) {
-	#insertion initiale de contenu pour Docker
-	$updateSourcePath='dockerSetup';
-	$setupSourcePath='docker';
-	$setupDate=array('date'=>new dateTime());
-	$helpDate=array('date'=>new dateTime());}
+  #insertion initiale de contenu pour Docker
+  $setupSourcePath='docker';
+  $dockerSetup=true;}
 else {
-  $updateSourcePath=$gitUrl.'/updates';
   $setupSourcePath=$gitUrl.'/setup';
-  $setupDate=gitFileDate('/setup/setup.php');
-  $helpDate=gitFileDate('/updates/aide.md');}
-if ($setupSourcePath=='docker') echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
+  $setupDate=gitFileDate('/setup/setup.php');}
+if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
   echo "<div class='pannel'><div class='pannelTitle'".$str['updateScript']."</div>";
   #Récupération de la dernière version du présent script
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
-  elseif (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])  {
+  elseif ($localUpdate or (isset($setupDate['date']) and new dateTime('@'.filemtime('setup.php'))<$setupDate['date']))  {
     echo $str['updateScript2'].".<br/>";
     if (@copy("$setupSourcePath/setup.php",'setup.php')) {
-	  echo $str['updateScript2']." !<br>";
-	  if (!isset($_POST['autoUpdate']) or $_POST['autoUpdate']=='oui') exit ("<a href='' class='button'>".$str['relaunch']."</a>");}
+	  if (!$localUpdate) exit ("<a href='' class='button'>".$str['relaunch']."</a>");}
     else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
   else echo $str['allreadyUp'].".";}
 
@@ -183,13 +175,21 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		$xml->saveXML('ajax/'.$sqlPartie['pUri'].'.xml');
 		echo '</ul>';}}
 
+#Mise à jour des fichiers d'aide HTML		
 echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
-if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";
-elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$helpDate['date']))  {
-  echo $str['gameHelpUp'].".";
+
+#A vérifier/gérer :
+if ($localUpdate) echo 'coucou';
+if ($dockerSetup) echo 'coucou';
+
+foreach ($rcLangs as $helpLang) {
+  $helpDate=gitFileDate("/setup/$helpLang/aide.md");
+  if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";
+elseif (!file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
+  echo $str['gameHelpUp']." : $helpLang";
   $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
-  $file = @fopen ("$updateSourcePath/aide.md", "r");
-  if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$updateSourcePath/aide.md'.</div></div>";
+  $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
+  if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
   else {
     $luEncours=false;
     $entryId=0;
@@ -217,19 +217,20 @@ elseif (!file_exists('aide.html') or (new dateTime('@'.filemtime('aide.html'))<$
 	    if (substr($line,-2)=='  ') $table.="<br/>\n";}}
     fclose($file);
 	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
-	file_put_contents ('aide.html', $helpFile);}}
-else echo $str['gameHelpUp3'].".";
-if ($updateSourcePath=='dockerSetup') {
+	file_put_contents ("$helpLang/aide.html",$helpFile);}}
+	else echo $str['gameHelpUp3'].".";}
+
+if ($dockerSetup) {
 	#Fin d'insertion Docker : nettoyage
-    $files = glob($updateSourcePath.'/*',GLOB_MARK);
+    $files = glob($setupSourcePath.'/*',GLOB_MARK);
     foreach ($files as $file) unlink($file);
-    rmdir($updateSourcePath);
-	echo "</table></div>";}
+    rmdir($setupSourcePath);
+	echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";}
 else {
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
-  #Vérification des fichiers php par leur taille.
-  $phpFiles=array('admin.php','ajax.php','ecran.css','favicon.ico','include.php','functions.php','index.php','joueur.php','mc.js','mechant.php','new.php','aide.css','img/amplification.png','img/counter.png','img/first.png','img/Menace+.png','img/MenaceAcceleration.png','img/MenaceCrise.png','img/MenaceRencontre.png','img/pointVert.png','img/refresh.png','img/save.png','img/saveB.png','img/load.png','img/smartphone.png','img/trash.png','img/link.png','img/bug.png','img/aide.png','img/pp.png','lang-fr.php','lang-en.php','boxes.xml');
+  #Vérification des fichiers par leur taille.
   foreach ($phpFiles as $phpFile) {
+	  if (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
 	$localSize=filesize($phpFile);
 	$remoteSize = remoteFileSize($phpFile);
 	echo "<tr><td>$phpFile</td><td>";
@@ -238,12 +239,23 @@ else {
 		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo $str['noUpdate'];
 	echo "</td></tr>";}
+  
+  #Mise à jour des boxes...
+  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['boxesUpdate']."</div>";
+  $xmlBoxes=simplexml_load_file($boxFile);
+  foreach ($rcLangs as $boxLang) {
+    if (!$newBoxes=simplexml_load_file("$setupSourcePath/$boxLang/boxes.xml")) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$boxLang/boxes.xml'.</div></div>";
+	else {
+	  echo "$boxLang - OK.<br/>";
+	  foreach($newBoxes->box as $newbox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1) $newBox['own']=$oldBox['own']->__toString();
+	  xmlSave($newBoxes,"$boxLang/boxes.xml");}}
+
   echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
-  $xmlBoxes=simplexml_load_file('boxes.xml');
   imageUpdate('mechants','mechant');
   imageUpdate('boites','box');
   imageUpdate('heros','heros');
 echo "</table></div>";}
+
 echo "<div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";
 ?>
 </body>

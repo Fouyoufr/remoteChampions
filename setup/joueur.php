@@ -1,9 +1,9 @@
 <?php
 $title='Remote Champions';
 $bodyClass='joueur';
-include 'include.php';
+include 'include.inc';
 global $str;
-$xmlBoxes=simplexml_load_file('boxes.xml');
+$xmlBoxes=simplexml_load_file($boxFile);
 echo "<div id='joueurDisp' class='joueur'><div id=\"mechantPicJoueur\"";
 if ($mobile) echo " onclick='window.location.href=\".?desktop&p=\"+document.getElementById(\"partie\").value;'";
 echo ">";

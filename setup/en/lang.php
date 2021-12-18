@@ -1,6 +1,7 @@
 <?php
   $str=array(
       'adminPwd'=>'Administrative password',
+      'defaultAdminPass'=>'The administrative password is set to it\'s default value !',
       'gamePass'=>'This game key is',
       'siteAdmin'=>'Site administration',
       'help'=>'Help',
@@ -162,7 +163,7 @@
       'nozip2'=>'Unable to unzip',
       'incorrectFormat'=>'Incorrect format',
       'incorrectFile'=>'Incorrect file',
-      'nozip3'=>'Provided ZIP file doesn\'t include any sudirectoyr with the gitHub repository.',
+      'nozip3'=>'Provided ZIP file doesn\'t include any sudirectory with the gitHub repository.',
       'nozip4'=>'Provided ZIP file doesn\'t include a valid save of a Remote Champions server.',
       'docker1'=>'Docker first-time setup',
       'docker2'=>'Finalizing docker setup.',
@@ -183,11 +184,12 @@
       'sqlDBUp2'=>'>Check/update of the SQL datatabase content',
       'imgUp'=>'Check for missing pictures',
       'pic'=>'Picture',
-      'phpUp'=>'Check of PHP files',
+      'phpUp'=>'Check of website files',
       'file'=>'file',
       'update'=>'Update',
       'noUpdate'=>'Allready up to date',
-      'endUpdate'=>'End of update/setup'
+      'endUpdate'=>'End of update/setup',
+      'boxesUpdate'=>'Update the game boxes from source.'
       
   );
 ?>

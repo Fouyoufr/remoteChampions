@@ -10,7 +10,7 @@ function displaydeck($deck,$box) {
 
 $title='Remote Champions - New';
 $bodyClass='new';
-include 'include.php';
+include 'include.inc';
 global $str;
 #Gestion du mode public
 if (isset($_POST['publicPass']) and !empty($_POST['publicPass'])) $_SESSION['publicPass']=hash('sha256',$_POST['publicPass']);
@@ -21,7 +21,7 @@ if ($publicPass!='' and (!isset($_SESSION['publicPass']) or $_SESSION['publicPas
 else unset($_POST['publicPass']);
 $error='';
 $clef='';
-$xmlBoxes=simplexml_load_file('boxes.xml');
+$xmlBoxes=simplexml_load_file($boxFile);
 if(!empty($_POST) and empty(array_diff_key($_POST,array_flip(['clef','nbJoueurs','mechantSeul'])))) $error=$str['noDeckNoGame'];
 if (isset($_POST['clef']) and strlen($_POST['clef'])<>6) $error=$str['6charUri'];
 if (isset($_POST['clef']) and file_exists('ajax/'.strtoupper($_POST['clef']).'.xml')) $error=$str['existentKey1']." '".strtoupper($_POST['clef'])."' ".$str['existentKey2']; elseif (isset($_POST['clef'])) $clef=strtoupper($_POST['clef']);
