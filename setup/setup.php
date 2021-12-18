@@ -2,7 +2,7 @@
   $gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/fullXML';
   $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   $phpFiles=array(
-    'admin.php','aide.css','ajax.php','fucntions.inc','include.inc','index.php','joueur.php','mechant.php','new.php',
+    'admin.php','aide.css','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php',
     'aide.css','ecran.css',
 	'mc.js',
 	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png');
