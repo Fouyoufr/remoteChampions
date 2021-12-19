@@ -99,12 +99,16 @@ if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['doc
 else {
   #Récupération de la dernière version du présent script
   echo "<div class='pannel'><div class='pannelTitle'".$str['updateScript']."</div>";
+  echo 'Date locale : ';
   print_r (new dateTime('@'.filemtime('setup.php')));
-  echo '<br/>';
-  print_r($setupDate['date']);
+  echo '<br/>Date distante : ';
+  print_r($setupDate);
   echo '<br/>';
   if(!$localUpdate) echo 'Pas local.'; else echo 'Local.';
   echo '<br/>';
+
+  exit();
+
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
   elseif (!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) {
     #Mise à jour du script de mise à jour depuis gitHub
