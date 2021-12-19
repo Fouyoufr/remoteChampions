@@ -22,7 +22,7 @@ function gitFileDate($gitFile=null){
   $gitReq='https://api.github.com/repos/fouyoufr/remotechampions/commits?per_page=1';
   if (isset($gitFile) and $gitFile!='') $gitReq.='&path='.$gitFile;
   $jsonContent=@file_get_contents($gitReq,false,$context);
-  if($jsonContent === FALSE) { return array('erreur'=>error_get_last()['message']);}
+  if($jsonContent === FALSE) {return array('erreur'=>error_get_last()['message']);}
   $lastCommit=json_decode($jsonContent,true)[0]['commit'];
   return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}
 

@@ -97,15 +97,29 @@ else {
   $setupDate=gitFileDate('/setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
-  echo "<div class='pannel'><div class='pannelTitle'".$str['updateScript']."</div>";
   #Récupération de la dernière version du présent script
+  echo "<div class='pannel'><div class='pannelTitle'".$str['updateScript']."</div>";
+  print_r (new dateTime('@'.filemtime('setup.php')));
+  echo '<br/>';
+  print_r($setupDate['date']);
+  echo '<br/>';
+  if(!$localUpdate) echo 'Pas local.'; else echo 'Local.';
+  echo '<br/>';
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
-  elseif ($localUpdate or (isset($setupDate['date']) and new dateTime('@'.filemtime('setup.php'))<$setupDate['date']))  {
-    echo $str['updateScript2'].".<br/>";
-    if (@copy("$setupSourcePath/setup.php",'setup.php')) {
-	  if (!$localUpdate) exit ("<a href='' class='button'>".$str['relaunch']."</a>");}
-    else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
+  elseif (!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) {
+    #Mise à jour du script de mise à jour depuis gitHub
+	echo $str['updateScript2'].".<br/>";
+	if (@copy("$setupSourcePath/setup.php",'setup.php')) exit ("<a href='' class='button'>".$str['relaunch']."</a>");
+	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
+
+  elseif ($localUpdate and ('Comparaison des tailles')) {
+    #Mise à jour du script de mise à jour en local
+	echo $str['updateScript2'].".<br/>";
+
+  }
   else echo $str['allreadyUp'].".";}
+
+exit();
 
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
