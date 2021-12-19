@@ -1,6 +1,7 @@
 <?php
-include_once('functions.inc');
+include_once 'functions.inc';
 include_once 'config.inc';
+if ($version=='dockerSetup') header("Refresh:0; setup.php");
 if(!isset($_SESSION)) session_start();
 global $str;
 $useragent=$_SERVER['HTTP_USER_AGENT'];

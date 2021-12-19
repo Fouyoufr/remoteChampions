@@ -230,6 +230,13 @@ if ($dockerSetup) {
     $files = glob($setupSourcePath.'/*',GLOB_MARK);
     foreach ($files as $file) unlink($file);
     rmdir($setupSourcePath);
+    #Modification de la variable Version dans le fichier "config.inc"
+    $configFile=file('config.inc');
+    function replaceVersion($data) {
+	  if (stristr($data,'$version=')) return "\$version='Docker';\n";
+	  return $data;}
+    $configFile=array_map('replaceVersion',$configFile);
+    file_put_contents('config.inc', implode('',$configFile));
 	exit ("</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
 
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
