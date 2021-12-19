@@ -1,5 +1,6 @@
 # Ce dossier contient le nécessaire permettant de mettre à jour remoteChampions
 - Le fichier **changelog** contient les descriptions des mises à jour (la première ligne référence la dernière version en cours)
+- La variable **gitBranch** dans "config.inc" permet de gérer une branche de test sur le site.
 - Les fichiers **boites,decks,manigances,ManigancesPrincipales,heros et mechants** contiennent le contenu prédéfini des tables SQL de meme nom.
 
 ## Structure de la table "manigancesPrincipales":

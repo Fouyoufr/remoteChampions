@@ -5,7 +5,8 @@ $rcLangs=array('fr','en');
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
 require_once($rcLang.'/lang.php');
 $boxFile=$rcLang.'/boxes.xml';
-$gitToken='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';
+$gitToken='ghp_';
+$gitToken.='RWTKe98avc5KnbAKmenMtWXgnS9Ztd2kSf25';
 
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}

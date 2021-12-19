@@ -94,7 +94,7 @@ elseif (file_exists('dockerSetup')) {
 else {
   $setupSourcePath=
   $setupSourcePath="https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup";
-  $setupDate=gitFileDate('/setup/setup.php');}
+  $setupDate=gitFileDate('setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
   #Récupération de la dernière version du présent script
