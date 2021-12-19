@@ -107,8 +107,6 @@ else {
   if(!$localUpdate) echo 'Pas local.'; else echo 'Local.';
   echo '<br/>';
 
-  exit();
-
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
   elseif (!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) {
     #Mise à jour du script de mise à jour depuis gitHub
@@ -204,7 +202,7 @@ foreach ($rcLangs as $helpLang) {
   $helpDate=gitFileDate("/setup/$helpLang/aide.md");
   if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";
 elseif (!file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
-  echo $str['gameHelpUp']." : $helpLang";
+  echo $str['gameHelpUp']." : $helpLang.<br/>";
   $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
   $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
   if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
