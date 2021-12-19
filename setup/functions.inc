@@ -1,9 +1,11 @@
 <?php
+
 $rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 $rcLangs=array('fr','en');
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
 require_once($rcLang.'/lang.php');
 $boxFile=$rcLang.'/boxes.xml';
+$gitToken='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';
 
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}
@@ -14,7 +16,7 @@ function xmlSave($xsObject,$xsFile) {
   $dom->save($xsFile);}
 
 function gitFileDate($gitFile=null){
-  global $str;
+  global $str,$gitBranch;
   #Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)
   $context = stream_context_create(array('http'=>array('method'=>"GET",'header'=>"Accept-language: en\r\n"."Cookie: foo=bar\r\n"."User-Agent: Fouyoufr")));
   $gitReq='https://api.github.com/repos/fouyoufr/remotechampions/commits?per_page=1';

@@ -1,5 +1,4 @@
 <?php
-  $gitUrl='https://raw.githubusercontent.com/Fouyoufr/remoteChampions/fullXML';
   $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   $phpFiles=array(
     'admin.php','aide.css','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php',
@@ -93,7 +92,8 @@ elseif (file_exists('dockerSetup')) {
   $setupSourcePath='docker';
   $dockerSetup=true;}
 else {
-  $setupSourcePath=$gitUrl.'/setup';
+  $setupSourcePath=
+  $setupSourcePath="https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup";
   $setupDate=gitFileDate('/setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
@@ -236,7 +236,7 @@ else {
 	echo "<tr><td>$phpFile</td><td>";
 	if ($localSize<>$remoteSize) {
 		echo $str['update'];
-		if (!@copy("$gitUrl/setup/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
+		if (!@copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo $str['noUpdate'];
 	echo "</td></tr>";}
   
