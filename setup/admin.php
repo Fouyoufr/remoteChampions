@@ -173,8 +173,7 @@ echo "><br/><input type='password' name='newPublic2' id='newPublic2'";
 if (!isset($publicPass) or $publicPass=='') echo ' disabled';
 echo '><input type=\'submit\' onclick="if (document.getElementById(\'publicModeOff\').checked) return true; else if(document.getElementById(\'newPublic\').value.length<6) {alert(\''.$str['adminPublicPass6char'].'\');return false;} else if (document.getElementById(\'newPublic\').value == document.getElementById(\'newPublic2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
 
-echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
-
+echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data" id="setupForm"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
 $gitCommit=gitFileDate();
 if (isset($gitCommit['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$gitCommit['erreur']."</div></div>"; else {
   echo "Version locale : $version<br/><a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>".$str['gitHubVersion']." ".$gitCommit['version'].", ".$str['adminAgo']." ";
@@ -183,7 +182,7 @@ if ($gitAgo->m>0) echo $gitAgo->m.' '.$str['months'].', ';
 if (explode(',',$gitAgo->format('%m,%d'))[1]>0) echo explode(',',$gitAgo->format('%m,%d'))[1].' '.$str['days'].', ';
 if (explode(',',$gitAgo->format('%m,%d,%h'))[2]>0) echo explode(',',$gitAgo->format('%m,%d,%h'))[2].' '.$str['hours'].', ';
 echo explode(',',$gitAgo->format('%m,%d,%h,%i'))[3].' '.$str['minutes'].' :<br/>'.$gitCommit['comments']."</a><br/><br/>";}
-echo "<div>".$str['adminUpdate']." : ".$str['onlineUpdate']." <input type='radio' name='autoUpdate' value='oui' checked onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ ".$str['zipUpdate'].": <input type='radio' name='autoUpdate' value='non' onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip' disabled></div>\n<input type='submit' class='adminButton' value='".$str['updateLaunch']."'>\n</form>";
+echo "<div>".$str['adminUpdate']." : ".$str['onlineUpdate']." <input type='radio' name='autoUpdate' value='oui' checked onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ ".$str['zipUpdate'].": <input type='radio' name='autoUpdate' value='non' onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip' disabled></div>\n<input type='submit' form='setupForm' class='adminButton' value='".$str['updateLaunch']."'>\n</form>";
 displayBottom();
 ?>
 <script language="JavaScript">

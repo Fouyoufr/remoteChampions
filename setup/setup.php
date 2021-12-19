@@ -1,7 +1,7 @@
 <?php
   $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   $phpFiles=array(
-    'admin.php','aide.css','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php',
+    'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php',
     'aide.css','ecran.css',
 	'mc.js',
 	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png');
@@ -74,54 +74,47 @@ if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPass
 	exit("<div class='pannel'><div class='pannelTitle'>".$str['restrictedTitle']."</div>".$str['restricted']."...<br/><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
 clearstatcache();
 #Gestion de la mise à jour par utilisation de fichiers locaux.
-if (isset($_POST['autoUpdate']) and $_POST['autoUpdate']=='non') {
+if (isset($_FILES['zipUpdate']) or isset($_GET['localUpdatePath'])) {
   if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>".$str['noUpdatesDir']."...</div>");}
-  $target_file = 'updates/'.basename($_FILES['zipUpdate']['name']);
-  if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION)) != 'zip') exit("<div class='error'>Fichier incorrect.<div class='subError'>".$str['nozip'].".<br/>".$str['readDoc']."...</div></div>");
-  $zip = new ZipArchive;
-  if ($zip->open($_FILES['zipUpdate']['tmp_name']) === TRUE) {
-      $zip->extractTo('updates/');
-	  $zipFolder=$zip->getNameIndex(0);
-      $zip->close();}
-  else exit("<div class='error'>".$str['nozip2'].".<div class='subError'>".error_get_last()['message']."</div></div>");
-  if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>".$str['incorrectFormat'].".<div class='subError'>".$str['nozip3']."<br/>".$str['readDoc'].".</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
-  $setupSourcePath="updates/$zipFolder/setup";
+  if (isset($_GET['localUpdatePath'])) $setupSourcePath=htmlspecialchars($_GET['localUpdatePath']);
+  else {
+	$target_file = 'updates/'.basename($_FILES['zipUpdate']['name']);
+	if(strtolower(pathinfo($target_file,PATHINFO_EXTENSION)) != 'zip') exit("<div class='error'>Fichier incorrect.<div class='subError'>".$str['nozip'].".<br/>".$str['readDoc']."...</div></div>");
+	$zip = new ZipArchive;
+	if ($zip->open($_FILES['zipUpdate']['tmp_name']) === TRUE) {
+		$zip->extractTo('updates/');
+		$zipFolder=$zip->getNameIndex(0);
+		$zip->close();}
+	else exit("<div class='error'>".$str['nozip2'].".<div class='subError'>".error_get_last()['message']."</div></div>");
+	if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>".$str['incorrectFormat'].".<div class='subError'>".$str['nozip3']."<br/>".$str['readDoc'].".</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
+	$setupSourcePath="updates/$zipFolder/setup";}
   $localUpdate=true;}
 elseif (file_exists('dockerSetup')) {
   #insertion initiale de contenu pour Docker
   $setupSourcePath='docker';
-  $dockerSetup=true;}
+  $dockerSetup=true;
+  $localUpdate=true;}
 else {
-  $setupSourcePath=
   $setupSourcePath="https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup";
   $setupDate=gitFileDate('setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
+  echo "<div class='pannel'><div class='pannelTitle'>".$str['updateScript'].'</div>';
   #Récupération de la dernière version du présent script
-  echo "<div class='pannel'><div class='pannelTitle'".$str['updateScript']."</div>";
-  echo 'Date locale : ';
-  print_r (new dateTime('@'.filemtime('setup.php')));
-  echo '<br/>Date distante : ';
-  print_r($setupDate);
-  echo '<br/>';
-  if(!$localUpdate) echo 'Pas local.'; else echo 'Local.';
-  echo '<br/>';
-
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
   elseif (!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) {
     #Mise à jour du script de mise à jour depuis gitHub
 	echo $str['updateScript2'].".<br/>";
 	if (@copy("$setupSourcePath/setup.php",'setup.php')) exit ("<a href='' class='button'>".$str['relaunch']."</a>");
 	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
-
-  elseif ($localUpdate and ('Comparaison des tailles')) {
+  elseif ($localUpdate and (filesize("$setupSourcePath/setup.php")<>filesize('setup.php') or md5_file("$setupSourcePath/setup.php")<>md5_file('setup.php'))) {
     #Mise à jour du script de mise à jour en local
 	echo $str['updateScript2'].".<br/>";
-
-  }
-  else echo $str['allreadyUp'].".";}
-
-exit();
+	if (@copy("$setupSourcePath/setup.php",'setup.php')) {
+		header("Refresh:0; setup.php?localUpdatePath=$setupSourcePath");
+	  exit();}
+	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
+  else echo $str['allreadyUp'].'.';}
 
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
@@ -193,86 +186,93 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 
 #Mise à jour des fichiers d'aide HTML		
 echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
-
-#A vérifier/gérer :
-if ($localUpdate) echo 'coucou';
-if ($dockerSetup) echo 'coucou';
-
 foreach ($rcLangs as $helpLang) {
-  $helpDate=gitFileDate("/setup/$helpLang/aide.md");
-  if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";
-elseif (!file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
-  echo $str['gameHelpUp']." : $helpLang.<br/>";
-  $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
-  $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
-  if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
-  else {
-    $luEncours=false;
-    $entryId=0;
-    $numbEncours=false;
-	$table='';
-    while (!feof ($file)) {
-	  $line=str_replace(["\r","\n"],'',fgets($file));
-	  if (substr($line,0,2)=='# ') {
-	    if ($luEncours) { $table.="</ul>\n"; $luEncours=false;}
-	    if ($numbEncours) { $table.="</ol>"; $numbEncours=false;}
-		$entryId++;
-		$table.="</div></div>\n<div id='aide$entryId' class='aideChapter'><div class='title' onclick='contentStyle=document.getElementById(this.parentElement.getElementsByClassName(\"content\")[0].id).style;if (contentStyle.display==\"block\") contentStyle.display=\"none\"; else contentStyle.display=\"block\";'>".substr($line,2)."</div>\n<div id='content$entryId' class='content'>\n";}
-	  elseif (substr($line,0,2)=='- ' or substr($line,0,5)=='   - ') {
-	    if (!$luEncours) {$luEncours=true; $table.="<ul>\n";}
-	    if (substr($line,0,5)=='   - ') $line=substr($line,3); elseif ($numbEncours) $table.="</ol>\n";
-	    $table.='<li>'.substr($line,2)."</li>\n";}
-	  elseif (substr($line,0,3)=='1. ') {
-	    if (!$numbEncours) {$numbEncours=true; $table.="<ol>\n";}
-	    if ($luEncours) {$luEncours=false; $table.="</ul>\n";}
-		$table.='<li>'.substr($line,3)."</li>\n";}
-	  else {
-	    if ($luEncours) {$table.="</ul>\n";	$luEncours=false;}
-	    if ($numbEncours) {$table.="</ol>\n"; $numbEncours=false;}
-	    $table.=$line;
-	    if (substr($line,-2)=='  ') $table.="<br/>\n";}}
+  if (!$localUpdate) {
+    $helpDate=gitFileDate("/setup/$helpLang/aide.md");
+    if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";}
+  if ($localUpdate or !file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
+    echo $str['gameHelpUp']." : $helpLang.<br/>";
+    $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
+    $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
+    if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
+    else {
+      $luEncours=false;
+      $entryId=0;
+      $numbEncours=false;
+	  $table='';
+      while (!feof ($file)) {
+	    $line=str_replace(["\r","\n"],'',fgets($file));
+        if (substr($line,0,2)=='# ') {
+	      if ($luEncours) $table.="</ul>\n"; $luEncours=false;
+	      if ($numbEncours) $table.="</ol>"; $numbEncours=false;
+		  $entryId++;
+		  $table.="</div></div>\n<div id='aide$entryId' class='aideChapter'><div class='title' onclick='contentStyle=document.getElementById(this.parentElement.getElementsByClassName(\"content\")[0].id).style;if (contentStyle.display==\"block\") contentStyle.display=\"none\"; else contentStyle.display=\"block\";'>".substr($line,2)."</div>\n<div id='content$entryId' class='content'>\n";}
+	    elseif (substr($line,0,2)=='- ' or substr($line,0,5)=='   - ') {
+	      if (!$luEncours) {$luEncours=true; $table.="<ul>\n";}
+	      if (substr($line,0,5)=='   - ') $line=substr($line,3); elseif ($numbEncours) $table.="</ol>\n";
+	      $table.='<li>'.substr($line,2)."</li>\n";}
+	    elseif (substr($line,0,3)=='1. ') {
+	      if (!$numbEncours) $numbEncours=true; $table.="<ol>\n";
+	      if ($luEncours) $luEncours=false; $table.="</ul>\n";
+		  $table.='<li>'.substr($line,3)."</li>\n";}
+	    else {
+	      if ($luEncours) $table.="</ul>\n";	$luEncours=false;
+	      if ($numbEncours) $table.="</ol>\n"; $numbEncours=false;
+	      $table.=$line;
+	      if (substr($line,-2)=='  ') $table.="<br/>\n";}}
     fclose($file);
 	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
 	file_put_contents ("$helpLang/aide.html",$helpFile);}}
-	else echo $str['gameHelpUp3'].".";}
+  else echo $str['gameHelpUp3'].".<br/>";}
 
 if ($dockerSetup) {
-	#Fin d'insertion Docker : nettoyage
+	#Fin d'insertion Docker : nettoyage des sources
     $files = glob($setupSourcePath.'/*',GLOB_MARK);
     foreach ($files as $file) unlink($file);
     rmdir($setupSourcePath);
-	echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";}
-else {
-  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
-  #Vérification des fichiers par leur taille.
-  foreach ($phpFiles as $phpFile) {
-	  if (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
-	$localSize=filesize($phpFile);
-	$remoteSize = remoteFileSize($phpFile);
-	echo "<tr><td>$phpFile</td><td>";
-	if ($localSize<>$remoteSize) {
-		echo $str['update'];
-		if (!@copy("https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
+	exit ("</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
+
+echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
+#Vérification des fichiers par leur taille.
+foreach ($phpFiles as $phpFile) {
+  if (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
+  $localSize=filesize($phpFile);
+  $remoteSize=remoteFileSize($phpFile);
+  echo "<tr><td>$phpFile</td><td>";
+  if ($localSize<>$remoteSize) {
+    echo $str['update'];
+    if (!@copy("$setupSourcePath/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
 	else echo $str['noUpdate'];
-	echo "</td></tr>";}
+  echo "</td></tr>";}
   
-  #Mise à jour des boxes...
-  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['boxesUpdate']."</div>";
-  $xmlBoxes=simplexml_load_file($boxFile);
-  foreach ($rcLangs as $boxLang) {
-    if (!$newBoxes=simplexml_load_file("$setupSourcePath/$boxLang/boxes.xml")) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$boxLang/boxes.xml'.</div></div>";
-	else {
-	  echo "$boxLang - OK.<br/>";
-	  foreach($newBoxes->box as $newbox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1) $newBox['own']=$oldBox['own']->__toString();
-	  xmlSave($newBoxes,"$boxLang/boxes.xml");}}
+#Mise à jour des boxes...
+echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['boxesUpdate'].'</div>';
+$xmlBoxes=simplexml_load_file($boxFile);
+foreach ($rcLangs as $boxLang) {
+  if (!$newBoxes=simplexml_load_file("$setupSourcePath/$boxLang/boxes.xml")) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$boxLang/boxes.xml'.</div></div>";
+  else {
+    echo "$boxLang - OK.<br/>";
+    foreach($newBoxes->box as $newbox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1) $newBox['own']=$oldBox['own']->__toString();
+    xmlSave($newBoxes,"$boxLang/boxes.xml");}}
 
-  echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
-  imageUpdate('mechants','mechant');
-  imageUpdate('boites','box');
-  imageUpdate('heros','heros');
-echo "</table></div>";}
-
-echo "<div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";
+echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
+imageUpdate('mechants','mechant');
+imageUpdate('boites','box');
+imageUpdate('heros','heros');
+echo "</table></div><div class='pannel'><div class='pannelTitle'>";
+if ($localUpdate) echo $str['endUpdate']; else {
+  echo $str['endGitUpdate'];
+  $gitCommit=gitFileDate();
+  $newVersion=$gitCommit['version'];
+  #Modification de la variable Version dans le fichier "config.inc"
+  $configFile=file('config.inc');
+  function replaceVersion($data) {
+    global $newVersion;
+	if (stristr($data,'$version=')) return "\$version='$newVersion';\n";
+	return $data;}
+  $configFile=array_map('replaceVersion',$configFile);
+  file_put_contents('config.inc', implode('',$configFile));}
+echo "</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>";
 ?>
 </body>
 </html>

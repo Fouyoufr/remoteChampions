@@ -167,7 +167,7 @@
       'nozip4'=>'Le fichier zip fourni ne contient pas une sauvegarde valide d\'un serveur Remote Champions.',
       'docker1'=>'Installation initiale via Docker',
       'docker2'=>'Finalisation de l\'installation pour conteneur Docker',
-      'updateScript'=>'>Mise à jour du script d\'installation',
+      'updateScript'=>'Mise à jour du script d\'installation',
       'updateScript2'=>'Nouvelle version du script de mise à jour',
       'relaunch'=>'Relancer la mise à jour',
       'allreadyUp'=>'Script Déjà à jour',
@@ -188,7 +188,8 @@
       'file'=>'Fichier',
       'update'=>'Mise à jour',
       'noUpdate'=>'Déjà à jour',
-      'endUpdate'=>'Fin d\'installation/mise à jour',
+      'endUpdate'=>'Fin de mise à jour depuis source locale.',
+      'endGitUpdate'=>'Fin de mise à jour depuis source gitHub.',
       'boxesUpdate'=>'Mise à jour des boites de jeu depuis la source.'
 
   );

@@ -188,7 +188,8 @@
       'file'=>'file',
       'update'=>'Update',
       'noUpdate'=>'Allready up to date',
-      'endUpdate'=>'End of update/setup',
+      'endUpdate'=>'End of local update',
+      'endGitUpdate'=>'End of update from gitHub source.',
       'boxesUpdate'=>'Update the game boxes from source.'
       
   );
