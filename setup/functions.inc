@@ -28,7 +28,7 @@ function gitFileDate($gitFile=null){
   return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}
 
 function displayBottom() {
-  global $partieId,$adminPassword,$mobile,$str,$gitBranch;
+  global $partieId,$adminPassword,$mobile,$str,$gitBranch,$rcLang;
   $currentScript=basename($_SERVER['PHP_SELF']);
   if (!$mobile) {
     if ($currentScript<>'admin.php' and $currentScript<>'setup.php') {
