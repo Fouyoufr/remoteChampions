@@ -38,7 +38,6 @@ function imageUpdate($imgFolder,$imgObject) {
 
   include_once('functions.inc');
   session_start();
-  if ($version=='dockerSetup') $_SESSION['adminPassword']=$adminPassword;
   echo "<!doctype html>\n<html lang='$rcLang'>\n";
 ?>
 <head>
@@ -70,6 +69,10 @@ function imageUpdate($imgFolder,$imgObject) {
 include 'config.inc';
 $dockerSetup=false;
 $localUpdate=false;
+if ($version=='dockerSetup') {
+  $_SESSION['adminPassword']=$adminPassword;
+  $dockerSetup=true;
+  $localSetup=true;}
 #Vérification du mot de passe d'administration.
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
 	exit("<div class='pannel'><div class='pannelTitle'>".$str['restrictedTitle']."</div>".$str['restricted']."...<br/><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
@@ -90,12 +93,7 @@ if (isset($_FILES['zipUpdate']) or isset($_GET['localUpdatePath'])) {
 	if (substr($zipFolder,-1,1)!='/') exit("<div class='error'>".$str['incorrectFormat'].".<div class='subError'>".$str['nozip3']."<br/>".$str['readDoc'].".</div></div>"); else $zipFolder=explode('/',$zipFolder)[0];
 	$setupSourcePath="updates/$zipFolder/setup";}
   $localUpdate=true;}
-elseif (file_exists('dockerSetup')) {
-  #insertion initiale de contenu pour Docker
-  $setupSourcePath='docker';
-  $dockerSetup=true;
-  $localUpdate=true;}
-else {
+elseif (!$dockerSetup) {
   $setupSourcePath="https://raw.githubusercontent.com/Fouyoufr/remoteChampions/$gitBranch/setup";
   $setupDate=gitFileDate('setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
@@ -194,7 +192,7 @@ foreach ($rcLangs as $helpLang) {
   if ($localUpdate or !file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
     echo $str['gameHelpUp']." : $helpLang.<br/>";
     $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
-    $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
+	if ($dockerSetup) $file = @fopen ("$helpLang/aide.md", "r"); else $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
     if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
     else {
       $luEncours=false;
@@ -228,9 +226,6 @@ foreach ($rcLangs as $helpLang) {
 
 if ($dockerSetup) {
 	#Fin d'insertion Docker : nettoyage des sources
-    $files = glob($setupSourcePath.'/*',GLOB_MARK);
-    foreach ($files as $file) unlink($file);
-    rmdir($setupSourcePath);
     #Modification de la variable Version dans le fichier "config.inc"
     $configFile=file('config.inc');
     function replaceVersion($data) {

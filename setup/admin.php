@@ -15,10 +15,12 @@ function restoreXML($restoreFileName){
     rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
     $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
     #La boite contenant le Deck est-elle notée comme incluse ?
-    foreach($xml->deck as $deck) if ($deck['dId']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
+    foreach($xml->deck as $deck) if ($deck['dId']<>0) {
+      foreach ($xmlBoxes as $xmlBox) { 
+        foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
       $xmlBox['own']=1;
       $changedBoxes=true;
-      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}}}
     #La boite contenant le Héros est-elle notée comme incluse ?
     foreach($xml->joueur as $joueur) if ($joueur['jHeros']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $ownHeros) if ($ownHeros['id']->__toString()==$joueur['jHeros']->__toString() and $xmlBox['own']<>1) {
       $xmlBox['own']=1;

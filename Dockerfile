@@ -7,7 +7,7 @@ RUN apt-get install -y nano
 
 RUN apt-get install -y nginx
 RUN apt-get install -y php7.4-fpm
-RUN apt-get install -y php7.4-mysql php7.4-curl php7.4-json php7.4-xml php7.4-zip
+RUN apt-get install -y php7.4-curl php7.4-json php7.4-xml php7.4-zip
 RUN sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.4/fpm/php.ini
 
 RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
@@ -38,8 +38,6 @@ RUN cp -a /remoteChampions/setup/. /var/www/html
 RUN ls /var/www/html
 RUN unlink /var/www/html/config.inc
 RUN mv /var/www/html/dockerConfig.inc /var/www/html/config.inc
-RUN mkdir /var/www/html/dockerSetup
-RUN cp -a /remoteChampions/setup/. /var/www/html/dockerSetup
 RUN chmod -R 777 /var/www/html
 
 RUN echo '#!/bin/sh\n\

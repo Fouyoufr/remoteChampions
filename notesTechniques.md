@@ -57,5 +57,4 @@
 
 ==> tester la mise à jour depuis 1.5 et depuis < 1.5
 
-Ajouter redirection docker vers setup pour création des fichiers d'aide
 ==> tester la nouvelle image Docker
