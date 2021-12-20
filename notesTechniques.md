@@ -56,5 +56,3 @@
 - Journal d'installation/mise à jour ?
 
 ==> tester la mise à jour depuis 1.5 et depuis < 1.5
-
-==> tester la nouvelle image Docker
