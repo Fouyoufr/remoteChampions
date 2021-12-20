@@ -38,6 +38,7 @@ function imageUpdate($imgFolder,$imgObject) {
 
   include_once('functions.inc');
   session_start();
+  if ($version=='dockerSetup') $_SESSION['adminPassword']=$adminPassword;
   echo "<!doctype html>\n<html lang='$rcLang'>\n";
 ?>
 <head>

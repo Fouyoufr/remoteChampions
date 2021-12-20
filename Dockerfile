@@ -32,12 +32,14 @@ location ~ .php$ {\n\
 }' > /etc/nginx/sites-available/default
 
 RUN apt-get install -y git
-RUN git clone https://github.com/Fouyoufr/remoteChampions.git
+#RUN git clone https://github.com/Fouyoufr/remoteChampions.git
+RUN git clone -b fullXML --single-branch https://github.com/Fouyoufr/remoteChampions.git
 RUN cp -a /remoteChampions/setup/. /var/www/html
+RUN ls /var/www/html
 RUN unlink /var/www/html/config.inc
 RUN mv /var/www/html/dockerConfig.inc /var/www/html/config.inc
 RUN mkdir /var/www/html/dockerSetup
-RUN cp /remoteChampions/setup /var/www/html/dockerSetup
+RUN cp -a /remoteChampions/setup/. /var/www/html/dockerSetup
 RUN chmod -R 777 /var/www/html
 
 RUN echo '#!/bin/sh\n\
