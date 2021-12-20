@@ -77,6 +77,18 @@ if ($version=='dockerSetup') {
 if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
 	exit("<div class='pannel'><div class='pannelTitle'>".$str['restrictedTitle']."</div>".$str['restricted']."...<br/><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
 clearstatcache();
+#Ajout des répertoires de langue si absents
+foreach ($rcLangs as $rcLangDir) if (!file_exists($rcLangDir)) mkdir($rcLangDir,0777,true);
+if (!isset($version)) {
+  #Ajout de la variable version dans un ancien fichier config.in
+  $configFile=file('config.inc');
+  function addVersion($data) {
+	if (stristr($data,'?>')) return "\$version='New';\n?>\n";
+	return $data;}
+  $configFile=array_map('addVersion',$configFile);
+  file_put_contents('config.inc', implode('',$configFile));}
+
+if (!isset($gitBranch) $gitBranch='main';
 #Gestion de la mise à jour par utilisation de fichiers locaux.
 if (isset($_FILES['zipUpdate']) or isset($_GET['localUpdatePath'])) {
   if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>".$str['noUpdatesDir']."...</div>");}

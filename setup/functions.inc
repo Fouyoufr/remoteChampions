@@ -1,5 +1,4 @@
 <?php
-
 $rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 $rcLangs=array('fr','en');
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
