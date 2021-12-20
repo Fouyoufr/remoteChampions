@@ -35,6 +35,7 @@ $restored='';
 if (isset($_FILES['zipRestore'])) {
   include_once 'functions.inc';
   include_once 'config.inc';
+  $xmlBoxes=simplexml_load_file($boxFile);
   session_start();
   global $str;
   restrictAccess();
