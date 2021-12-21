@@ -88,7 +88,7 @@ if (!isset($version)) {
   $configFile=array_map('addVersion',$configFile);
   file_put_contents('config.inc', implode('',$configFile));}
 
-if (!isset($gitBranch) $gitBranch='main';
+if (!isset($gitBranch)) $gitBranch='main';
 #Gestion de la mise à jour par utilisation de fichiers locaux.
 if (isset($_FILES['zipUpdate']) or isset($_GET['localUpdatePath'])) {
   if (!file_exists('updates')) {if(!mkdir('updates',0777,true)) exit("<div class='error'>".$str['noUpdatesDir']."...</div>");}
