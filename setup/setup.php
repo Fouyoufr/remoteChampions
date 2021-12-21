@@ -37,6 +37,19 @@ function imageUpdate($imgFolder,$imgObject) {
 	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
 
   include_once('functions.inc');
+
+if (!function_exists(gitFileDate)) {
+	function gitFileDate($gitFile=null){
+		global $str,$gitBranch,$gitToken;
+		#Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)
+		$context = stream_context_create(array('http'=>array('method'=>'GET','header'=>"Accept-language: en\r\nCookie: foo=bar\r\nUser-Agent: Fouyoufr\r\nAuthorization: Basic ".base64_encode("Fouyoufr:$gitToken"),'protocol_version'=>1.1)));
+		$gitReq='https://api.github.com/repos/Fouyoufr/remotechampions/commits?per_page=1&sha='.$gitBranch;
+		if (isset($gitFile) and $gitFile!='') $gitReq.='&path='.$gitFile;
+		$jsonContent=@file_get_contents($gitReq,false,$context);
+		if($jsonContent === FALSE) {return array('erreur'=>error_get_last()['message']);}
+		$lastCommit=json_decode($jsonContent,true)[0]['commit'];
+		return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}}
+
   session_start();
   echo "<!doctype html>\n<html lang='$rcLang'>\n";
 ?>
