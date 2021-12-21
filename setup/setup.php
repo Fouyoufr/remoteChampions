@@ -117,7 +117,7 @@ else {
     #Mise à jour du script de mise à jour depuis gitHub ou local
 	echo $str['updateScript2'].".<br/>";
 	if (@copy("$setupSourcePath/setup.php",'setup.php')) {
-		if(!@copy("$setuSourcePath/setup/functions.inc",'functions.inc')) exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>")
+		if(!@copy("$setuSourcePath/setup/functions.inc",'functions.inc')) exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");
 		if ($localUpdate) {
 		  header("Refresh:0; setup.php?localUpdatePath=$setupSourcePath");
 		  exit();}
@@ -127,23 +127,6 @@ else {
 
   else echo $str['allreadyUp'].'.';}
 	
-  echo "<div class='pannel'><div class='pannelTitle'>".$str['updateScript'].'</div>';
-  #Récupération de la dernière version du présent script
-  if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
-  elseif (!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) {
-    #Mise à jour du script de mise à jour depuis gitHub
-	echo $str['updateScript2'].".<br/>";
-	if (@copy("$setupSourcePath/setup.php",'setup.php')) exit ("<a href='' class='button'>".$str['relaunch']."</a>");
-	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
-  elseif ($localUpdate and (filesize("$setupSourcePath/setup.php")<>filesize('setup.php') or md5_file("$setupSourcePath/setup.php")<>md5_file('setup.php'))) {
-    #Mise à jour du script de mise à jour en local
-	echo $str['updateScript2'].".<br/>";
-	if (@copy("$setupSourcePath/setup.php",'setup.php')) {
-		header("Refresh:0; setup.php?localUpdatePath=$setupSourcePath");
-	  exit();}
-	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
-  else echo $str['allreadyUp'].'.';}
-  
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
 	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
