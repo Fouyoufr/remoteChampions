@@ -109,6 +109,24 @@ elseif (!$dockerSetup) {
   $setupDate=gitFileDate('setup/setup.php');}
 if ($dockerSetup) echo "<div class='pannel'><div class='pannelTitle'>".$str['docker1']."</div>\n".$str['docker2'].".";
 else {
+
+  echo "<div class='pannel'><div class='pannelTitle'>".$str['updateScript'].'</div>';
+  #Récupération de la dernière version du présent script
+  if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
+  elseif ((!$localUpdate and (new dateTime('@'.filemtime('setup.php'))<$setupDate['date'])) or ($localUpdate and (filesize("$setupSourcePath/setup.php")<>filesize('setup.php') or md5_file("$setupSourcePath/setup.php")<>md5_file('setup.php')))) {
+    #Mise à jour du script de mise à jour depuis gitHub ou local
+	echo $str['updateScript2'].".<br/>";
+	if (@copy("$setupSourcePath/setup.php",'setup.php')) {
+		if(!@copy("$setuSourcePath/setup/functions.inc",'functions.inc')) exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>")
+		if ($localUpdate) {
+		  header("Refresh:0; setup.php?localUpdatePath=$setupSourcePath");
+		  exit();}
+		else exit ("<a href='' class='button'>".$str['relaunch']."</a>");}
+	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
+
+
+  else echo $str['allreadyUp'].'.';}
+	
   echo "<div class='pannel'><div class='pannelTitle'>".$str['updateScript'].'</div>';
   #Récupération de la dernière version du présent script
   if (isset($setupDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$setupDate['erreur']."</div></div>";
@@ -126,22 +144,9 @@ else {
 	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
   else echo $str['allreadyUp'].'.';}
   
-echo "</div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
-#Vérification des fichiers par leur taille.
-foreach ($phpFiles as $phpFile) {
-f (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
-localSize=filesize($phpFile);
-$remoteSize=remoteFileSize($phpFile);
-echo "<tr><td>$phpFile</td><td>";
-if ($localSize<>$remoteSize) {
-  echo $str['update'];
-  if (!@copy("$setupSourcePath/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
-  else echo $str['noUpdate'];
-echo "</td></tr>";}
-
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
-	echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
+	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
 	$sqlParties=sql_get('SELECT * FROM `parties`');
 	while ($sqlPartie=mysqli_fetch_assoc($sqlParties)) {
 		$mNom=mysqli_fetch_assoc(sql_get("SELECT `mNom` FROM `mechants` WHERE `mId`='".$sqlPartie['pMechant']."'"))['mNom'];
@@ -208,7 +213,7 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		echo '</ul>';}}
 
 #Mise à jour des fichiers d'aide HTML		
-echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
+echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
 foreach ($rcLangs as $helpLang) {
   if (!$localUpdate) {
     $helpDate=gitFileDate("/setup/$helpLang/aide.md");
