@@ -87,7 +87,6 @@ if (!isset($version)) {
 	return $data;}
   $configFile=array_map('addVersion',$configFile);
   file_put_contents('config.inc', implode('',$configFile));}
-
 if (!isset($gitBranch)) $gitBranch='main';
 #Gestion de la mise à jour par utilisation de fichiers locaux.
 if (isset($_FILES['zipUpdate']) or isset($_GET['localUpdatePath'])) {
@@ -126,10 +125,23 @@ else {
 	  exit();}
 	else exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");}
   else echo $str['allreadyUp'].'.';}
+  
+echo "</div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
+#Vérification des fichiers par leur taille.
+foreach ($phpFiles as $phpFile) {
+f (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
+localSize=filesize($phpFile);
+$remoteSize=remoteFileSize($phpFile);
+echo "<tr><td>$phpFile</td><td>";
+if ($localSize<>$remoteSize) {
+  echo $str['update'];
+  if (!@copy("$setupSourcePath/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
+  else echo $str['noUpdate'];
+echo "</td></tr>";}
 
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
-	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
+	echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
 	$sqlParties=sql_get('SELECT * FROM `parties`');
 	while ($sqlPartie=mysqli_fetch_assoc($sqlParties)) {
 		$mNom=mysqli_fetch_assoc(sql_get("SELECT `mNom` FROM `mechants` WHERE `mId`='".$sqlPartie['pMechant']."'"))['mNom'];
@@ -196,7 +208,7 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		echo '</ul>';}}
 
 #Mise à jour des fichiers d'aide HTML		
-echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
+echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
 foreach ($rcLangs as $helpLang) {
   if (!$localUpdate) {
     $helpDate=gitFileDate("/setup/$helpLang/aide.md");
