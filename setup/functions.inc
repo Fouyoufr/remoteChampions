@@ -37,7 +37,7 @@ function displayBottom() {
     if (isset($partieId)) echo $str['gamePass']." <span>$partieId</span></form>"; else echo $str['siteAdmin'];
       echo "</form>";}
     if (isset($partieId))  echo "<a href='#' id='aideDeJeu' onclick='window.open(\"$rcLang/aide.html\", \"_blank\", \"toolbar=0,location=0,menubar=0,width=50%\");'>".$str['help']."</a>";
-    echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
+    echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";}}
 
 function updatePassword() {
