@@ -140,6 +140,71 @@ else {
 
   else echo $str['allreadyUp'].'.';}
 	
+#Mise à jour des fichiers d'aide HTML		
+echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
+foreach ($rcLangs as $helpLang) {
+  if (!$localUpdate) {
+    $helpDate=gitFileDate("/setup/$helpLang/aide.md");
+    if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";}
+  if ($localUpdate or !file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
+    echo $str['gameHelpUp']." : $helpLang.<br/>";
+    $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='../aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
+	if ($dockerSetup) $file = @fopen ("$helpLang/aide.md", "r"); else $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
+    if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
+    else {
+      $luEncours=false;
+      $entryId=0;
+      $numbEncours=false;
+	  $table='';
+      while (!feof ($file)) {
+	    $line=str_replace(["\r","\n"],'',fgets($file));
+        if (substr($line,0,2)=='# ') {
+	      if ($luEncours) $table.="</ul>\n"; $luEncours=false;
+	      if ($numbEncours) $table.="</ol>"; $numbEncours=false;
+		  $entryId++;
+		  $table.="</div></div>\n<div id='aide$entryId' class='aideChapter'><div class='title' onclick='contentStyle=document.getElementById(this.parentElement.getElementsByClassName(\"content\")[0].id).style;if (contentStyle.display==\"block\") contentStyle.display=\"none\"; else contentStyle.display=\"block\";'>".substr($line,2)."</div>\n<div id='content$entryId' class='content'>\n";}
+	    elseif (substr($line,0,2)=='- ' or substr($line,0,5)=='   - ') {
+	      if (!$luEncours) {$luEncours=true; $table.="<ul>\n";}
+	      if (substr($line,0,5)=='   - ') $line=substr($line,3); elseif ($numbEncours) $table.="</ol>\n";
+	      $table.='<li>'.substr($line,2)."</li>\n";}
+	    elseif (substr($line,0,3)=='1. ') {
+	      if (!$numbEncours) $numbEncours=true; $table.="<ol>\n";
+	      if ($luEncours) $luEncours=false; $table.="</ul>\n";
+		  $table.='<li>'.substr($line,3)."</li>\n";}
+	    else {
+	      if ($luEncours) $table.="</ul>\n";	$luEncours=false;
+	      if ($numbEncours) $table.="</ol>\n"; $numbEncours=false;
+	      $table.=$line;
+	      if (substr($line,-2)=='  ') $table.="<br/>\n";}}
+    fclose($file);
+	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
+	file_put_contents ("$helpLang/aide.html",$helpFile);}}
+  else echo $str['gameHelpUp3'].".<br/>";}
+
+if ($dockerSetup) {
+	#Fin d'insertion Docker : nettoyage des sources
+    #Modification de la variable Version dans le fichier "config.inc"
+    $configFile=file('config.inc');
+    function replaceVersion($data) {
+	  if (stristr($data,'$version=')) return "\$version='Docker';\n";
+	  return $data;}
+    $configFile=array_map('replaceVersion',$configFile);
+    file_put_contents('config.inc', implode('',$configFile));
+	exit ("</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
+
+echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
+#Vérification des fichiers par leur taille.
+foreach ($phpFiles as $phpFile) {
+  if (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
+  $localSize=filesize($phpFile);
+  $remoteSize=remoteFileSize($phpFile);
+  echo "<tr><td>$phpFile</td><td>";
+  if ($localSize<>$remoteSize) {
+    echo $str['update'];
+    if (!@copy("$setupSourcePath/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
+	else echo $str['noUpdate'];
+  echo "</td></tr>";}
+
 #Mise a jour pour la version 1.5 : depuis le full SQL vers le cache AJAX en mode fichiers.
 if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'parties'"))) {
 	echo "</div><div class='pannel'><div class='pannelTitle'>".$str['update5']."</div>".$str['stillGameTable'].".<br/>";
@@ -207,71 +272,6 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		  xmlAttr($xmlCompteur,array('cId'=>$sqlCompteur['cId'],'cValeur'=>$sqlCompteur['cValeur']));}
 		$xml->saveXML('ajax/'.$sqlPartie['pUri'].'.xml');
 		echo '</ul>';}}
-
-#Mise à jour des fichiers d'aide HTML		
-echo "</div><div class='pannel'><div class='pannelTitle'>".$str['gameHelpUp']."</div>";
-foreach ($rcLangs as $helpLang) {
-  if (!$localUpdate) {
-    $helpDate=gitFileDate("/setup/$helpLang/aide.md");
-    if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";}
-  if ($localUpdate or !file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
-    echo $str['gameHelpUp']." : $helpLang.<br/>";
-    $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='../aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
-	if ($dockerSetup) $file = @fopen ("$helpLang/aide.md", "r"); else $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
-    if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
-    else {
-      $luEncours=false;
-      $entryId=0;
-      $numbEncours=false;
-	  $table='';
-      while (!feof ($file)) {
-	    $line=str_replace(["\r","\n"],'',fgets($file));
-        if (substr($line,0,2)=='# ') {
-	      if ($luEncours) $table.="</ul>\n"; $luEncours=false;
-	      if ($numbEncours) $table.="</ol>"; $numbEncours=false;
-		  $entryId++;
-		  $table.="</div></div>\n<div id='aide$entryId' class='aideChapter'><div class='title' onclick='contentStyle=document.getElementById(this.parentElement.getElementsByClassName(\"content\")[0].id).style;if (contentStyle.display==\"block\") contentStyle.display=\"none\"; else contentStyle.display=\"block\";'>".substr($line,2)."</div>\n<div id='content$entryId' class='content'>\n";}
-	    elseif (substr($line,0,2)=='- ' or substr($line,0,5)=='   - ') {
-	      if (!$luEncours) {$luEncours=true; $table.="<ul>\n";}
-	      if (substr($line,0,5)=='   - ') $line=substr($line,3); elseif ($numbEncours) $table.="</ol>\n";
-	      $table.='<li>'.substr($line,2)."</li>\n";}
-	    elseif (substr($line,0,3)=='1. ') {
-	      if (!$numbEncours) $numbEncours=true; $table.="<ol>\n";
-	      if ($luEncours) $luEncours=false; $table.="</ul>\n";
-		  $table.='<li>'.substr($line,3)."</li>\n";}
-	    else {
-	      if ($luEncours) $table.="</ul>\n";	$luEncours=false;
-	      if ($numbEncours) $table.="</ol>\n"; $numbEncours=false;
-	      $table.=$line;
-	      if (substr($line,-2)=='  ') $table.="<br/>\n";}}
-    fclose($file);
-	$helpFile.=substr($table,13)."\n</div>\n</div>\n<div id='TDMDown'></div>\n<a href='#' id='collapse' onclick='Array.from(document.getElementsByClassName(\"content\")).forEach(content => content.style.display=\"block\");'>+</a>\n<a href='#' id='moveUp'>&#10148;</a>\n</body>\n</html>";
-	file_put_contents ("$helpLang/aide.html",$helpFile);}}
-  else echo $str['gameHelpUp3'].".<br/>";}
-
-if ($dockerSetup) {
-	#Fin d'insertion Docker : nettoyage des sources
-    #Modification de la variable Version dans le fichier "config.inc"
-    $configFile=file('config.inc');
-    function replaceVersion($data) {
-	  if (stristr($data,'$version=')) return "\$version='Docker';\n";
-	  return $data;}
-    $configFile=array_map('replaceVersion',$configFile);
-    file_put_contents('config.inc', implode('',$configFile));
-	exit ("</table></div><div class='pannel'><div class='pannelTitle'>".$str['endUpdate']."</div><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
-
-echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['phpUp']."</div><table><tr><th>".$str['file']."</th><th></th></tr>";
-#Vérification des fichiers par leur taille.
-foreach ($phpFiles as $phpFile) {
-  if (explode('.',$phpFile)[1]=='png') $phpFile='img/'.$phpFile;
-  $localSize=filesize($phpFile);
-  $remoteSize=remoteFileSize($phpFile);
-  echo "<tr><td>$phpFile</td><td>";
-  if ($localSize<>$remoteSize) {
-    echo $str['update'];
-    if (!@copy("$setupSourcePath/$phpFile",$phpFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";}
-	else echo $str['noUpdate'];
-  echo "</td></tr>";}
   
 #Mise à jour des boxes...
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['boxesUpdate'].'</div>';
