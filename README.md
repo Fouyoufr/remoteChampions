@@ -8,6 +8,7 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 # Historique des changements
 ## Version 5.4
 Refonte complète du moteur, sans base de donnée.
+(relancer la mise à jour si nécessaire)
 ## Version 5.3
 Version sans Base de Données
 ## Version 5.2

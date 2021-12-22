@@ -287,7 +287,6 @@ foreach ($rcLangs as $boxLang) {
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
 imageUpdate('mechants','mechant');
 imageUpdate('heros','heros');
-
 $nothingToDo=true;
 foreach ($xmlBoxes as $xmlBox) {
   $imageFile="img/boites/".$xmlBox['id'].'.png';
