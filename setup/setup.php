@@ -286,8 +286,18 @@ foreach ($rcLangs as $boxLang) {
 
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
 imageUpdate('mechants','mechant');
-imageUpdate('boites','box');
 imageUpdate('heros','heros');
+
+$nothingToDo=true;
+foreach ($xmlBoxes as $xmlBox) {
+  $imageFile="img/boites/".$xmlBox['id'].'.png';
+  if (!file_exists($imageFile)) {
+    $nothingToDo=false;
+    echo "<tr><td>".$xmlBox['name']."</td><td>Ajout";
+    if (!@copy("$setupSourcePath/$imageFile",$imageFile)) echo "<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>";
+	echo '</td></tr>';}}
+if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";
+
 echo "</table></div><div class='pannel'><div class='pannelTitle'>";
 if ($localUpdate) echo $str['endUpdate']; else {
   echo $str['endGitUpdate'];
