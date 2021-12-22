@@ -132,7 +132,7 @@ else {
     #Mise à jour du script de mise à jour depuis gitHub ou local
 	echo $str['updateScript2'].".<br/>";
 	if (@copy("$setupSourcePath/setup.php",'setup.php')) {
-		if(!@copy("$setupSourcePath/setup/functions.inc",'functions.inc')) exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");
+		if(!@copy("$setupSourcePath/functions.inc",'functions.inc')) exit("<div class='error'>".$str['noCopy']."....<div class='subError'>".error_get_last()['message']."</div></div>");
 		if ($localUpdate) {
 		  header("Refresh:0; setup.php?localUpdatePath=$setupSourcePath");
 		  exit();}
