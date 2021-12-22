@@ -38,7 +38,7 @@ function imageUpdate($imgFolder,$imgObject) {
 
   include_once('functions.inc');
 
-if (!function_exists(gitFileDate)) {
+if (!function_exists('gitFileDate')) {
 	function gitFileDate($gitFile=null){
 		global $str,$gitBranch,$gitToken;
 		#Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)
@@ -270,6 +270,7 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		while ($sqlCompteur=mysqli_fetch_assoc($sqlCompteurs)) {
 		  $xmlCompteur=$xml->addChild('compteur');
 		  xmlAttr($xmlCompteur,array('cId'=>$sqlCompteur['cId'],'cValeur'=>$sqlCompteur['cValeur']));}
+		if (!file_exists('ajax')) mkdir('ajax',0777,true);
 		$xml->saveXML('ajax/'.$sqlPartie['pUri'].'.xml');
 		echo '</ul>';}}
   

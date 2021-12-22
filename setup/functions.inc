@@ -2,7 +2,7 @@
 $rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 $rcLangs=array('fr','en');
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
-require_once($rcLang.'/lang.php');
+include_once($rcLang.'/lang.php');
 $boxFile=$rcLang.'/boxes.xml';
 $gitToken='ghp_';
 $gitToken.='RWTKe98avc5KnbAKmenMtWXgnS9Ztd2kSf25';
