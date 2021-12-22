@@ -49,6 +49,9 @@ if (!function_exists(gitFileDate)) {
 		if($jsonContent === FALSE) {return array('erreur'=>error_get_last()['message']);}
 		$lastCommit=json_decode($jsonContent,true)[0]['commit'];
 		return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}}
+if (!isset($rcLangs)) {
+	$rcLangs=array('fr','en');
+	$rcLang='fr';}
 
   session_start();
   echo "<!doctype html>\n<html lang='$rcLang'>\n";
