@@ -13,7 +13,7 @@ if (isset($partieId) and !file_exists("ajax/$partieId.xml")) {
   unset($partieId);}
 if (isset($title)) {
   echo "<!doctype html>
-<html lang='fr'>
+<html lang='$rcLang'>
 <head>
   <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>

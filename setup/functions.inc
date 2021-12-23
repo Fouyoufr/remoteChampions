@@ -1,6 +1,9 @@
 <?php
-$rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 $rcLangs=array('fr','en');
+$rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+if (isset($_GET['lang']) and in_array($_GET['lang'],$rcLangs)) $_SESSION['lang']=$_GET['lang'];
+if (isset($_SESSION['lang'])) $rcLang=$_SESSION['lang'];
+
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
 include_once($rcLang.'/lang.php');
 $boxFile=$rcLang.'/boxes.xml';
@@ -27,7 +30,7 @@ function gitFileDate($gitFile=null){
   return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}
 
 function displayBottom() {
-  global $partieId,$adminPassword,$mobile,$str,$gitBranch,$rcLang;
+  global $partieId,$adminPassword,$mobile,$str,$gitBranch,$rcLang,$rcLangs;
   $currentScript=basename($_SERVER['PHP_SELF']);
   if (!$mobile) {
     if ($currentScript<>'admin.php' and $currentScript<>'setup.php') {
@@ -37,7 +40,12 @@ function displayBottom() {
     if (isset($partieId)) echo $str['gamePass']." <span>$partieId</span></form>"; else echo $str['siteAdmin'];
       echo "</form>";}
     if (isset($partieId))  echo "<a href='#' id='aideDeJeu' onclick='window.open(\"$rcLang/aide.html\", \"_blank\", \"toolbar=0,location=0,menubar=0,width=50%\");'>".$str['help']."</a>";
-    echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
+    echo '<div id="lang-menu"><div class="'.$rcLang.'"></div><ul>';
+    if (isset($_GET['lang'])) unset ($_GET['lang']);
+    if (empty($_GET)) $urlLangAdd='?lang='; else $urlLangAdd='?'.$_SERVER['QUERY_STRING'].'&lang=';
+    foreach ($rcLangs as $selecLang) echo '<li><a href="'.$urlLangAdd.$selecLang.'" class="'.$selecLang.'"></a></li>';
+    echo '</ul></div>';
+    echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc/$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";}}
 
 function updatePassword() {

@@ -4,7 +4,7 @@
     'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php',
     'aide.css','ecran.css',
 	'mc.js',
-	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png');
+	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png');
   error_reporting(E_ERROR | E_PARSE);
 
   function remoteFileSize ($phpFile) {
@@ -281,7 +281,9 @@ foreach ($rcLangs as $boxLang) {
   if (!$newBoxes=simplexml_load_file("$setupSourcePath/$boxLang/boxes.xml")) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$boxLang/boxes.xml'.</div></div>";
   else {
     echo "$boxLang - OK.<br/>";
-    foreach($newBoxes->box as $newbox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1) $newBox['own']=$oldBox['own']->__toString();
+    foreach($newBoxes->box as $newBox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1 and $newBox['id']->__toString()==$oldBox['id']->__toString()) {
+		$newBox['own']=$oldBox['own']->__toString();
+		echo $newBox['id'].': '.$newBox['name'].'('.$newBox['own'].')<br/>';}
     xmlSave($newBoxes,"$boxLang/boxes.xml");}}
 
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";

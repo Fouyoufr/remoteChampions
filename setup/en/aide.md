@@ -1,5 +1,5 @@
-# A distance
-Ignorer le mot-clef riposte.
+# Ranged
+Ignore retaliate keyword.
 # Alliés
 Limite de 3 sur la zone de jeu (défausse possible).  
 Peut attaquer, Contrer ou Défendre (incliner).
