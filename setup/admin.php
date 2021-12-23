@@ -7,26 +7,35 @@ function restrictAccess(){
     exit('</body>');}}
 
 function restoreXML($restoreFileName){
-  global $str,$restored;
+  global $str,$restored,$xmlBoxes,$boxFile;
+  $changedBoxes=false;
   $xml=simplexml_load_file($restoreFileName);
-        if (isset($xml['pUri'])) {
-          if (!is_dir('ajax')) mkdir('ajax'); 
-          rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
-          $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
-          #La boite contenant le Deck est-elle notée comme incluse ?
-          foreach($xml->deck as $deck) if ($deck['dId']<>0) {
-            $sqlBox=mysqli_fetch_assoc(sql_get("SELECT * FROM `boites`,`decks` WHERE `dId`='".$deck['dId']."' AND `dBoite`=`bId`"));
-            if ($sqlBox['bInclus']<>1) {
-              $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$sqlBox['bNom']."'.)</div>";
-              sql_get("UPDATE `boites` SET `bInclus`=1 WHERE `bId`='".$sqlBox['bId']."'");}}}
-        else {
-          unlink($restoreFileName);
-          $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
+  if (isset($xml['pUri'])) {
+    if (!is_dir('ajax')) mkdir('ajax'); 
+    rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
+    $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
+    #La boite contenant le Deck est-elle notée comme incluse ?
+    foreach($xml->deck as $deck) if ($deck['dId']<>0) {
+      foreach ($xmlBoxes as $xmlBox) { 
+        foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
+      $xmlBox['own']=1;
+      $changedBoxes=true;
+      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}}}
+    #La boite contenant le Héros est-elle notée comme incluse ?
+    foreach($xml->joueur as $joueur) if ($joueur['jHeros']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $ownHeros) if ($ownHeros['id']->__toString()==$joueur['jHeros']->__toString() and $xmlBox['own']<>1) {
+      $xmlBox['own']=1;
+      $changedBoxes=true;
+      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+    if ($changedBoxes) xmlSave($xmlBoxes,$boxFile);}
+  else {
+    unlink($restoreFileName);
+    $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
 
 $restored='';
 if (isset($_FILES['zipRestore'])) {
-  include_once('functions.php');
-  if (!file_exists('./config.inc')) header("Refresh:0; url=setup.php"); else include_once 'config.inc';
+  include_once 'functions.inc';
+  include_once 'config.inc';
+  $xmlBoxes=simplexml_load_file($boxFile);
   session_start();
   global $str;
   restrictAccess();
@@ -57,7 +66,7 @@ if (isset($_FILES['zipRestore'])) {
         $restored="<div class='redMessage'>$restored</div>";}}}}
 
 if (isset($_GET['save'])) {
-  include 'include.php';
+  include 'include.inc';
   global $str;
   restrictAccess();
     $zip=new ZipArchive();
@@ -76,8 +85,8 @@ if (isset($_GET['save'])) {
 
 $title='Remote Champions - Admin';
 $bodyClass='admin';
-include_once 'include.php';
-global $str;
+include_once 'include.inc';
+$xmlBoxes=simplexml_load_file($boxFile);
 if (isset($_POST['newPass']) and $_POST['newPass']<>'') {
   $adminPassword=hash('sha256',$_POST['newPass']);
   updatePassword();}
@@ -114,26 +123,25 @@ if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
 </div>
   -->
   
-<div class="pannel">
-  <?php
-  echo '<div class="titleAdmin">'.$str['boxesTitle'].'</div>('.$str['globalParam'].')<br/>';
-  function displayBox($boite) {
-    $boiteId=$boite['bId'];
-    $boiteNom=$boite['bNom'];
-    echo "<div class='adminEncadre'><input type='checkbox' id='boite$boiteId' onclick='ajaxPost(\"boite=$boiteId&inclus\",document.getElementById(\"boite$boiteId\").checked);'";
-    if ($boite['bInclus']=='1') {echo ' checked ';}
-    if ($boite['bInclus']=='2') {echo ' checked disabled';}
-    echo "><label for='boite$boiteId'><img src='img/boites/$boiteId.png'/><br/>$boiteNom</label></div>";}
-    function displayBoxes($dbReq) {
-    $boites=sql_get("SELECT * FROM `boites` WHERE $dbReq ORDER BY `bNom`");
-    if ($boites) while ($boite=mysqli_fetch_assoc($boites)) {
-      displayBox($boite);}}
-  displayBox(array('bId'=>'1','bNom'=>$str['baseBox'],'bInclus'=>'2'));
-  displayBoxes("bType='b' AND bId <>'1'");
+<?php
+  echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
+  if (isset($_POST['newPass'])) echo "<div class='redMessage'>".$str['adminPassChanged']."</div>";
+  if ($_SESSION['adminPassword']=='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918') echo "<div class='redMessage'>".$str['defaultAdminPass']."</div>";
+  echo '<span class="redUnderline">'.$str['warning'].':</span>'.$str['passwordNotStored'].'<hr/><div class="publicStatus">'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'<br/> </div><div><input type=\'password\' name=\'newPass\' id=\'newPass\'><br/><input type=\'password\' name=\'newPass2\' id=\'newPass2\'><input type=\'submit\' onclick="if (document.getElementById(\'newPass\').value == document.getElementById(\'newPass2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
+
+  echo '<div class="pannel"><div class="titleAdmin">'.$str['boxesTitle'].'</div>('.$str['globalParam'].')<br/>';
+  function displayBoxes($boxType) {
+    global $xmlBoxes;
+    foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']<>1 and $xmlBox['type']==$boxType) {
+      echo "<div class='adminEncadre'><input type='checkbox' id='boite".$xmlBox['id']."' onclick='ajaxPost(\"boite=".$xmlBox['id']."&inclus\",document.getElementById(\"boite".$xmlBox['id']."\").checked);'";
+      if ($xmlBox['own']==1) echo ' checked ';
+      echo "><label for='boite".$xmlBox['id']."'><img src='img/boites/".$xmlBox['id'].".png'/><br/>".$xmlBox['name']."</label></div>";}}
+  echo "<div class='adminEncadre'><input type='checkbox' id='boite1' checked disabled><label for='boite1'><img src='img/boites/1.png'/><br/>Base</label></div>";
+  displayBoxes('b');
   echo '<hr/>';
-  displayBoxes("bType='s'");
+  displayBoxes('s');
   echo '<hr/>';
-  displayBoxes("bType='h'");
+  displayBoxes('h');
   ?>
 </div>
 <?php
@@ -153,13 +161,8 @@ if ($gameList) {
   echo "</table></div>";}
 
 echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' enctype=\'multipart/form-data\'><div class=\'titleAdmin\'>'.$str['saveRestore'].'</div>'.$restored.$str['saveText'].' <a href="?save" download>'.$str['saveText2'].'</a><br/>('.$str['saveText3'].' <img src=\'img/saveB.png\' alt=\''.$str['save'].'\'/>'.$str['saveText4'].'.)<hr/>'.$str['zipRestore'].' : <input type=\'file\' name=\'zipRestore\' id=\'zipRestore\' accept=\'.zip,.xml\'><input type=\'image\' src=\'img/load.png\'></form>';
-#<input type=\'submit\' class=\'restoreButton\'></form>';
 
-echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
-if (isset($_POST['newPass'])) echo "<div class='redMessage'>".$str['adminPassChanged']."</div>";
-echo '<span class="redUnderline">'.$str['warning'].':</span>'.$str['passwordNotStored'];
-echo '<hr/><div class="publicStatus">'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'<br/> </div><div><input type=\'password\' name=\'newPass\' id=\'newPass\'><br/><input type=\'password\' name=\'newPass2\' id=\'newPass2\'><input type=\'submit\' onclick="if (document.getElementById(\'newPass\').value == document.getElementById(\'newPass2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>
-<form class="pannel" id=\'publicModeForm\' method=\'post\' action=\'\'>
+echo '<form class="pannel" id=\'publicModeForm\' method=\'post\' action=\'\'>
 <div class="titleAdmin">Mode public</div>';
 if (isset($_POST['publicMode'])) echo "<div class='redMessage'>".$dtr['adminSaved']."</div>";
 echo '<span class="publicWarning">'.$str['warning'].':</span>'.$str['adminPublicHelp'].'<hr/><div class="publicStatus">'.$str['adminPublicStatus'].'<br/>'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'</div><div>';
@@ -172,12 +175,17 @@ if (!isset($publicPass) or $publicPass=='') echo ' disabled';
 echo "><br/><input type='password' name='newPublic2' id='newPublic2'";
 if (!isset($publicPass) or $publicPass=='') echo ' disabled';
 echo '><input type=\'submit\' onclick="if (document.getElementById(\'publicModeOff\').checked) return true; else if(document.getElementById(\'newPublic\').value.length<6) {alert(\''.$str['adminPublicPass6char'].'\');return false;} else if (document.getElementById(\'newPublic\').value == document.getElementById(\'newPublic2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
-echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
 
+echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data" id="setupForm"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
 $gitCommit=gitFileDate();
-if (isset($gitCommit['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$gitCommit['erreur']."</div></div>"; else echo "<a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>".$str['gitHubVersion']." ".$gitCommit['version'].", ".$str['adminAgo']." ".date_diff($gitCommit['date'],new DateTime())->format('%m '.$str['months'].',%a '.$str['days'].', %h '.$str['hours'].' et %i '.$str['minutes']).":<br/>".$gitCommit['comments']."</a><br/><br/>";
-
-echo "<div>".$str['adminUpdate']." : ".$str['onlineUpdate']." <input type='radio' name='autoUpdate' value='oui' checked onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ ".$str['zipUpdate'].": <input type='radio' name='autoUpdate' value='non' onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip' disabled></div>\n<input type='submit' class='adminButton' value='".$str['updateLaunch']."'>\n</form>";
+if (isset($gitCommit['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$gitCommit['erreur']."</div></div>"; else {
+  echo "Version locale : $version<br/><a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>".$str['gitHubVersion']." ".$gitCommit['version'].", ".$str['adminAgo']." ";
+$gitAgo=date_diff($gitCommit['date'],new DateTime());  
+if ($gitAgo->m>0) echo $gitAgo->m.' '.$str['months'].', ';
+if (explode(',',$gitAgo->format('%m,%d'))[1]>0) echo explode(',',$gitAgo->format('%m,%d'))[1].' '.$str['days'].', ';
+if (explode(',',$gitAgo->format('%m,%d,%h'))[2]>0) echo explode(',',$gitAgo->format('%m,%d,%h'))[2].' '.$str['hours'].', ';
+echo explode(',',$gitAgo->format('%m,%d,%h,%i'))[3].' '.$str['minutes'].' :<br/>'.$gitCommit['comments']."</a><br/><br/>";}
+echo "<div>".$str['adminUpdate']." : ".$str['onlineUpdate']." <input type='radio' name='autoUpdate' value='oui' checked onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=true;'>/ ".$str['zipUpdate'].": <input type='radio' name='autoUpdate' value='non' onclick='if (this.checked) document.getElementById(\"zipUpdate\").disabled=false;'> <input type='file' name='zipUpdate' id='zipUpdate'  accept='.zip' disabled></div>\n<input type='submit' form='setupForm' class='adminButton' value='".$str['updateLaunch']."'>\n</form>";
 displayBottom();
 ?>
 <script language="JavaScript">

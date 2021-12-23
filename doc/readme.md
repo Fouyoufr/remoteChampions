@@ -26,7 +26,7 @@
 ---
 # Installation de '*Remote Champions*'
 ## Prérequis serveur
-Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra quelques éléments indispensables : un [serveur web prenant en charge PHP](https:#serveur-web-php) et une [base de données type mySql](https:#base-de-données).
+Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra un [serveur web prenant en charge PHP](https:#serveur-web-php).
 #### Serveur Web PHP
 En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
 De plus, le moteur php doit permettre les lectures de fichiers distants (http get) pour que l'installation et la mise à jour puissent se dérouler sans problème.  
@@ -36,36 +36,14 @@ Fonctionnement testé avec succès sur les configurations/versions suivantes :
  - Nginx
  - PHP 7.2
  - PHP 7.4
-#### Base de données
-Il vous faut un service de base de données relationnel type *mySql*.  
-Fonctionnement testé avec succès sur les configuration/versions suivantes :
- - MariaDB 10
  ## Docker
-Si vous n'avez pas de serveur web/php et ou de base de données mySQL à votre disposition mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
-Une fois votre conteneur démarré, accédez à votre site en http ou https (comme tous les mots de passe sont transmis en clair au serveur pour que leur empreinte soit comparée à celle stockée, nous vous recommandons fortement de passer par https, même si le certificat du conteneur est un certificat autosigné...)  
-AU premier accès à votre site *Remote Champions*, la base de données de celui-ci sera peuplée, pour finaliser votre installation.  
-**Nota :** Ce conteneur est basé sur un moteur web Nginx, du PHP 7.4 et la dernière itération de mySQL. veuillez également considérer que la base de données est contenue dans le conteneur : si vous souhaitez conserver les parties stockées sur votre serveur, vous devrez mettre à jour celui-ci par le processus de mise à jour décrit dans cette aide...  
-**Nota2 :** La procédure de finalisation suite au premier accès à votre conteneur ne se connectera pas sur le présent dépot gitHub mais se contentera de peupler votre conteneur des éléments nécessaires à son utilisation. Vous pourrez, par la suite si vous le souhaitez, mettre à jour votre installation vers une installation plus récente.  
+Si vous n'avez pas de serveur web/php mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
+Une fois votre conteneur démarré, accédez à votre site en http ou https (comme tous les mots de passe sont transmis en clair au serveur pour que leur empreinte soit comparée à celle stockée, nous vous recommandons fortement de passer par https, même si le certificat du conteneur est un certificat autosigné...).  
+**Nota :** Ce conteneur est basé sur un moteur web Nginx et du PHP 7.4.  
+**Nota2 :** Vous pourrez, par la suite si vous le souhaitez, mettre à jour votre installation vers une installation plus récente.  
 ## Séquence d'installation
 1. Copiez tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent dépôt vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
-1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.
-1. Il vous faut un identifiant pour vous connecter à votre serveur de base de données.
-1. Si vous avez déja préparé une nouvelle base de données vierge sur votre serveur de base de données, vous pouvez passer directement à l'[étape 6](https:#setupLaunch)
-1. Connectez-vous à votre interface de gestion mySQL afin de créer une nouvelle base de données. Vous pouvez également passer ce point en fournissant au processus d'installation les informations de connexion d'un utilisateur pouvant créer une base sur votre serveur.
-1. <a name="setupLaunch"></a>Utiliser un navigateur Internet pour vous connecter à la racine de votre site web. (selon votre cas, il est possible que vous deviez le faire suivre de "*/setup.php*").  
-![Installation initiale](illus9.png "Installation initiale")
-1. Dans l'écran d'installation qui vous est présenté renseignez les informations suivantes :
-   - Nom/adresse du serveur mySql![1](tag1.png) : vous pouvez utiliser *localhost* si le serveur de base de données est installé sur la même machine que le serveur web.
-   - Numéro de port du serveur![2](tag2.png) (3007 par défaut)
-   - Nom de connexion au serveur![3](tag3.png) : Nom de connexion de l'utilisateur de la base créée ou pouvant créer une base sur le serveur
-   - Mot de passe de connexion au serveur![4](tag4.png) : Mot de passe du précédent utilisateur
-   - Nom de la base existante![5](tag5.png) : Cochez ce choix si vous avez déjà créé une base mySQL et indiquez ici son nom
-   - Nom de la base à créer![6](tag6.png) : Cochez ce choix pour que le processus d'installation crée une nouvelle base de données sur le serveur
-1. Si une nouvelle version du script d'installation est détectée, la page suivante apparaitra, cliquez simplement sur "Relancer la mise à jour".  
-![Mise à jour du script d'installation](illus10.png "Mise à jour du script d'installation")
-1. Ensuite, le processus d'installation va réellement débuter. L'écran de synthèse suivant vous indiquera toutes les étapes réalisées et leur résultat.  
-1. A l'issue de l'installation, votre site devrait être fonctionnel !
-1. cliquez sur "*Accéder au site*" pour l'utiliser... Vous pouvez désormais consulter la rubrique [Utilisation de votre site](https:#utilisation-de-remote-champions) et vous serez prêt à jouer dans un instant !  
+1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.  
 **Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sûr que le site web soit accessible de tous les joueurs sur Internet.
 ## Mise à jour de '*Remote Champions*'
 Lorsque le site est installé, vous pouvez voir la dernière mise à jours disponible (ainsi que sa date de publication) dans la section "[mise à jour](https:#mise-à-jour)" de l'écran d'administration.  
@@ -233,7 +211,7 @@ Dans cette section, vous pouvez voir le propos de la dernière mise à jours dis
 Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros).  Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).  
 Vous pouvez choisir de réaliser les mises à jour automatiquement ![3](tag3.png). Dans ce cas, tous les éléments de mise à jour seront automatiquement récupérés depuis le présent dépot gitHub.  
 Si vous préférez une mise à jour manuelle ![4](tag4.png), il vous faudra au préalable sélectionner le fichier zip ![5](tag5.png) contenant [l'export du dépot gitHub](https:#comment-récupérer-le-fichier-zip-pour-la-mise-à-jour-locale).  
-En cliquant ensuite sur le bouton "*Lancer la mise à jour*"![2](tag2.png), vous lancez le script de mise à jour. Il suivra le même processus que la finalisation de l'installation : Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour (vous devrez relancer la mise à jour par la suite pour une mise à jour par fichier Zip, ou il vous sera proposé de le faire immédiatement dans le processus de mise à jour automatique).  
+En cliquant ensuite sur le bouton "*Lancer la mise à jour*"![2](tag2.png), vous lancez le script de mise à jour. Le cas échéant, il vous sera indiqué que le script de mise à jour a, lui-même, été mis à jour (vous devrez relancer la mise à jour par la suite pour une mise à jour par fichier Zip, ou il vous sera proposé de le faire immédiatement dans le processus de mise à jour automatique).  
 Ensuite, la page de mise à jour vous détaille toutes les étapes réalisées par ledit script et leur résultat.  
 Cette page de mise à jour se termine par un bouton "*Accèder au site*" qui vous permet de retourner à la [page de connexion](https:#page-de-connexion).
 # Accès par smartphone

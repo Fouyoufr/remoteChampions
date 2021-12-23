@@ -1,7 +1,7 @@
 <?php
 $title='Remote Champions';
 $bodyClass='mechant';
-include 'include.php';
+include 'include.inc';
 global $str;
 ?>
 <div id="mechantDispME">

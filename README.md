@@ -6,6 +6,13 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 5.4
+Refonte complète du moteur, sans base de donnée.
+(relancer la mise à jour si nécessaire)
+## Version 5.3
+Version sans Base de Données
+## Version 5.2
+Optimisation de la prise en charge des decks sans SQL
 ## Version 5.1
 Activation automatique des boites lors de la restauration de partie
 ## Version 5

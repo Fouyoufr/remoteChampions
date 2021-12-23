@@ -238,3 +238,15 @@ div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgr
 
 .error {background-color:red;color:white;font-weight:bold;width:100%;text-align:center;font-size:1.5em;margin:-2px;padding:3px;}
 .subError {text-align:left;font-size:.5em;font-style:italic;color:lightgray;font-weight:normal;}
+
+
+#lang-menu {position:fixed;top:0px;right:50px;}
+#lang-menu .en,.fr {height:20px;width:28px;margin-right:1px;margin-top:1px;background-size:contain;}
+#lang-menu div.en,div.fr {padding-left:1px;}
+#lang-menu ul {margin:0;padding:0;display:none;width:30px;}
+#lang-menu ul li {list-style:none;display:block;margin:1px;}
+#lang-menu ul li a{display:block;}
+#lang-menu ul li:hover {border:solid 1px white;margin:0px;}
+.en {background-image: url(img/en.png);}
+.fr {background-image: url(img/fr.png);}
+#lang-menu:hover ul {display: block;}

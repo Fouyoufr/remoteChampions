@@ -1,76 +1,74 @@
 <?php
-include 'include.php';
-include_once 'maniganceInfo.php';
-include_once 'deckNames.php';
-global $str;
+include 'include.inc';
 
 if (isset($_POST['phase'])) {
   #Changement de phase du méchant
+  $xmlBoxes=simplexml_load_file($boxFile);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
   $phase=htmlspecialchars($_POST['phase']);
-  $mechant=sql_get("SELECT `mVieMax1`,`mVieMax2`,`mVieMax3` FROM `mechants` WHERE `mId`=".$xml['pMechant']);
-  $mechant=mysqli_fetch_assoc($mechant);
-  $vieMax=$mechant['mVieMax'.$phase]*$nbJoueurs;
+  foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->mechant as $xmlMechant) if ($xmlMechant['id']->__toString()==$xml['pMechant']->__toString()) $mechant=$xmlMechant;
   $nextPhase=$phase+1;
   if ($nextPhase==4) $nextPhase=1;
+  if($mechant['vie'.$nextPhase]==0) $nextPhase=1;
   $xml['pMechPhase']=$phase;
-  $xml['pMechVie']=$vieMax;
-  $xml['nextPhaseVie']=$mechant['mVieMax'.$nextPhase];
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  $xml['pMechVie']=$mechant['vie'.$phase]*$nbJoueurs;
+  $xml['newtPhase']=$nextPhase;
+  $xml['nextPhaseVie']=$mechant['vie'.$nextPhase];
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['mechant'])) {
   #Changement de méchant
+  $xmlBoxes=simplexml_load_file($boxFile);
   $mechant=htmlspecialchars($_POST['mechant']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
   if ($nbJoueurs>0) {$premier=mt_rand(1,$nbJoueurs);} else {
   	$premier=0;
   	$nbJoueurs=1;}
-  foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jNumero']==$premier) {$premier=$jValue['jId'];}
-  $mechantSql=mysqli_fetch_assoc(sql_get("SELECT `mVieMax1`,`mVieMax2`,`mNom` FROM `mechants` WHERE `mId`='$mechant'"));
-  $vieMechant=$mechantSql['mVieMax1']*$nbJoueurs;
+  foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jNumero']==$premier) $premier=$jValue['jId'];
+  foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->mechant as $xmlMechant) if ($xmlMechant['id']==$mechant) $newMechant=$xmlMechant;
   $xml['pMechant']=$mechant;
-  $xml['pMechVie']=$vieMechant;
-  $xml['nextPhaseVie']=$mechantSql['mVieMax2'];
+  $xml['pMechVie']=$newMechant['vie1']*$nbJoueurs;
+  $xml['nextPhaseVie']=$newMechant['vie2'];
   $xml['pPremier']=$premier;
   $xml['pMechDesoriente']=0;
   $xml['pMechSonne']=0;
   $xml['pMechTenace']=0;
   $xml['pMechPhase']=1;
-  $xml['mNom']=$mechantSql['mNom'];
+  $xml['mNom']=$newMechant['name'];
   $xml['pManiPrincipale']=0;
   $xml['pManiCourant']=0;
   $xml['pManiMax']=0;
-  $xml->saveXML('ajax/'.$partieId.'.xml');
+  xmlSave($xml,'ajax/'.$partieId.'.xml');
   echo 'SelectManigance';}
 
 if(isset($_POST['heros'])) {
   $heros=htmlspecialchars($_POST['heros']);
   $joueur=htmlspecialchars($_POST['joueur']);
-  $newHeros=mysqli_fetch_assoc(sql_get("SELECT `hVie`,`hNom` FROM `heros` WHERE `hId`='$heros'"));
+  $xmlBoxes=simplexml_load_file($boxFile);
+  foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->heros as $xmlHeros) if ($xmlHeros['id']==$heros) $newHeros=$xmlHeros;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
-  foreach ($xml->joueur as $jId=>$jValue) if ((isset($_POST['joueurNum']) and $jValue['jNumero']==$_POST['joueurNum']) or ($jValue['jId'])==$_POST['joueur']) {
-      foreach ($xml->deck as $dValue) if ($dValue['dId']=='h'.$jValue['jHeros']) {$nodeToDelete=$dValue;} //supprimer ancien deck Heros...
-      unset($nodeToDelete[0]);
-       //Ajouter nouveau deck Héros... 
-      $xmlDeck=$xml->addChild('deck');
-      xmlAttr($xmlDeck,array('dId'=>'h'.$heros,'dNom'=>$newHeros['hNom']));
-      #récupération des manigances du héros choisi
-      $sqlManigances=sql_get("SELECT `maId`,`maNom` FROM `manigances` WHERE `maDeck`='0' AND `maNumero`='$heros' ORDER BY `maNom` ASC");
-      while ($manigance=mysqli_fetch_assoc($sqlManigances)) {
-        $xmlMani=$xmlDeck->addChild('maniChoice');
-        xmlAttr($xmlMani,array('maId'=>$manigance['maId'],'maNom'=>$manigance['maNom']));}
-      $jValue['jHeros']=$heros;
-      $jValue['jVie']=$newHeros['hVie'];
-      $jValue['hNom']=$newHeros['hNom'];}
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  foreach ($xml->joueur as $jId=>$jValue) if ((isset($_POST['joueurNum']) and $jValue['jNumero']->__toString()==$_POST['joueurNum']) or $jValue['jId']->__toString()==$_POST['joueur']) {
+    foreach ($xml->deck as $dValue) if ($dValue['dId']=='h'.$jValue['jHeros']) {$nodeToDelete=$dValue;} //supprimer ancien deck Heros...
+    unset($nodeToDelete[0]);
+     //Ajouter nouveau deck Héros... 
+    $xmlDeck=$xml->addChild('deck');
+    xmlAttr($xmlDeck,array('dId'=>'h'.$heros,'dNom'=>$newHeros['name']));
+    #récupération des manigances du héros choisi
+    foreach ($newHeros->scheme as $newMani) {
+      $xmlMani=$xmlDeck->addChild('maniChoice');
+      xmlAttr($xmlMani,array('maId'=>$newMani['id'],'maNom'=>$newMani['name']));}
+    $jValue['jHeros']=$heros;
+    $jValue['jVie']=$newHeros['vie'];
+    $jValue['hNom']=$newHeros['name'];}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['vieMechant'])) {
   $vieMechant=htmlspecialchars($_POST['vieMechant']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pMechVie']=$vieMechant;
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['switch'])) {
   $switch=htmlspecialchars($_POST['switch']);
@@ -110,42 +108,46 @@ if(isset($_POST['switch'])) {
     case 'mechantDistance':
       $xml['pMechDistance']=1-$xml['pMechDistance'];
     	break;}
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+    xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {
-  $boite=htmlspecialchars($_POST['boite']);
-  $inclus=htmlspecialchars($_POST['inclus']);
-  sql_get("UPDATE `boites` SET `bInclus`=$inclus WHERE `bId`='$boite'");}
+  $xmlBoxes=simplexml_load_file($boxFile);
+  $changedBoxes=false;
+  if (htmlspecialchars($_POST['inclus'])=='true') $boxOwn=1; else $boxOwn=0;
+  foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']==htmlspecialchars($_POST['boite']) and $xmlBox['own']<>$boxOwn) {
+    $xmlBox['own']=$boxOwn;
+    $changedBoxes=true;}
+  if ($changedBoxes) xmlSave($xmlBoxes,$boxFile);}
 
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pPremier']=$joueur;
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['changeName'])) {
   $joueur=htmlspecialchars($_POST['changeName']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jId']==$joueurId) {$jValue['jNom']=$joueur;}
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['vieJoueur'])) {
   $vie=htmlspecialchars($_POST['vieJoueur']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jId']==$joueurId) {$jValue['jVie']=$vie;}
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['manigance'])) {
   $manigance=htmlspecialchars($_POST['manigance']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pManiCourant']=$manigance;
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['maniganceMax'])) {
   $manigance=htmlspecialchars($_POST['maniganceMax']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pManiMax']=$manigance;
-  $xml->saveXML('ajax/'.$partieId.'.xml');;}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['maniganceAcc'])) {
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
@@ -153,40 +155,40 @@ if(isset($_POST['maniganceAcc'])) {
   foreach ($xml->manigance as $mani) if($mani['maAcceleration']==1) {$maniAccel++;}
   $manigance=htmlspecialchars($_POST['maniganceAcc'])-$maniAccel;
   $xml['pManiAcceleration']=$manigance;
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['newManigance'])) {
+  $xmlBoxes=simplexml_load_file($boxFile);
   $manigance=htmlspecialchars($_POST['newManigance']);
-  $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `manigances` WHERE `maId`='$manigance'"));
-  $maInit=$maniDetail['maInit'];
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
-  if ($maniDetail['maMultiplie']==true) {$maInit=$maInit*$nbJoueurs;}
-  if ($maniDetail['maEntrave']!=0) {$maInit=$maInit+$nbJoueurs*$maniDetail['maEntrave'];}
-  $xml['pManiDelete']=0;
-  if (!isset($xml->lastManigance)) {
-    $xml->addChild('lastManigance');
-    xmlAttr($xml->lastManigance,array('id'=>$manigance,'title'=>$maniDetail['maNom'],'text'=>$maniDetail['maRevele']));}
-  else {
-    $xml->lastManigance['id']=$manigance;
-    $xml->lastManigance['text']=$maniDetail['maRevele'];}
-  foreach ($xml->deck as $maniDeck) {
-    $nodesToDelete=array();
-    foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) {
-      $nodeToDelete=$mValue; //supprimer manigance des choix possibles.
-      $fromDeckId=$maniDeck['dId'];
-      $fromDeckNom=$maniDeck['dNom'];}}
+  foreach($xmlBoxes as $xmlBox) foreach ($xmlBox->deck as $xmlDeck) foreach ($xmlDeck->scheme as $xmlScheme) if ($xmlScheme['id']==$manigance) {
+    $newScheme=$xmlScheme;
+    $newDeck=$xmlDeck;}
+  if (!isset($newScheme)) foreach($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $xmlHeros) foreach ($xmlHeros->scheme as $xmlScheme) if ($xmlScheme['id']==$manigance) {
+    $newScheme=$xmlScheme;
+    $newDeck=array('id'=>'h'.$xmlHeros['id'],'name'=>$xmlHeros['name']);}
+  if (isset($newScheme)) {
+    $maInit=$newScheme['init'];
+    if ($newScheme['initX']==1) $maInit=$maInit*$nbJoueurs;
+    if ($newScheme['entrave']<>0) $maInit=$maInit+$nbJoueurs*$newScheme['entrave'];
+    $xml['pManiDelete']=0;
+    if (!isset($xml->lastManigance)) {
+      $xml->addChild('lastManigance');
+      xmlAttr($xml->lastManigance,array('id'=>$manigance,'title'=>$newScheme['name'],'text'=>$newScheme['revele']));}
+    else {
+      $xml->lastManigance['id']=$manigance;
+      $xml->lastManigance['text']=$newScheme['revele'];}
+    foreach ($xml->deck as $maniDeck) foreach ($maniDeck->maniChoice as $mValue) if ($mValue['maId']==$manigance) $nodeToDelete=$mValue; 
     unset($nodeToDelete[0]);
-  //Ajouter nouvelle manigance en jeu...
-  $xmlManigance=$xml->addChild('manigance');
-  xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$maniDetail['maNom'],'mnMenace'=>$maInit,'fromDeckId'=>$fromDeckId,'fromDeckNom'=>$fromDeckNom,'maRevele'=>$maniTxt[$maniDetail['maRevele']],'maDejoue'=>$maniTxt[$maniDetail['maDejoue']],'maInfo'=>$maniTxt[$maniDetail['maInfo']],'maNumero'=>$maniDetail['maNumero'],'maCrise'=>$maniDetail['maCrise'],'maRencontre'=>$maniDetail['maRencontre'],'maAcceleration'=>$maniDetail['maAcceleration'],'maAmplification'=>$maniDetail['maAmplification'],'maDeck'=>$maniDetail['maDeck']));
-  if ($maniDetail['maDeck']==0) {
-    foreach($xml->joueur as $maniJoueur) if ($maniDetail['maNumero']==$maniJoueur['jHeros']) {
-      xmlAttr($xmlManigance,array('hNom'=>$maniJoueur['hNom']));}}
-  else {xmlAttr($xmlManigance,array('dNom'=>$deckNames[$maniDetail['maDeck']]['dNom']));}
-  foreach ($xml->deck as $maniDeck) if ($maniDeck->maniChoice->count()==0) {$nodesToDelete[]=$maniDeck;} //Plus de manigance sur ce deck !
-  foreach ($nodesToDelete as $nodeToDelete) {unset($nodeToDelete[0]);} // Suppression du deck vide.
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+    //Ajouter nouvelle manigance en jeu...
+    $xmlManigance=$xml->addChild('manigance');
+    xmlAttr($xmlManigance,array('maId'=>$manigance,'maNom'=>$newScheme['name'],'mnMenace'=>$maInit,'fromDeckId'=>$newDeck['id'],'fromDeckNom'=>$newDeck['name'],'maRevele'=>$newScheme['revele'],'maDejoue'=>$newScheme['dejoue'],'maInfo'=>$newScheme['info'],'maNumero'=>$newScheme['card'],'maCrise'=>$newScheme['crise'],'maRencontre'=>$newScheme['rencontre'],'maAcceleration'=>$newScheme['accel'],'maAmplification'=>$newScheme['ampli'],'maDeck'=>$newDeck['id']));
+    if ($newDeck['id']==0) xmlAttr($xmlManigance,array('hNom'=>$newDeck['name']));
+    else xmlAttr($xmlManigance,array('dNom'=>$newDeck['name']));
+  foreach ($xml->deck as $maniDeck) if ($maniDeck->maniChoice->count()==0) $nodesToDelete[]=$maniDeck; //Plus de manigance sur ce deck !
+  if (isset($nodesToDelete)) foreach ($nodesToDelete as $nodeToDelete) unset($nodeToDelete[0]); // Suppression du deck vide.
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}}
 
 if(isset($_POST['MA'])) {
   $manigance=htmlspecialchars($_POST['MA']);
@@ -212,22 +214,23 @@ if(isset($_POST['MA'])) {
   else {
     foreach ($xml->manigance as $maniXML) if ($maniXML['maId']==$manigance) {$maniXML['mnMenace']=$menace;}}
 $xml['pManiDelete']=$maniDelete;
-$xml->saveXML('ajax/'.$partieId.'.xml');}
+xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['NewPrincipale'])) {
   $manigance=htmlspecialchars($_POST['NewPrincipale']);
-  $maniDetail=mysqli_fetch_assoc(sql_get("SELECT * FROM `ManigancesPrincipales` WHERE `mpId`='$manigance'"));
+  $xmlBoxes=simplexml_load_file($boxFile);
+  foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->principale as $xmlPrincipale) if ($xmlPrincipale['id']==$manigance) $newPrincipale=$xmlPrincipale;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $nbJoueurs=$xml->joueur->count();
-  $mpMax=$maniDetail['mpMax'];
-  if ($maniDetail['mpMaxMultiplie']==true) {$mpMax=$mpMax*$nbJoueurs;}
-  $mpInit=$maniDetail['mpInit'];
-  if ($maniDetail['mpMultiplie']==true) $mpInit=$mpInit*$nbJoueurs;
+  $mpMax=$newPrincipale['max'];
+  if ($newPrincipale['maxX']==1) {$mpMax=$mpMax*$nbJoueurs;}
+  $mpInit=$newPrincipale['init'];
+  if ($newPrincipale['initX']==1) $mpInit=$mpInit*$nbJoueurs;
   $xml['pManiMax']=$mpMax;
   $xml['pManiCourant']=$mpInit;
   $xml['pManiPrincipale']=$manigance;
-  $xml['mpNom']=$maniDetail['mpNom'];
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  $xml['mpNom']=$newPrincipale['name'];
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['addCompteur'])) {
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
@@ -235,19 +238,19 @@ if(isset($_POST['addCompteur'])) {
   foreach ($xml->compteur as $XMLcompteur) if ($cId<=$XMLcompteur['cId']) {$cId=$XMLcompteur['cId']+1;}
   $xmlCompteur=$xml->addChild('compteur');
   xmlAttr($xmlCompteur,array('cId'=>$cId,'cValeur'=>0));  
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['delCompteur'])) {
   $compteur=htmlspecialchars($_POST['delCompteur']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->compteur as $XMLcompteur) if ($XMLcompteur['cId']==$compteur) {$nodeToDelete=$XMLcompteur;}
   unset($nodeToDelete[0]);
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['compteur'])) {
   $compteur=htmlspecialchars($_POST['compteur']);
   $value=htmlspecialchars($_POST['value']);
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->compteur as $XMLcompteur) if ($XMLcompteur['cId']==$compteur) {$XMLcompteur['cValeur']=$value;}
-  $xml->saveXML('ajax/'.$partieId.'.xml');}
+  xmlSave($xml,'ajax/'.$partieId.'.xml');}
 ?>

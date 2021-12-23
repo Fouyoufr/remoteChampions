@@ -39,7 +39,7 @@ function ajaxSelecSet() {
       var numero=parseInt(xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNumero'));
       if (document.getElementById('selecJ'+numero).style.display!='block') {document.getElementById('selecJ'+numero).style.display='block';}
       document.getElementById('selecJ'+numero).value=xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNom');
-      document.getElementById('selecJ'+numero).setAttribute('onclick','window.location.href="joueur.php?j='+xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jId')+'";');}
+      document.getElementById('selecJ'+numero).setAttribute('onclick','window.location.href="joueur.php?p='+xmlDoc.getElementsByTagName('partie')[0].getAttribute('pUri')+'&j='+xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jId')+'";');}
     if (nbJoueurs<4 && document.getElementById('selecJ4').style.display!='none') {document.getElementById('selecJ4').style.display='none'}
     if (nbJoueurs<3 && document.getElementById('selecJ3').style.display!='none') {document.getElementById('selecJ3').style.display='none'}
     if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') {document.getElementById('selecJ2').style.display='none'}
@@ -208,8 +208,10 @@ function ajaxMainSet() {
     currentPhase=partie.getAttribute('pMechPhase');
     document.getElementById('phaseMechant').innerText=phMechant(currentPhase);
     //prochaine phase
-    currentPhase++;
-    if (currentPhase==4) {currentPhase=1;}
+    if (typeof partie.getAttribute('newtPhase')!=='undefined') {currentPhase=partie.getAttribute('newtPhase');}
+    else {
+      currentPhase++;
+      if (currentPhase==4) {currentPhase=1;}}
     document.getElementById('changePhaseNext').innerText=currentPhase;
     document.getElementById('changePhaseMechant').innerText=partie.getAttribute('mNom');
     document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie')*nbJoueurs;

@@ -1,6 +1,0 @@
-decks=>dId=>int(8) NOT NULL,dNom=>varchar(50) NOT NULL,dBoite=>int(8),PRIMARY KEY=>dId
-heros=>hId=>int(8) NOT NULL,hNom=>varchar(50) NOT NULL,hVie=>int(3) NOT NULL,hBoite=>int(8),PRIMARY KEY=>hId
-manigances=>maId=>int(8) NOT NULL,maDeck=>int(8) NOT NULL,maNumero=>varchar(50) NOT NULL DEFAULT '0',maNom=>varchar(50) NOT NULL,maInit=>int(3) NOT NULL DEFAULT 0,maMultiplie=>tinyint(1) NOT NULL DEFAULT 0,maCrise=>int(3) NOT NULL DEFAULT 0,maRencontre=>int(3) NOT NULL DEFAULT 0,maAcceleration=>int(3) NOT NULL DEFAULT 0,maAmplification=>int(3) NOT NULL DEFAULT 0,maEntrave=>int(3) NOT NULL DEFAULT 0,maRevele=>int(3) NOT NULL DEFAULT 0,maDejoue=>int(3) NOT NULL DEFAULT 0,maInfo=>int(3) NOT NULL DEFAULT 0,PRIMARY KEY=>maId
-ManigancesPrincipales=>mpId=>int(11) NOT NULL,mpNom=>varchar(50) NOT NULL,mpMax=>int(3) NOT NULL DEFAULT 0,mpMaxMultiplie=>tinyint(1) NOT NULL DEFAULT 0,mpInit=>int(3) NOT NULL DEFAULT 0,mpMultiplie=>tinyint(1) NOT NULL DEFAULT 0,mpBoite=>int(8),PRIMARY KEY=>mpId
-mechants=>mId=>int(8) NOT NULL,mNom=>varchar(50) NOT NULL,mVieMax1=>int(3) NOT NULL,mVieMax2=>int(3) NOT NULL,mVieMax3=>int(3) NOT NULL,mBoite =>int(8),PRIMARY KEY=>mId
-boites=>bId=>int(8) NOT NULL,bNom=>varchar(50) NOT NULL,bInclus=>tinyint(1),bType=>varchar(1) NOT NULL,PRIMARY KEY=>bId
