@@ -6,6 +6,10 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 5.4a
+Refonte complète du moteur, sans base de donnée.
+(relancer la mise à jour si nécessaire)
+Correction DockerFile (fin des tests)
 ## Version 5.4
 Refonte complète du moteur, sans base de donnée.
 (relancer la mise à jour si nécessaire)

@@ -32,8 +32,8 @@ location ~ .php$ {\n\
 }' > /etc/nginx/sites-available/default
 
 RUN apt-get install -y git
-#RUN git clone https://github.com/Fouyoufr/remoteChampions.git
-RUN git clone -b fullXML --single-branch https://github.com/Fouyoufr/remoteChampions.git
+RUN git clone https://github.com/Fouyoufr/remoteChampions.git
+#RUN git clone -b testBranch --single-branch https://github.com/Fouyoufr/remoteChampions.git
 RUN cp -a /remoteChampions/setup/. /var/www/html
 RUN ls /var/www/html
 RUN unlink /var/www/html/config.inc
