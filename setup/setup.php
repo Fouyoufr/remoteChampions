@@ -281,9 +281,7 @@ foreach ($rcLangs as $boxLang) {
   if (!$newBoxes=simplexml_load_file("$setupSourcePath/$boxLang/boxes.xml")) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$boxLang/boxes.xml'.</div></div>";
   else {
     echo "$boxLang - OK.<br/>";
-    foreach($newBoxes->box as $newBox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1 and $newBox['id']->__toString()==$oldBox['id']->__toString()) {
-		$newBox['own']=$oldBox['own']->__toString();
-		echo $newBox['id'].': '.$newBox['name'].'('.$newBox['own'].')<br/>';}
+    foreach($newBoxes->box as $newBox) foreach ($xmlBoxes->box as $oldBox) if ($newBox['id']<>1 and $newBox['id']->__toString()==$oldBox['id']->__toString()) $newBox['own']=$oldBox['own']->__toString();
     xmlSave($newBoxes,"$boxLang/boxes.xml");}}
 
 echo "</table></div><div class='pannel'><div class='pannelTitle'>".$str['imgUp']."</div><table><tr><th>".$str['pic']."</th><th></th></tr>";
