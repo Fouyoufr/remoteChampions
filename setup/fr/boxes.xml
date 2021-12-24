@@ -97,8 +97,8 @@
     <deck id="32" name="Artefacts Galactiques">
       <scheme id="94" card="6" name="Oeuf de monarque Hujahdarien" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="2" revele="" dejoue="Le joueur qui a déjoué cette manigance peut redresser son identité." info="Victoire 0."/>
       <scheme id="95" card="7" name="Théière magique" init="3" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="2" revele="" dejoue="Le joueur qui a déjoué cette manigance peut soigner 4 dégâts de son identité." info="Victoire 0."/>
-      <scheme id="96" card="8" name="Pierre philosophale" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="" info=""/>
-      <scheme id="97" card="9" name="Boule de cristal" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info=""/>
+      <scheme id="96" card="8" name="Pierre philosophale" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Le joueur qui a déjoué cette manigance peut piocher 2 cartes" info=""/>
+      <scheme id="97" card="9" name="Boule de cristal" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Le joueur qui a déjoué cette manigance peut jouer une carte de sa main, en diminuant son cout de 3." info=""/>
     </deck>
     <deck id="33" name="Pirates de l'espace">
       <scheme id="98" card="6" name="Sonnez l'alerte" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Chaque ennemi gagne +1 ATQ."/>
