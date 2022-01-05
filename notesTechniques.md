@@ -1,39 +1,21 @@
 # Ce dossier contient le nécessaire permettant de mettre à jour remoteChampions
 - Le fichier **changelog** contient les descriptions des mises à jour (la première ligne référence la dernière version en cours)
 - La variable **gitBranch** dans "config.inc" permet de gérer une branche de test sur le site.
-- Les fichiers **boites,decks,manigances,ManigancesPrincipales,heros et mechants** contiennent le contenu prédéfini des tables SQL de meme nom.
+- le fichiers **boxes.xml** des sous-répertoires de langues contiennent les informations sur les boites gérables par Remote Champions.
 
-## Structure de la table "manigancesPrincipales":
-- mpId = identifiant de l'entrée,
-- mpNom = libellé de la manigance,
-- mpMax = Valeur de menace maximale (en haut à gauche sur la carte),
-- mpMaxMultiplie = Si est à 1, *mpMax* est multiplié par le nombre de joueurs,
-- mpInit = Valeur de menace lors de la mise en jeu,
-- mpMultiplie = Si est à 1, *mpInit* est multiplié par le nombre de joueurs,
-- mpBoite = référence de la boite de jeu contenant cette manigance.
-
-## Structure de la table "manigances":
-- maId = identifiant de l'entrée,
-- maDeck = référence du deck contenant cette manigance (ou 0 pour les manigances de Héros),
-- maNumero = numéro de la carte dans le deck (ou référence du héros),
-- maNom = libellé de la manigance,
-- maInit = Valeur de menace lors de la mise en jeu,
-- maMultiplie = Si est à 1, *maInit* est multiplié par le nombre de joueurs,
-- maCrise = Si est à 1, cette manigance comporte un symbole *crise*,
-- maRencontre = Si est à 1, cette manigance comporte un symbole *rencontre*,
-- maAcceleration = Si est à 1, cette manigance comporte un symbole *accélération*,
-- maAmplification = Si est à 1, cette manigance comporte un symbole *amplification*.
-- maEntrave = Nombre de menace par joueur ajoutée lors de la mise en jeu
-- maRevele = Information affichée en popup lorsque manigance révélée ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
-- maDejoue = Information affichée en popup à disparition de la manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
-- maInfo = Information affichée en popup concernant cette manigance ([pp]affiche le symbole "par joueur") (info dans maniganceInfo.php)
-
-## Les types de boite
-(valeurs pour le champ bType)
-- b = boite de base et extensions
-- s = paquets de scénario
-- h = paquet héros
-
+## Structure d'un fichier "boxes.xml":
+```
+<box id="X" name="Nom de la boite" type="b=base/extension, s=scénario,h=héros" own="0">
+    <mechant id="X" name="Nom du méchant" vie1="Vie de la phase 1" vie2="Vie de la phase 2" vie3="Vie de la phase 3"/>
+    <principale id="X" name="Nom de la manigance principale" init="Menace initiale" initX="0 ou 1 si init est multiplié par le nb de joueurs" max="Menace maximale" maxX="10 ou 1 si max est multiplié par le nb de joueurs"/>
+    <heros id="X" name="Nom du héros" vie="Vie initiale">
+      <scheme id="X" card="Numéro de carte de la manigance dans le deck" name="Nom de la manigance némésis" init="Menace initiale" initX="0 ou 1 si init est multiplié par le nb de joueurs" crise="0 ou 1 si icone crise" rencontre="0 ou 1 si icone rencontre" accel="0 ou 1 si icone accélératrion" ampli="0 ou 1 si icone amplification" entrave="0 ou 1 si entrave" revele="Texte à afficher lorsque la manigance est révélée" dejoue="Texte à afficher lorsque la manigance est déjouée." info="Texte à afficher concernant la manigance"/>
+    </heros>
+    <deck id="X" name="Nom d'un deck de la boite">
+      <scheme id="X" card="Numéro de la carte dans le deck" name="Nom de la manigance annexe" init="Menace initiale" initX="0 ou 1 si init est multiplié par le nb de joueurs" crise="0 ou 1 si icone crise" rencontre="0 ou 1 si icone rencontre" accel="0 ou 1 si icone accélératrion" ampli="0 ou 1 si icone amplification" entrave="0 ou 1 si entrave" revele="Texte à afficher lorsque la manigance est révélée" dejoue="Texte à afficher lorsque la manigance est déjouée." info="Texte à afficher concernant la manigance"/>
+     </deck>
+  </box>
+  ```
 ## Taille des images
 - Héros = 50x50px
 - Méchants = 50x50px

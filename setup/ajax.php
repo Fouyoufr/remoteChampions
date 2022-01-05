@@ -111,13 +111,14 @@ if(isset($_POST['switch'])) {
     xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {
-  $xmlBoxes=simplexml_load_file($boxFile);
   $changedBoxes=false;
   if (htmlspecialchars($_POST['inclus'])=='true') $boxOwn=1; else $boxOwn=0;
-  foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']==htmlspecialchars($_POST['boite']) and $xmlBox['own']<>$boxOwn) {
-    $xmlBox['own']=$boxOwn;
-    $changedBoxes=true;}
-  if ($changedBoxes) xmlSave($xmlBoxes,$boxFile);}
+  foreach ($rcLangs as $boxLang) {
+    $xmlBoxes=simplexml_load_file($boxLang.'/boxes.xml');
+    foreach ($xmlBoxes as $xmlBox) if ($xmlBox['id']==htmlspecialchars($_POST['boite']) and $xmlBox['own']<>$boxOwn) {
+      $xmlBox['own']=$boxOwn;
+      $changedBoxes=true;}
+    if ($changedBoxes) xmlSave($xmlBoxes,$boxLang.'/boxes.xml');}}
 
 if(isset($_POST['suivant'])) {
   $joueur=htmlspecialchars($_POST['suivant']);

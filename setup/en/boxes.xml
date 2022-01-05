@@ -125,125 +125,125 @@
     </deck>
   </box>
   <box id="3" name="Quicksilver" type="h" own="0">
-    <heros id="18" name="Vif-Argent" vie="9">
-      <scheme id="84" card="18" name="Extorsion Cataclysmique" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Incitation 1. (Quand cette carte est révélée; placez 1 menace sur la manigance principale.)" dejoue="" info=""/>
+    <heros id="18" name="Quicksilver" vie="9">
+      <scheme id="84" card="18" name="Extorsion of Seismic Proportion" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Incite 1. (When revealed, place 1 threat on the main scheme.)" dejoue="" info=""/>
     </heros>
   </box>
   <box id="4" name="Scarlet Witch" type="h" own="0">
-    <heros id="19" name="La sorcière rouge" vie="10">
-      <scheme id="85" card="19" name="La prochaine évolution" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Augmentez de 1 le nombre d'icônes de boost sur chaque carte Rencontre"/>
+    <heros id="19" name="Scarlet Witch" vie="10">
+      <scheme id="85" card="19" name="The Next Evolution" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Increase the number of boost icons on each encouter card by 1."/>
     </heros>
   </box>
   <box id="5" name="Wasp" type="h" own="0">
-    <heros id="17" name="La guèpe" vie="11">
-      <scheme id="83" card="17" name="Les ordres de mère" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="En tant que coût supplémentaire pour effectuer une attaque de base, le héros qui effectue l'attaque doit dépenser 1 ressource de n'importe quel type."/>
+    <heros id="17" name="Wasp" vie="11">
+      <scheme id="83" card="17" name="Mother's orders" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="As an additional cost for each hero to make a basic attack, that hero must spend 1 of any resource."/>
     </heros>
   </box>
-  <box id="6" name="L'avènement de Crâne rouge" type="b" own="0">
+  <box id="6" name="The Rise of Red Skull" type="b" own="0">
     <mechant id="10" name="Crossbones" vie1="12" vie2="14" vie3="16"/>
-    <mechant id="11" name="L'Homme Absorbant" vie1="14" vie2="15" vie3="16"/>
+    <mechant id="11" name="Absorbing Man" vie1="14" vie2="15" vie3="16"/>
     <mechant id="12" name="Taskmaster" vie1="13" vie2="16" vie3="17"/>
     <mechant id="13" name="Zola" vie1="12" vie2="14" vie3="16"/>
-    <mechant id="14" name="Crâne Rouge" vie1="12" vie2="16" vie3="20"/>
-    <principale id="12" name="Attaque Sur Le Mont Athéna" init="0" initX="0" max="3" maxX="1"/>
-    <principale id="13" name="La Pierre D'Infinité" init="1" initX="1" max="6" maxX="1"/>
-    <principale id="14" name="La Fuite" init="1" initX="1" max="5" maxX="1"/>
-    <principale id="15" name="Personne Ne Passe" init="2" initX="1" max="12" maxX="1"/>
-    <principale id="16" name="Traquer les Héros" init="1" initX="1" max="12" maxX="1"/>
-    <principale id="17" name="L'Île Du Dr Zola" init="0" initX="0" max="6" maxX="1"/>
-    <principale id="18" name="Le Savant Fou" init="1" initX="1" max="8" maxX="1"/>
-    <principale id="19" name="L'Avènement de Crâne Rouge" init="0" initX="0" max="8" maxX="1"/>
-    <principale id="20" name="Nouvel Ordre Mondial D'Hydra" init="1" initX="1" max="11" maxX="1"/>
+    <mechant id="14" name="Red Skull" vie1="12" vie2="16" vie3="20"/>
+    <principale id="12" name="Attack on Mount Athena" init="0" initX="0" max="3" maxX="1"/>
+    <principale id="13" name="The infinity Stone" init="1" initX="1" max="6" maxX="1"/>
+    <principale id="14" name="The Getaway" init="1" initX="1" max="5" maxX="1"/>
+    <principale id="15" name="None Shall pass" init="2" initX="1" max="12" maxX="1"/>
+    <principale id="16" name="Hunting DOwn Heroes" init="1" initX="1" max="12" maxX="1"/>
+    <principale id="17" name="The Island of Dr. Zola" init="0" initX="0" max="6" maxX="1"/>
+    <principale id="18" name="The Mad Doctor" init="1" initX="1" max="8" maxX="1"/>
+    <principale id="19" name="The Rise of Red Skull" init="0" initX="0" max="8" maxX="1"/>
+    <principale id="20" name="New World Hydra" init="1" initX="1" max="11" maxX="1"/>
     <heros id="1" name="Hawkeye" vie="9">
-      <scheme id="9" card="1" name="Désignée pour Mourir" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Le joueur de Clint Barton cherche Mockingbird dans sa main, son deck, sa pile de défausse ou zone de jeu et la place, face visible, sous cette carte." dejoue="Renvoyez Mockingbird dans la main de son propriétaire." info=""/>
+      <scheme id="9" card="1" name="Marked for death" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="The Clint Barton player searches their hand, deck , dicard pile and play area for Mockingbird and places her faceup beneatch this card." dejoue="Return Mockingbird to her owner's hand." info=""/>
     </heros>
     <heros id="2" name="Spider-Woman" vie="11">
-      <scheme id="10" card="2" name="Les Ambitions De La Vipère" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
+      <scheme id="10" card="2" name="The Viper's Ambition" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
     </heros>
     <deck id="3" name="CrossBones">
-      <scheme id="6" card="17" name="Offensive De Crossbones" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Crossbones s'active contre le joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="7" card="18" name="Offensive de Crossbones" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Crossbones s'active contre le joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="8" card="19" name="Employés Pris au Piège" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Défaussez 1[pp] carte du dessus du deck renccontre. Placez 1 menace supplémentaire sur cette carte pour chaque icône de boost sur les cartes ainsi défaussées." dejoue="" info=""/>
+      <scheme id="6" card="17" name="Crossbones' Assault" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Crossbones activates against the player who defeated this scheme." info=""/>
+      <scheme id="7" card="18" name="Crossbones' Assault" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Crossbones activates against the player who defeated this scheme." info=""/>
+      <scheme id="8" card="19" name="Cornered Staff" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Discard 1[pp] cards from the top of the encounter deck. Place 1 additional threat here for each boost icon on cards discarded this way." dejoue="" info=""/>
     </deck>
-    <deck id="9" name="Patrouille D'Hydra">
-      <scheme id="18" card="6" name="Patrouille D'Hydra" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Chaque joueur cherche un sbire HYDRA dans le deck Rencontre ou la pile de défausse Rencontre et le met en jeu engagé avec lui. Mélangez le deck Rencontre." info=""/>
+    <deck id="9" name="Hydra Patrol">
+      <scheme id="18" card="6" name="Hydra Patrol" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Each player searches the encounter deck and discard pile for a HYDRA minion and puts it into play engaged with them. Shuffle the encounter deck." info=""/>
     </deck>
-    <deck id="21" name="L'Homme Absorbant">
-      <scheme id="41" card="23" name="Avalanche !" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit dépenser une ressource ENERGIE, soit subir 2 dégâts indirects (3 dégâts indirects à la place s'il y a au moins 5 jetons Retard sur la manigance princiaple)" dejoue="" info=""/>
-      <scheme id="42" card="24" name="Avalanche !" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit dépenser une ressource ENERGIE, soit subir 2 dégâts indirects (3 dégâts indirects à la place s'il y a au moins 5 jetons Retard sur la manigance princiaple)" dejoue="" info=""/>
-      <scheme id="43" card="25" name="Pouvoir Super Absorbant" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="L'homme absorbant gagne les traits GLACE; METAL; PIERRE et BOIS."/>
+    <deck id="21" name="Absorbing Man">
+      <scheme id="41" card="23" name="Avalanche !" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Each player must choose to either spend an ENERGY resource or take 2 indirect damage (3 indirect damage instead if there are 5 or more delay counters on ther main scheme)." dejoue="" info=""/>
+      <scheme id="42" card="24" name="Avalanche !" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Each player must choose to either spend an ENERGY resource or take 2 indirect damage (3 indirect damage instead if there are 5 or more delay counters on ther main scheme)" dejoue="" info=""/>
+      <scheme id="43" card="25" name="Super Absorbing Power" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Absorbing Man gains the ICE, METAL, STONE and WOOD traits."/>
     </deck>
     <deck id="22" name="Zola">
-      <scheme id="44" card="28" name="Prison D'Hydra" init="1" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur cherche un allié spécifique dans son deck, sa pile de défausse ou sa main et le place face cachée sous cette manigance. Placez X menaces sur cette manigance, X étant la somme des coûts des alliés situés en dessous. Chaque joueur mélange son deck." dejoue="Retirez cette manigance de la partie et renvoyez chaque allié situé en dessous dans la main de son propriétaire." info=""/>
-      <scheme id="45" card="29" name="Cobayes" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Le premier joueur défausse des cartes du dessus du deck Rencontre jusqu'à ce qu'il défausse un sbire. Il révèle ce sbire." info=""/>
-      <scheme id="46" card="29" name="Cobayes" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Le premier joueur défausse des cartes du dessus du deck Rencontre jusqu'à ce qu'il défausse un sbire. Il révèle ce sbire." info=""/>
-      <scheme id="47" card="31" name="Expériences De Zola" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : après qu'un sbire est entré en jeu, attachez-lui l'attachement TECH qui est le plus proche du dessus de la pile de défausse Rencontre."/>
+      <scheme id="44" card="28" name="Hydra Prison" init="1" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player searches their deck, discard pile and hand for a hero-specific ally and places it facedown beneath this scheme. Place X threat on this scheme, where X is the total cost of all allies beneath it. Each player shuffles their deck." dejoue="Remove this scheme from the game and return each ally beneath it ti its owner's hand." info=""/>
+      <scheme id="45" card="29" name="Test Subjects" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="The first player discards cards from the top of the encounter deck until they discard a minion. Reveal that minion." info=""/>
+      <scheme id="46" card="29" name="Cobayes" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="The first player discards cards from the top of the encounter deck until they discard a minion. Reveal that minion." info=""/>
+      <scheme id="47" card="31" name="Zola's Experiments" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="FORCED RESPONSE : After a minion enters play, attahc the topmost TECH attachment in the encounter discard pile to that minion."/>
     </deck>
     <deck id="23" name="Taskmaster">
-      <scheme id="48" card="19" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
-      <scheme id="49" card="20" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
-      <scheme id="50" card="21" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
-      <scheme id="51" card="22" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
-      <scheme id="52" card="23" name="Camp D'Entraînement De Taskmaster" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : après qu'un sbire est entré en jeu, donnez-lui une carte d'état Tenace."/>
+      <scheme id="48" card="19" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
+      <scheme id="49" card="20" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
+      <scheme id="50" card="21" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
+      <scheme id="51" card="22" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
+      <scheme id="52" card="23" name="Taskmaster's Training Camp" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="FORCED RESPONSE : after a minion enters play, give it a tough status card."/>
       <scheme id="160" card="2" name="Juge; juré et bourreau" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie, placez 2 menaces sur la manigance principale."/>
     </deck>
-    <deck id="24" name="Crâne Rouge">
-      <scheme id="53" card="23" name="La Maison Rouge" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Crâne Rouge ne peut pas subir de dégâts. Interruption : Quand un personnage contre cette manigance annexe, il peut utiliser son ATQ au lieu de son CTR."/>
-      <scheme id="54" card="24" name="Le Réveil Du Dormeur" init="0" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Mettez en jeu le dormeur, engagé avec le premier joueur. Quand le Dormeur est vaincu, retirez le Réveil du Dormeur de la partie" dejoue="" info="Cette manigance annexe ne peut pas quitter le jeu tant que le Dormeur est en jeu."/>
-      <scheme id="55" card="25" name="Camps De Prisonniers" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Le joueur qui a déjoué cette manigance cherche un allié dans son deck ou sa pile de défausse, le met en jeu et mélange son deck." info=""/>
-      <scheme id="56" card="26" name="Réécrire Le Passé" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Chaque joueur choisit jusqu'à 3 cartes de sa pile de défausse et les mélange dans son deck." info=""/>
-      <scheme id="57" card="27" name="Renforts D'Hydra" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Le joueur qui a déjoué cette manigance défausse un sbire non ELITE." info=""/>
-      <scheme id="58" card="28" name="Chaos De Masse" init="0" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur défausse les 5 cartes du dessus de son deck et place 1 menace sur cette manigance pour chaque type de ressource différent ainsi défaussé." dejoue="" info=""/>
+    <deck id="24" name="Red Skull">
+      <scheme id="53" card="23" name="The Red House" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Red Skull cannot take damage. INTERRUPT : When a character thwarts this side scheme, they may use their ATK instead of their THW."/>
+      <scheme id="54" card="24" name="The Sleeper awakened" init="0" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Put the Sleeper awakened into play engaged with the first player. When the Sleeper is defeated, remove this card from the game." dejoue="" info="This sheme annot leave play while the Sleeper is in play."/>
+      <scheme id="55" card="25" name="Prison Camps" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="The player who defeated this scheme searches their deck and discard pile for an ally, puts it into play, and shuffles their deck." info=""/>
+      <scheme id="56" card="26" name="Censor the Past" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Each player chooses up to 3 cards in their discard pile and shuffles them into their deck." info=""/>
+      <scheme id="57" card="27" name="Hydra reinforcements" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="The player who defeated this scheme discards a non-ELITE minion." info=""/>
+      <scheme id="58" card="28" name="Mass Chaos" init="0" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player discards the top 5 cards of their deck and places 1 threat here for each different resource icon (ENERGY, MENTAL, STRENGTH, JOKER) they discarded this way." dejoue="" info=""/>
     </deck>
   </box>
-  <box id="7" name="Le Bouffon Vert" type="s" own="0">
-    <mechant id="4" name="Le Bouffon Vert (EaR)" vie1="14" vie2="18" vie3="22"/>
-    <mechant id="5" name="Le Bouffon Vert (FM)" vie1="16" vie2="18" vie3="20"/>
-    <principale id="7" name="Prise De Contrôle Hostile" init="2" initX="1" max="7" maxX="1"/>
-    <principale id="8" name="Acquisition D'Entreprise" init="1" initX="1" max="10" maxX="1"/>
-    <principale id="9" name="Répandre Le Mutagène" init="2" initX="1" max="7" maxX="1"/>
-    <principale id="10" name="Nuage Mutagène" init="4" initX="1" max="11" maxX="1"/>
-    <deck id="6" name="Ingérence En Cours">
-      <scheme id="15" card="1" name="Ingérence En Cours" init="1" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit il dépense les ressources suivantes : SCIENCE et FORCE, soit il place 2 menaces sur cette carte." dejoue="" info=""/>
+  <box id="7" name="Green Goblin" type="s" own="0">
+    <mechant id="4" name="Green Goblin (RB)" vie1="14" vie2="18" vie3="22"/>
+    <mechant id="5" name="Green Goblin (MF)" vie1="16" vie2="18" vie3="20"/>
+    <principale id="7" name="Hostile Takeover" init="2" initX="1" max="7" maxX="1"/>
+    <principale id="8" name="Corporate Acquisition" init="1" initX="1" max="10" maxX="1"/>
+    <principale id="9" name="Unleash the Mutagen" init="2" initX="1" max="7" maxX="1"/>
+    <principale id="10" name="Mutagen Cloud" init="4" initX="1" max="11" maxX="1"/>
+    <deck id="6" name="Running Interference">
+      <scheme id="15" card="1" name="Running Interference" init="1" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player must choose to either spend MENTAL and STRENGTH resources or place 2 threat here." dejoue="" info=""/>
     </deck>
-    <deck id="7" name="Absorption Électrique">
-      <scheme id="16" card="1" name="Absorption Electrique" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Défaussez 2 cartes du deck Rencontre. Pour chaque icône de boost défaussée par cet effet, chaque joueur doit choisir et défausser de sa main 1 ressource de n'importe quel type." info=""/>
+    <deck id="7" name="Power Drain">
+      <scheme id="16" card="1" name="Absorption Electrique" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Discard 2 cards from the encounter deck. Each player must choose and discrad 1 resource of any type from their hand for each boost icon discarded this way." info=""/>
     </deck>
-    <deck id="8" name="Un Immense Gâchis">
-      <scheme id="17" card="1" name="Un Immense Gâchis" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces supplémentaires sur cette manigance pour chaque personnage ami sonné." dejoue="" info=""/>
+    <deck id="8" name="A Mess of things">
+      <scheme id="17" card="1" name="A Mess of things" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Place 2 additional threat here for each stunned friendly character." dejoue="" info=""/>
     </deck>
-    <deck id="15" name="Entreprise à Risques">
-      <scheme id="27" card="14" name="Effondrement D'un Pont" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
-      <scheme id="28" card="15" name="Production D'Oscorp" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
-      <scheme id="29" card="16" name="Production D'Oscorp" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
-      <scheme id="30" card="17" name="Pot-De-Vin" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
-      <scheme id="31" card="18" name="Pot-De-Vin" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
+    <deck id="15" name="Risky Business">
+      <scheme id="27" card="14" name="Collapsing Bridge" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
+      <scheme id="28" card="15" name="OSCORP Manufacturing" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
+      <scheme id="29" card="16" name="OSCORP Manufacturing" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info=""/>
+      <scheme id="30" card="17" name="Payoff" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
+      <scheme id="31" card="18" name="Payoff" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
     </deck>
-    <deck id="16" name="Formule Mutagène">
-      <scheme id="32" card="21" name="Renforts Du Bouffon" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Placez 1 menace supplémentaire sur cette carte pour chaque sbire BOUFFON en jeu." dejoue="" info=""/>
-      <scheme id="33" card="22" name="Renforts Du Bouffon" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Placez 1 menace supplémentaire sur cette carte pour chaque sbire BOUFFON en jeu." dejoue="" info=""/>
-      <scheme id="34" card="23" name="La Nation Bouffon" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Chaque ennemi BOUFFON (Le Bouffon Vert inclus) gagne +1 ATQ"/>
-      <scheme id="35" card="24" name="Débordement" init="1" initX="1" crise="0" rencontre="0" accel="2" ampli="0" entrave="0" revele="" dejoue="Dans l'odre des joueurs, chaque joueur doit défausser 2 cartes du deck Rencontre et mettre en jeu, engagé avec lui, chaque sbire BOUFFON ainsi défaussé." info=""/>
-      <scheme id="36" card="25" name="Débordement" init="1" initX="1" crise="0" rencontre="0" accel="2" ampli="0" entrave="0" revele="" dejoue="Dans l'odre des joueurs, chaque joueur doit défausser 2 cartes du deck Rencontre et mettre en jeu, engagé avec lui, chaque sbire BOUFFON ainsi défaussé." info=""/>
+    <deck id="16" name="Mutagen Formula">
+      <scheme id="32" card="21" name="Goblin Reinforcements" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Place 1 additional threat here for each GOBLIN minion in play." dejoue="" info=""/>
+      <scheme id="33" card="22" name="Goblin Reinforcements" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Place 1 additional threat here for each GOBLIN minion in play." dejoue="" info=""/>
+      <scheme id="34" card="23" name="GOBLIN Nation" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Each GOBLIN enemy (including Green Goblin) gets +1 ATK."/>
+      <scheme id="35" card="24" name="Overrun" init="1" initX="1" crise="0" rencontre="0" accel="2" ampli="0" entrave="0" revele="" dejoue="In player order, each player must discard 2 cards from the encounter deck and put each GOBLIN minion they discarded this way into play engaged with them." info=""/>
+      <scheme id="36" card="25" name="Overrun" init="1" initX="1" crise="0" rencontre="0" accel="2" ampli="0" entrave="0" revele="" dejoue="In player order, each player must discard 2 cards from the encounter deck and put each GOBLIN minion they discarded this way into play engaged with them." info=""/>
     </deck>
   </box>
-  <box id="8" name="Les Démolisseurs" type="s" own="0">
-    <mechant id="6" name="Le Démolisseur" vie1="14" vie2="18" vie3="0"/>
-    <mechant id="7" name="Le Boulet" vie1="13" vie2="16" vie3="0"/>
-    <mechant id="8" name="Le Compresseur" vie1="11" vie2="14" vie3="0"/>
-    <mechant id="9" name="Le Bulldozer" vie1="12" vie2="15" vie3="0"/>
-    <principale id="11" name="Evasion" init="0" initX="0" max="6" maxX="1"/>
-    <deck id="17" name="Le Compresseur">
-      <scheme id="37" card="3" name="Compression !" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Cette carte ne peut pas quitter le jeu tant que le Compresseur est en jeu.&lt;BR/&gt;Compresser - Réponse forcée : Après que de la menace a été plaçée sur cette carte, s'il y a au moins 10 menaces dessus, chaque joueur défausse l'amélioration ou le soutien qu'il contrôle ayant le cout le plus élevé. Retirez toutes les menaces de cette manigance sauf 3."/>
+  <box id="8" name="The Wrecking Crew" type="s" own="0">
+    <mechant id="6" name="Wrecker" vie1="14" vie2="18" vie3="0"/>
+    <mechant id="7" name="Thunderball" vie1="13" vie2="16" vie3="0"/>
+    <mechant id="8" name="Piledriver" vie1="11" vie2="14" vie3="0"/>
+    <mechant id="9" name="Bulldozer" vie1="12" vie2="15" vie3="0"/>
+    <principale id="11" name="Breakout" init="0" initX="0" max="6" maxX="1"/>
+    <deck id="17" name="Piledriver">
+      <scheme id="37" card="3" name="Pile it on !" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="This card cannot leave play while Piledriver is in play. <br/>Pile Drive - Forced response : After a threat is splaced here, if there is 10 or more threat here, each player discards the upgrade or support they control with the highest cost. remove all but 3 threat from this scheme."/>
     </deck>
-    <deck id="18" name="Le Démolisseur">
-      <scheme id="38" card="3" name="L'Heure Des Comptes" init="6" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Cette carte ne peut pas quitter le jeu tant que le Démolisseur est en jeu.&lt;BR/&gt;Cogneur - Réponse forcée : Après que de la menace a été plaçée sur cette carte, s'il y a au moins 10 menaces dessus, infligez 2 dégâts à chaque personnage ami. Retirez toutes les menaces de cette manigance sauf 3."/>
+    <deck id="18" name="Wrecker">
+      <scheme id="38" card="3" name="Day of Reckoning" init="6" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="This card cannot leave play while Wrecker is in play. <br/>Hard Hitter - Forced response : After a threat is splaced here, if there is 10 or more threat here, deal 2 damage to each friendly character. remove all but 3 threat from this scheme."/>
     </deck>
-    <deck id="19" name="Le Bulldozer">
-      <scheme id="39" card="3" name="Dégager La Voie" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Cette carte ne peut pas quitter le jeu tant que le Bulldozer est en jeu.&lt;BR/&gt;Charger! - Réponse forcée : Après que de la menace a été plaçée sur cette carte, s'il y a au moins 10 menaces dessus, chaque joueur doit défausser les 10 cartes du dessus de son deck.. Retirez toutes les menaces de cette manigance sauf 3."/>
+    <deck id="19" name="Bulldozer">
+      <scheme id="39" card="3" name="Clear the Road" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="This card cannot leave play while Bulldozer is in play. <br/>Charge! - Forced response : After a threat is splaced here, if there is 10 or more threat here, each player must discard the top 10 cards of their deck. remove all but 3 threat from this scheme."/>
     </deck>
-    <deck id="20" name="Le Boulet">
-      <scheme id="40" card="3" name="Envoyer Bouler" init="5" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Cette carte ne peut pas quitter le jeu tant que le Boulet est en jeu.&lt;BR/&gt;Démomition Gamma - Réponse forcée : Après que de la menace a été plaçée sur cette carte, s'il y a au moins 10 menaces dessus, sonnez chaque personnage ami. Retirez toutes les menaces de cette manigance sauf 3."/>
+    <deck id="20" name="Thunderball">
+      <scheme id="40" card="3" name="Thunderstruck" init="5" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="This card cannot leave play while Thunderball is in play. <br/>Gamma Blast - Forced response : After a threat is splaced here, if there is 10 or more threat here, stun each friendly character. remove all but 3 threat from this scheme."/>
     </deck>
   </box>
   <box id="9" name="Captain America" type="h" own="0">
