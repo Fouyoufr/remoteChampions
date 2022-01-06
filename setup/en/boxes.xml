@@ -43,7 +43,7 @@
       <scheme id="20" card="2" name="The Doomsday Chair" init="8" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="if MODOK is not in play, search the encounter deck and discard pile for MODOK and put him into play engaged with you, then shuffle the encounter deck." dejoue="" info=""/>
     </deck>
     <deck id="11" name="Under Attack">
-      <scheme id="21" card="1" name="Undeer Attack" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player chooses to either place 2 threat here or deal 3 damages to their hero.." dejoue="" info=""/>
+      <scheme id="21" card="1" name="Under Attack" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player chooses to either place 2 threat here or deal 3 damages to their hero.." dejoue="" info=""/>
     </deck>
     <deck id="12" name="Masters of Evil">
       <scheme id="22" card="1" name="The masters of Evil" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Discard cards from the encounter deck until a MASTER OF EVIL minion is discarded. Put that minion into play engaged with the first player." dejoue="" info=""/>
@@ -185,7 +185,6 @@
       <scheme id="50" card="21" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
       <scheme id="51" card="22" name="Captured by Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 random set-aside CAPTIVE ally facedown beneath this scheme." dejoue="The polayer who defeated this scheme takes the ally placed under its card into their hand and removes this scheme from the game." info=""/>
       <scheme id="52" card="23" name="Taskmaster's Training Camp" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="FORCED RESPONSE : after a minion enters play, give it a tough status card."/>
-      <scheme id="160" card="2" name="Juge; juré et bourreau" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie, placez 2 menaces sur la manigance principale."/>
     </deck>
     <deck id="24" name="Red Skull">
       <scheme id="53" card="23" name="The Red House" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Red Skull cannot take damage. INTERRUPT : When a character thwarts this side scheme, they may use their ATK instead of their THW."/>
@@ -248,216 +247,220 @@
   </box>
   <box id="9" name="Captain America" type="h" own="0">
     <heros id="3" name="Captain America" vie="11">
-      <scheme id="11" card="3" name="Commando Armé" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Dans l'ordre des joueurs, chaque joueur défausse la carte du dessus du deck rencontre et subit 1 dégât pour chaque icône de boost défaussée par cet effet." dejoue="" info=""/>
+      <scheme id="11" card="3" name="Hiot Squad" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="In player order, each player discards the top card of the encounter deck and takes 1 damage for each boost icon discarded this way." dejoue="" info=""/>
     </heros>
   </box>
   <box id="10" name="Miss Marvel" type="h" own="0">
     <heros id="10" name="Miss Marvel" vie="10">
-      <scheme id="76" card="10" name="Génération Y" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Défaussez une carte du dessus du deck de chaque joueur pour chaque allié et chaque soutien INDIVIDU en jeu." dejoue="" info=""/>
+      <scheme id="76" card="10" name="Génération Why ?" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Discard the top player card of each player's deck for each ally and PERSONA support in play." dejoue="" info=""/>
     </heros>
   </box>
   <box id="11" name="Thor" type="h" own="0">
     <heros id="11" name="Thor" vie="14">
-      <scheme id="77" card="11" name="Querelle Familiale" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez 1 menace supplémentaire sur cette carte pour chaque carte ASGARD en jeu" dejoue="" info=""/>
+      <scheme id="77" card="11" name="Family Feud" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place 1 additionnal threat here for each ASGARD card in play" dejoue="" info=""/>
     </heros>
   </box>
   <box id="12" name="Black Widow" type="h" own="0">
     <heros id="4" name="Black Widow" vie="9">
-      <scheme id="12" card="4" name="Tueur à Louer" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="" info=""/>
+      <scheme id="12" card="4" name="Killer for hire" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="" info=""/>
     </heros>
   </box>
-  <box id="13" name="Docteur Strange" type="h" own="0">
-    <heros id="12" name="Docteur Strange" vie="10">
-      <scheme id="78" card="12" name="Ouvrir La Dimension Noire" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance la carte du dessus du deck INVOCATION." dejoue="Mélangez dans le deck INVOCATION la carte INVOCATION qui était située sous cette manigance." info=""/>
+  <box id="13" name="Doctor Strange" type="h" own="0">
+    <heros id="12" name="Doctor Strange" vie="10">
+      <scheme id="78" card="12" name="Open the Dark Dimension" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Place the top card of the INVOCATION deck facedown under this scheme." dejoue="Shuffle the INVOCATION card under here into the INVOCATION deck." info=""/>
     </heros>
   </box>
   <box id="14" name="Hulk" type="h" own="0">
     <heros id="13" name="Hulk" vie="18">
-      <scheme id="79" card="13" name="Destruction Totale" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Aucune menace ne peut être retirée de cette manigance tant que l'Abomination est en jeu."/>
+      <scheme id="79" card="13" name="Total Destruction" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Threat cannot be removed from this scheme while Abomination is in play."/>
     </heros>
   </box>
-  <box id="15" name="Kang le conquérant" type="s" own="0">
+  <box id="15" name="The Once and Future Kang" type="s" own="0">
     <mechant id="15" name="Kang" vie1="12" vie2="18" vie3="20"/>
     <mechant id="20" name="Kang (Expert)" vie1="15" vie2="22" vie3="25"/>
-    <principale id="21" name="L'Arrivée de Kang" init="0" initX="0" max="7" maxX="1"/>
-    <principale id="23" name="La Colère De Kang" init="0" initX="0" max="10" maxX="1"/>
-    <principale id="25" name="Chronopolis" init="0" initX="0" max="9" maxX="0"/>
-    <principale id="26" name="Destin Inéluctable" init="1" initX="0" max="9" maxX="0"/>
-    <principale id="27" name="Le royaume de Rama-Tut" init="1" initX="0" max="9" maxX="0"/>
-    <principale id="28" name="La guerre Présent-Futur" init="2" initX="0" max="9" maxX="0"/>
+    <principale id="21" name="Kang's Arrival" init="0" initX="0" max="7" maxX="1"/>
+    <principale id="23" name="Kang's Wrath" init="0" initX="0" max="10" maxX="1"/>
+    <principale id="25" name="The Chronopolis" init="0" initX="0" max="9" maxX="0"/>
+    <principale id="26" name="Inexorable Fate" init="1" initX="0" max="9" maxX="0"/>
+    <principale id="27" name="The realm of Rama-Tut" init="1" initX="0" max="9" maxX="0"/>
+    <principale id="28" name="The Present-Future War" init="2" initX="0" max="9" maxX="0"/>
     <deck id="25" name="Kang">
-      <scheme id="59" card="30" name="Flux Temporel Perverti" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit soit défausser 1 carte prise au hasard dans sa main, soit placer 2 menaces sur cette carte." dejoue="" info="Les joueurs ne peuvent pas déclencher les capacités &quot;ACTION D'ALTER-EGO&quot; sur les cartes obligation."/>
-      <scheme id="60" card="31" name="Empire De Kang" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte Rencontre au joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="61" card="32" name="Empire De Kang" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte Rencontre au joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="62" card="33" name="Empire De Kang" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte Rencontre au joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="63" card="34" name="Empire De Kang" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte Rencontre au joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="64" card="35" name="Cloués Au Sol" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces sur cette carte pour chaque obligation en jeu." dejoue="" info=""/>
-      <scheme id="65" card="36" name="Dévastation" init="4" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec le joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="66" card="37" name="Dévastation" init="4" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec le joueur qui a déjoué cette manigance." info=""/>
+      <scheme id="59" card="30" name="Corrupted Timestream" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player must either discard 1 random card from hand, or place 2 threat here." dejoue="" info="Players cannot trigger &quot;ALTER-EGO ACTION&quot; abilities on obligations."/>
+      <scheme id="60" card="31" name="Kang's Dominion" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme an encounter card." info="Kang cannot take damage."/>
+      <scheme id="61" card="32" name="Kang's Dominion" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme an encounter card." info="Kang cannot take damage."/>
+      <scheme id="62" card="33" name="Kang's Dominion" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme an encounter card." info="Kang cannot take damage."/>
+      <scheme id="63" card="34" name="Kang's Dominion" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme an encounter card." info="Kang cannot take damage."/>
+      <scheme id="64" card="35" name="Pinned Down" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Place 2 threat here for each obligation in play." dejoue="" info=""/>
+      <scheme id="65" card="36" name="Rampage" init="4" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Discard card from the top of the encounter deck until a minion is discarded. Put that minion into play engaged with the player who defeated this scheme." info=""/>
+      <scheme id="66" card="37" name="Rampage" init="4" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Discard card from the top of the encounter deck until a minion is discarded. Put that minion into play engaged with the player who defeated this scheme." info=""/>
     </deck>
-    <deck id="26" name="Le Maître Du Temps">
-      <scheme id="67" card="6" name="Lueur Des Spères Séculaires" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec le joueur qui a déjoué cette manigance." info=""/>
+    <deck id="26" name="Master of Time">
+      <scheme id="67" card="6" name="Light of Centuries Sphere" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Discard card from the top of the encounter deck until a minion is discarded. Put that minion into play engaged with the player who defeated this scheme." info=""/>
     </deck>
-    <deck id="27" name="Les Anachronautes">
-      <scheme id="68" card="6" name="Les Anachronautes" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Mélangez dans le deck Rencontre chaque carte TEMPOREL de la pile de défausse Renconre." info=""/>
-      <scheme id="69" card="7" name="Les Anachronautes" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Mélangez dans le deck Rencontre chaque carte TEMPOREL de la pile de défausse Renconre." info=""/>
+    <deck id="27" name="Anachronauts">
+      <scheme id="68" card="6" name="The Anachronauts" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Shuffle each TEMPORAL card in the encounter discard pile into the encounter deck." info=""/>
+      <scheme id="69" card="7" name="The Anachronauts" init="3" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Shuffle each TEMPORAL card in the encounter discard pile into the encounter deck." info=""/>
     </deck>
-    <deck id="28" name="Temporel">
-      <scheme id="70" card="7" name="Portail Temporel" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Mélangez cette manigance dans le deck Rencontre au lieu de la défausser." info=""/>
+    <deck id="28" name="Temporal">
+      <scheme id="70" card="7" name="Time Portal" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="Shuffle this scheme into the encounter deck instead of discarding it." info=""/>
     </deck>
   </box>
   <box id="16" name="Ant Man" type="h" own="0">
     <heros id="14" name="Ant-Man" vie="12">
-      <scheme id="80" card="14" name="Vol de technologie" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Chaque carte TECH perd le texte imprimé dans sa boite de texte."/>
+      <scheme id="80" card="14" name="Tech Theft" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Treat the printed text box of each TECH player card as if it were blank."/>
     </heros>
   </box>
-  <box id="17" name="Star Lord" type="h" own="0">
-    <heros id="20" name="Star Lord" vie="10">
-      <scheme id="113" card="20" name="Syndicat du crime en devenir" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="2" revele="" dejoue="" info=""/>
+  <box id="17" name="Star-Lord" type="h" own="0">
+    <heros id="20" name="Star-Lord" vie="10">
+      <scheme id="113" card="20" name="Budding Crime Syndicate" init="2" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="2" revele="" dejoue="" info=""/>
     </heros>
   </box>
   <box id="18" name="Drax" type="h" own="0">
     <heros id="21" name="Drax" vie="14">
-      <scheme id="114" card="21" name="Eliminer les faibles" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Chaque ennemi gagne +2 ATQ."/>
+      <scheme id="114" card="21" name="Cull the Weak" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Each enemy gets +2 ATK."/>
     </heros>
   </box>
   <box id="19" name="Gamora" type="h" own="0">
     <heros id="22" name="Gamora" vie="10">
-      <scheme id="115" card="22" name="Rivalité entre soeurs" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Les joueurs autres que Gamora ne peuvent pas retirer de menaces de &quot;Rivalité entre soeurs&quot;.&lt;br/&gt;REPONSE FORCEE : Après le début de la phase du méchant, attribuez 1 carte rencontre face cachée à Gamora."/>
+      <scheme id="115" card="22" name="Sibling Rivalry" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Players other than Gamora cannot remove threat from &quot;Sibling Rivalry&quot;.&lt;br/&gt;FORCED RESPONSE : After the villain phase begins, deal 1 facedown encounter card to Gamora."/>
     </heros>
   </box>
   <box id="20" name="Venom" type="h" own="0">
     <heros id="23" name="venom" vie="12">
-      <scheme id="116" card="23" name="Frénésie Klyntar" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Les menaces sur cette manigance ne peuvent pas être retirées tant qu'il y a un ennemi SYMBIOTE en jeu."/>
+      <scheme id="116" card="23" name="Klyntar Frenzy" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Threat cannot be removed from this scheme while a SYMBIOTE enemy is in play."/>
     </heros>
   </box>
   <box id="21" name="Nebula" type="h" own="0">
     <heros id="24" name="Nebula" vie="9">
-      <scheme id="146" card="24" name="Instinct de Préservation" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Nebula perd -1 CTR, -1 ATQ et -1 DEF&lt;br/&gt;Gamora gagne +1 ATQ et ses attaques gagnent Perçant."/>
+      <scheme id="146" card="24" name="Self-Preservation" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Nebula gets -1 THW, -1 ATK, and -1 DEF&lt;br/&gt;Gamora gets +1 ATK and her attacks gain piercing."/>
     </heros>
   </box>
-  <box id="22" name="L'ombre du Titan Fou" type="b" own="0">
+  <box id="22" name="The Mad Titan's Shadow" type="b" own="0">
     <mechant id="21" name="Ebony Maw" vie1="14" vie2="18" vie3="23"/>
     <mechant id="22" name="Proxima Midnight" vie1="9" vie2="12" vie3="15"/>
     <mechant id="23" name="Corvus Glaive" vie1="8" vie2="11" vie3="14"/>
     <mechant id="24" name="Thanos" vie1="16" vie2="23" vie3="28"/>
     <mechant id="25" name="Loki" vie1="20" vie2="20" vie3="20"/>
-    <principale id="39" name="Attaque sur Nulle-Part" init="1" initX="1" max="6" maxX="1"/>
-    <principale id="40" name="La pierre du pouvoir" init="1" initX="1" max="9" maxX="1"/>
-    <principale id="41" name="En état de siège" init="1" initX="1" max="6" maxX="1"/>
-    <principale id="42" name="Les armées de Thanos" init="1" initX="1" max="6" maxX="1"/>
-    <principale id="43" name="Les pierres d'Infinité" init="0" initX="0" max="12" maxX="1"/>
-    <principale id="44" name="Equilibrer la balance" init="0" initX="0" max="12" maxX="1"/>
-    <principale id="45" name="Le Tourment d'Odin" init="1" initX="1" max="18" maxX="1"/>
-    <principale id="46" name="Longue vie au roi Loki" init="1" initX="1" max="12" maxX="1"/>
-    <heros id="25" name="Adam Warlovk" vie="11">
-      <scheme id="118" card="25" name="Eglise universelle de la vérité" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un joueur a réinitialisé son deck, inclinez l'identité de ce joueur et sonnez-la."/>
+    <mechant id="27" name="Hela" vie1="8" vie2="9" vie3="0"/>
+    <principale id="39" name="Attack on Knowhere" init="1" initX="1" max="6" maxX="1"/>
+    <principale id="40" name="The Power Stone" init="1" initX="1" max="9" maxX="1"/>
+    <principale id="41" name="Under Siege" init="1" initX="1" max="6" maxX="1"/>
+    <principale id="42" name="The armies of Thanos" init="1" initX="1" max="6" maxX="1"/>
+    <principale id="43" name="The infinity Stones" init="0" initX="0" max="12" maxX="1"/>
+    <principale id="44" name="Balance the Scales" init="0" initX="0" max="12" maxX="1"/>
+    <principale id="45" name="ODIN's Torment" init="1" initX="1" max="18" maxX="1"/>
+    <principale id="46" name="All Hail King Loki" init="1" initX="1" max="12" maxX="1"/>
+    <heros id="25" name="Adam Warlock" vie="11">
+      <scheme id="118" card="25" name="Universal Church of Thruth" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="FORCED RESPONSE : After a player restes their deck, exhaust that player's identity and stun it."/>
     </heros>
     <heros id="26" name="Spectrum" vie="11">
-      <scheme id="117" card="26" name="Réacteur en fusion" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Infligez 1 dégât à chaque personnage ami en jeu." info=""/>
+      <scheme id="117" card="26" name="Reactor Meltdown" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal 1 damage to each friendly character in play." info=""/>
     </heros>
-    <deck id="38" name="Mâchoire d'ébène">
-      <scheme id="141" card="21" name="Réacteur en surchauffe" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit subir 2 dégâts, soit placer 2 menaces sur cette carte." dejoue="" info=""/>
-      <scheme id="142" card="22" name="Réacteur en surchauffe" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Chaque joueur doit choisir : soit subir 2 dégâts, soit placer 2 menaces sur cette carte." dejoue="" info=""/>
+    <deck id="38" name="Ebony Maw">
+      <scheme id="141" card="21" name="Reactor Overload" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player must choose to either take 2 damage or place 2 threat here." dejoue="" info=""/>
+      <scheme id="142" card="22" name="Reactor Overload" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Each player must choose to either take 2 damage or place 2 threat here" dejoue="" info=""/>
     </deck>
-    <deck id="39" name="Défense de la tour">
-      <scheme id="121" card="26" name="La ville est attaquée" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Le joueur qui a déjoué cette manigance pioche 1 carte." info=""/>
-      <scheme id="122" card="27" name="La ville est attaquée" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Le joueur qui a déjoué cette manigance pioche 1 carte." info=""/>
+    <deck id="39" name="Tower Defense">
+      <scheme id="121" card="26" name="City under Attack" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="The player who defeated this scheme draws 1 card." info=""/>
+      <scheme id="122" card="27" name="City under Attack" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="The player who defeated this scheme draws 1 card." info=""/>
     </deck>
     <deck id="40" name="Thanos">
-      <scheme id="123" card="6" name="Sanctuaire" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Chaque joueur peut dépenser jusqu'à 3 ressources FORCE de sa main. Infligez 2 dégâts à Thanos pour chaque ressource FORCE ainsi dépensée. Ces dégâts ignorent la carte d'état Tenace." info="Victory 1.&lt;br/&gt;Thanos ne peut pas subir de dégâts."/>
-      <scheme id="124" card="19" name="Le trône du Titan" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Choisissez et défaussez une PIERRE D'INFINITE qui est en jeu." info=""/>
+      <scheme id="123" card="6" name="Sanctuary" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Each player may spend up to 3 STRENGTH resources from their hand. Deal 2 damage to Thanos for each STRENGTH resource spent this way. This damage ignores the tough status card." info="Victory 1.&lt;br/&gt;Thanos cannot take damage."/>
+      <scheme id="124" card="19" name="The Titan's Throne" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Choose and discard an INFINITY STONE from play." info=""/>
     </deck>
     <deck id="41" name="Hela">
-      <scheme id="127" card="5" name="Gnipahellir" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="Le premier joueur révèle Gjallerbru et Skruge et les met en jeu. Attribuez 1 carte Rencontre face cachée à chaque autre joueur." info="Victory 3."/>
-      <scheme id="128" card="6" name="Gjallerbru" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="1" revele="" dejoue="Le premier joueur révèle la forteresse de Nastrond et Nidhogg et les met en jeu. Attribuez 1 carte Rencontre face cachée à chaque autre joueur." info="Victory 2."/>
-      <scheme id="129" card="7" name="Forteresse de Nastrond" init="4" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="" dejoue="Le premier joueur détache Odin de la manigance principale et en prend le contrôle. Attribuez 1 carte rencontre face cachée à chaque joueur." info="Victory 4."/>
+      <scheme id="127" card="5" name="Gnipahellir" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="The first player reveals Gjallerbru and Skurge, and puts them into play. Deal each other player 1 facedown encounter card." info="Victory 3."/>
+      <scheme id="128" card="6" name="Gjallerbru" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="1" revele="" dejoue="The first player reveals Hall of Nastrond and Nidhogg, and puts them into play. Deal each other player 1 facedown encounter card." info="Victory 2."/>
+      <scheme id="129" card="7" name="Hall of Nastrond" init="4" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="" dejoue="The first player detaches Odein from the main scheme and takes control of him. Deal each player 1 facedown encounter card." info="Victory 4."/>
     </deck>
     <deck id="42" name="Loki">
-      <scheme id="133" card="7" name="Ecrin des Hivers d'Antan" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="1" revele="" dejoue="Révélez la carte du dessus du deck PIERRE D'INFINITE. Echangez Loki avec l'un des méchants Loki mis de coté pris au hasard." info=""/>
-      <scheme id="134" card="8" name="Guerre sur Asgard" init="6" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="Révélez la carte du dessus du deck PIERRE D'INFINITE. Echangez Loki avec l'un des méchants Loki mis de coté pris au hasard." info=""/>
-      <scheme id="135" card="9" name="Folie sur Midgard" init="5" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Révélez la carte du dessus du deck PIERRE D'INFINITE. Echangez Loki avec l'un des méchants Loki mis de coté pris au hasard." info=""/>
-      <scheme id="137" card="10" name="Ouvrir le Bifrost" init="3" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="" dejoue="Révélez la carte du dessus du deck PIERRE D'INFINITE. Echangez Loki avec l'un des méchants Loki mis de coté pris au hasard." info=""/>
+      <scheme id="133" card="7" name="Casket of Ancient Winters" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="1" revele="" dejoue="Reveal the top card of the INFINITY STONE deck. Swap Loki with a random set-aside Loki villain." info=""/>
+      <scheme id="134" card="8" name="War on Asgard" init="6" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="Reveal the top card of the INFINITY STONE deck. Swap Loki with a random set-aside Loki villain." info=""/>
+      <scheme id="135" card="9" name="Madness onMidgard" init="5" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Reveal the top card of the INFINITY STONE deck. Swap Loki with a random set-aside Loki villain." info=""/>
+      <scheme id="137" card="10" name="Open the Bifrost" init="3" initX="0" crise="0" rencontre="1" accel="0" ampli="0" entrave="1" revele="" dejoue="Reveal the top card of the INFINITY STONE deck. Swap Loki with a random set-aside Loki villain." info=""/>
     </deck>
-    <deck id="43" name="L'ordre Noir">
-      <scheme id="143" card="3" name="L'ordre Noir" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Tant qu'un sbire ORDRE NOIR est en jeu, aucune menace ne peut être retirée de cette manigance annexe."/>
+    <deck id="43" name="Black Order">
+      <scheme id="143" card="3" name="The Black Order" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="While a BLACK ORDER minion is in play, threat cannot be removed from this side scheme."/>
     </deck>
-    <deck id="44" name="Armées du Titan">
-      <scheme id="144" card="5" name="Vaisseau de débarquement" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec le joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="145" card="6" name="Vaisseau de débarquement" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec le joueur qui a déjoué cette manigance." info=""/>
+    <deck id="44" name="Armies of Titan">
+      <scheme id="144" card="5" name="Landing Craft" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Discard cards from the top of the encounter deck until a minion is discarded. Put that minion into play engaged with the player who defeated this scheme." info=""/>
+      <scheme id="145" card="6" name="Landing Craft" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Discard cards from the top of the encounter deck until a minion is discarded. Put that minion into play engaged with the player who defeated this scheme." info=""/>
     </deck>
-    <deck id="45" name="Enfants de Thanos">
-      <scheme id="125" card="4" name="Tribut" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte de rencontre face cachée au joueur qui a déjoué cette manigance." info=""/>
-      <scheme id="126" card="5" name="Tribut" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte de rencontre face cachée au joueur qui a déjoué cette manigance." info=""/>
+    <deck id="45" name="Children of Thanos">
+      <scheme id="125" card="4" name="Tribute" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme a facedown encounter card." info=""/>
+      <scheme id="126" card="5" name="Tribute" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Deal the player who defeated this scheme a facedown encounter card." info=""/>
     </deck>
-    <deck id="46" name="Gant de l'infini"/>
-    <deck id="47" name="Légions de Hel">
-      <scheme id="130" card="6" name="Légions de Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces supplémentaires sur cette carte pour chaque sbire MORT-VIVANT en jeu. S'il n'y a pas de sbire MORT-VIVANT en jeu, cette carte gagne Surge." dejoue="" info=""/>
-      <scheme id="131" card="7" name="Légions de Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces supplémentaires sur cette carte pour chaque sbire MORT-VIVANT en jeu. S'il n'y a pas de sbire MORT-VIVANT en jeu, cette carte gagne Surge." dejoue="" info=""/>
+    <deck id="47" name="Legions of Hel">
+      <scheme id="130" card="6" name="Legions of Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Place 2 additionnal threat here for each UNDEAD minion in play. If there are no UNDEAD minions in play, this card gains Surge." dejoue="" info=""/>
+      <scheme id="131" card="7" name="Legions of Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Place 2 additionnal threat here for each UNDEAD minion in play. If there are no UNDEAD minions in play, this card gains Surge." dejoue="" info=""/>
     </deck>
-    <deck id="48" name="Géants de glace">
-      <scheme id="132" card="6" name="Tempête surnaturelle" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Inclinez chaque allié en jeu." dejoue="" info="Les héros et les alliés ne peuvent pas être redressés par des effets de carte Joueur."/>
+    <deck id="48" name="Frost Giants">
+      <scheme id="132" card="6" name="Unnatural Storm" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Exhaust each ally in play." dejoue="" info="Heroes and allies cannot be readied by player card effects."/>
     </deck>
-    <deck id="49" name="L'enchanteresse"/>
-    <deck id="50" name="Basique / Campagne">
-      <scheme id="138" card="2" name="Brèche de sécurité" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="2" revele="Chaque joueur place face cachée sur cette carte une carte prise au hasard dans sa main." dejoue="Renvoyez dans la main de son propriétaire chaque carte face cachée qui est sur cette carte." info="Victory 2."/>
-      <scheme id="139" card="8" name="Protocoles de Défense" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="Victory 2. INTERRUPTION FORCEE : Quand la phase des joueurs se termine, placez 1 jeton Crash sur cette carte. S'il y a 2 jetons Crash sur cette carte, chaque joueur ajoute à sa main 1 exemplaire de l'obligation Panne du Système. Retirez cette carte de la partie."/>
-      <scheme id="140" card="13" name="Récupérer l'armure d'Odin" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
-      <scheme id="159" card="1" name="Sécuriser l'aire d'atterrissage" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="Retournez cette carte." dejoue="" info=""/>
-      <scheme id="161" card="3" name="Sauver le resto de Shawarmas" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Chaque joueur mélange 1 exemplaire de Shawarma dans son deck. Retournez cette carte." info=""/>
-      <scheme id="162" card="8" name="Pirater l'ordinateur du Sanctuaire" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Chaque joueur cherche 1 carte dans son deck ou sa pile de défausse, l'ajoute à sa main et mélange son deck. Retournez cette carte." info=""/>
-      <scheme id="163" card="13" name="Trouver les pierres des Nornes" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Chaque joueur met en jeu, sous son Contrôle, un exemplaire de l'amélioration pierre des Nornes, face Mise en place visible. Retournez cette carte" info="Aucune menace ne peut être retirée de cette manigance à moins qu'Hela n'ait le trait BLESSE."/>
-      <scheme id="164" card="19" name="Ouvrir les cachots" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Chaque joueur choisit 1 allié CAPTIF du set Campagne et le met en jeu sous son contrôle. Retournez cette carte." info=""/>
+    <deck id="50" name="Campaign">
+      <scheme id="138" card="2" name="Security Breach" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="2" revele="Each player places a random card from thier hand facedown here." dejoue="Return each facedown card here to its owner's hand." info="Victory 2."/>
+      <scheme id="139" card="8" name="Defensive Protocols" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="Victory 2. FORCED INTERRUPT : When the player phase ends, place 1 crash counter here. If there are 2 crzash counters here, each player adds 1 copy of the System Shock obligation card to their hand. Remove this card from the game."/>
+      <scheme id="140" card="13" name="Retrieve ODIN's armor" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="Heal all damage from odin and flip to his KING side." info="Threat cannot be removed from this scheme unless the first player controls Odin. Victory 1."/>
+      <scheme id="159" card="1" name="Secure the landing Pad" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="Flip this card over." dejoue="" info=""/>
+      <scheme id="161" card="3" name="Save the Shawarma Place" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Each player shuffles 1 copuy of Shawarma into their deck. Flip this card over." info=""/>
+      <scheme id="162" card="8" name="Hack Sanctuary's Computer" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Each player searches their deck and discard pile for 1 card, adds it to their hand, and shuffles their deck. Flip this card over." info=""/>
+      <scheme id="163" card="13" name="Find the Norn Stones" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Each player puts a copy of the Norn Stone upgrade into play under their control on its stup side. Flip this card over" info="Threat cannot be removed from this scheme unless Hela has the WOUNDED trait."/>
+      <scheme id="164" card="19" name="Open the Dungeons" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Each player chooses 1 CAPTIVE ally from the campaign set and puts it into play under their control. Flip this card over." info=""/>
     </deck>
-    <deck id="51" name="Campagne - Expert"/>
   </box>
   <box id="23" name="Fan Print 1" type="b" own="0">
     <heros id="27" name="Miles Morales" vie="9">
-      <scheme id="120" card="27" name="Evil Morales" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info="Ultimatum ne peut être sonné."/>
+      <scheme id="120" card="27" name="Evil Morales" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="Place an additional 1[pp] threat here (allready computed in Remote Champions)" dejoue="" info="Ultimatum can't be stunned."/>
     </heros>
     <heros id="28" name="Deadpool" vie="10">
       <scheme id="119" card="28" name="Courtiser la mort" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Traitez les zones de texte imprimées des héros comme si elles étaient vierges"/>
     </heros>
-    <deck id="59" name="Fanatique Kree"/>
+    <deck id="59" name="Kree Fanatic">
+      <scheme id="160" card="2" name="Judge, Judy, Executioner" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="FORCED RESPONSE : After a friendly character is defeated by an enemy attack, place 2 threat on the main scheme."/>
+    </deck>
   </box>
   <box id="24" name="War Machine" type="h" own="0">
     <heros id="29" name="War Machine" vie="10">
-      <scheme id="147" card="29" name="Spectacle lumineux mortel" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Infligez 1 dégât à chaque identité." info=""/>
+      <scheme id="147" card="29" name="Deadly Light Show" init="3" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Deal 1 damage to each identity." info=""/>
     </heros>
   </box>
   <box id="25" name="Valkyrie" type="h" own="0">
     <heros id="30" name="Valkyrie" vie="12">
-      <scheme id="158" card="30" name="Puissants enchantements" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="" info="Les joueurs ne peuvent pas défausser les attachements qui sont attachés à des personnages amis."/>
+      <scheme id="158" card="30" name="Powerful Enchantments" init="2" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="1" revele="" dejoue="" info="Players cannot discard attachments that are attached to friendly characters."/>
     </heros>
   </box>
   <box id="26" name="The Hood" type="s" own="0">
     <mechant id="26" name="The Hood" vie1="14" vie2="16" vie3="18"/>
-    <principale id="47" name="Se faire des relations" init="1" initX="1" max="5" maxX="1"/>
-    <principale id="48" name="Promesse de prospérité" init="2" initX="1" max="8" maxX="1"/>
-    <principale id="49" name="Etat criminel" init="3" initX="1" max="10" maxX="1"/>
+    <principale id="47" name="Making Connections" init="1" initX="1" max="5" maxX="1"/>
+    <principale id="48" name="Promised Prosperity" init="2" initX="1" max="8" maxX="1"/>
+    <principale id="49" name="Crime State" init="3" initX="1" max="10" maxX="1"/>
     <deck id="52" name="The Hood">
-      <scheme id="148" card="12" name="Ambition démesurée" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="INTERRUPTION FORCEE : Quand la phase du Méchant commence, chaque joueur doit résoudre la capacité &quot;Tricherie&quot; de The Hood, dans l'ordre des joueurs."/>
+      <scheme id="148" card="12" name="Unbridled Ambition" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="FORCED INTERRUPT : When the villain phase begins, each player must resolve The Hood's &quot;Foul Play&quot; ability in player order."/>
     </deck>
-    <deck id="53" name="Hommes-bêtes">
-      <scheme id="149" card="1" name="Mode bestial" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="INTERRUPTION FORCEE : Quand un personnage ami sonné ou désorienté est censé subir n'importe quelle quantité de dégâts, augmentez de 1 cette quantité."/>
+    <deck id="53" name="Beasty Boys">
+      <scheme id="149" card="1" name="Beast Mode" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="FORCED INTERRUPT : When a stunned or confused friendly character would take anuy amount of damage, increase that amount by 1."/>
     </deck>
-    <deck id="54" name="Gang de Crossfire">
-      <scheme id="150" card="1" name="En quête de sang" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Infligez 1 dégât au personnage ami avec le moins de points de vie restants. Si ce personnage est vaincu par cet effet, répétez cet effet." dejoue="" info=""/>
+    <deck id="54" name="Crossfire's Crew">
+      <scheme id="150" card="1" name="Out for Blood" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="Deal 1 damage to the friendly character with the fewest remaining hit points. If that character is defeated this way, repeat this effect." dejoue="" info=""/>
     </deck>
     <deck id="55" name="Mister Hyde">
-      <scheme id="151" card="1" name="Etre son propre cobaye" init="5" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Cherchez Mister Hyde dans le deck Rencontre ou la pile de défausse Rencontre et révélez-le. (Mélangez le deck Rencontre)" dejoue="" info="INTERRUPTION FORCEE : Quand un ennemi BRUTE est censé subir n'importe quelle quantité de dégâts, retirez autant de menaces de cette manigance à la place."/>
+      <scheme id="151" card="1" name="Self-Experimentation" init="5" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Search the encounter deck and discard pile for Mister Hyde and reveal him. (Shuffle)." dejoue="" info="FORCED INTERRUPT : When a BRUTE enemy would take any amount of damage, remove that much threat from this scheme instead."/>
     </deck>
-    <deck id="56" name="Sinistre syndicat">
-      <scheme id="152" card="1" name="Le crime paie" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Cherchez un sbire CRIMINEL dans le deck Rencontre et mettez-le en jeu, engagé avec vous. (Mélangez le deck Rencontre) Si aucun sbire n'est mis en jeu par cet effet, cette carte gagne Surge." dejoue="" info=""/>
+    <deck id="56" name="Sinister syndicate">
+      <scheme id="152" card="1" name="Crime Pays" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Search the encounter deck for a CRIMINAL minion and put it into play engaged with you. (Shuffle). If no minion was put into play this way, this card gains surge." dejoue="" info=""/>
     </deck>
-    <deck id="57" name="Etat d'urgence">
-      <scheme id="153" card="1" name="Un casse audacieux" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Défaussez de votre main la carte ayant le coût le plus élevé." dejoue="" info=""/>
-      <scheme id="154" card="2" name="Désastre sur le port" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Subissez 3 dégâts indirects." dejoue="" info=""/>
-      <scheme id="155" card="3" name="Incendie au large" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Défaussez la carte que vous Contrôlez ayant le coût le moins élevé." dejoue="" info=""/>
-      <scheme id="156" card="4" name="Course poursuite" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Défaussez des cartes du dessus du deck Rencontre jusqu'à ce qu'un sbire soit défaussé. Mettez en jeu ce sbire engagé avec vous." dejoue="" info=""/>
+    <deck id="57" name="State of Emergency">
+      <scheme id="153" card="1" name="Feisty Heist" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Discrad the highest-cost card from your hand." dejoue="" info=""/>
+      <scheme id="154" card="2" name="Disaster at the Docks" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Take 3 indirect damage." dejoue="" info=""/>
+      <scheme id="155" card="3" name="Offshore Inferno" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Discard the mlowest-cost card you control." dejoue="" info=""/>
+      <scheme id="156" card="4" name="Hot Pursuit" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Discard cards from the top of the encounter deck until a minion is discarded, then put that minion into play engaged with you." dejoue="" info=""/>
     </deck>
-    <deck id="58" name="Les Démolisseurs">
-      <scheme id="157" card="1" name="Les meilleurs talents" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="Le méchant et chaque sbire ELITE gagnent Riposte 1."/>
+    <deck id="58" name="Wrecking Crew">
+      <scheme id="157" card="1" name="Top Talent" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="The villain and each BRUTE minion gain retaliate 1."/>
     </deck>
+  </box>
+  <box id="27" name="Vision" type="h" own="0">
+    <heros id="31" name="Vision" vie="11"/>
+    <scheme id="161" card="31" name="Ultron Unleashed" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Search the encounter deck, discard pile, and set-aside aread for Ultron Drones and put it into play. Shuffle the encounter deck. Each player puts the top card of their deck into play facedown, engaged with them as a DRONE minion." dejoue="" info=""/>
   </box>
 </remoteChampions>

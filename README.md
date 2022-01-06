@@ -6,6 +6,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/readme.md)
 
 # Historique des changements
+## Version 5.5
+Corrections de quelques cartes
 ## Version 5.4c
 Indication des boites possédées dans les 2 langues...
 ## Version 5.4b

@@ -185,7 +185,6 @@
       <scheme id="50" card="21" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
       <scheme id="51" card="22" name="Capturé Par Hydra" init="5" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Placez face cachée sous cette manigance 1 allié CAPTIF pris au hasard parmi ceux mis de côté." dejoue="Le joueur qui a déjoué cette manigance prend l'allié plaçé dessous dans sa main et retire cette manigance de la partie." info=""/>
       <scheme id="52" card="23" name="Camp D'Entraînement De Taskmaster" init="2" initX="1" crise="0" rencontre="1" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : après qu'un sbire est entré en jeu, donnez-lui une carte d'état Tenace."/>
-      <scheme id="160" card="2" name="Juge; juré et bourreau" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie, placez 2 menaces sur la manigance principale."/>
     </deck>
     <deck id="24" name="Crâne Rouge">
       <scheme id="53" card="23" name="La Maison Rouge" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Crâne Rouge ne peut pas subir de dégâts. Interruption : Quand un personnage contre cette manigance annexe, il peut utiliser son ATQ au lieu de son CTR."/>
@@ -342,6 +341,7 @@
     <mechant id="23" name="Corvus Glaive" vie1="8" vie2="11" vie3="14"/>
     <mechant id="24" name="Thanos" vie1="16" vie2="23" vie3="28"/>
     <mechant id="25" name="Loki" vie1="20" vie2="20" vie3="20"/>
+    <mechant id="27" name="Hela" vie1="8" vie2="9" vie3="0"/>
     <principale id="39" name="Attaque sur Nulle-Part" init="1" initX="1" max="6" maxX="1"/>
     <principale id="40" name="La pierre du pouvoir" init="1" initX="1" max="9" maxX="1"/>
     <principale id="41" name="En état de siège" init="1" initX="1" max="6" maxX="1"/>
@@ -350,7 +350,7 @@
     <principale id="44" name="Equilibrer la balance" init="0" initX="0" max="12" maxX="1"/>
     <principale id="45" name="Le Tourment d'Odin" init="1" initX="1" max="18" maxX="1"/>
     <principale id="46" name="Longue vie au roi Loki" init="1" initX="1" max="12" maxX="1"/>
-    <heros id="25" name="Adam Warlovk" vie="11">
+    <heros id="25" name="Adam Warlock" vie="11">
       <scheme id="118" card="25" name="Eglise universelle de la vérité" init="2" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un joueur a réinitialisé son deck, inclinez l'identité de ce joueur et sonnez-la."/>
     </heros>
     <heros id="26" name="Spectrum" vie="11">
@@ -390,7 +390,6 @@
       <scheme id="125" card="4" name="Tribut" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte de rencontre face cachée au joueur qui a déjoué cette manigance." info=""/>
       <scheme id="126" card="5" name="Tribut" init="2" initX="1" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="Attribuez une carte de rencontre face cachée au joueur qui a déjoué cette manigance." info=""/>
     </deck>
-    <deck id="46" name="Gant de l'infini"/>
     <deck id="47" name="Légions de Hel">
       <scheme id="130" card="6" name="Légions de Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces supplémentaires sur cette carte pour chaque sbire MORT-VIVANT en jeu. S'il n'y a pas de sbire MORT-VIVANT en jeu, cette carte gagne renfort." dejoue="" info=""/>
       <scheme id="131" card="7" name="Légions de Hel" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="0" revele="Placez 2 menaces supplémentaires sur cette carte pour chaque sbire MORT-VIVANT en jeu. S'il n'y a pas de sbire MORT-VIVANT en jeu, cette carte gagne renfort." dejoue="" info=""/>
@@ -398,18 +397,16 @@
     <deck id="48" name="Géants de glace">
       <scheme id="132" card="6" name="Tempête surnaturelle" init="2" initX="1" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="Inclinez chaque allié en jeu." dejoue="" info="Les héros et les alliés ne peuvent pas être redressés par des effets de carte Joueur."/>
     </deck>
-    <deck id="49" name="L'enchanteresse"/>
     <deck id="50" name="Basique / Campagne">
       <scheme id="138" card="2" name="Brèche de sécurité" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="1" entrave="2" revele="Chaque joueur place face cachée sur cette carte une carte prise au hasard dans sa main." dejoue="Renvoyez dans la main de son propriétaire chaque carte face cachée qui est sur cette carte." info="Victoire 2."/>
       <scheme id="139" card="8" name="Protocoles de Défense" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="Victoire 2. INTERRUPTION FORCEE : Quand la phase des joueurs se termine, placez 1 jeton Crash sur cette carte. S'il y a 2 jetons Crash sur cette carte, chaque joueur ajoute à sa main 1 exemplaire de l'obligation Panne du Système. Retirez cette carte de la partie."/>
-      <scheme id="140" card="13" name="Récupérer l'armure d'Odin" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info=""/>
+      <scheme id="140" card="13" name="Récupérer l'armure d'Odin" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="Soignez tous les dégâts d'Odin et retournez-le sur sa face ROI" info="Aucune menace ne peut-être retirée de cette manigance à moins que le premier joueur ne contrôle Odin. Victoire 1."/>
       <scheme id="159" card="1" name="Sécuriser l'aire d'atterrissage" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="Retournez cette carte." dejoue="" info=""/>
       <scheme id="161" card="3" name="Sauver le resto de Shawarmas" init="2" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Chaque joueur mélange 1 exemplaire de Shawarma dans son deck. Retournez cette carte." info=""/>
       <scheme id="162" card="8" name="Pirater l'ordinateur du Sanctuaire" init="2" initX="0" crise="1" rencontre="0" accel="0" ampli="0" entrave="1" revele="" dejoue="Chaque joueur cherche 1 carte dans son deck ou sa pile de défausse, l'ajoute à sa main et mélange son deck. Retournez cette carte." info=""/>
       <scheme id="163" card="13" name="Trouver les pierres des Nornes" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="Chaque joueur met en jeu, sous son Contrôle, un exemplaire de l'amélioration pierre des Nornes, face Mise en place visible. Retournez cette carte" info="Aucune menace ne peut être retirée de cette manigance à moins qu'Hela n'ait le trait BLESSE."/>
       <scheme id="164" card="19" name="Ouvrir les cachots" init="3" initX="1" crise="0" rencontre="0" accel="0" ampli="1" entrave="0" revele="" dejoue="Chaque joueur choisit 1 allié CAPTIF du set Campagne et le met en jeu sous son contrôle. Retournez cette carte." info=""/>
     </deck>
-    <deck id="51" name="Campagne - Expert"/>
   </box>
   <box id="23" name="Fan Print 1" type="b" own="0">
     <heros id="27" name="Miles Morales" vie="9">
@@ -418,7 +415,9 @@
     <heros id="28" name="Deadpool" vie="10">
       <scheme id="119" card="28" name="Courtiser la mort" init="4" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="0" revele="" dejoue="" info="Traitez les zones de texte imprimées des héros comme si elles étaient vierges"/>
     </heros>
-    <deck id="59" name="Fanatique Kree"/>
+    <deck id="59" name="Fanatique Kree">
+      <scheme id="160" card="2" name="Juge, juré et bourreau" init="3" initX="1" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="" dejoue="" info="REPONSE FORCEE : Après qu'un personnage ami a été vaincu par une attaque ennemie, placez 2 menaces sur la manigance principale."/>
+    </deck>
   </box>
   <box id="24" name="War Machine" type="h" own="0">
     <heros id="29" name="War Machine" vie="10">
@@ -459,5 +458,9 @@
     <deck id="58" name="Les Démolisseurs">
       <scheme id="157" card="1" name="Les meilleurs talents" init="3" initX="0" crise="0" rencontre="0" accel="0" ampli="0" entrave="2" revele="" dejoue="" info="Le méchant et chaque sbire ELITE gagnent Riposte 1."/>
     </deck>
+  </box>
+  <box id="27" name="Vision" type="h" own="0">
+    <heros id="31" name="Vision" vie="11"/>
+    <scheme id="161" card="31" name="Ultron Unleashed" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Search the encounter deck, discard pile, and set-aside aread for Ultron Drones and put it into play. Shuffle the encounter deck. Each player puts the top card of their deck into play facedown, engaged with them as a DRONE minion." dejoue="" info=""/>
   </box>
 </remoteChampions>

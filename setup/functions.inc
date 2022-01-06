@@ -1,14 +1,21 @@
 <?php
 $rcLangs=array('fr','en');
+
 $rcLang=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 if (isset($_GET['lang']) and in_array($_GET['lang'],$rcLangs)) $_SESSION['lang']=$_GET['lang'];
 if (isset($_SESSION['lang'])) $rcLang=$_SESSION['lang'];
-
 $rcLang=in_array($rcLang,$rcLangs)?$rcLang:'fr';
 include_once($rcLang.'/lang.php');
 $boxFile=$rcLang.'/boxes.xml';
 $gitToken='ghp_';
 $gitToken.='RWTKe98avc5KnbAKmenMtWXgnS9Ztd2kSf25';
+
+function restrictAccess(){
+  global $str,$adminPassword;
+  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
+    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
+    displayBottom();
+    exit('</body>');}}
 
 function xmlAttr($xaObj,$xaToadd) {
   foreach ($xaToadd as $xaKey=>$xaValue) {$xaObj->addAttribute($xaKey,$xaValue);}}

@@ -1,32 +1,28 @@
 <?php
-function restrictAccess(){
-  global $str,$adminPassword;
-  if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
-    echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
-    displayBottom();
-    exit('</body>');}}
 
 function restoreXML($restoreFileName){
-  global $str,$restored,$xmlBoxes,$boxFile;
+  global $str,$restored,$boxFile,$rcLangs;
+  $rcLangs=array('fr','en');
   $changedBoxes=false;
   $xml=simplexml_load_file($restoreFileName);
+  $xmlBoxes=array();
+  foreach($rcLangs as $boxLang) $xmlBoxes[$boxLang]=simplexml_load_file($boxLang.'/boxes.xml');
   if (isset($xml['pUri'])) {
     if (!is_dir('ajax')) mkdir('ajax'); 
     rename($restoreFileName, 'ajax/'.$xml['pUri'].'.xml');
     $restored.="<div class='subError'>".$str['restoredGame']." : '".$xml['pUri']."'.</div>";
     #La boite contenant le Deck est-elle notée comme incluse ?
-    foreach($xml->deck as $deck) if ($deck['dId']<>0) {
-      foreach ($xmlBoxes as $xmlBox) { 
-        foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
-      $xmlBox['own']=1;
-      $changedBoxes=true;
-      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}}}
-    #La boite contenant le Héros est-elle notée comme incluse ?
-    foreach($xml->joueur as $joueur) if ($joueur['jHeros']<>0) foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->heros as $ownHeros) if ($ownHeros['id']->__toString()==$joueur['jHeros']->__toString() and $xmlBox['own']<>1) {
-      $xmlBox['own']=1;
-      $changedBoxes=true;
-      $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
-    if ($changedBoxes) xmlSave($xmlBoxes,$boxFile);}
+    foreach($rcLangs as $boxLang) {
+      foreach($xml->deck as $deck) if ($deck['dId']<>0) foreach ($xmlBoxes[$boxLang] as $xmlBox) foreach ($xmlBox->deck as $ownDeck) if ($ownDeck['id']->__toString()==$deck['dId']->__toString() and $xmlBox['own']<>1) {
+        $xmlBox['own']=1;
+        $changedBoxes=true;
+        $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+      #La boite contenant le Héros est-elle notée comme incluse ?
+      foreach ($xml->joueur as $joueur) if ($joueur['jHeros']<>0) foreach ($xmlBoxes[$boxLang] as $xmlBox) foreach ($xmlBox->heros as $ownHeros) if ($ownHeros['id']->__toString()==$joueur['jHeros']->__toString() and $xmlBox['own']<>1) {
+        $xmlBox['own']=1;
+        $changedBoxes=true;
+        $restored.="<div class='subError'>(".$str['boxAdd'].' \''.$xmlBox['name']."'.)</div>";}
+      if ($changedBoxes) xmlSave($xmlBoxes[$boxLang],$boxLang.'/boxes.xml');}}
   else {
     unlink($restoreFileName);
     $restored.="<div class='subError'>".$str['xmlError'].' : '.$restoreFileName.', '.$str['xmlError2'].'</div>';}}
@@ -92,10 +88,7 @@ if (isset($_POST['newPass']) and $_POST['newPass']<>'') {
   updatePassword();}
 #Vérification du mot de passe d'administration.
 if (isset($_POST['adminPassword']) and !empty($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
-if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
-  echo("<div class='pannel'><div class='titleAdmin'>".$str['restrictedTitle']."</div>".$str['restricted']."<br/><a class='adminButton' href='.'>".$str['restrictedBack']."</a></div>");
-  displayBottom();
-  exit('</body>');}
+restrictAccess();
 
 if (isset($_POST['publicMode'])) {
   #Activation/désactivation du mode public
@@ -179,7 +172,7 @@ echo '><input type=\'submit\' onclick="if (document.getElementById(\'publicModeO
 echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data" id="setupForm"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
 $gitCommit=gitFileDate();
 if (isset($gitCommit['erreur'])) echo "<div class='error'>".$str['gitHubError']."....<div class='subError'>".$gitCommit['erreur']."</div></div>"; else {
-  echo "Version locale : $version<br/><a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>".$str['gitHubVersion']." ".$gitCommit['version'].", ".$str['adminAgo']." ";
+  echo "Version $version<br/><a class='adminEncadre' href='https://github.com/Fouyoufr/remoteChampions/blob/main/README.md#historique-des-changements' target='_blank'>".$str['gitHubVersion']." ".$gitCommit['version'].", ".$str['adminAgo']." ";
 $gitAgo=date_diff($gitCommit['date'],new DateTime());  
 if ($gitAgo->m>0) echo $gitAgo->m.' '.$str['months'].', ';
 if (explode(',',$gitAgo->format('%m,%d'))[1]>0) echo explode(',',$gitAgo->format('%m,%d'))[1].' '.$str['days'].', ';

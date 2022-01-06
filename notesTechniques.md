@@ -16,6 +16,18 @@
      </deck>
   </box>
   ```
+
+## Derniers ID utilisés:
+Boite : 27
+Méchant : 27
+Héros : 31
+Manigance : 161
+Deck : 59
+
+
+## Référence en ligne des cartes en VO
+https://hallofheroeslcg.com/browse/
+
 ## Taille des images
 - Héros = 50x50px
 - Méchants = 50x50px

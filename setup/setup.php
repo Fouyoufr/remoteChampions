@@ -90,8 +90,7 @@ if ($version=='dockerSetup') {
   $dockerSetup=true;
   $localSetup=true;}
 #Vérification du mot de passe d'administration.
-if (!isset($_SESSION['adminPassword']) or $_SESSION['adminPassword']<>$adminPassword) {
-	exit("<div class='pannel'><div class='pannelTitle'>".$str['restrictedTitle']."</div>".$str['restricted']."...<br/><a class='button' href='.'>".$str['restrictedBack']."</a></div>");}
+if (function_exists('restrictAccess')) restrictAccess();
 clearstatcache();
 #Ajout des répertoires de langue si absents
 foreach ($rcLangs as $rcLangDir) if (!file_exists($rcLangDir)) mkdir($rcLangDir,0777,true);
