@@ -48,7 +48,7 @@ Une fois votre conteneur démarré, accédez à votre site en http ou https (com
 ## Mise à jour de '*Remote Champions*'
 Lorsque le site est installé, vous pouvez voir la dernière mise à jours disponible (ainsi que sa date de publication) dans la section "[mise à jour](https:#mise-à-jour)" de l'écran d'administration.  
 Cliquez sur le bouton "*Lancer la mise à jour*" lorsque vous le souhaitez.
-Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).
+Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../../README.md#historique-des-changements).
 
 ---
 # Utilisation de '*Remote Champions*'

@@ -1,59 +1,57 @@
-# Contenu de la documentation
-### 1. [Installation de '*Remote Champions*'](https:#installation-de-remote-champions)
-1a. [Prérequis serveur](https:#prérequis-serveur)  
+# Content of the documentation
+### 1. ['*Remote Champions*' Installation](https:#remote-champions-installation)
+1a. [Server prerequisites](https:#server-prerequisites)  
 1b. [Docker](https:#docker)  
-1c. [Séquence d'installation](https:#séquence-dinstallation)  
-1d. [Mise à jour de '*Remote Champions*'](https:#mise-à-jour-de-remote-champions)  
-### 2. [Utilisation de '*Remote Champions*'](https:#utilisation-de-remote-champions)
-2a. [Page de connexion](https:#page-de-connexion)  
-2b. [Création d'une partie](https:#création-dune-nouvelle-partie)  
-2c. [Présentation de la page de partie](https:#présentation-de-la-page-de-partie)  
-2d. [Paramétrage initial de la partie](https:#paramétrage-initial-de-la-partie)  
-2e. [Gestion du méchant](https:#gestion-du-méchant)  
-2f. [Gestion du joueur](https:#gestion-du-joueur)  
-2g. [Gestion des Manigances](https:#gestion-des-manigances)  
-2h. [Aides de jeu](https:#aides-de-jeu)
-### 3. [Administration du site](https:#administration-du-site)
-3a. [Activation des boites de jeu](https:#activation-des-boites-de-jeu)  
-3b. [Liste des parties sur le serveur](https:#liste-des-parties-sur-le-serveur)  
-3c. [Sauvegarde/REsturation](https:#sauvegarde--restauration)  
-3d. [Mot de passe administratif](https:#mot-de-passe-administratif)  
-3e. [Mode public](https:#mode-public)  
-3f. [Mise à jour](https:#mise-à-jour)  
-### 4. [Accès par smartphone](https:#accès-par-smartphone)
-### 5. [Foire aux questions](https:#foire-aux-questions)
+1c. [Installtion sequence](https:#installation-sequence)  
+1d. ['*Remote Champions*' Update](https:#remote-champions-update)  
+### 2. [Using '*Remote Champions*'](https:#using-remote-champions)
+2a. [Landing page](https:#landing-page)  
+2b. [Create a new game](https:#création-dune-nouvelle-partie)  
+2c. [Game page presentation](https:#présentation-de-la-page-de-partie)  
+2d. [In initial game settings](https:#paramétrage-initial-de-la-partie)  
+2e. [Villain management](https:#gestion-du-méchant)  
+2f. [Player management](https:#gestion-du-joueur)  
+2g. [Threats management](https:#gestion-des-manigances)  
+2h. [Help](https:#aides-de-jeu)
+### 3. [Site's administration](https:#administration-du-site)
+3a. [Game boxes activation](https:#activation-des-boites-de-jeu)  
+3b. [List of games on server](https:#liste-des-parties-sur-le-serveur)  
+3c. [Save/restore](https:#sauvegarde--restauration)  
+3d. [Administrative password](https:#mot-de-passe-administratif)  
+3e. [Public mode](https:#mode-public)  
+3f. [Update](https:#update)  
+### 4. [Smartphone access](https:#accès-par-smartphone)
+### 5. [Frequently Asked Questions](https:#foire-aux-questions)
 
 ---
-# Installation de '*Remote Champions*'
-## Prérequis serveur
-Pour installer *Remote Champions* sur un serveur vous appartenant, il vous faudra un [serveur web prenant en charge PHP](https:#serveur-web-php).
-#### Serveur Web PHP
-En complément de l'installation du service PHP, celui-ci (le compte avec lequel le service fonctionne) doit avoir les **accès en écriture et suppression sur le répertoire racine de l'installation** et sur tous les fichiers/dossiers inclus. Ces autorisations sont nécessaires pour mener à bien les processus d'installation et de mise à jour.  
-De plus, le moteur php doit permettre les lectures de fichiers distants (http get) pour que l'installation et la mise à jour puissent se dérouler sans problème.  
-Fonctionnement testé avec succès sur les configurations/versions suivantes :
- - Apache 2.2
+# '*Remote Champions*' Installation
+## server prerequisites
+In order to setup *Remote Champions* on your own server, you'll need a [web server that supports PHP](https:#web-server-(and-PHP)).
+#### Web server (and PHP)
+In addtion to setting up the PHP service, this one (the account used by the deamon) need full **read, write and delete access on the root folder of the website** and on all subfolders and files included. These permissions are needed to operte the server as to install and update it.
+Your PHP engine needs to be able to read remote files (http get) so installation and update may happen without problem.
+*Remote Champions* has successfully been tested with the following configurations :
  - Apache 2.4
  - Nginx
  - PHP 7.2
  - PHP 7.4
  ## Docker
-Si vous n'avez pas de serveur web/php mais que vous avez un moteur Docker à votre disposition, vous pouvez également vous contenter de récupérer le conteneur remotechampions en le cherchant (*fouyou/remotechampions*) sur docker Hub.  
-Une fois votre conteneur démarré, accédez à votre site en http ou https (comme tous les mots de passe sont transmis en clair au serveur pour que leur empreinte soit comparée à celle stockée, nous vous recommandons fortement de passer par https, même si le certificat du conteneur est un certificat autosigné...).  
-**Nota :** Ce conteneur est basé sur un moteur web Nginx et du PHP 7.4.  
-**Nota2 :** Vous pourrez, par la suite si vous le souhaitez, mettre à jour votre installation vers une installation plus récente.  
-## Séquence d'installation
-1. Copiez tout le contenu (y compris le(s) sous-dossier(s)) du dossier **Setup** du présent dépôt vers le dossier choisi sur votre serveur pour héberger le site *Remote Champions*.
-1. Vérifier que votre installation de PHP a les droits nécessaires pour écrire et supprimer des fichiers dans le dossier choisi et ses sous-dossiers.  
-**Note :** Si vous utilisez le site pour jouer à distance avec des amis (but original de ce développement), il faudra bien sûr que le site web soit accessible de tous les joueurs sur Internet.
-## Mise à jour de '*Remote Champions*'
-Lorsque le site est installé, vous pouvez voir la dernière mise à jours disponible (ainsi que sa date de publication) dans la section "[mise à jour](https:#mise-à-jour)" de l'écran d'administration.  
-Cliquez sur le bouton "*Lancer la mise à jour*" lorsque vous le souhaitez.
-Les mises à jour peuvent inclure de nouvelles fonctionnalités, des corrections de bug ou des mises à jour de contenu (nouvelles extensions, nouveaux packs de scénarii ou de héros). Vous pouvez accèder à la description de toutes les mises à jour [dans le dépot gitHub](https:../README.md#historique-des-changements).
-
+If you don't have a web/php server but you have a docker engine available, you can easyly pull the *Remote Champions* image by lookig for it (*fouyou/remotechampions*) on Docker Hub.  
+Once your docker container started, access your website by its http or https (since every password is sent as clear text to the server in order to check for its hash, we recommend strongly you use https, even with a self-signed certificate on your container...).  
+**Nota :** The Docker image is based on Nginx and PHP 7.4.  
+**Nota2 :** After initial start you'll be able, if you want to, to update your site to any new verion.  
+## Installation sequence
+1. Copy all the content (including sub-folders) of the **Setup** foler from this repository to the folder you choosed to hold the *Remote Champions* webstie.
+1. Check your PHP setup has needed permissions to write and delete files in the root folder and all subfolders.
+**Nota :** If you use the website to play remotely with friends (initial goal of *Remote Champions*), you'll obviously need to make the website reachable by any player form the Internet.  
+## '*Remote Champions*' Update
+Once the website installed, you may see the last available version (including its publishing date) under the "[update](hhtps#update)" section of the administrative screen.  
+Click on the "*Launch update*" button whenever you want.  
+The updates may include new features, bugs corrections or content updates (new extensions boxes, new scenarii or new hero boxes). You can access the descriptions of all the updates [in Github repository](https:../../README.md#historique-des-changements).
 ---
-# Utilisation de '*Remote Champions*'
-**Préambule:** L'outil *Remote Champions* n'est en aucun cas prévu pour remplacer la possession des cartes par les joueurs : il  a pour seul objectif de fluidifier le déroulement des parties (particulièrement des parties jouées à distance, avec audio/visio conférence) en tenant à jour un maximum des éléments nécessaires au suivi de la partie et en les présentant aux différents joueurs.  
-## Page de connexion
+# Using '*Remote Champions*'
+**Preamble:** *remote Champions* tool is by no mean made to replace every player owning the game cards : It's juts made to ease your games (and is merely focused on easing remote games, in addition to viso/audio conefrencing tools) by keeping everyone updated about a lot of elements needed during the game.   
+## Landing page
 Utilisez votre navigateur Internet, depuis votre ordinateur ou depuis votre smartphone pour accéder à votre installation de *Remote Champions*. La page d'accueil se présente comme l'illustration suivante:  
 ![Page de connexion](illus1.png "Page de connexion")
 - Si la partie qui vous intéresse a déjà été créée, vous pouvez simplement saisir **son mot-clef** dans le premier champ![1](../tag1.png) avant de cliquer sur "*OK*"![2](../tag2.png),
