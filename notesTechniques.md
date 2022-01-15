@@ -21,7 +21,7 @@
 Boite : 27
 Méchant : 27
 Héros : 31
-Manigance : 161
+Manigance : 165
 Deck : 59
 
 
