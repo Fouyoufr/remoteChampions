@@ -460,7 +460,7 @@
     </deck>
   </box>
   <box id="27" name="Vision" type="h" own="0">
-    <heros id="31" name="Vision" vie="11"/>
-    <scheme id="161" card="31" name="Ultron Unleashed" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Search the encounter deck, discard pile, and set-aside aread for Ultron Drones and put it into play. Shuffle the encounter deck. Each player puts the top card of their deck into play facedown, engaged with them as a DRONE minion." dejoue="" info=""/>
+    <heros id="31" name="Vision" vie="11"/> 
+    <scheme id="161" card="31" name="Ultron déchaîné" init="3" initX="0" crise="0" rencontre="0" accel="1" ampli="0" entrave="0" revele="Cherchez la carte Drones d'Ultron dans le deck Rencontre, la pile de défausse Rencontre ou parmi les cartes mises de côté et mettez-la en jeu. Mélangez le deck Rencontre. Chaque joueur met en jeu la carte du dessus de son deck, face cachée, engagée avec lui en tant que sbire DRONE." dejoue="" info=""/>
   </box>
 </remoteChampions>

@@ -11,6 +11,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
 
 # Historique des changements
+## Version 5.6
+Ajout de la boite de héros Vision
 ## Version 5.5
 Corrections de quelques cartes
 ## Version 5.4c
