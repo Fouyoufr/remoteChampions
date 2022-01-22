@@ -67,6 +67,11 @@
       'zipRestore'=>'Fichier à restaurer',
       'xmlError'=>'Erreur de fichier XML',
       'xmlError2'=>'Ce fichier ne semble pas contenir de sauvegarde Remote Champions',
+      'meloImport'=>'Import de la playlist',
+      'meloError'=>'Erreur : playlist vide',
+      'meloAdminExpl'=>'Vous pouvez activer sur Remote Champions l\'import d\'une playlist sélectionnée sur le site <a href="https://melodice.org" target="_blank">melodice.org</a> et en permettre la lecture aléatoire en fond sonore pendant une partie de jeu',
+      'meloAdminStatus'=>'Melodice playlist est',
+      'meloAdminPlaylist'=>'Playlist à importer',
       #Index
       'welcome'=>'Bienvenue sur Remote Champions',
       'typeKey'=>'Saisir le mot-clef d\'une partie pour la rejoindre',

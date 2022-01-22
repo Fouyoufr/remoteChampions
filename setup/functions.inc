@@ -37,7 +37,7 @@ function gitFileDate($gitFile=null){
   return array('version'=>strtok($lastCommit['message'],"\n"),'comments'=>nl2br(ltrim(strstr($lastCommit['message'],"\n"),"\n")),'date'=>new DateTime($lastCommit['committer']['date']));}
 
 function displayBottom() {
-  global $partieId,$adminPassword,$mobile,$str,$gitBranch,$rcLang,$rcLangs;
+  global $partieId,$adminPassword,$mobile,$str,$gitBranch,$rcLang,$rcLangs,$meloDice,$meloDice1,$meloList,$bodyClass;
   $currentScript=basename($_SERVER['PHP_SELF']);
   if (!$mobile) {
     if ($currentScript<>'admin.php' and $currentScript<>'setup.php') {
@@ -53,7 +53,12 @@ function displayBottom() {
     foreach ($rcLangs as $selecLang) echo '<li><a href="'.$urlLangAdd.$selecLang.'" class="'.$selecLang.'"></a></li>';
     echo '</ul></div>';
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc/$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
-    echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";}}
+    echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
+
+    if ($meloDice!='' and $bodyClass<>'admin') {
+      echo '<div id="melodice"><input id="meloCheck" type="checkbox"><div id="meloDisplay"><a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a><iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=1&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&playlist='.$meloDice.'&origin=http';
+      if ($_SERVER['HTTPS']) echo 's';
+      echo '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe><div id="meloList">('.$meloList.')</div></div><label for="meloCheck"></label></div>';}}}
 
 function updatePassword() {
   global $adminPassword,$str;

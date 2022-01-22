@@ -67,6 +67,11 @@
       'zipRestore'=>'File to restore',
       'xmlError'=>'Bad XML File',
       'xmlError2'=>'This file doesn\'t seem to include any Remote Champions saved game',
+      'meloImport'=>'Playlist import',
+      'meloError'=>'Error : Empty playlist',
+      'meloAdminExpl'=>'You can enable background music during any Remote Champions game by importing a playlist from the <a href="https://melodice.org" target="_blank">melodice.org</a> website. The playlist will be playable in random order during the game.',
+      'meloAdminStatus'=>'Melodice is currently',
+      'meloAdminPlaylist'=>'Playlist to import',
       #Index
       'welcome'=>'Welcome on Remote Champions',
       'typeKey'=>'Please type the key of the game you want to join',

@@ -1,4 +1,5 @@
 <?php
+$meloListStart='marvel-champions-the-card-game-2019';
 
 function restoreXML($restoreFileName){
   global $str,$restored,$boxFile,$rcLangs;
@@ -83,12 +84,53 @@ $title='Remote Champions - Admin';
 $bodyClass='admin';
 include_once 'include.inc';
 $xmlBoxes=simplexml_load_file($boxFile);
+
 if (isset($_POST['newPass']) and $_POST['newPass']<>'') {
   $adminPassword=hash('sha256',$_POST['newPass']);
   updatePassword();}
+
 #Vérification du mot de passe d'administration.
 if (isset($_POST['adminPassword']) and !empty($_POST['adminPassword'])) $_SESSION['adminPassword']=hash('sha256',$_POST['adminPassword']);
 restrictAccess();
+
+$meloErr='';
+if (isset($_POST['melodiceStatus'])) {
+  #Activation/désactivation des fonctions musicales
+  if ($_POST['melodiceStatus']=='on') {
+    #Changement/refresh de la playlist importée.
+    if ($_POST['melodiceList']=='') $newMeloList=$meloListStart; else $newMeloList=$_POST['melodiceList'];
+    $meloDom = new DOMDocument;
+    $libxml_previous_state = libxml_use_internal_errors(true);
+    $meloDom->loadHTMLFile('https://melodice.org/playlist/'.$newMeloList);
+    libxml_clear_errors();
+    libxml_use_internal_errors($libxml_previous_state);
+    $meloErr=$str['meloImport'].' "'.$meloDom->getElementsByTagName('title')[0]->textContent.'".';
+    foreach ($meloDom->getElementsByTagName('a') as $node) if (strpos(strtoupper($node->nodeValue),'YOUTUBE')) $newMeloDice=explode('=',$node->getAttribute('href'))[1];
+    if ($newMeloDice=='') {
+      $meloErr=$str['meloError'].' ('.$meloDom->getElementsByTagName('title')[0]->textContent.').';
+      unset($newMeloList);
+      unset($newMeloDice);}}
+  else $newMeloDice='';
+  #Ajout/insertion dans le fichier config;
+  function replaceMeloDice($data) {
+    global $meloDice,$newMeloDice;
+    if (isset($meloDice) and stristr($data,'$meloDice=')) return "\$meloDice='$newMeloDice';\n";
+    elseif (!isset($meloDice) and stristr($data,'?>')) return "\$meloDice='$newMeloDice';\r\n?>\n";
+    return $data;}
+  if (isset($newMeloDice)) {
+    $configFile=array_map('replaceMeloDice',file('config.inc'));
+    file_put_contents('config.inc', implode('',$configFile));
+    $meloDice=$newMeloDice;}
+  function replaceMeloList($data) {
+      global $meloList,$newMeloList;
+      if (isset($meloList) and stristr($data,'$meloList=')) return "\$meloList='$newMeloList';\n";
+      elseif (!isset($meloList) and stristr($data,'?>')) return "\$meloList='$newMeloList';\r\n?>\n";
+      return $data;}
+  if(isset($newMeloList)) {
+    $configFile=array_map('replaceMeloList',file('config.inc'));
+    file_put_contents('config.inc', implode('',$configFile));
+    $meloList=$newMeloList;}}
+elseif (!isset($meloList)) $meloList=$meloListStart;
 
 if (isset($_POST['publicMode'])) {
   #Activation/désactivation du mode public
@@ -100,7 +142,10 @@ if (isset($_POST['publicMode'])) {
      return $data;}
   $configFile=array_map('replace_a_line',$configFile);
   file_put_contents('config.inc', implode('',$configFile));}
-if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
+
+if (isset($_GET['del'])) {
+  #Suppresion d'une partie.
+  unlink('ajax/'.$_GET['del'].'.xml');}
 ?>
 
 <!--
@@ -120,7 +165,7 @@ if (isset($_GET['del'])) {unlink('ajax/'.$_GET['del'].'.xml');}
   echo "<form class='pannel' id='newPassForm' method='post' action=''><div class='titleAdmin'>".$str['adminPwd'].'</div>';
   if (isset($_POST['newPass'])) echo "<div class='redMessage'>".$str['adminPassChanged']."</div>";
   if ($_SESSION['adminPassword']=='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918') echo "<div class='redMessage'>".$str['defaultAdminPass']."</div>";
-  echo '<span class="redUnderline">'.$str['warning'].':</span>'.$str['passwordNotStored'].'<hr/><div class="publicStatus">'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'<br/> </div><div><input type=\'password\' name=\'newPass\' id=\'newPass\'><br/><input type=\'password\' name=\'newPass2\' id=\'newPass2\'><input type=\'submit\' onclick="if (document.getElementById(\'newPass\').value == document.getElementById(\'newPass2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
+  echo '<span class="redUnderline">'.$str['warning'].':</span>'.$str['passwordNotStored'].'<hr/><div class="publicStatus">'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'<br/> </div><div><input type=\'password\' name=\'newPass\' id=\'newPass\'><br/><input type=\'password\' name=\'newPass2\' id=\'newPass2\'>  <input type=\'submit\' onclick="if (document.getElementById(\'newPass\').value == document.getElementById(\'newPass2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
 
   echo '<div class="pannel"><div class="titleAdmin">'.$str['boxesTitle'].'</div>('.$str['globalParam'].')<br/>';
   function displayBoxes($boxType) {
@@ -157,7 +202,7 @@ echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' en
 
 echo '<form class="pannel" id=\'publicModeForm\' method=\'post\' action=\'\'>
 <div class="titleAdmin">Mode public</div>';
-if (isset($_POST['publicMode'])) echo "<div class='redMessage'>".$dtr['adminSaved']."</div>";
+if (isset($_POST['publicMode'])) echo "<div class='redMessage'>".$str['adminSaved']."</div>";
 echo '<span class="publicWarning">'.$str['warning'].':</span>'.$str['adminPublicHelp'].'<hr/><div class="publicStatus">'.$str['adminPublicStatus'].'<br/>'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'</div><div>';
 echo "<input type='radio' name='publicMode' value='off' id='publicModeOff' onclick='document.getElementById(\"newPublic\").disabled=true;document.getElementById(\"newPublic2\").disabled=true;document.getElementById(\"newPublic\").value=\"\";document.getElementById(\"newPublic2\").value=\"\";'";
 if (!isset($publicPass) or $publicPass=='') echo ' checked';
@@ -167,7 +212,18 @@ echo ">".$str['enabled']."<br/><input type='password' name='newPublic' id='newPu
 if (!isset($publicPass) or $publicPass=='') echo ' disabled';
 echo "><br/><input type='password' name='newPublic2' id='newPublic2'";
 if (!isset($publicPass) or $publicPass=='') echo ' disabled';
-echo '><input type=\'submit\' onclick="if (document.getElementById(\'publicModeOff\').checked) return true; else if(document.getElementById(\'newPublic\').value.length<6) {alert(\''.$str['adminPublicPass6char'].'\');return false;} else if (document.getElementById(\'newPublic\').value == document.getElementById(\'newPublic2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
+echo '>  <input type=\'submit\' onclick="if (document.getElementById(\'publicModeOff\').checked) return true; else if(document.getElementById(\'newPublic\').value.length<6) {alert(\''.$str['adminPublicPass6char'].'\');return false;} else if (document.getElementById(\'newPublic\').value == document.getElementById(\'newPublic2\').value) return true; else {alert(\''.$str['adminPassNotMatch'].'\');return false;}"></div></form>';
+
+echo '<form class="pannel" class="melodiceAdmin" method="post" id="melodiceForm"><div class="titleAdmin">Melodice</div>';
+if (isset($meloErr)) echo "<div class='redMessage'>".$meloErr."</div>";
+echo $str['meloAdminExpl'].'.<br/>';
+echo $str['meloAdminStatus'].' <input type="radio" name="melodiceStatus" value="off" id="melodiceOff" onclick="document.getElementById(\'melodiceList\').disabled=true;"';
+if (!isset($meloDice) or $meloDice=='') echo ' checked';
+echo '>'.$str['disabled'].' / <input type="radio" name="melodiceStatus" value="on" onclick="document.getElementById(\'melodiceList\').disabled=false;"';
+if ($meloDice<>'') echo '  checked';
+echo '>'.$str['enabled'].'<br/>'.$str['meloAdminPlaylist'].' : https://melodice.org/playlist/<input type="text" name="melodiceList" value="'.$meloList.'" size="50" id ="melodiceList"';
+if (!isset($meloDice) or $meloDice=='') echo ' disabled';
+echo '>  <input type="submit"></form>';
 
 echo '<form class="pannel" class="miseAJour" action="setup.php" method="post" enctype="multipart/form-data" id="setupForm"><div class="titleAdmin">'.$str['adminUpdate'].'</div>';
 $gitCommit=gitFileDate();

@@ -18,9 +18,9 @@ if (isset($title)) {
   <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
   <meta charset='UTF-8'>
-  <script type='text/javascript' src='mc.js'></script>
-  <link rel='stylesheet' href='ecran.css'>
-  <link rel='icon' href='favicon.ico'/>
+  <script type='application/javascript' src='mc.js'></script>
+  <link rel='stylesheet' href='ecran.css' content-type='text/css; charset=utf-8'>
+  <link rel='icon' type='image/x-icon' href='favicon.ico'/>
   <title>$title</title>
   <script language='JavaScript'>
     var css=localStorage.getItem('mcCss');
@@ -44,4 +44,11 @@ echo "
 <script language='JavaScript'>
 var lang={'hero':'".$str['heros']."','alter':'".$str['alter']."','selectDeck':'".$str['SelectDeck']."','heroSchemes':'".$str['heroSchemes']."'}; 
 </script>";}
+#Gestion de la playlist aléatoire.
+if (isset($meloDice) and $meloDice!='') {
+  $meloIds=explode(',',$meloDice);
+  shuffle($meloIds);
+  $meloDice=implode(',',$meloIds);
+  $meloDice1=$meloIds[0];}
+else $meloDice='';
 ?>
