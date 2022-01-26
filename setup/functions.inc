@@ -56,7 +56,7 @@ function displayBottom() {
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
 
     if ($meloDice!='' and $bodyClass<>'admin') {
-      echo '<div id="melodice"><input id="meloCheck" type="checkbox"><div id="meloDisplay"><a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a><iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=1&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&playlist='.$meloDice.'&origin=http';
+      echo '<div id="melodice"><input id="meloCheck" type="checkbox"><div id="meloDisplay"><a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a><iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=0&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&playlist='.$meloDice.'&origin=http';
       if ($_SERVER['HTTPS']) echo 's';
       echo '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe><div id="meloList">('.$meloList.')</div></div><label for="meloCheck"></label></div>';}}}
 
