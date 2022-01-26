@@ -1,9 +1,9 @@
 function longPool(ajaxTraite,partieId) {
   document.getElementById('ajaxLoad').style.display='block';
-  var longPoolReq = new XMLHttpRequest();
-  longPoolReq.onreadystatechange=ajaxTraite;
-  longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
-  longPoolReq.send();}
+  var ajaxReq = new XMLHttpRequest();
+  ajaxReq.onreadystatechange=ajaxTraite;
+  ajaxReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
+  ajaxReq.send();}
 
 function ajaxCall (ajaxTraite,getParam) {
   document.getElementById('ajaxLoad').style.display='block';
