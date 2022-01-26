@@ -20,10 +20,7 @@ if ($mobile) {
   	exit ('<div id="selectPartieMobile"><h1>'.$str['mobileSelect'].'<br/>
    <input type="button" id="selecJ1"><input type="button" id="selecJ2"><input type="button" id="selecJ3"><input type="button" id="selecJ4">
    <input type="button" class="selectMechant" id="mechant" value="'.$str['villain'].'" onclick="window.location.href=\'mechant.php?p='.$partieId.'\'"></div>
- <script language="JavaScript">
- ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true);
- setInterval("ajaxCallCache(ajaxSelecSet,\'ajax/\'+encodeURIComponent(document.getElementById(\'partie\').value+\'.xml\'),true)",2000); 
- </script>');}}
+ <script language="JavaScript">ajaxPush(document.getElementById(\'partie\').value,ajaxSelecSet);</script>');}}
 foreach ($xmlBoxes->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->principale as $principale) $principales[$principale['id']->__tostring()]=$principale['name'];
 ?>
 
@@ -112,9 +109,6 @@ echo '<div id="changeNameIndex"><div class="titlePopup">'.$str['changePlayerName
 
 echo '<input id=\'popupNewManigance\' type=\'hidden\' value=\'\'/><input id=\'popupDelManigance\' type=\'hidden\' value=\'0\'/><div id=\'manigancePopup\'><h1>'.$str['sideSchemeInfo'].'</h1><span id=\'manigancePopupText\'></span><div class="boutonsPopup"><input type="button" value="OK" onclick=\'document.getElementById("manigancePopup").style.display="none";\'></div></div>';
 ?>
-<script type="application/javascript">
-   ajaxCallCache(ajaxMainSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value+'.xml'),true);
-   longPoolMain(document.getElementById('partie').value,true);
-   </script>
+<script type="application/javascript">ajaxPush(document.getElementById('partie').value,ajaxMainSet);</script>
 </body>
 </html>

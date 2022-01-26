@@ -3,7 +3,7 @@ header('Content-Type: application/xml; charset=utf-8');
 $startTime=time();
 session_write_close();
 ignore_user_abort(false);
-set_time_limit(60);
+set_time_limit(120);
 
 // Récupération de la partie sollicitée
 if (isset($_GET['p'])) $partieFile='ajax/'.strtoupper(htmlspecialchars($_GET['p'])).'.xml';
@@ -14,7 +14,7 @@ $index=0;
 while ($index<30) {
   //renvoi du fichier XML si modifié depuis le début
   if (filemtime($partieFile)>$startTime) {
-    echo file_get_contents($partieFile);}
+    exit(file_get_contents($partieFile));}
 	clearstatcache();
 	sleep(1);
    $index++;}

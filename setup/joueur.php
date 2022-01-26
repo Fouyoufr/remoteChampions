@@ -34,10 +34,7 @@ foreach ($xmlBoxes->box as $xmlBox) if ($xmlBox['own']==1) foreach ($xmlBox->her
 echo '</select><div class="buttonChange"><input type ="submit" value="'.$str['confirm'].'"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeHerosMobile").style.display="none";\' class=\'bouton\'></div></form></div>';
 echo '<div id="changeNameMobile"><div class="mobilePopuptitle">'.$str['changePlayerName'].'</div><form class="mobilePopupContent" onsubmit=\'ajaxPost("changeName",document.getElementById("playerName").value);document.getElementById("changeNameMobile").style.display="none";return false;\'>'.$str['newPlayerName'].' <span id="changeNameOld"></span><br/><br/><input type=\'text\' id=\'playerName\' minlength="4" maxlength="50"><br/><br/>
 <div class="centre"><input type ="submit" value="'.$str['confirm'].'"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeNameMobile").style.display="none";\'></div></form></div>';
-echo '<script language="JavaScript">
-ajaxCallCache(ajaxJoueurSet,\'ajax/'.$partieId.'.xml?\'+Math.random()*Math.random());
-setInterval("ajaxCallCache(ajaxJoueurSet,\'ajax/'.$partieId.'.xml?\'+Math.random()*Math.random())",2000); 
-</script>';
 ?>
+<script type="application/javascript">ajaxPush(document.getElementById('partie').value,ajaxJoueurSet);</script>
 </body>
 </html>

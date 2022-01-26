@@ -1,12 +1,19 @@
-function longPoolMain(partieId) {
-  document.getElementById('ajaxLoad').style.display='block';
-  var longPoolReq = new XMLHttpRequest();
+function ajaxPush(partie,traitement) {
+  var longPoolReq=new XMLHttpRequest();
+  longPoolReq.open('GET','ajax/'+encodeURIComponent(partie+'.xml'));
   longPoolReq.onreadystatechange=function() {
-    if (this.readyState == 4 && this.status == 200) {
-      ajaxMainSet(this);
-      longPoolMain(partieId);}}
-  longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random());
-  longPoolReq.send();}
+    if (this.readyState == 4 && this.status == 200) traitement(this);}
+  longPoolReq.send();
+
+	function longPool() {
+		var longPoolReq = new XMLHttpRequest();
+		longPoolReq.onreadystatechange=function() {
+			if (this.readyState === 4 && this.status === 200) {
+        traitement(this);
+        longPool();}}
+		longPoolReq.open('GET','longpool.php?p='+partie);
+		longPoolReq.send();}
+    longPool();}
 
 function ajaxCall (ajaxTraite,getParam) {
   document.getElementById('ajaxLoad').style.display='block';
@@ -23,7 +30,7 @@ function ajaxCallCache (ajaxTraite,ajaxUrl) {
     ajaxReq.send();}
   
 function ajaxPost (key,value) {
-  if (document.getElementById('ajaxSave')) {document.getElementById('ajaxSave').style.display='block';}
+  if (document.getElementById('ajaxSave')) document.getElementById('ajaxSave').style.display='block';
   ajaxReqPost=new XMLHttpRequest();
   ajaxReqPost.open('POST','ajax.php',true);
   ajaxReqPost.onreadystatechange=function() {
@@ -39,70 +46,66 @@ function ajaxPost (key,value) {
   if (document.getElementById('jId')) {uri+='&j='+encodeURIComponent(document.getElementById('jId').value);}
   ajaxReqPost.send(uri);}
   
-function ajaxSelecSet() {
+function ajaxSelecSet(ajaxSelecReq) {
   //Remplissage de l'écran de sélection pour l'affichage mobile.
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	var xmlDoc = ajaxReq.responseXML;
-    var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
-    for (i=1;i<=parseInt(nbJoueurs);i++) {
-      var numero=parseInt(xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNumero'));
-      if (document.getElementById('selecJ'+numero).style.display!='block') {document.getElementById('selecJ'+numero).style.display='block';}
-      document.getElementById('selecJ'+numero).value=xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNom');
-      document.getElementById('selecJ'+numero).setAttribute('onclick','window.location.href="joueur.php?p='+xmlDoc.getElementsByTagName('partie')[0].getAttribute('pUri')+'&j='+xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jId')+'";');}
-    if (nbJoueurs<4 && document.getElementById('selecJ4').style.display!='none') {document.getElementById('selecJ4').style.display='none'}
-    if (nbJoueurs<3 && document.getElementById('selecJ3').style.display!='none') {document.getElementById('selecJ3').style.display='none'}
-    if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') {document.getElementById('selecJ2').style.display='none'}
-    if (nbJoueurs==0) {window.location.href='mechant.php?p='+document.getElementById('partie').value;}
-    document.getElementById('ajaxLoad').style.display='none';
-    document.getElementById('ajaxSave').style.display='none';}}}
+ 	var xmlDoc = ajaxSelecReq.responseXML;
+  var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
+  for (i=1;i<=parseInt(nbJoueurs);i++) {
+    var numero=parseInt(xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNumero'));
+    if (document.getElementById('selecJ'+numero).style.display!='block') {document.getElementById('selecJ'+numero).style.display='block';}
+    document.getElementById('selecJ'+numero).value=xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jNom');
+    document.getElementById('selecJ'+numero).setAttribute('onclick','window.location.href="joueur.php?p='+xmlDoc.getElementsByTagName('partie')[0].getAttribute('pUri')+'&j='+xmlDoc.getElementsByTagName('joueur')[i-1].getAttribute('jId')+'";');}
+  if (nbJoueurs<4 && document.getElementById('selecJ4').style.display!='none') {document.getElementById('selecJ4').style.display='none'}
+  if (nbJoueurs<3 && document.getElementById('selecJ3').style.display!='none') {document.getElementById('selecJ3').style.display='none'}
+  if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') {document.getElementById('selecJ2').style.display='none'}
+  if (nbJoueurs==0) {window.location.href='mechant.php?p='+document.getElementById('partie').value;}
+  document.getElementById('ajaxLoad').style.display='none';
+  document.getElementById('ajaxSave').style.display='none';}
 
-function ajaxJoueurSet() {
+function ajaxJoueurSet(ajaxJoueurReq) {
   //Remplissage de l'écran mobile de joueur.
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	  var xmlDoc = ajaxReq.responseXML;
-      var partie=xmlDoc.getElementsByTagName('partie')[0];
-      var vieMechant=partie.getAttribute('pMechVie');
-      var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
-      var premier=partie.getAttribute('pPremier');
-      if (vieMechant<10) {vieMechant="0"+vieMechant;}
-      if (document.getElementById('jId').value==partie.getAttribute('pPremier')) {
-      	document.getElementById('joueurFirst').className='on';} else {
-      	document.getElementById('joueurFirst').className='off';}
-      document.getElementById('mechantPicJoueur').style.background='url(img/mechants/'+partie.getAttribute('pMechant')+'.png) no-repeat center';
-      document.getElementById('mechantLifeJoueur').innerText=vieMechant;
-      document.getElementById('phaseMechantJoueur').innerText=phMechant(partie.getAttribute('pMechPhase'));
-      document.getElementById('mechantPicJoueur').classList.remove('mechantDesJ','mechantSonJ','mechantTenJ');
-      if (partie.getAttribute('pMechDesoriente')==1) { document.getElementById('mechantPicJoueur').classList.add('mechantDesJ');}
-      if (partie.getAttribute('pMechSonne')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantSonJ');}
-      if (partie.getAttribute('pMechTenace')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantTenJ');}
-      Array.prototype.slice.call(partie.getElementsByTagName('joueur')).forEach(function(joueur,index,array) {
-        if (joueur.getAttribute('jId')==document.getElementById('jId').value) {
-          document.getElementById('picJoueur').style.background='url(img/heros/'+joueur.getAttribute('jHeros')+'.png) no-repeat center';
-          document.title='Marvel Champions - '+joueur.getAttribute('jNom');
-          document.getElementById('joueur').innerText=joueur.getAttribute('jNom');
-          var vie=joueur.getAttribute('jVie');
-          if (vie<10) {vie="0"+vie;}
-          document.getElementById('vieJoueur').innerText=vie;
-          var etat=joueur.getAttribute('jStatut');
-          if (etat=='AE') {etat=lang['alter'];} else {etat=lang['hero'];}
-          document.getElementById('etatJoueur').innerText=etat;
-          if (joueur.getAttribute('jDesoriente')==0) {document.getElementById('desJoueur').className='disabledJoueur';} else {document.getElementById('desJoueur').className='desJoueur';}
-          if (joueur.getAttribute('jSonne')==0) {document.getElementById('sonJoueur').className='disabledJoueur';} else {document.getElementById('sonJoueur').className='sonJoueur';}
-          if (joueur.getAttribute('jTenace')==0) {
-            document.getElementById('vieJoueurMoins').className='vieJoueur';
-            document.getElementById('tenJoueur').className='disabledJoueur';}
-          else {
-            document.getElementById('vieJoueurMoins').className='vieJoueurRed';
-            document.getElementById('tenJoueur').className='tenJoueur';
-          }}});
-    document.getElementById('ajaxLoad').style.display='none';  
-    document.getElementById('ajaxSave').style.display='none';}}}
+  var xmlDoc = ajaxJoueurReq.responseXML;
+  var partie=xmlDoc.getElementsByTagName('partie')[0];
+  var vieMechant=partie.getAttribute('pMechVie');
+  var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
+  var premier=partie.getAttribute('pPremier');
+  if (vieMechant<10) {vieMechant="0"+vieMechant;}
+  if (document.getElementById('jId').value==partie.getAttribute('pPremier')) {
+  	document.getElementById('joueurFirst').className='on';} else {
+  	document.getElementById('joueurFirst').className='off';}
+  document.getElementById('mechantPicJoueur').style.background='url(img/mechants/'+partie.getAttribute('pMechant')+'.png) no-repeat center';
+  document.getElementById('mechantLifeJoueur').innerText=vieMechant;
+  document.getElementById('phaseMechantJoueur').innerText=phMechant(partie.getAttribute('pMechPhase'));
+  document.getElementById('mechantPicJoueur').classList.remove('mechantDesJ','mechantSonJ','mechantTenJ');
+  if (partie.getAttribute('pMechDesoriente')==1) { document.getElementById('mechantPicJoueur').classList.add('mechantDesJ');}
+  if (partie.getAttribute('pMechSonne')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantSonJ');}
+  if (partie.getAttribute('pMechTenace')==1) {document.getElementById('mechantPicJoueur').classList.add('mechantTenJ');}
+  Array.prototype.slice.call(partie.getElementsByTagName('joueur')).forEach(function(joueur,index,array) {
+    if (joueur.getAttribute('jId')==document.getElementById('jId').value) {
+      document.getElementById('picJoueur').style.background='url(img/heros/'+joueur.getAttribute('jHeros')+'.png) no-repeat center';
+      document.title='Marvel Champions - '+joueur.getAttribute('jNom');
+      document.getElementById('joueur').innerText=joueur.getAttribute('jNom');
+      var vie=joueur.getAttribute('jVie');
+      if (vie<10) {vie="0"+vie;}
+      document.getElementById('vieJoueur').innerText=vie;
+      var etat=joueur.getAttribute('jStatut');
+      if (etat=='AE') {etat=lang['alter'];} else {etat=lang['hero'];}
+      document.getElementById('etatJoueur').innerText=etat;
+      if (joueur.getAttribute('jDesoriente')==0) {document.getElementById('desJoueur').className='disabledJoueur';} else {document.getElementById('desJoueur').className='desJoueur';}
+      if (joueur.getAttribute('jSonne')==0) {document.getElementById('sonJoueur').className='disabledJoueur';} else {document.getElementById('sonJoueur').className='sonJoueur';}
+      if (joueur.getAttribute('jTenace')==0) {
+        document.getElementById('vieJoueurMoins').className='vieJoueur';
+        document.getElementById('tenJoueur').className='disabledJoueur';}
+      else {
+        document.getElementById('vieJoueurMoins').className='vieJoueurRed';
+        document.getElementById('tenJoueur').className='tenJoueur';
+      }}});
+  document.getElementById('ajaxLoad').style.display='none';  
+  document.getElementById('ajaxSave').style.display='none';}
   
-function ajaxMainSet(ajaxReq) {
+function ajaxMainSet(ajaxMainReq) {
   //Remplissage de l'écran principal d'affichage de partie
-  var xmlDoc = ajaxReq.responseXML;
+  var xmlDoc = ajaxMainReq.responseXML;
   var partie=xmlDoc.getElementsByTagName('partie')[0];
   var nbJoueurs=xmlDoc.getElementsByTagName('joueur').length;
   var vieMechant=partie.getAttribute('pMechVie');
@@ -287,31 +290,29 @@ function ajaxMainSet(ajaxReq) {
   if (nbJoueurs<1 && document.getElementById('joueur1Disp').style.visibility!='hidden') {document.getElementById('joueur1Disp').style.visibility='hidden'}
   if (nbJoueurs<2) {document.getElementById('indexFirst').style.visibility='hidden';}}
 
-function ajaxMechantSet() {
+function ajaxMechantSet(ajaxMechantReq) {
   //Remplissage de l'écran d'affichage de l'état du machant (mobile)
-  if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-  	if (ajaxReq.status === 200) {
-  	var xmlDoc = ajaxReq.responseXML;
-  	var partie=xmlDoc.getElementsByTagName('partie')[0];
-    var vieMechant=partie.getAttribute('pMechVie');
-    if (vieMechant<10) {vieMechant="0"+vieMechant;}
-    document.getElementById('mechantRiposteME').className='mechantRiposte'+partie.getAttribute('pMechRiposte');
-    document.getElementById('mechantPercantME').className='mechantPercant'+partie.getAttribute('pMechPercant');
-    document.getElementById('mechantDistanceME').className='mechantDistance'+partie.getAttribute('pMechDistance');
-    document.getElementById('mechantPicME').src='img/mechants/'+partie.getAttribute('pMechant')+'.png';
-    document.getElementById('mechantLifeME').innerText=vieMechant;
-    document.getElementById('mechantME').innerText=partie.getAttribute('mNom');
-    document.getElementById('phaseMechantME').innerText=phMechant(partie.getAttribute('pMechPhase'))
-    if (partie.getAttribute('pMechDesoriente')==0) { document.getElementById('mechantDesorienteME').className='disabledButtonMechantME bouton';} else {document.getElementById('mechantDesorienteME').className='desorienteMechantME bouton';}
-    if (partie.getAttribute('pMechSonne')==0) {document.getElementById('mechantSonneME').className='disabledButtonMechantME bouton';} else {document.getElementById('mechantSonneME').className='sonneMechantME';}
-    if (partie.getAttribute('pMechTenace')==0) {
-    	document.getElementById('mechantTenaceME').className='disabledButtonMechantME bouton';
-    	document.getElementById('vieMechantMoinsME').className='vieBtnME';}
-    else {
-      document.getElementById('mechantTenaceME').className='tenaceMechantME';
-      document.getElementById('vieMechantMoinsME').className='vieBtnRedME';}
-    document.getElementById('ajaxLoad').style.display='none';
-    document.getElementById('ajaxSave').style.display='none';}}}
+ 	var xmlDoc = ajaxMechantReq.responseXML;
+ 	var partie=xmlDoc.getElementsByTagName('partie')[0];
+  var vieMechant=partie.getAttribute('pMechVie');
+  if (vieMechant<10) {vieMechant="0"+vieMechant;}
+  document.getElementById('mechantRiposteME').className='mechantRiposte'+partie.getAttribute('pMechRiposte');
+  document.getElementById('mechantPercantME').className='mechantPercant'+partie.getAttribute('pMechPercant');
+  document.getElementById('mechantDistanceME').className='mechantDistance'+partie.getAttribute('pMechDistance');
+  document.getElementById('mechantPicME').src='img/mechants/'+partie.getAttribute('pMechant')+'.png';
+  document.getElementById('mechantLifeME').innerText=vieMechant;
+  document.getElementById('mechantME').innerText=partie.getAttribute('mNom');
+  document.getElementById('phaseMechantME').innerText=phMechant(partie.getAttribute('pMechPhase'))
+  if (partie.getAttribute('pMechDesoriente')==0) { document.getElementById('mechantDesorienteME').className='disabledButtonMechantME bouton';} else {document.getElementById('mechantDesorienteME').className='desorienteMechantME bouton';}
+  if (partie.getAttribute('pMechSonne')==0) {document.getElementById('mechantSonneME').className='disabledButtonMechantME bouton';} else {document.getElementById('mechantSonneME').className='sonneMechantME';}
+  if (partie.getAttribute('pMechTenace')==0) {
+  	document.getElementById('mechantTenaceME').className='disabledButtonMechantME bouton';
+   	document.getElementById('vieMechantMoinsME').className='vieBtnME';}
+  else {
+    document.getElementById('mechantTenaceME').className='tenaceMechantME';
+    document.getElementById('vieMechantMoinsME').className='vieBtnRedME';}
+  document.getElementById('ajaxLoad').style.display='none';
+  document.getElementById('ajaxSave').style.display='none';}
 
 function phMechant (phase) {
   switch (phase) {

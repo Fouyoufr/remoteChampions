@@ -17,10 +17,6 @@ global $str;
 echo '<input id="mechantDesorienteME" type="button" value="'.$str['villainConfused'].'"  onclick=\'ajaxPost("switch","mechantDesoriente");\'><input id="mechantSonneME" type="button" value="'.$str['villainStunned'].'" onclick=\'ajaxPost("switch","mechantSonne");\'><input id="mechantTenaceME" type="button" value="'.$str['villainTough'].'" onclick=\'ajaxPost("switch","mechantTenace");\'><input id="mechantRiposteME" type="button" value="'.$str['villainRetaliate'].'" onclick=\'ajaxPost("switch","mechantRiposte");\'><input id="mechantPercantME" type="button" value="'.$str['villainPiercing'].'" onclick=\'ajaxPost("switch","mechantPercant");\'><input id="mechantDistanceME" type="button" value="'.$str['villainRanged'].'" onclick=\'ajaxPost("switch","mechantDistance");\'>';
 ?>
 </div>
-
-<script language="JavaScript">
-  ajaxCallCache(ajaxMechantSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random());
-  setInterval("ajaxCallCache(ajaxMechantSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random())",2000); 
-</script>
+<script type="application/javascript">ajaxPush(document.getElementById('partie').value,ajaxMechantSet);</script>
 </body>
 </html>

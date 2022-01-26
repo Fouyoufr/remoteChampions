@@ -56,9 +56,46 @@ function displayBottom() {
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
 
     if ($meloDice!='' and $bodyClass<>'admin') {
-      echo '<div id="melodice"><input id="meloCheck" type="checkbox"><div id="meloDisplay"><a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a><iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=0&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&playlist='.$meloDice.'&origin=http';
+      echo '
+      <script type="application/javascript">
+        var tag=document.createElement(\'script\');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName(\'script\')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var ytPlayer;
+
+        function onYouTubeIframeAPIReady() {
+          ytPlayer = new YT.Player(\'ytPlayer\', {events: {\'onReady\': ytPlayerStateChange,\'onStateChange\': ytPlayerStateChange}});}
+        
+        function ytPlayerStateChange(event) {
+          if (ytPlayer.getPlayerState() == YT.PlayerState.PLAYING) {
+            document.getElementById(\'meloPlay\').style.display=\'none\';
+            document.getElementById(\'meloStop\').style.display=\'block\';
+            document.getElementById(\'meloNext\').style.display=\'block\';
+            document.getElementById(\'meloButton\').style.display=\'block\';}
+          else {
+            document.getElementById(\'meloPlay\').style.display=\'block\';
+            document.getElementById(\'meloStop\').style.display=\'none\';
+            document.getElementById(\'meloNext\').style.display=\'none\';
+            document.getElementById(\'meloButton\').style.display=\'block\';}}
+
+      </script>
+      <div id="melodice">
+        <input id="meloCheck" type="checkbox">
+        <div id="meloDisplay">
+          <a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a>
+          <iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=0&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&origin=http';
       if ($_SERVER['HTTPS']) echo 's';
-      echo '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe><div id="meloList">('.$meloList.')</div></div><label for="meloCheck"></label></div>';}}}
+      echo '://'.$_SERVER['SERVER_NAME'].'&playlist='.$meloDice.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
+          <div id="meloList">('.$meloList.')</div>
+        </div>
+        <div id="meloCommands">
+          <a href="javascript:ytPlayer.playVideo();" id="meloPlay">&#x23f5;</a>
+          <a  href="javascript:ytPlayer.pauseVideo();" id="meloStop">&#x23f8;</a>
+          <a  href="javascript:ytPlayer.nextVideo();" id="meloNext">&#x23Ed;</a>
+          <label for="meloCheck" id="meloButton"></label>
+        </div>
+      </div>';}}}
 
 function updatePassword() {
   global $adminPassword,$str;
