@@ -4,8 +4,8 @@ function longPoolMain(partieId,partieInit) {
   longPoolReq.onreadystatechange=function() {
     if (this.readyState == 4 && this.status == 200) {
       ajaxMainSet(this);
-      longPool(partieId,0);}}
-  if (partieInit==1) partieId=partieId+'&init';
+      longPoolMain(partieId,false);}}
+  if (partieInit) partieId=partieId+'&init';
   longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
   longPoolReq.send();}
 
