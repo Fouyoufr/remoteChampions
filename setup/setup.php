@@ -6,6 +6,7 @@
 	'mc.js',
 	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png','melodice.png');
   error_reporting(E_ERROR | E_PARSE);
+  clearstatcache();
 
   function remoteFileSize ($phpFile) {
 	global $setupSourcePath;
