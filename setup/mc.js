@@ -1,13 +1,11 @@
-function longPoolMain(partieId,partieInit) {
+function longPoolMain(partieId) {
   document.getElementById('ajaxLoad').style.display='block';
   var longPoolReq = new XMLHttpRequest();
   longPoolReq.onreadystatechange=function() {
     if (this.readyState == 4 && this.status == 200) {
       ajaxMainSet(this);
-      longPoolMain(partieId,false);}}
-  if (partieInit) longPoolReq.open('GET','longpool.php?p='+partieId+'&init&'+Math.random()*Math.random(),true);
-  else longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
-  
+      longPoolMain(partieId);}}
+  longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random());
   longPoolReq.send();}
 
 function ajaxCall (ajaxTraite,getParam) {
