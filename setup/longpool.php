@@ -10,7 +10,7 @@ if ((isset($partieFile) and !file_exists($partieFile)) or !isset($partieFile)) {
   echo 'Erreur : Le fichier "'.$partieFile.'" n\'existe pas...';
   while (true);}
 $index=0;
-while ($index<30) {
+while ($index<30 and !isset($_GET['init'])) {
   //renvoi du fichier XML si modifié depuis le début
   if (filemtime($partieFile)>$startTime) {
     echo file_get_contents($partieFile);}
