@@ -5,10 +5,10 @@ function longPoolMain(partieId,partieInit) {
     if (this.readyState == 4 && this.status == 200) {
       ajaxMainSet(longPoolReq);
       var longPoolReq = new XMLHttpRequest();
-      longPool(partieId,0);}
+      longPool(partieId,0);}}
   if (partieInit==1) partieId=partieId+'&init';
   longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
-  longPoolReq.send();}}
+  longPoolReq.send();}
 
 function ajaxCall (ajaxTraite,getParam) {
   document.getElementById('ajaxLoad').style.display='block';
