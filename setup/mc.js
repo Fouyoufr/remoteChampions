@@ -5,8 +5,9 @@ function longPoolMain(partieId,partieInit) {
     if (this.readyState == 4 && this.status == 200) {
       ajaxMainSet(this);
       longPoolMain(partieId,false);}}
-  if (partieInit) partieId=partieId+'&init';
-  longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
+  if (partieInit) longPoolReq.open('GET','longpool.php?p='+partieId+'&init&'+Math.random()*Math.random(),true);
+  else longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
+  
   longPoolReq.send();}
 
 function ajaxCall (ajaxTraite,getParam) {
