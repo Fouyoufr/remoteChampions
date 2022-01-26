@@ -11,6 +11,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
 
 # Historique des changements
+## Version 6.0
+Adptation du moteur Ajax en mode "long pooling"
 ## Version 5.7
 Intégration de lecture de playlist Melodice pendant une partie.
 ## Version 5.6

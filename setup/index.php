@@ -113,8 +113,7 @@ echo '<div id="changeNameIndex"><div class="titlePopup">'.$str['changePlayerName
 echo '<input id=\'popupNewManigance\' type=\'hidden\' value=\'\'/><input id=\'popupDelManigance\' type=\'hidden\' value=\'0\'/><div id=\'manigancePopup\'><h1>'.$str['sideSchemeInfo'].'</h1><span id=\'manigancePopupText\'></span><div class="boutonsPopup"><input type="button" value="OK" onclick=\'document.getElementById("manigancePopup").style.display="none";\'></div></div>';
 ?>
 <script language="JavaScript">
-  ajaxCallCache(ajaxMainSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random());
-  setInterval("ajaxCallCache(ajaxMainSet,'ajax/'+encodeURIComponent(document.getElementById('partie').value)+'.xml?'+Math.random()*Math.random())",2000); 
+  longPool(ajaxMainSet,document.getElementById('partie').value);
 </script>
 </body>
 </html>

@@ -1,3 +1,10 @@
+function longPool(ajaxTraite,partieId) {
+  document.getElementById('ajaxLoad').style.display='block';
+  var longPoolReq = new XMLHttpRequest();
+  longPoolReq.onreadystatechange=ajaxTraite;
+  longPoolReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
+  longPoolReq.send();}
+
 function ajaxCall (ajaxTraite,getParam) {
   document.getElementById('ajaxLoad').style.display='block';
   ajaxReq=new XMLHttpRequest();
