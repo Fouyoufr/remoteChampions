@@ -1,7 +1,7 @@
 <?php
   $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   $phpFiles=array(
-    'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php',
+    'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php','longpool.php',
     'aide.css','ecran.css',
 	'mc.js',
 	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png','melodice.png');
