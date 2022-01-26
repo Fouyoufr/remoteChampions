@@ -1,6 +1,6 @@
 function longPool(ajaxTraite,partieId) {
   document.getElementById('ajaxLoad').style.display='block';
-  var ajaxReq = new XMLHttpRequest();
+  ajaxReq = new XMLHttpRequest();
   ajaxReq.onreadystatechange=ajaxTraite;
   ajaxReq.open('GET','longpool.php?p='+partieId+'&'+Math.random()*Math.random(),true);
   ajaxReq.send();}
