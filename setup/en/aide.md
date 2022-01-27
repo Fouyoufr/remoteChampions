@@ -1,59 +1,59 @@
 # Ranged
 Ignore retaliate keyword.
-# Alliés
-Limite de 3 sur la zone de jeu (défausse possible).  
-Peut attaquer, Contrer ou Défendre (incliner).
+# Ally
+"Ally Limit" of 3 allies in play (Playre may discard if needed).  
+May Attack, thwart or defend (Exhaust).
 # Action
-Possibilité de déclenchement d'une capacité à son tour ou au tour d'un autre joueur après une requête (ceraines sont liées à la forme de l'Identité : action de Héros/action d'Alter Ego).
+Ability to trigger an ability during their turn, or by request during other player's trun (some abilities are tied to the character's form : hero action/Alter Ego ection).
 # Alliance
-N'importe quel joueur peut aider à payer les coûts d'une carte portant le mot-clé Alliance.
-# Ant-Man / La Guêpe
-- Changement de forme selon la règle habituelle. Peut passer de la forme d'Alter-Ego à n'importe laquelle des 2 formes de Super-Héros et vice versa, comme de l'une des 2 formes de Super-Héros à l'autre.
-- Evènement Changer de taille : ne compte pas dans le changement de forme volontaire auquel un joueur a le droit une fois par round lors de son tour.
-# Attribuer une carte Rencontre
-Quand une carte Rencontre est attribuée à un joueur, elle n'est pas immédiatement révélée. Elle le sera lors de la phase correspondante du méchant.
-# Capacité attaque
-Un héros ne s'incline pas lorsque cette capacité est utilisé (sauf si précisé).
-# Capacités Obligatoires
-- Constante
-- Mise en place
-- Une fois révélée
-- Une fois déjouée
-- Une fois vaincu
-- Interruption forçée
-- Réponse forçée
-- Boost
-# Capacités Optionnelles
-- Action
-- Interruption
-- Réponse
-- Resource
-# Cartes d'Etat
-Maximum 1 carte par type et par personnage.  
-Elles ont une priorité de timing sur toutes les capacités de cartes en cas de conflit de résolutions.
-# Carte inclinée (ou "tapée")
-Les capacités sur les cartes sont activables (sauf si le coût d'activation est "incliner la carte").
-# Carte Obligation
-Quand une carte obligation est révélée, elle est remise à l'Identité correspondante.  
-Si l'identité associée est déja éliminée, la carte est défaussée et une autre est piochée.  
-Si la carte Obligation n'a pas d'Identité, le joueur décide de la manière de résoudre cette carte.
-# Chercher
-Après avoir cherché une carte, mélanger le deck.
-# Coup Rapide
-Après qu'un ennemi a engagé un joueur, il l'attaque immédiatement s'il est sous form de héros.
-# Deck suivant de la manigance principale (Gestion)
-La menace excédentaire n'est pas reportée sur le nouveau stage.  
-Les pions accélération présents sont reportés sur le nouveau stade.
-# Défendre / Dégâts
-Il est possible de défendre un uatre joueur en utilisant son Héros ou un Allié. Le Héros ou l'Allié devient la nouvelle cible de l'attaque.  
-Lorsqu'un allié défend, les dégâts excédentaires ne sont pas infligés au héros (sauf en cas de déferlement).
-# Déferlement
-Les dégâts excédentaires infligés à un allié ou un sbire sont infligés au Héros ou au Méchant.
-# Dégâts Indirects
-Ils sont répartis parmi tous les personnages contrôlés du joueur ou du groupe de joueurs.  
-Un personnage ne peut pas prendre plus de dégâts que sa limite en vie.  
-Il ne faut pas tenir compte des éventuelles interactions avec d'autres capacités.
-# Docteur Strange (Deck invocation)
+Any player may spend for the cost of a card with the Alliance keyword.
+# Ant-Man / The Wasp
+- Change de form following the usual rule. May switch from Alter-Ego to any one of his/her 2 hero forms, like form a hero form to the other.
+- Change size event : Does not count in the number of form change the player may pretend to once in the turn.
+# Assign an Encouter Card
+When an Encounter card is assigned to a player, it is not immediately revealed. It will be during the next villain phase.
+# Attack ability
+A hero is not exhausted if using such a capacity (unless specified).
+# Mandatory abilities
+- Constant  
+- Setup  
+- When Revealed  
+- When Defeated  
+- When Completed  
+- Forced Interrupt  
+- Force Response  
+- Boost  
+# Optional abilities
+- Action  
+- Interrupt  
+- Response  
+- Resource  
+# Status Cards
+1 Max per type and per character.  
+Have timing priority over all conflicting crd abilities.  
+# Exhausted Card
+Car abilities are active and can interact with the game state (unless ability's cost refers to "Exhaust the card").  
+# Obligation Card
+When an Obligation Card is revealed, it's given to the corresponding identity if the card states so.  
+If the refered Identity is allready defeated, the card is discarded and a nex one is revealed.  
+If the Obligation card doesn't mention any Identity the current players chooses how to deal with it.
+# Search
+After searching the deck for a card, shuffle the deck.
+# Quickstrike
+After a minion engages a hero, he immediately attacks that hero.
+# Next Main Scheme deck (Management)
+Excess threat from the previous stage does not carry over to the new stage.  
+Acceleration tokens on it carry over to the new stage.
+# Defend / Damages
+An hero or ally may defend another player. The hero/ally becomes the new and only target of that attack.  
+If an ally defends, no damage is dealt to the hero (unless overkill).
+# Overkill
+Excess damages dealt to a defeated ally or minion are dealt to the corresponding hero or villain.  
+# Indirects Damages
+They are dealt among all characters from the player or players group.  
+A character can't sustain more hits than its remaining life.  
+No interraction with other abilities.
+# Doctor Strange (Invocations Deck)
 - Mélanger les 5 cartes du deck Invocation et les placer faces cachées à côté de l'Identité.
 - Lors de la partie, joueur constamment avec la carte du dessus du deck Invocation face visible.
 - Utiliser l'action maîtrise des sorts pour résoudre la capacité de la carte Invocation qui est ensuite placée dans une défausse spécifique.

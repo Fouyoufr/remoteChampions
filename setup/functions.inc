@@ -55,7 +55,7 @@ function displayBottom() {
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc/$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
 
-    if ($meloDice!='' and $bodyClass<>'admin') {
+    if ($meloDice!='' and $bodyClass=='index') {
       echo '
       <script type="application/javascript">
         var tag=document.createElement(\'script\');

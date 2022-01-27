@@ -201,7 +201,7 @@ if ($gameList) {
 echo '<form class=\'pannel\' id=\'adminSaveDiv\' action=\'?\' method=\'post\' enctype=\'multipart/form-data\'><div class=\'titleAdmin\'>'.$str['saveRestore'].'</div>'.$restored.$str['saveText'].' <a href="?save" download>'.$str['saveText2'].'</a><br/>('.$str['saveText3'].' <img src=\'img/saveB.png\' alt=\''.$str['save'].'\'/>'.$str['saveText4'].'.)<hr/>'.$str['zipRestore'].' : <input type=\'file\' name=\'zipRestore\' id=\'zipRestore\' accept=\'.zip,.xml\'><input type=\'image\' src=\'img/load.png\'></form>';
 
 echo '<form class="pannel" id=\'publicModeForm\' method=\'post\' action=\'\'>
-<div class="titleAdmin">Mode public</div>';
+<div class="titleAdmin">'.$str['publicMode'].'</div>';
 if (isset($_POST['publicMode'])) echo "<div class='redMessage'>".$str['adminSaved']."</div>";
 echo '<span class="publicWarning">'.$str['warning'].':</span>'.$str['adminPublicHelp'].'<hr/><div class="publicStatus">'.$str['adminPublicStatus'].'<br/>'.$str['newAdminPass'].'<br/>'.$str['checkAdminPass'].'</div><div>';
 echo "<input type='radio' name='publicMode' value='off' id='publicModeOff' onclick='document.getElementById(\"newPublic\").disabled=true;document.getElementById(\"newPublic2\").disabled=true;document.getElementById(\"newPublic\").value=\"\";document.getElementById(\"newPublic2\").value=\"\";'";

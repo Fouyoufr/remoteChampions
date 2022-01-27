@@ -14,11 +14,12 @@
 2g. [Gestion des Manigances](https:#gestion-des-manigances)  
 2h. [Aides de jeu](https:#aides-de-jeu)
 ### 3. [Administration du site](https:#administration-du-site)
-3a. [Activation des boites de jeu](https:#activation-des-boites-de-jeu)  
-3b. [Liste des parties sur le serveur](https:#liste-des-parties-sur-le-serveur)  
-3c. [Sauvegarde/REsturation](https:#sauvegarde--restauration)  
-3d. [Mot de passe administratif](https:#mot-de-passe-administratif)  
+3a. [Mot de passe administratif](https:#mot-de-passe-administratif)  
+3b. [Activation des boites de jeu](https:#activation-des-boites-de-jeu)  
+3c. [Liste des parties sur le serveur](https:#liste-des-parties-sur-le-serveur)  
+3d. [Sauvegarde/REsturation](https:#sauvegarde--restauration)  
 3e. [Mode public](https:#mode-public)  
+3f. [Melodice](https:#melodice)  
 3f. [Mise à jour](https:#mise-à-jour)  
 ### 4. [Accès par smartphone](https:#accès-par-smartphone)
 ### 5. [Foire aux questions](https:#foire-aux-questions)
@@ -101,7 +102,7 @@ Cette page est divisée en différentes zones:
   - Une fois le méchant choisi, la fenêtre de sélection de la manigance principale![3](../tag3.png) apparait. Sélectionnez la manigance principale dans le menu (la liste présentée dépend des boites/packs déclarés disponibles dans l'[administration du site](https:#activation-des-boites-de-jeu)) et confirmez. (si vous annulez ou souhaitez changer la manigance principale, cliquez sur son titre![4](../tag4.png)).
   - Après la sélection de la manigance principale, l'indicateur de premier joueur est attribué au hasard, vous pouvez utiliser cette fonction pour décider qui jouera en premier pour débuter la partie.
   - Si vous jouez une partie dans laquelle le méchant ne commence pas à la phase I, cliquez sur l'indication de phase![5](../tag5.png) pour passer à la phase suivante dès le début de partie.
-  - La vie du méchant est initialisée, en fonction du nombre de joueurs (Ajustez là si vous utilisez *Remote Champions* pour suivre uniquement la vie du méchant).
+  - La vie du méchant est initialisée, en fonction du nombre de joueurs (Ajustez là si vous utilisez *Remote Champions* pour suivre uniquement la vie du méchant).  
 
 **Conseil :** Mettez-vous d'accord avec tous les joueurs pour affecter la responsabilité des diverses mises à jour. Sinon, comme tous les joueurs peuvent éditer la page de la partie en cours, vous risquez d'avoir des modifications multiples.  
 
@@ -141,8 +142,6 @@ Le mini-écran de joueur se présentera, quant à lui, comme l'illustration suiv
    - **Nota :** En cliquant sur cette image de méchant sur votre smartphone, celui-ci basculera pour vous afficher la globalité de la page de partie.
 - **Affichage smartphone![10](../tag10.png) :** Ce pictogramme n'est disponible que dans les sections joueur de la page de partie (pas sur smartphone). En cliquant dessus, vous ouvrez une fenêtre annexe contenant les informations du joueur correspondant, telles qu'elles seraient affichées sur l'écran d'un smartphone.
 - **Aide![11](../tag11.png) :** Ce bouton n'est disponible que sur l'affichage smartphone (pas dans la page de partie) du joueur et permet d'ouvrir la fenêtre d'[aides de jeu](https:#aides-de-jeu) qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
-**Nota :** tant qu'un joueur choisit d'afficher ses informations de personnage sur son smartphone, sa section joueur sur la page de partie continuera à être mise à jour, mais ne pourra plus y être directement modifiée. L'affichage d'un tel joueur sur la page de partie ressemblera à l'illustrtation suivante :  
-![Section joueur, affichage seul](illus18.png "Section joueur, affichage seul")
 ## Gestion des Manigances
 Cette section a pour but de décrire les informations et intéractions concernant les manigances qui sont disponibles en cours de partie. La section manigances de la page de partie se présentera comme l'illustration suivante:  
 ![Section manigances](illus5.png "Section manigances")  
@@ -169,6 +168,12 @@ La fenêtre d'aides de jeu s'afichera comme nouvelle fenêtre sur votre ordinate
 Dans la plupart des écrans de *Remote Champions*, vous trouverez la barre d'administration (non disponible sur smartphone) illustrée ci-dessous.  
 ![barre d'administration](illus13.png)  
 En cliquant dessus, il vous sera demandé d'indiquer le mot de passe administratif (le mot de passe par défaut après installation du site est "**admin**"). Si vous renseignez le bon mot de passe, vous serez redirigé vers la page d'administration, divisée en plusieurs sections dont la description suit.
+## Mot de passe administratif
+![Mot de passe administratif](illus16.png)  
+Cette section vous permet de modifier le mot de passe administratif de votre serveur.  
+**Nota 1 :** Le mot de passe administratif doit être présent et ne peut être remplaçé par une valeur vide ''  
+**Nota 2 :** Seule une empreinte non réversible du mot de passe est stockée sur le serveur. Si vous oubliez ou perdez votre mot de passe, il faudra refaire complètement la [séquence d'installation de *Remote Champions*](https:séquence-dinstallation) et y importer vos parties sauvegardées le cas échéant.  
+Pour changer de mot de passe administratif, saisissez sa nouvelle valeur dans le champ "*Nouveau mot de passe*"![1](../tag1.png) ansi que dans le champ de "*Vérification*"![2](../tag2.png) avant de cliquer sur "*Soumettre*"![3](../tag3.png). La page d'administration du site est rechargée avec l'indication dans la présente section de la modification du mot de passe.  
 ## Activation des boites de jeu
 ![Activation des boite](illus14.png)  
 Cette section vous permet de choisir les boites de jeu en pocession de tous les joueurs dont les éléments (les méchants, héros et manigances) seront sélectionnables sur le site.  
@@ -191,12 +196,6 @@ Cette section vous permet de sauvegarder et/ou resturer les parties présentes s
 En cliquant sur le lien de sauvegarde ![1](../tag1.png), vous pouvez télécharger un fichier .ZIP contenant une sauvegarde de toutes les parties présentes sur votre serveur Remote Champions.  
 Pour restaurer une partie (fichier .XML récupéré en cliquant sur l'icône présente sur la ligne d'une partie) ou un ensemble de parties (fichier .ZIP antérieurement récupéré depuis le lien précédent), commencez par cliquer sur le bouton ![2](../tag2.png) (l'apparence et le nom peuvent chnager selon votre navigateur Internet) puis cliquer sur le bouton de restauration ![3](../tag3.png).  
 **Nota :** Une partie sauvegardée depuis un serveur Remote Champions peut ainsi être aisément restaurée sur un autre serveur (des limitations à cette fonction, qui n'est opérationnelle que depuis la version 5 peuvent exister dans le cas de versions de serveurs différentes.)
-## Mot de passe administratif
-![Mot de passe administratif](illus16.png)  
-Cette section vous permet de modifier le mot de passe administratif de votre serveur.  
-**Nota 1 :** Le mot de passe administratif doit être présent et ne peut être remplaçé par une valeur vide ''  
-**Nota 2 :** Seule une empreinte non réversible du mot de passe est stockée sur le serveur. Si vous oubliez ou perdez votre mot de passe, il faudra refaire complètement la [séquence d'installation de *Remote Champions*](https:séquence-dinstallation) en branchant votre nouvelle installation sur la base de données existante.  
-Pour changer de mot de passe administratif, saisissez sa nouvelle valeur dans le champ "*Nouveau mot de passe*"![1](../tag1.png) ansi que dans le champ de "*Vérification*"![2](../tag2.png) avant de cliquer sur "*Soumettre*"![3](../tag3.png). La page d'administration du site est rechargée avec l'indication dans la présente section de la modification du mot de passe.
 ## Mode public
 Si votre seveur est plus largement accessible, vous souhaiterez peut-être limiter la possibilité de création de nouvelles parties.  
 C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et n'importe qui connaissant l'adresse du serveur pourra donc créer autant de nouvelles parties qu'il/elle souhaite.  
@@ -204,7 +203,10 @@ C'est ce qui s'appelle le *Mode Public*. Celui-ci est désactivé par défaut et
 Si vous souhaitez activer le *Mode Public*, il faudra également fournir un mot de passe (dont seule une empreinte est stockée sur le serveur). Une fois ce paramètre validé, ledit mot de passe sera demandé pour accéder à la page de création de nouvelle partie.  
 - Pour activer le *Mode Public*, cliquez sur le bouton d'activation![2](../tag2.png), ceci va rendre disponible les champs "*Mot de passe*"![3](../tag3.png) et "*Vérification*"![4](../tag4.png) dans lequel vous pourrez saisir le nouveau mot de passe d'accès (notez qu'un mot de passe d'accès à la page de création doit contenir au moins 6 caractères) avant de valider en cliquant sur le bouton "*Soumettre*"![5](../tag5.png).  
 - Pour désactiver le *Mode Public*, cliquez sur le bouton de désactivation![1](../tag1.png) avant de cliquer sur le bouton "*Soumettre*".
-Après validation, la page d'administration du site est rechargée avec l'indication dans la présente section de la modification de paramètrage.
+Après validation, la page d'administration du site est rechargée avec l'indication dans la présente section de la modification de paramètrage.  
+## Melodice
+![Configuration Melodice](illus18.png)  
+![En construction](../wip.png) *(En construction)* ![En construction](../wip.png)  
 ## Mise à jour
 ![Mise à jour](illus17.png)  
 Dans cette section, vous pouvez voir le propos de la dernière mise à jours disponible![1](../tag1.png) (ainsi que sa date de publication).  
@@ -217,7 +219,7 @@ Cette page de mise à jour se termine par un bouton "*Accèder au site*" qui vou
 # Accès par smartphone
 En y accèdant depuis un smartphone, le comportement de votre site *Remote Champions* est quelque peu différent.  
 ![Sélection sur mobile](mobile1.png "Sélection sur mobile")  
-![En construction](wip.png) *(En construction)* ![En construction](wip.png)
+![En construction](../wip.png) *(En construction)* ![En construction](../wip.png)  
 # Foire aux questions
 ## Mais comment utiliser *Remote Champions* ?
 En début de partie, connectez-vous à votre site *Remote Champions* afin de créer une nouvelle partie. Chaque joueur pourra ensuite se connecter à la partie, depuis un ordinateur (ou il aura une vue synthétique de la partie) ou depuis son smartphone (ou il affichera les informations concernant son personnage).  
@@ -227,7 +229,7 @@ Ce n'est absolument pas le but de *Remote Champions* : Si chaque joueur peut cho
 ## Comment gérer le deck Rencontre avec *Remote Champions* ?
 L'idée est qu'un seul groupe de joueurs (physiquement réunis au même endroit) gère le deck rencontre. Lorsque ce groupe *responsable* tire une nouvelle carte, il devra aider les autres groupes de joueurs à trouver ladite carte dans leur jeu.  
 C'est d'ailleurs pourquoi les manigances sur *Remote Champions* sont organisées par Deck et qu'il est possible d'afficher le numéro de la carte représentant la manigance annexe dan le deck sur la page de partie.
-## A quoi correspond l'icône du *Shield* qui apparait fugacement ?
+## A quoi correspond l'icône du *Shield* qui apparait sur le site ?
 Le contenu du site est dynamique, cette icône s'affiche lorsqu'une page télécharge de nouveaux éléments pour se mettre à jour.  
 Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).  
 ## A quoi servent la section "*Autres compteurs*" ?
@@ -239,4 +241,4 @@ Si vous préférez effectuer une mise à jour de votre site *Remote Champions* s
 Pour ce faire, rendez-vous à la racine du dépot, assurez-vous d'être positionné sur l'onglet "Code" ![1](../tag1.png) et cliquez sur le bouton "Code" ![2](../tag2.png). Ensuite, cliquez simplement sur le bouton de téléchargement de Zip ![3](../tag3.png) afin de récupérer le fichier zip sur votre machine.  
 Rendez-vous ensuite dans l'[écran d'administration](https:mise-à-jour), afin de procéder à une mise à jour manuelle, en fournissant le fichier zip récupéré.
 
-![En construction](wip.png) N'hésitez pas à passer par la section "*Issues*" du présent dépot pour poser d'autres questions ![En construction](wip.png)
+![En construction](../wip.png) N'hésitez pas à passer par la section "*Issues*" du présent dépot pour poser d'autres questions ![En construction](../wip.png)

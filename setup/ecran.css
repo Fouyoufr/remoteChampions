@@ -113,7 +113,6 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #mechantDistance {right:40px;top:52px;}
 .mechantRiposte1,.mechantPercant1,.mechantDistance1 {background-color:black;color:white;}
 .mechantRiposte0,.mechantPercant0,.mechantDistance0 {background-color:lightgray;color:gray;}
-.pointVert {position:absolute;top:5px;left:5px;background:url('img/pointVert.png');height:10px;width:10px;display:none;}
 .etatJoueur {font-size:16px;color:yellow;margin-top:2px}
 .etatJoueur span:hover {cursor:pointer;color:black;background-color:yellow;}
 #changeNameIndex {position:absolute;top:0px;left:0px;margin:auto;margin-top:20px;margin-left:calc(15% - 5px);width:70%;background:red;border:solid 3px white;padding:5px;color:white;z-index:10;padding-top:5%;font-size: calc(1vw + 1vh + 1vmin);font-variant:none;text-transform:none;text-align:left;display:none;font-weight:normal;}

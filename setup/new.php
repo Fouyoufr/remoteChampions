@@ -40,7 +40,7 @@ if (!empty($_POST) and $error=='') {
       $premier=mt_rand(1,$_POST['nbJoueurs']);
       for ($i=1;$i<=$_POST['nbJoueurs'];$i++) {
         $xmlJoueur=$xml->addChild('joueur');
-        xmlAttr($xmlJoueur,array('jId'=>$i,'jNom'=>"Joueur $i",'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jOnline'=>0,'jHeros'=>0));}}
+        xmlAttr($xmlJoueur,array('jId'=>$i,'jNom'=>$str['player'].' '.$i,'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jHeros'=>0));}}
     else {$premier=0;}
     foreach($_POST as $post=>$postValue) if (substr($post,0,4)=='deck') {
       $xmlChild=$xml->addChild('deck');
@@ -49,7 +49,7 @@ if (!empty($_POST) and $error=='') {
         foreach($xmlDeck->scheme as $manigance) {
           $xmlChild=$xmlChild->addChild('maniChoice');
           xmlAttr($xmlChild,array('maId'=>$manigance['id'],'maNom'=>$manigance['name']));}}}
-    xmlAttr($xml,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>'Choisir Le Méchant','mpNom'=>'','nextPhaseVie'=>0));
+    xmlAttr($xml,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>$str['chooseVillain'],'mpNom'=>'','nextPhaseVie'=>0));
     if (!is_dir('ajax')) {mkdir('ajax');}
     xmlSave($xml,'ajax/'.$clef.'.xml');
     exit ("<script language='JavaScript'>window.location.href='.?p=$clef'</script>");}

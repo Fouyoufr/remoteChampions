@@ -242,7 +242,7 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		  $hNom=mysqli_fetch_assoc(sql_get("SELECT `hNom` FROM `heros` WHERE `hId`='".$sqlJoueur['jHeros']."'"))['hNom'];
 		  echo '<li>'.$str['5addPlayer'].' "'.$sqlJoueur['jNom'].'".</li>';
 		  $xmlJoueur=$xml->addChild('joueur');
-		  xmlAttr($xmlJoueur,array('jId'=>$sqlJoueur['jId'],'jNom'=>$sqlJoueur['jNom'],'jNumero'=>$sqlJoueur['jNumero'],'jVie'=>$sqlJoueur['jVie'],'jStatut'=>$sqlJoueur['jStatut'],'jDesoriente'=>$sqlJoueur['jDesoriente'],'jSonne'=>$sqlJoueur['jSonne'],'jTenace'=>$sqlJoueur['jTenace'],'jOnline'=>0,'jHeros'=>$sqlJoueur['jHeros'],'hNom'=>$hNom));
+		  xmlAttr($xmlJoueur,array('jId'=>$sqlJoueur['jId'],'jNom'=>$sqlJoueur['jNom'],'jNumero'=>$sqlJoueur['jNumero'],'jVie'=>$sqlJoueur['jVie'],'jStatut'=>$sqlJoueur['jStatut'],'jDesoriente'=>$sqlJoueur['jDesoriente'],'jSonne'=>$sqlJoueur['jSonne'],'jTenace'=>$sqlJoueur['jTenace'],'jHeros'=>$sqlJoueur['jHeros'],'hNom'=>$hNom));
 		  if ($sqlJoueur['jHeros']!=0) {
 			  //Ajout du deck héros
 			  $deckToAdd=true;
