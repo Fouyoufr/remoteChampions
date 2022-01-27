@@ -175,7 +175,7 @@
       'nozip4'=>'Provided ZIP file doesn\'t include a valid save of a Remote Champions server.',
       'docker1'=>'Docker first-time setup',
       'docker2'=>'Finalizing docker setup.',
-      'updateScript'=>'>Update script update',
+      'updateScript'=>'Update script update',
       'updateScript2'=>'New version of the update script',
       'relaunch'=>'Relaunch update',
       'allreadyUp'=>'Update script allready up to date',
