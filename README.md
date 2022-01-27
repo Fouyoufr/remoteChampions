@@ -12,7 +12,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 
 # Historique des changements
 ## Version 6.0
-Adptation du moteur Ajax en mode "long pooling"
+Adaptation du moteur Ajax en mode "long pooling"  
+Ajout de contrôles pour la musique Melodice
 ## Version 5.7
 Intégration de lecture de playlist Melodice pendant une partie.
 ## Version 5.6
