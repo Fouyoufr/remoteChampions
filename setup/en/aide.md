@@ -54,19 +54,19 @@ They are dealt among all characters from the player or players group.
 A character can't sustain more hits than its remaining life.  
 No interraction with other abilities.
 # Doctor Strange (Invocations Deck)
-- Mélanger les 5 cartes du deck Invocation et les placer faces cachées à côté de l'Identité.
-- Lors de la partie, joueur constamment avec la carte du dessus du deck Invocation face visible.
-- Utiliser l'action maîtrise des sorts pour résoudre la capacité de la carte Invocation qui est ensuite placée dans une défausse spécifique.
-- Quand le deck Invocation est vide, mélanger la défausse Invocation pour reconstituer le deck (aucune pénalité).
-# Elimination d'un joueur
-- Résoudre la capacité en cours le cas échéant.
-- Toutes les cartes contrôlées par le joueur sont défaussées.
-- Les cartes Rencontre attribuées sont défaussées.
-- Les ennemis engagés engagent le joueur suivant (sens horaire) en conservant dégâts et cartes d'état.
-# En équipe
-Toujours suivi du nom de 2 personnages. Pour l'inclure dans un deck, l'iIdentité doit correspondre à l'un des 2 personnages. La carte ne peut être jouée que si les 2 personnages sont en jeu (Héros ou Allié).
-# Engager
-Consiste uniquement à placer un ennemi dans la zone de jeu d'un joueur.
+- Shuffle the 5 cards Invocation deck and place them facdown near Identity.  
+- Durnig play, the top card of the Invocation deck is allways face up.  
+- Use the Spell Mastery to resolve the current Invocation card's capacity. The top Invocation card is the discarded in a specific discard pile.  
+- If the Invocation deck is empty, shuffle the Invocation discard pile to create a new one (no penalty).  
+# Player elimination
+- If needed, resolve current cpacity.
+- Every card under the player's control is discarded in its owner discard pile.
+- Encounter cards drawn for the player are discarded.
+- Minions engaged with the player engage the newt player (clockwise) retaining attachments, damages counters and status cards.  
+# Team-Up
+The keyword names two characters. To include the car in a deck, Identity must be one of the two named. The card needs both names to be in play (hero or ally) to be played.  
+# Engage
+Is only about placing a minion in the player's play area.  
 # Entrave X
 Placer X menaces sur la carte.
 # Fin du Deck Joueur
@@ -81,68 +81,68 @@ Ce gain concerne les points de vie en cours du personnage, ainsi que son maximum
 Le gain est immédiat.
 # Garde
 Bloque un joueur qui ne peut plus attaquer le méchant tant que ce sbire est en jeu.
-# Incitation X
-Placer X menaces sur la manigance principale.
-# Interruption
-Interromp la condition de déclenchement spécifiée et se résout avant dans l’ordre des joueurs.
-# Mettre en jeu / révélé
-Mettre en jeu une carte ne signifie pas la révéler.  
-On ne tient donc pas compte des mots-clés correspondant à une révélation (ex: renfort).
-# Mise en place
-Une carte avec ce mot-clé commence la partie en jeu.
-# Paiement du coût des cartes
-Toute ressource générée en surplus par rapport au coût indiqué est perdue.  
-Ne peut être payé que par des cartes et/ou des éléments de jeu que le joueur contrôle.
-# Par joueur
-Si un joueur est éliminé, cette valeur ne change pas.
-# Phase des joueurs
-1. Effectuer vos tours dans l'ordre des joueurs. A votre tour, vous pouvez:
-   - Jouer des cartes.
-   - Déclencher et requérir des actions.
-   - Utiliser les pouvoirs d'attaque, de contre et de récupération de base.
-   - Changer de forme (limite d'une fois par round).
-   - Mettre fin à votre tour.
-1. Après que tous les joueurs ont terminé leur tour, simultanément, tous les joueurs:
-   - Défaussent n'importe quel nombre de cartes de leur main.
-   - Piochent jusqu'à atteindre leur taille de main.
-   - Redressent chacune de leurs cartes inclinées.
-# Phase du méchant
-1. Placer de la menace sur la manigance principale.
-1. Le méchant (ainsi que chaque sbire engagé) s'active une fois par joueur, dans l'ordre des joueurs.
-   - Si vous êtes sous forme de héros, les ennemis vous attaquent (vous pouvez défendre avant que la carte de boost ne soit défaussée).
-   - Si vous êtes sous forme d'alter ego, les ennemis manigancent.
-1. Attribuer une carte Rencontre à chaque joueur.
-1. Dans l'ordre des joueurs, chaque joueur révèle et résout sa carte rencontre.
-1. Passer le pion Premier Joueur.
-# Patrouille
-Tant qu'un sbire avec ce mot-clé est engagé, le joueur ne peut pas contrer la Manigance Principale.
-# Perçant
-Défausse toute carte d'état Tenace avant d'infliger des dégâts.
-# Péril
-Consultation et discussion entre joueurs interdites, dons de cartes impossible.
+# Incite X
+Place X threat on the main scheme.
+# Interrupt
+May be executed anytime the specified triggering condition occurs, interrupts the current resolution and resolves immediately before that triggering condition, respecting players order.  
+# Play, Put into Play / revealed
+Playing a card is not revealing it.  
+So, keywords about revealing the card (Surge for instance) are irrevelant.
+# Setup
+A card with this keyword begins the game in play.
+# cards cost
+Excess resources generated toward any cost are lost.  
+The player paying cost must use cards and/or game elements they control.  
+# Per player
+If a player is defeated, this value remains unchanged.  
+# Player phase
+1. Each player gains turn, on order. On your turn, you should:
+   - Play cards.
+   - Trigger and Ask for action ability cards.
+   - Use basic Attack, thwart or recovery power.
+   - Change form (once each turn).
+   - End turn.
+1. After every player have end their turn, they simultanously:
+   - Discard any cards number from their hand.
+   - Draw cards to go back to their hand size.
+   - Ready all cards they control.
+# Villain phase
+1. Place threat on Main Scheme.
+1. The Villain (and every engaged minion) activates once per player, in players order.
+   - If you're on Hero form, enemies attack (you must choose (how) to defend before discarding boost card).
+   - If you're on Alter-Ego form, enemmies scheme.
+1. Deal one Encounter card for each player, one addictional card for each hazard symbol in play.
+1. In players order, each player reveals and resolves their Encounter card(s).
+1. Pass the first player token.
+# Patrol
+While a minion with the patrol keyword is engaged with a player, that player cannot user cards they control to thwart the main scheme.  
+# Piercing
+Discards any Tough status card from the target before dealing damages.  
+# Peril
+Forbidden to consult and discuss with other players while resolving such card. Other players are unable to trigger abilities or play cards.  
 # Permanent
-Une carte avec ce mot-clé ne peut pas quitter le jeu.
-# Propriété et Contrôle des cartes
-- Propriétaire = joueur dont le Deck de départ contenait la carte.
-- Contrôleur = joueur qui utilise la carte.
-- Quand une carte qui a changé de contrôle quitte le jeu, elle n'est pas restituée à son propriétaire mais plaçée dans la zone hors-jeu (main, deck, défausse) du joueur la contrôlant.
-- Un personnage qui change de contrôleur reste dans le même état (incliné, blessé...)
-- Les améliorations et attachements sur une carte qui change de contrôleur suivent la carte.
-# Renfort
-Après qu'une carte Rencontre avec ce mot-clé est révélée et résolue, le joueur révèle une carte Rencontre supplémentaire et la résout.
-# Ressource
-Il y a 3 types de ressource (Force, Mental et Energie)  $La ressource libre peut être utilisée comme n'importe lequel des 3 types de ressource.
-# Restreint
-Un joueur ne peut pas contrôler plus de 2 cartes avec ce mot-clé simultanément (défausse possible).
-# Riposte X
-S’il a survécu, le personnage attaqué (et uniquement lui) inflige X dégâts en retour à son attaquant.
-# Robuste
-Le personnage ne peut être ni sonné, ni désorienté.
-# Ténacité
-Quand un personnage entre en jeu avec ce mot-clé, placez sur lui une carte d'état Tenace.
-# Utilisation (X "types")
-Placer X jeton génériques sur la carte qui serviront à résoudre la capacité en rapport. Une fois tous les jetons dépensés, défausser la carte.
-# Victoire X
-Quand la carte est déjouée ou vaincue, la placer dans la pile de victoire au lieu de la pile de défause du joueur. X est le nombre de points de victoire rapporté.
-# Vilenie
-Quand le sbire s'active, lui donner une carte Boost face cachée. A la résolution de l'activation, révéler la carte Boost et Ajouter la valeur des Boosts aux valeurs du Sbire. Si cette une capacité de Boost, résoudre ses effets. Puis défausser la carte.
+A card with this keyword cannot leave play.  
+# Ownership and card control
+- Owner = Player whose beginning deck contains the card.
+- Control = Player using a card.
+- If a card that has changed control leaves play, it is placed back in its owner out-of-play area (hand, deck, discard) or remove frfom the game if its owner was defeated.  
+- When a character changes control, it remains in the same state(exhausted, ready, damaged..)
+- Upgrades or attachments on a card that changes contro also change control.
+# Surge
+After an Encouter card with this keyword is revealed, the player resolving the card reveals an additional Encounter card.  
+# Resource
+There are 3 main types of resources  (Physical, Mental et Energy). Wild resource may be used as wild or any other type.  
+# Restricted
+A player cannot control more than 2 cards with this keyword at same time (possible to discard).
+# Retaliate X
+If it survives, attacked character (and only attacked character) deals X damages to the attacker.
+# Stalwart
+A character with the Stalwart keyword cannot be stunned or confused.
+# Toughness
+When a character with the toughness keyword enters play, place a tough status card on it.  
+# Uses (X "types")
+Place X all-purpose counters on the card. Once all counters are spent, discard the card.  
+# Victory X
+When the card is defeated, place it in the victory display instead of it's owner's discard pile. X indicates how many victory points that card is worth.  
+# Vilainous
+When the minion activates, give it one facedown boost card. When resolving activation, reveal the boost card and add its boost value to the minion's attack/scheme value. If it' a boost capacity, resolve its effects, then discard the boost card.  

@@ -14,6 +14,7 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 ## Version 6.0
 Adaptation du moteur Ajax en mode "long pooling"  
 Ajout de contrôles pour la musique Melodice
+Correction  transition des Phases de méchant
 ## Version 5.7
 Intégration de lecture de playlist Melodice pendant une partie.
 ## Version 5.6

@@ -214,13 +214,14 @@ function ajaxMainSet(ajaxMainReq) {
   currentPhase=partie.getAttribute('pMechPhase');
   document.getElementById('phaseMechant').innerText=phMechant(currentPhase);
   //prochaine phase
-  if (typeof partie.getAttribute('newtPhase')!=='undefined') currentPhase=partie.getAttribute('newtPhase');
+  if (typeof partie.getAttribute('nextPhase')!=='undefined') currentPhase=partie.getAttribute('nextPhase');
   else {
     currentPhase++;
     if (currentPhase==4) currentPhase=1;}
   document.getElementById('changePhaseNext').innerText=currentPhase;
   document.getElementById('changePhaseMechant').innerText=partie.getAttribute('mNom');
-  document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie')*nbJoueurs;
+  if (nbJoueurs!=0) document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie')*nbJoueurs;
+  else document.getElementById('changePhaseVie').innerText=partie.getAttribute('nextPhaseVie');
   if (partie.getAttribute('pMechDesoriente')!='1') document.getElementById('mechantDesoriente').className='disabledButtonMechant bouton';
   else document.getElementById('mechantDesoriente').className='desorienteMechant';
   if (partie.getAttribute('pMechSonne')!='1') document.getElementById('mechantSonne').className='disabledButtonMechant bouton';

@@ -47,8 +47,8 @@ if (!empty($_POST) and $error=='') {
       foreach ($xmlBoxes as $xmlBox) foreach ($xmlBox->deck as $xmlDeck) if ($xmlDeck['id']==substr($post,4)) {
         xmlAttr($xmlChild,array('dId'=>$xmlDeck['id'],'dNom'=>$xmlDeck['name']));
         foreach($xmlDeck->scheme as $manigance) {
-          $xmlChild=$xmlChild->addChild('maniChoice');
-          xmlAttr($xmlChild,array('maId'=>$manigance['id'],'maNom'=>$manigance['name']));}}}
+          $xmlChildScheme=$xmlChild->addChild('maniChoice');
+          xmlAttr($xmlChildScheme,array('maId'=>$manigance['id'],'maNom'=>$manigance['name']));}}}
     xmlAttr($xml,array('pUri'=>$clef,'pMechant'=>0,'pMechVie'=>0,'pMechPhase'=>1,'pDate'=>time(),'pPremier'=>$premier,'pManiDelete'=>0,'pManiCourant'=>0,'pManiMax'=>0,'pManiAcceleration'=>0,'pMechRiposte'=>0,'pMechPercant'=>0,'pMechDistance'=>0,'mNom'=>$str['chooseVillain'],'mpNom'=>'','nextPhaseVie'=>0));
     if (!is_dir('ajax')) {mkdir('ajax');}
     xmlSave($xml,'ajax/'.$clef.'.xml');
