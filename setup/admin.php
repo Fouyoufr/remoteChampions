@@ -112,25 +112,32 @@ if (isset($_POST['melodiceStatus'])) {
       unset($newMeloDice);}}
   else $newMeloDice='';
   #Ajout/insertion dans le fichier config;
+  $configFile=file('config.inc');
+  $newEnd=false;
   function replaceMeloDice($data) {
-    global $meloDice,$newMeloDice;
+    global $meloDice,$newMeloDice,$newEnd;
+    if ($meloDice=='') unset($meloDice);
     if (isset($meloDice) and stristr($data,'$meloDice=')) return "\$meloDice='$newMeloDice';\n";
-    elseif (!isset($meloDice) and stristr($data,'?>')) return "\$meloDice='$newMeloDice';\r\n?>\n";
+    elseif (!isset($meloDice) and stristr($data,'?>')) {
+      $newEnd=true;
+      return "\$meloDice='$newMeloDice';\n";}
     return $data;}
   if (isset($newMeloDice)) {
-    $configFile=array_map('replaceMeloDice',file('config.inc'));
-    file_put_contents('config.inc', implode('',$configFile));
+    $configFile=array_map('replaceMeloDice',$configFile);
+    if ($newEnd) $configFile[]="?>\n";
     $meloDice=$newMeloDice;}
   function replaceMeloList($data) {
       global $meloList,$newMeloList;
+      if ($meloList=='') unset($meloList);
       if (isset($meloList) and stristr($data,'$meloList=')) return "\$meloList='$newMeloList';\n";
       elseif (!isset($meloList) and stristr($data,'?>')) return "\$meloList='$newMeloList';\r\n?>\n";
       return $data;}
   if(isset($newMeloList)) {
-    $configFile=array_map('replaceMeloList',file('config.inc'));
-    file_put_contents('config.inc', implode('',$configFile));
-    $meloList=$newMeloList;}}
+    $configFile=array_map('replaceMeloList',$configFile);
+    $meloList=$newMeloList;}
+  if (isset($newMeloList) or isset($newMeloDice)) file_put_contents('config.inc', implode('',$configFile));}
 elseif (!isset($meloList)) $meloList=$meloListStart;
+
 
 if (isset($_POST['publicMode'])) {
   #Activation/désactivation du mode public
