@@ -1,3 +1,11 @@
+function ajaxDot(color) {
+  var ajaxDotBox=document.getElementById('ajaxDot');
+  if (!ajaxDotBox) {
+    var ajaxDotBox = document.createElement('div');
+    ajaxDotBox.setAttribute('id','ajaxDot');
+    document.body.appendChild(ajaxDotBox);}
+  ajaxDotBox.className=color;}
+
 function ajaxPush(partie,traitement) {
   var longPoolReq=new XMLHttpRequest();
   longPoolReq.open('GET','ajax/'+encodeURIComponent(partie+'.xml'));
@@ -5,9 +13,11 @@ function ajaxPush(partie,traitement) {
     if (this.readyState == 4 && this.status == 200) traitement(this);}
   longPoolReq.send();
 	function longPool() {
+    ajaxDot('green');
 		var longPoolReq = new XMLHttpRequest();
 		longPoolReq.onreadystatechange=function() {
 			if (this.readyState === 4 && this.status === 200) {
+        ajaxDot('red');
         traitement(this);
         longPool();}}
 		longPoolReq.open('GET','longpool.php?p='+partie);
@@ -15,28 +25,33 @@ function ajaxPush(partie,traitement) {
     longPool();}
 
 function ajaxCallCache (ajaxTraite,ajaxUrl) {
-    document.getElementById('ajaxLoad').style.display='block';
+    ajaxDot('red');
     ajaxReq=new XMLHttpRequest();
     ajaxReq.open('GET',ajaxUrl);
     ajaxReq.onreadystatechange=function() {
-			if (this.readyState === 4 && this.status === 200) ajaxTraite(this);}
+			if (this.readyState === 4 && this.status === 200) {
+        ajaxDot('green');
+        ajaxTraite(this);}}
     ajaxReq.send();}
   
 function ajaxPost (key,value) {
-  if (document.getElementById('ajaxSave')) document.getElementById('ajaxSave').style.display='block';
+  if (arguments.length==2) postDisplay=''; else postDisplay=arguments[2];
+  ajaxDot('red');
   ajaxReqPost=new XMLHttpRequest();
   ajaxReqPost.open('POST','ajax.php',true);
   ajaxReqPost.onreadystatechange=function() {
-  	if (document.getElementById('changePhase')) {document.getElementById('changePhase').style.display='none';}
-  	if (document.getElementById('changeMechant')) {document.getElementById('changeMechant').style.display='none';}
-  	if (document.getElementById('changeName')) {document.getElementById('changeName').style.display='none';}
-    if (document.getElementById('changeHeros')) {document.getElementById('changeHeros').style.display='none';}
-  	if (ajaxReqPost.responseText!='') {
-  		if (ajaxReqPost.responseText=='SelectManigance') {document.getElementById('NewPrincipale').style.display='block';}}}
+    if (this.readyState === 4 && this.status === 200) {
+  	  if (document.getElementById('changePhase')) document.getElementById('changePhase').style.display='none';
+  	  if (document.getElementById('changeMechant')) document.getElementById('changeMechant').style.display='none';
+  	  if (document.getElementById('changeName')) document.getElementById('changeName').style.display='none';
+      if (document.getElementById('changeHeros')) document.getElementById('changeHeros').style.display='none';
+  	  if (this.responseText=='SelectManigance') document.getElementById('NewPrincipale').style.display='block';
+      if (this.responseXML) window[postDisplay](this);
+      ajaxDot('green');}}
   ajaxReqPost.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   uri=key+'='+encodeURIComponent(value);
-  if (document.getElementById('partie')) {uri+='&p='+encodeURIComponent(document.getElementById('partie').value);}
-  if (document.getElementById('jId')) {uri+='&j='+encodeURIComponent(document.getElementById('jId').value);}
+  if (document.getElementById('partie')) uri+='&p='+encodeURIComponent(document.getElementById('partie').value);
+  if (document.getElementById('jId')) uri+='&j='+encodeURIComponent(document.getElementById('jId').value);
   ajaxReqPost.send(uri);}
   
 function ajaxSelecSet(ajaxSelecReq) {
@@ -51,9 +66,7 @@ function ajaxSelecSet(ajaxSelecReq) {
   if (nbJoueurs<4 && document.getElementById('selecJ4').style.display!='none') document.getElementById('selecJ4').style.display='none'
   if (nbJoueurs<3 && document.getElementById('selecJ3').style.display!='none') document.getElementById('selecJ3').style.display='none'
   if (nbJoueurs<2 && document.getElementById('selecJ2').style.display!='none') document.getElementById('selecJ2').style.display='none'
-  if (nbJoueurs==0) window.location.href='mechant.php?p='+document.getElementById('partie').value;
-  document.getElementById('ajaxLoad').style.display='none';
-  document.getElementById('ajaxSave').style.display='none';}
+  if (nbJoueurs==0) window.location.href='mechant.php?p='+document.getElementById('partie').value;}
 
 function ajaxJoueurSet(ajaxJoueurReq) {
   //Remplissage de l'écran mobile de joueur.
@@ -93,9 +106,7 @@ function ajaxJoueurSet(ajaxJoueurReq) {
       else {
         document.getElementById('vieJoueurMoins').className='vieJoueurRed';
         document.getElementById('tenJoueur').className='tenJoueur';
-      }}});
-  document.getElementById('ajaxLoad').style.display='none';  
-  document.getElementById('ajaxSave').style.display='none';}
+      }}});}
 
 function ajaxDeckSet(ajaxDeckReq) {
   //refresh du menu des manigances
@@ -169,11 +180,11 @@ function ajaxMainSet(ajaxMainReq) {
       document.getElementById('manigancePopupText').innerHTML=partie.getAttribute('maniDelete');
       document.getElementById('manigancePopup').style.display='block';}}
   manigancesList.forEach(function(value,index,array) {
-    maniAnnexe='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
+    maniAnnexe='"><input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText-=1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\',\'ajaxMainSet\').innerText);">';
     menaceToDisplay=value.getAttribute('mnMenace');
     if (menaceToDisplay<10) menaceToDisplay='0'+menaceToDisplay;
     maniAnnexe+='<div class="MA" id="MA'+value.getAttribute('maId')+'">'+menaceToDisplay+'</div>';
-    maniAnnexe+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText=parseInt(document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText)+1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText);">';
+    maniAnnexe+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText=parseInt(document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText)+1;ajaxPost(\'MA='+value.getAttribute('maId')+'&menace\',document.getElementById(\'MA'+value.getAttribute('maId')+'\').innerText,\'ajaxMainSet\');">';
     maniAnnexe+='<div class="tooltip">'+value.getAttribute('maNom');
     //Informations sur la manigance annexe
     maInfo='';
@@ -208,8 +219,8 @@ function ajaxMainSet(ajaxMainReq) {
     compteurToDisplay=value.getAttribute('cValeur');
     if (compteurToDisplay<10) compteurToDisplay='0'+compteurToDisplay;
     compteur+='<div class="compteur" id="compteur'+value.getAttribute('cId')+'">'+compteurToDisplay+'</div>';
-    compteur+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText=parseInt(document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText)+1;ajaxPost(\'compteur='+value.getAttribute('cId')+'&value\',document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText);">';
-    compteur+='<a class="compteurMoins" onclick="ajaxPost(\'delCompteur\',\''+value.getAttribute('cId')+'\');">-</a>';
+    compteur+='<input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText=parseInt(document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText)+1;ajaxPost(\'compteur='+value.getAttribute('cId')+'&value\',document.getElementById(\'compteur'+value.getAttribute('cId')+'\').innerText,\'ajaxMainSet\');">';
+    compteur+='<a class="compteurMoins" onclick="ajaxPost(\'delCompteur\',\''+value.getAttribute('cId')+'\',\'ajaxMainSet\');">-</a>';
     document.getElementById('compteursList').innerHTML+='<li class="compteurLine">'+compteur+'</li>';});
   currentPhase=partie.getAttribute('pMechPhase');
   document.getElementById('phaseMechant').innerText=phMechant(currentPhase);
@@ -245,13 +256,13 @@ function ajaxMainSet(ajaxMainReq) {
     if (jDoc.getAttribute('jSonne')==0) document.getElementById('sonne'+numero).className='disabledButton'; else document.getElementById('sonne'+numero).className='sonne';
     if (jDoc.getAttribute('jTenace')==0) document.getElementById('tenace'+numero).className='disabledButton'; else document.getElementById('tenace'+numero).className='tenace';
     document.getElementById('picJoueur'+numero).src='img/heros/'+jDoc.getAttribute('jHeros')+'.png';
-   	document.getElementById('vieDisp'+numero).innerHTML='<input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText);"><div id="vie'+numero+'" class="playerLife">'+vie+'</div><input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'vie'+numero+'\').innerText=parseInt(document.getElementById(\'vie'+numero+'\').innerText)+1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText);">';
-    document.getElementById('joueur'+numero+'Etat').innerHTML='<div class="etatJoueur" onclick="ajaxPost(\'j='+jId+'&switch\',\'etat\');"><span>'+etat+'</span></div>';
-    document.getElementById('desoriente'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","desoriente");');
+   	document.getElementById('vieDisp'+numero).innerHTML='<input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');"><div id="vie'+numero+'" class="playerLife">'+vie+'</div><input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'vie'+numero+'\').innerText=parseInt(document.getElementById(\'vie'+numero+'\').innerText)+1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');">';
+    document.getElementById('joueur'+numero+'Etat').innerHTML='<div class="etatJoueur" onclick="ajaxPost(\'j='+jId+'&switch\',\'etat\',\'ajaxMainSet\');"><span>'+etat+'</span></div>';
+    document.getElementById('desoriente'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","desoriente",\'ajaxMainSet\');');
     document.getElementById('desoriente'+numero).className+=' bouton';
-    document.getElementById('sonne'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","sonne");');
+    document.getElementById('sonne'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","sonne",\'ajaxMainSet\');');
     document.getElementById('sonne'+numero).className+=' bouton';
-    document.getElementById('tenace'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","tenace");');
+    document.getElementById('tenace'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","tenace",\'ajaxMainSet\');');
     document.getElementById('tenace'+numero).className+=' bouton';
     document.getElementById('joueur'+numero).setAttribute('onclick','document.getElementById("changeNameId").value=\''+jId+'\';document.getElementById("changeNameOld").innerText=\''+joueur+'\';document.getElementById("changeNameIndex").style.display="block";document.getElementById("playerName").focus();');
     document.getElementById('joueur'+numero).className='playerNameBouton';
@@ -264,10 +275,8 @@ function ajaxMainSet(ajaxMainReq) {
     document.getElementById('joueur'+numero+'Numero').value=jId;
     document.getElementById('joueur'+numero).innerText=joueur;}
   document.getElementById('indexFirst').className='first'+premier;
-  document.getElementById('indexFirst').setAttribute('onclick','ajaxPost("suivant",'+suivant+');');
+  document.getElementById('indexFirst').setAttribute('onclick','ajaxPost("suivant",'+suivant+',\'ajaxMainSet\');');
   document.getElementById('maniganceAcc').innerText=maniganceAcc;
-  document.getElementById('ajaxLoad').style.display='none';
-  document.getElementById('ajaxSave').style.display='none';
   if (nbJoueurs<4 && document.getElementById('joueur4Disp').style.visibility!='hidden') document.getElementById('joueur4Disp').style.visibility='hidden'
   if (nbJoueurs<3 && document.getElementById('joueur3Disp').style.visibility!='hidden') document.getElementById('joueur3Disp').style.visibility='hidden'
   if (nbJoueurs<2 && document.getElementById('joueur2Disp').style.visibility!='hidden') document.getElementById('joueur2Disp').style.visibility='hidden'
@@ -294,9 +303,7 @@ function ajaxMechantSet(ajaxMechantReq) {
    	document.getElementById('vieMechantMoinsME').className='vieBtnME';}
   else {
     document.getElementById('mechantTenaceME').className='tenaceMechantME';
-    document.getElementById('vieMechantMoinsME').className='vieBtnRedME';}
-  document.getElementById('ajaxLoad').style.display='none';
-  document.getElementById('ajaxSave').style.display='none';}
+    document.getElementById('vieMechantMoinsME').className='vieBtnRedME';}}
 
 function phMechant (phase) {
   switch (phase) {

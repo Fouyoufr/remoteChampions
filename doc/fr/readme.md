@@ -72,8 +72,8 @@ La page de création d'une nouvelle partie ressemblera à l'illustration ci-dess
 ### Options
 Vous pouvez (cela n'est pas une obligation, mais peut permettre de simplifier la sélection des manigances pendant la partie) également choisir les decks qui seront utilisés pendant votre partie.  
 Pour ce faire, il vous suffit de cliquer sur la case à cocher![5](../tag5.png) en regard d'un deck pour le sélectionner ou le désélectionner avant de cliquer sur le bouton "*Créer*".  
- - Les decks pouvant être sélectionnés sont regroupés par boite de jeu/extensions/paquets![6](../tag6.png) pour les retrouver plus facilement. Les boites disponibles sont celles déclarées comme telles dans l'[administration du site](https:#activation-des-boites-de-jeu).
- - Vous pouvez (dé)sélectionner tous les decks en un clic![7](../tag7.png) pour plus de facilité.
+ - Les decks pouvant être sélectionnés sont regroupés par boite de jeu/extensions/paquets![6](../tag6.png) pour les retrouver/(dé)selectionner plus facilement. Les boites disponibles sont celles déclarées comme telles dans l'[administration du site](https:#activation-des-boites-de-jeu).  
+ - Vous pouvez (dé)sélectionner tous les decks en un clic![7](../tag7.png) pour plus de facilité.  
 Après avoir créé votre nouvelle partie, vous serez dirigé vers la page de celle-ci (ou vers votre fiche de joueur si vous êtes sur smartphone).  
 
 Si une erreur empêche la création de la partie, elle vous sera communiquée sur la même page, afin que vous puissiez retenter la création.
@@ -229,9 +229,8 @@ Ce n'est absolument pas le but de *Remote Champions* : Si chaque joueur peut cho
 ## Comment gérer le deck Rencontre avec *Remote Champions* ?
 L'idée est qu'un seul groupe de joueurs (physiquement réunis au même endroit) gère le deck rencontre. Lorsque ce groupe *responsable* tire une nouvelle carte, il devra aider les autres groupes de joueurs à trouver ladite carte dans leur jeu.  
 C'est d'ailleurs pourquoi les manigances sur *Remote Champions* sont organisées par Deck et qu'il est possible d'afficher le numéro de la carte représentant la manigance annexe dan le deck sur la page de partie.
-## A quoi correspond l'icône du *Shield* qui apparait sur le site ?
-Le contenu du site est dynamique, cette icône s'affiche lorsqu'une page télécharge de nouveaux éléments pour se mettre à jour.  
-Dans le même ordre d'idée, une icône de disquette s'affiche lorsque vous faites un changement sur une page. Si elle ne disparait pas, cela suggère que la modification n'a pas été prise en compte par le serveur (il pourra être alors prudent de rafraichir la page).  
+## A quoi correspond le petit point vert en haut à gauche du site ?
+Le contenu du site est dynamique, ce point passe du vert au rouge lors des appels au site distant. Si le point reste rouge (ou si une mise à jour tarde à arriver), ne pas hésiter à rafraichir votre naviagteur Internet...   
 ## A quoi servent la section "*Autres compteurs*" ?
 La réponse est simple : à suivre tout ce que vous pouvez avoir besoin de suivre avec les autres groupes de joueurs.  
 Par exemple, vous pouvez choisir de créer un nouveau compteur pour suivre les jetons "*Retard*" du scénario de l'homme absorbant...  

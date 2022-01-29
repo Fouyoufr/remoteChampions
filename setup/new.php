@@ -2,9 +2,13 @@
 function displaydeck($deck,$box) {
   global $imageBoite;
   if (!isset($imageBoite) or $imageBoite<>$box['id']) {
-    echo "</td></tr><tr><td><img src='img/boites/".$box['id'].".png' alt='".$box['name']."'/></td><td>";
+    echo "</td></tr><tr><td><img src='img/boites/".$box['id'].".png' alt='".htmlspecialchars($box['name'],ENT_QUOTES)."' title='".htmlspecialchars($box['name'],ENT_QUOTES)."' onclick='{
+      var selecDeck=document.getElementsByClassName(\"deckBox".$box['id']."\");
+      var newCheck=!selecDeck[0].checked;
+      for (i=0;i<selecDeck.length;i++) { selecDeck[i].checked=newCheck;}
+}'/></td><td>";
     $imageBoite=$box['id'];}
-  echo "<div class='newEncadre'><input type='checkbox' name='deck".$deck['id']."' class='deckCheck'";
+  echo "<div class='newEncadre'><input type='checkbox' name='deck".$deck['id']."' class='deckBox$imageBoite'";
   if (empty($_POST) or $_POST['deck'.$deck['id']]=='on') echo ' checked';
   echo "><label for='deck".$deck['id']."'>".$deck['name']."</label></div>";}
 

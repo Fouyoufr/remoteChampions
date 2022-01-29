@@ -70,8 +70,8 @@ La page de création d'une nouvelle partie ressemblera à l'illustration ci-dess
 ### Options
 Vous pouvez (cela n'est pas une obligation, mais peut permettre de simplifier la sélection des manigances pendant la partie) également choisir les decks qui seront utilisés pendant votre partie.  
 Pour ce faire, il vous suffit de cliquer sur la case à cocher![5](../tag5.png) en regard d'un deck pour le sélectionner ou le désélectionner avant de cliquer sur le bouton "*Créer*".  
- - Les decks pouvant être sélectionnés sont regroupés par boite de jeu/extensions/paquets![6](../tag6.png) pour les retrouver plus facilement. Les boites disponibles sont celles déclarées comme telles dans l'[administration du site](https:#activation-des-boites-de-jeu).
- - Vous pouvez (dé)sélectionner tous les decks en un clic![7](../tag7.png) pour plus de facilité.
+ - Les decks pouvant être sélectionnés sont regroupés par boite de jeu/extensions/paquets![6](../tag6.png) pour les retrouver/(dé)selectionner plus facilement. Les boites disponibles sont celles déclarées comme telles dans l'[administration du site](https:#activation-des-boites-de-jeu).  
+ - Vous pouvez (dé)sélectionner tous les decks en un clic![7](../tag7.png) pour plus de facilité.  
 Après avoir créé votre nouvelle partie, vous serez dirigé vers la page de celle-ci (ou vers votre fiche de joueur si vous êtes sur smartphone).  
 
 Si une erreur empêche la création de la partie, elle vous sera communiquée sur la même page, afin que vous puissiez retenter la création.

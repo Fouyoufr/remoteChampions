@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/xml; charset=utf-8');
 include 'include.inc';
 
 if (isset($_POST['phase'])) {
@@ -110,6 +111,7 @@ if(isset($_POST['switch'])) {
     case 'mechantDistance':
       $xml['pMechDistance']=1-$xml['pMechDistance'];
     	break;}
+    echo $xml->asXML();
     xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {
