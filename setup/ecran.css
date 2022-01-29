@@ -5,6 +5,11 @@ body,html {padding:0px;margin:0px;height:100%;width:100%;position:absolute;}
 .redUnderline {color:red;text-decoration:underline}
 div.centre {text-align:center;}
 
+/* Notification des requètes Ajax */
+#ajaxDot {height: 10px; width: 10px; background-color: greenyellow;border-radius: 50%; display: block; position:absolute;top:0px;left:0px;}
+#ajaxDot .green {background-color: greenyellow;}
+#ajaxDot .red {background-color:red;}
+
 /* Mise en forme de l'écan principal*/
 body.index {background: url('img/marvel-fullHD.png') no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size:cover;background-size:cover;}
 .joueurDisp,#mechantDisp {position:absolute;text-align:center;border:solid 2px gray;padding:0px;border-radius:20px;color:white;font-family:"Arial Black", Gadget, sans-serif;text-align:center;font-variant: small-caps; text-transform: capitalize;background:radial-gradient(black,red);width:220px;height:122px;opacity: 0.8;}
@@ -45,10 +50,6 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #manigance {position:absolute;right:240px;top:50%;width:470px;background-color:rgba(0, 0, 0, 0.5);border:5px outset white;margin-top:-80px;font:15px;color:#f3b723;font-family:Impact,Charcoal,sans-serif;padding:3px;text-align:center;}
 #mechantPic{position:absolute;top:5px;left:8px;width:50px;height:50px;border:solid 1px black;}
 #mechantPic:hover {border:solid 1px white;cursor: pointer;}
-#ajaxLoad{position:absolute;width:30px;height:30px;background: url(img/refresh.png) no-repeat center center;}
-#ajaxLoad.index{top:2px;right:2px;}
-#ajaxSave{position:absolute;width:30px;height:30px;background: url(img/save.png) no-repeat center center;}
-#ajaxSave.index{top:35px;right:2px;}
 #selectPartie {position:relative;margin:auto;margin-top:20px;width:50%;background:antiquewhite;border:solid 3px #555;padding:2%;color:black;}
 #keyError {position:absolute;top:0px;left:0px;width:100%;text-align:center;background-color:red;font-weight:bold;color:white;}
 #selectPartie h1 {display:inline-block;width:100%;margin:0px;color:#555;text-align:center;margin-bottom:10px;}
@@ -113,7 +114,6 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 #mechantDistance {right:40px;top:52px;}
 .mechantRiposte1,.mechantPercant1,.mechantDistance1 {background-color:black;color:white;}
 .mechantRiposte0,.mechantPercant0,.mechantDistance0 {background-color:lightgray;color:gray;}
-.pointVert {position:absolute;top:5px;left:5px;background:url('img/pointVert.png');height:10px;width:10px;display:none;}
 .etatJoueur {font-size:16px;color:yellow;margin-top:2px}
 .etatJoueur span:hover {cursor:pointer;color:black;background-color:yellow;}
 #changeNameIndex {position:absolute;top:0px;left:0px;margin:auto;margin-top:20px;margin-left:calc(15% - 5px);width:70%;background:red;border:solid 3px white;padding:5px;color:white;z-index:10;padding-top:5%;font-size: calc(1vw + 1vh + 1vmin);font-variant:none;text-transform:none;text-align:left;display:none;font-weight:normal;}
@@ -253,10 +253,15 @@ div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgr
 
 #melodice {margin: 0;position:absolute;top:50%;transform:translateY(-50%);z-index:20;}
 #melodice label {margin: 0; margin-right:-41px;position:absolute;right:0px;top:50%;transform:translateY(-50%);cursor: pointer;display: inline-block;width:41px;height:44px;
-  background-color: lightslategray;background-image: url('img/melodice.png');background-repeat: no-repeat;background-position: center;}
+  background-color: lightslategray;background-image: url('img/melodice.png');background-repeat: no-repeat;background-position: center;display:none;}
 #melodice label:hover {background-color: white;}
 #melodice input {display:none;}
 #meloDisplay {transition: width .8s ease;width:0;overflow: hidden;height:200px;background:black;margin:0px;padding:0px;text-align:center;font-weight:bold;color:lightslategray;}
 #meloDisplay a, #meloDisplay a:visited {color:lightslategray;text-decoration:none;width:100%;display:inline-block;border-bottom:lightslategray solid 1px;font-size:20px;}
 #meloDisplay div {width:100%;border-top:lightslategray solid 1px;}
 #melodice input:checked + #meloDisplay {width:310px;margin-left:2px;}
+#meloCommands a {position:absolute;right:0px;margin-right:-38px;width:36px;height:36px;border:solid 1px lightskyblue;text-align:center;font-weight:bold;text-decoration:none;color:lightskyblue;font-size:25px;display: none;}
+#meloCommands a:visited {color:lightskyblue;}
+#meloCommands a:hover {background-color: white;color:mediumslateblue;}
+#meloPlay,#meloStop {top:35px;}
+#meloNext {bottom:35px;}

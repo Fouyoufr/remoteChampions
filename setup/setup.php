@@ -1,11 +1,12 @@
 <?php
   $adminPasswordInitial='8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   $phpFiles=array(
-    'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php',
+    'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php','longpool.php',
     'aide.css','ecran.css',
 	'mc.js',
-	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pointVert.png','pp.png','refresh.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png','melodice.png');
+	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pp.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png','melodice.png');
   error_reporting(E_ERROR | E_PARSE);
+  clearstatcache();
 
   function remoteFileSize ($phpFile) {
 	global $setupSourcePath;
@@ -36,7 +37,9 @@ function imageUpdate($imgFolder,$imgObject) {
 			echo '</td></tr>';}}
 	if ($nothingToDo) echo "<tr><td>".$str['folder']." $imgFolder</td><td>".$str['imagesOk']."</td></tr>";}
 
-  include_once('functions.inc');
+session_start();
+include_once('functions.inc');
+echo "<!doctype html>\n<html lang='$rcLang'>\n";
 
 if (!function_exists('gitFileDate')) {
 	function gitFileDate($gitFile=null){
@@ -52,9 +55,6 @@ if (!function_exists('gitFileDate')) {
 if (!isset($rcLangs)) {
 	$rcLangs=array('fr','en');
 	$rcLang='fr';}
-
-  session_start();
-  echo "<!doctype html>\n<html lang='$rcLang'>\n";
 ?>
 <head>
   <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
@@ -147,7 +147,7 @@ foreach ($rcLangs as $helpLang) {
     if (isset($helpDate['erreur'])) echo "<div class='error'>".$str['gitHubError']."<div class='subError'>".$helpDate['erreur']."</div></div>";}
   if ($localUpdate or !file_exists("$helpLang/aide.html") or (new dateTime('@'.filemtime("$helpLang/aide.html"))<$helpDate['date'])) {
     echo $str['gameHelpUp']." : $helpLang.<br/>";
-    $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='../aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - Aide</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
+    $helpFile="<!doctype html>\n<html lang='fr'>\n<head>\n<META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>\n<META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>\n<meta charset='UTF-8'>\n<link rel='stylesheet' href='../aide.css'>\n<link rel='icon' href='../favicon.ico'/>\n<title>Remote Champions - ".$str['help']."</title>\n</head>\n<body>\n<div id='TDMUp'></div>";
 	if ($dockerSetup) $file = @fopen ("$helpLang/aide.md", "r"); else $file = @fopen ("$setupSourcePath/$helpLang/aide.md", "r");
     if (!$file) echo "<div class='error'>".$str['openFileErr'].".<div class='subError'>".$str['gameHelpUp2']." '$setupSourcePath/$helpLang/aide.md'.</div></div>";
     else {
@@ -241,7 +241,7 @@ if (function_exists('sql_get') and mysqli_num_rows(sql_get("SHOW TABLES LIKE 'pa
 		  $hNom=mysqli_fetch_assoc(sql_get("SELECT `hNom` FROM `heros` WHERE `hId`='".$sqlJoueur['jHeros']."'"))['hNom'];
 		  echo '<li>'.$str['5addPlayer'].' "'.$sqlJoueur['jNom'].'".</li>';
 		  $xmlJoueur=$xml->addChild('joueur');
-		  xmlAttr($xmlJoueur,array('jId'=>$sqlJoueur['jId'],'jNom'=>$sqlJoueur['jNom'],'jNumero'=>$sqlJoueur['jNumero'],'jVie'=>$sqlJoueur['jVie'],'jStatut'=>$sqlJoueur['jStatut'],'jDesoriente'=>$sqlJoueur['jDesoriente'],'jSonne'=>$sqlJoueur['jSonne'],'jTenace'=>$sqlJoueur['jTenace'],'jOnline'=>0,'jHeros'=>$sqlJoueur['jHeros'],'hNom'=>$hNom));
+		  xmlAttr($xmlJoueur,array('jId'=>$sqlJoueur['jId'],'jNom'=>$sqlJoueur['jNom'],'jNumero'=>$sqlJoueur['jNumero'],'jVie'=>$sqlJoueur['jVie'],'jStatut'=>$sqlJoueur['jStatut'],'jDesoriente'=>$sqlJoueur['jDesoriente'],'jSonne'=>$sqlJoueur['jSonne'],'jTenace'=>$sqlJoueur['jTenace'],'jHeros'=>$sqlJoueur['jHeros'],'hNom'=>$hNom));
 		  if ($sqlJoueur['jHeros']!=0) {
 			  //Ajout du deck héros
 			  $deckToAdd=true;

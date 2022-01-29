@@ -1,148 +1,148 @@
-# Ranged
-Ignore retaliate keyword.
-# Alliés
-Limite de 3 sur la zone de jeu (défausse possible).  
-Peut attaquer, Contrer ou Défendre (incliner).
 # Action
-Possibilité de déclenchement d'une capacité à son tour ou au tour d'un autre joueur après une requête (ceraines sont liées à la forme de l'Identité : action de Héros/action d'Alter Ego).
+Ability to trigger an ability during their turn, or by request during other player's trun (some abilities are tied to the character's form : hero action/Alter Ego ection).  
+# Ally
+"Ally Limit" of 3 allies in play (Playre may discard if needed).  
+May Attack, thwart or defend (Exhaust).  
 # Alliance
-N'importe quel joueur peut aider à payer les coûts d'une carte portant le mot-clé Alliance.
-# Ant-Man / La Guêpe
-- Changement de forme selon la règle habituelle. Peut passer de la forme d'Alter-Ego à n'importe laquelle des 2 formes de Super-Héros et vice versa, comme de l'une des 2 formes de Super-Héros à l'autre.
-- Evènement Changer de taille : ne compte pas dans le changement de forme volontaire auquel un joueur a le droit une fois par round lors de son tour.
-# Attribuer une carte Rencontre
-Quand une carte Rencontre est attribuée à un joueur, elle n'est pas immédiatement révélée. Elle le sera lors de la phase correspondante du méchant.
-# Capacité attaque
-Un héros ne s'incline pas lorsque cette capacité est utilisé (sauf si précisé).
-# Capacités Obligatoires
-- Constante
-- Mise en place
-- Une fois révélée
-- Une fois déjouée
-- Une fois vaincu
-- Interruption forçée
-- Réponse forçée
-- Boost
-# Capacités Optionnelles
-- Action
-- Interruption
-- Réponse
-- Resource
-# Cartes d'Etat
-Maximum 1 carte par type et par personnage.  
-Elles ont une priorité de timing sur toutes les capacités de cartes en cas de conflit de résolutions.
-# Carte inclinée (ou "tapée")
-Les capacités sur les cartes sont activables (sauf si le coût d'activation est "incliner la carte").
-# Carte Obligation
-Quand une carte obligation est révélée, elle est remise à l'Identité correspondante.  
-Si l'identité associée est déja éliminée, la carte est défaussée et une autre est piochée.  
-Si la carte Obligation n'a pas d'Identité, le joueur décide de la manière de résoudre cette carte.
-# Chercher
-Après avoir cherché une carte, mélanger le deck.
-# Coup Rapide
-Après qu'un ennemi a engagé un joueur, il l'attaque immédiatement s'il est sous form de héros.
-# Deck suivant de la manigance principale (Gestion)
-La menace excédentaire n'est pas reportée sur le nouveau stage.  
-Les pions accélération présents sont reportés sur le nouveau stade.
-# Défendre / Dégâts
-Il est possible de défendre un uatre joueur en utilisant son Héros ou un Allié. Le Héros ou l'Allié devient la nouvelle cible de l'attaque.  
-Lorsqu'un allié défend, les dégâts excédentaires ne sont pas infligés au héros (sauf en cas de déferlement).
-# Déferlement
-Les dégâts excédentaires infligés à un allié ou un sbire sont infligés au Héros ou au Méchant.
-# Dégâts Indirects
-Ils sont répartis parmi tous les personnages contrôlés du joueur ou du groupe de joueurs.  
-Un personnage ne peut pas prendre plus de dégâts que sa limite en vie.  
-Il ne faut pas tenir compte des éventuelles interactions avec d'autres capacités.
-# Docteur Strange (Deck invocation)
-- Mélanger les 5 cartes du deck Invocation et les placer faces cachées à côté de l'Identité.
-- Lors de la partie, joueur constamment avec la carte du dessus du deck Invocation face visible.
-- Utiliser l'action maîtrise des sorts pour résoudre la capacité de la carte Invocation qui est ensuite placée dans une défausse spécifique.
-- Quand le deck Invocation est vide, mélanger la défausse Invocation pour reconstituer le deck (aucune pénalité).
-# Elimination d'un joueur
-- Résoudre la capacité en cours le cas échéant.
-- Toutes les cartes contrôlées par le joueur sont défaussées.
-- Les cartes Rencontre attribuées sont défaussées.
-- Les ennemis engagés engagent le joueur suivant (sens horaire) en conservant dégâts et cartes d'état.
-# En équipe
-Toujours suivi du nom de 2 personnages. Pour l'inclure dans un deck, l'iIdentité doit correspondre à l'un des 2 personnages. La carte ne peut être jouée que si les 2 personnages sont en jeu (Héros ou Allié).
-# Engager
-Consiste uniquement à placer un ennemi dans la zone de jeu d'un joueur.
-# Entrave X
-Placer X menaces sur la carte.
-# Fin du Deck Joueur
-- Mélanger la pile de défausse pour reconstituer le Deck Joueur.
-- Attribuer immédiatement au joueur une carte rencontre.
-# Fin du Deck Rencontre
-- Mélanger la pile de défausse pour reconstituer le Deck Rencontre.  
-- Attribuer un pion Accélération sur la Manignace Principale.
-- Si une capacité cherchait une carte spécifique dans le Deck Rencontre, elle échoue à épuisement de ce dernier.
-# Gagner des points de vie
-Ce gain concerne les points de vie en cours du personnage, ainsi que son maximum de points de vie.  
-Le gain est immédiat.
-# Garde
-Bloque un joueur qui ne peut plus attaquer le méchant tant que ce sbire est en jeu.
-# Incitation X
-Placer X menaces sur la manigance principale.
-# Interruption
-Interromp la condition de déclenchement spécifiée et se résout avant dans l’ordre des joueurs.
-# Mettre en jeu / révélé
-Mettre en jeu une carte ne signifie pas la révéler.  
-On ne tient donc pas compte des mots-clés correspondant à une révélation (ex: renfort).
-# Mise en place
-Une carte avec ce mot-clé commence la partie en jeu.
-# Paiement du coût des cartes
-Toute ressource générée en surplus par rapport au coût indiqué est perdue.  
-Ne peut être payé que par des cartes et/ou des éléments de jeu que le joueur contrôle.
-# Par joueur
-Si un joueur est éliminé, cette valeur ne change pas.
-# Phase des joueurs
-1. Effectuer vos tours dans l'ordre des joueurs. A votre tour, vous pouvez:
-   - Jouer des cartes.
-   - Déclencher et requérir des actions.
-   - Utiliser les pouvoirs d'attaque, de contre et de récupération de base.
-   - Changer de forme (limite d'une fois par round).
-   - Mettre fin à votre tour.
-1. Après que tous les joueurs ont terminé leur tour, simultanément, tous les joueurs:
-   - Défaussent n'importe quel nombre de cartes de leur main.
-   - Piochent jusqu'à atteindre leur taille de main.
-   - Redressent chacune de leurs cartes inclinées.
-# Phase du méchant
-1. Placer de la menace sur la manigance principale.
-1. Le méchant (ainsi que chaque sbire engagé) s'active une fois par joueur, dans l'ordre des joueurs.
-   - Si vous êtes sous forme de héros, les ennemis vous attaquent (vous pouvez défendre avant que la carte de boost ne soit défaussée).
-   - Si vous êtes sous forme d'alter ego, les ennemis manigancent.
-1. Attribuer une carte Rencontre à chaque joueur.
-1. Dans l'ordre des joueurs, chaque joueur révèle et résout sa carte rencontre.
-1. Passer le pion Premier Joueur.
-# Patrouille
-Tant qu'un sbire avec ce mot-clé est engagé, le joueur ne peut pas contrer la Manigance Principale.
-# Perçant
-Défausse toute carte d'état Tenace avant d'infliger des dégâts.
-# Péril
-Consultation et discussion entre joueurs interdites, dons de cartes impossible.
+Any player may spend for the cost of a card with the Alliance keyword.  
+# Ant-Man / The Wasp
+- Change de form following the usual rule. May switch from Alter-Ego to any one of his/her 2 hero forms, like form a hero form to the other.  
+- Change size event : Does not count in the number of form change the player may pretend to once in the turn.  
+# Assign an Encouter Card
+When an Encounter card is assigned to a player, it is not immediately revealed. It will be during the next villain phase.  
+# Attack ability
+A hero is not exhausted if using such a capacity (unless specified).  
+# cards cost
+Excess resources generated toward any cost are lost.  
+The player paying cost must use cards and/or game elements they control.  
+# Defend / Damages
+An hero or ally may defend another player. The hero/ally becomes the new and only target of that attack.  
+If an ally defends, no damage is dealt to the hero (unless overkill).  
+# Doctor Strange (Invocations Deck)
+- Shuffle the 5 cards Invocation deck and place them facdown near Identity.  
+- Durnig play, the top card of the Invocation deck is allways face up.  
+- Use the Spell Mastery to resolve the current Invocation card's capacity. The top Invocation card is the discarded in a specific discard pile.  
+- If the Invocation deck is empty, shuffle the Invocation discard pile to create a new one (no penalty).  
+# End of Encounter Deck
+- Shuffle the Discard pile to create a new Encounter deck.
+- Place an acceleration token on the Main Scheme  
+- If an ability searches for a specific card in the encounter dec, it fails if the deck is emptied.  
+# End of Player Deck
+- Shuffle discard pile to rebuild the player's deck.
+- Immediately deal a facedown Encounter card to the player.  
+# Engage
+Is only about placing a minion in the player's play area.  
+# Exhausted Card
+Car abilities are active and can interact with the game state (unless ability's cost refers to "Exhaust the card").  
+# Guard
+The player is unable to attack the a villain without the guard keyword while this minion is engaged.  
+# Hinder X
+Place X threats on the card.  
+# Hit points increase
+The Hit point increase is about the current and maximum hit points from the character.  
+Increase is effective immediately.  
+# Incite X
+Place X threat on the main scheme.  
+# Indirects Damages
+They are dealt among all characters from the player or players group.  
+A character can't sustain more hits than its remaining life.  
+No interraction with other abilities.  
+# Interrupt
+May be executed anytime the specified triggering condition occurs, interrupts the current resolution and resolves immediately before that triggering condition, respecting players order.  
+# Mandatory abilities
+- Constant  
+- Setup  
+- When Revealed  
+- When Defeated  
+- When Completed  
+- Forced Interrupt  
+- Force Response  
+- Boost  
+# Next Main Scheme deck (Management)
+Excess threat from the previous stage does not carry over to the new stage.  
+Acceleration tokens on it carry over to the new stage.  
+# Obligation Card
+When an Obligation Card is revealed, it's given to the corresponding identity if the card states so.  
+If the refered Identity is allready defeated, the card is discarded and a nex one is revealed.  
+If the Obligation card doesn't mention any Identity the current players chooses how to deal with it.  
+# Optional abilities
+- Action  
+- Interrupt  
+- Response  
+- Resource  
+# Overkill
+Excess damages dealt to a defeated ally or minion are dealt to the corresponding hero or villain.  
+# Ownership and card control
+- Owner = Player whose beginning deck contains the card.
+- Control = Player using a card.
+- If a card that has changed control leaves play, it is placed back in its owner out-of-play area (hand, deck, discard) or remove frfom the game if its owner was defeated.  
+- When a character changes control, it remains in the same state(exhausted, ready, damaged..)
+- Upgrades or attachments on a card that changes contro also change control.  
+# Patrol
+While a minion with the patrol keyword is engaged with a player, that player cannot user cards they control to thwart the main scheme.  
+# Per player
+If a player is defeated, this value remains unchanged.  
+# Peril
+Forbidden to consult and discuss with other players while resolving such card. Other players are unable to trigger abilities or play cards.  
 # Permanent
-Une carte avec ce mot-clé ne peut pas quitter le jeu.
-# Propriété et Contrôle des cartes
-- Propriétaire = joueur dont le Deck de départ contenait la carte.
-- Contrôleur = joueur qui utilise la carte.
-- Quand une carte qui a changé de contrôle quitte le jeu, elle n'est pas restituée à son propriétaire mais plaçée dans la zone hors-jeu (main, deck, défausse) du joueur la contrôlant.
-- Un personnage qui change de contrôleur reste dans le même état (incliné, blessé...)
-- Les améliorations et attachements sur une carte qui change de contrôleur suivent la carte.
-# Renfort
-Après qu'une carte Rencontre avec ce mot-clé est révélée et résolue, le joueur révèle une carte Rencontre supplémentaire et la résout.
-# Ressource
-Il y a 3 types de ressource (Force, Mental et Energie)  $La ressource libre peut être utilisée comme n'importe lequel des 3 types de ressource.
-# Restreint
-Un joueur ne peut pas contrôler plus de 2 cartes avec ce mot-clé simultanément (défausse possible).
-# Riposte X
-S’il a survécu, le personnage attaqué (et uniquement lui) inflige X dégâts en retour à son attaquant.
-# Robuste
-Le personnage ne peut être ni sonné, ni désorienté.
-# Ténacité
-Quand un personnage entre en jeu avec ce mot-clé, placez sur lui une carte d'état Tenace.
-# Utilisation (X "types")
-Placer X jeton génériques sur la carte qui serviront à résoudre la capacité en rapport. Une fois tous les jetons dépensés, défausser la carte.
-# Victoire X
-Quand la carte est déjouée ou vaincue, la placer dans la pile de victoire au lieu de la pile de défause du joueur. X est le nombre de points de victoire rapporté.
-# Vilenie
-Quand le sbire s'active, lui donner une carte Boost face cachée. A la résolution de l'activation, révéler la carte Boost et Ajouter la valeur des Boosts aux valeurs du Sbire. Si cette une capacité de Boost, résoudre ses effets. Puis défausser la carte.
+A card with this keyword cannot leave play.  
+# Piercing
+Discards any Tough status card from the target before dealing damages.  
+# Play, Put into Play / revealed
+Playing a card is not revealing it.  
+So, keywords about revealing the card (Surge for instance) are irrevelant.  
+# Player elimination
+- If needed, resolve current cpacity.
+- Every card under the player's control is discarded in its owner discard pile.
+- Encounter cards drawn for the player are discarded.
+- Minions engaged with the player engage the newt player (clockwise) retaining attachments, damages counters and status cards.  
+# Player phase
+1. Each player gains turn, on order. On your turn, you should:
+   - Play cards.
+   - Trigger and Ask for action ability cards.
+   - Use basic Attack, thwart or recovery power.
+   - Change form (once each turn).
+   - End turn.
+1. After every player have end their turn, they simultanously:
+   - Discard any cards number from their hand.
+   - Draw cards to go back to their hand size.
+   - Ready all cards they control.  
+# Quickstrike
+After a minion engages a hero, he immediately attacks that hero.  
+# Ranged
+Ignore retaliate keyword.  
+# Resource
+There are 3 main types of resources  (Physical, Mental et Energy). Wild resource may be used as wild or any other type.  
+# Restricted
+A player cannot control more than 2 cards with this keyword at same time (possible to discard).  
+# Retaliate X
+If it survives, attacked character (and only attacked character) deals X damages to the attacker.  
+# Search
+After searching the deck for a card, shuffle the deck.  
+# Setup
+A card with this keyword begins the game in play.  
+# Stalwart
+A character with the Stalwart keyword cannot be stunned or confused.  
+# Status Cards
+1 Max per type and per character.  
+Have timing priority over all conflicting crd abilities.  
+# Surge
+After an Encouter card with this keyword is revealed, the player resolving the card reveals an additional Encounter card.  
+# Team-Up
+The keyword names two characters. To include the car in a deck, Identity must be one of the two named. The card needs both names to be in play (hero or ally) to be played.  
+# Toughness
+When a character with the toughness keyword enters play, place a tough status card on it.  
+# Uses (X "types")
+Place X all-purpose counters on the card. Once all counters are spent, discard the card.  
+# Victory X
+When the card is defeated, place it in the victory display instead of it's owner's discard pile. X indicates how many victory points that card is worth.  
+# Vilainous
+When the minion activates, give it one facedown boost card. When resolving activation, reveal the boost card and add its boost value to the minion's attack/scheme value. If it' a boost capacity, resolve its effects, then discard the boost card.  
+# Villain phase
+1. Place threat on Main Scheme.
+1. The Villain (and every engaged minion) activates once per player, in players order.
+   - If you're on Hero form, enemies attack (you must choose (how) to defend before discarding boost card).
+   - If you're on Alter-Ego form, enemmies scheme.
+1. Deal one Encounter card for each player, one addictional card for each hazard symbol in play.
+1. In players order, each player reveals and resolves their Encounter card(s).
+1. Pass the first player token.  

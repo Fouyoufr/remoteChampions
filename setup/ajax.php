@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/xml; charset=utf-8');
 include 'include.inc';
 
 if (isset($_POST['phase'])) {
@@ -9,11 +10,12 @@ if (isset($_POST['phase'])) {
   $phase=htmlspecialchars($_POST['phase']);
   foreach ($xmlBoxes->box as $xmlBox) foreach ($xmlBox->mechant as $xmlMechant) if ($xmlMechant['id']->__toString()==$xml['pMechant']->__toString()) $mechant=$xmlMechant;
   $nextPhase=$phase+1;
+  echo "$hase, puis $nextPhase";
   if ($nextPhase==4) $nextPhase=1;
   if($mechant['vie'.$nextPhase]==0) $nextPhase=1;
   $xml['pMechPhase']=$phase;
-  $xml['pMechVie']=$mechant['vie'.$phase]*$nbJoueurs;
-  $xml['newtPhase']=$nextPhase;
+  if ($nbJoueurs!=0) $xml['pMechVie']=$mechant['vie'.$phase]*$nbJoueurs; else $xml['pMechVie']=$mechant['vie'.$phase];
+  $xml['nextPhase']=$nextPhase;
   $xml['nextPhaseVie']=$mechant['vie'.$nextPhase];
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
@@ -36,6 +38,7 @@ if (isset($_POST['mechant'])) {
   $xml['pMechSonne']=0;
   $xml['pMechTenace']=0;
   $xml['pMechPhase']=1;
+  if($newMechant['vie2']==0) $xml['nextPhase']=1; else $xml['nextPhase']=2;
   $xml['mNom']=$newMechant['name'];
   $xml['pManiPrincipale']=0;
   $xml['pManiCourant']=0;
@@ -108,6 +111,7 @@ if(isset($_POST['switch'])) {
     case 'mechantDistance':
       $xml['pMechDistance']=1-$xml['pMechDistance'];
     	break;}
+    echo $xml->asXML();
     xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if (isset($_POST['boite'])) {

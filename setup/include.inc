@@ -29,16 +29,9 @@ if (isset($title)) {
   </script>
 </head>
 <body";
-  if (isset($bodyClass)) echo " class='$bodyClass'";
-  echo ">";
-  if (isset($partieId)) {
-    echo "<div id='ajaxLoad'";
-    if (isset($bodyClass)) echo " class='$bodyClass'";
-    echo "></div>
-<div id='ajaxSave'";
-    if (isset($bodyClass)) echo " class='$bodyClass'";
-    echo "></div>
-<input id='partie' type='hidden' value='".strtoupper($partieId)."'/>";}
+if (isset($bodyClass)) echo " class='$bodyClass'";
+echo ">";
+if (isset($partieId)) echo "<input id='partie' type='hidden' value='".strtoupper($partieId)."'/>";
 if (isset($joueurId)) echo "<input id='jId' type='hidden' value='$joueurId'/>";
 echo "
 <script language='JavaScript'>

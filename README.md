@@ -11,6 +11,10 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
 
 # Historique des changements
+## Version 6.0
+Adaptation du moteur Ajax en mode "long pooling"  
+FInalisation du mini-lecteur Melodice
+Correction  transition des Phases de méchant
 ## Version 5.7
 Intégration de lecture de playlist Melodice pendant une partie.
 ## Version 5.6
