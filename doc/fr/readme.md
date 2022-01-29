@@ -81,11 +81,11 @@ Si une erreur empêche la création de la partie, elle vous sera communiquée su
 La page principale d'une partie qui vient d'être créée ressemble à l'illustration suivante:  
 ![Page principale nouvelle partie](illus2.png "Page principale nouvelle partie")  
 Cette page est divisée en différentes zones:  
-![1](../tag1.png)La section joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#Gestiondujoueur)).  
-![2](../tag2.png)La section méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https#Gestionduméchant))  
+![1](../tag1.png)La section joueur, qui représente l'état de chaque joueur (elle est détaillée [plus loin](https:#gestion-du-joueur)).  
+![2](../tag2.png)La section méchant qui fournit les informations sur la situation actuelle du méchant de la partie (elle est détaillée [plus loin](https:#Gestion-du-mechant))  
 ![3](../tag3.png)L'indicateur du premier joueur. Le premier joueur est désigné au hasard parmi les joueurs de la partie lors de la sélection de la manigance principale. Il suffira ensuite de cliquer sur l'indicateur du premier joueur pour indiquer que c'est le tour du joueur suivant (l'indicateur se déplacera alors automatiquement en regard du joueur suivant).  
 ![4](../tag4.png)Un ensemble de compteurs annexes. A vous de voir si vous avez besoin d'autres compteurs que les principaux prévus : cela pourra servir, par exemple, pour suivre des éléments spécifiques à certaines missions...  
-![5](../tag5.png)La section manigances (détaillée [plus loin](https#GestiondesManigances)).  
+![5](../tag5.png)La section manigances (détaillée [plus loin](https:#Gestion-des-Manigances)).  
 ![6](../tag6.png)A tout moment, le **mot-clef d'accès** à la partie, à communiquer à tous les joueurs pour que ceux-ci puissent la rejoindre est rappelé en bas de page. (nota : Non disponible sur smartphone; En cliquant dessus, il est possible d'ouvrir l'[écran d'administration](https:#administration-du-site) décrit plus loin).  
 ![7](../tag7.png)A tout moment, pendant une partie, vous pouvez cliquer sur le bouton **"Aide"** afin d'ouvrir la fenêtre d'[aides de jeu](https:#aides-de-jeu) qui contient un rappel des mots-clef pour vous aider à vous rappeler des élements principaux et des termes pièges...  
 ## Paramétrage initial de la partie

@@ -253,7 +253,7 @@ div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgr
 
 #melodice {margin: 0;position:absolute;top:50%;transform:translateY(-50%);z-index:20;}
 #melodice label {margin: 0; margin-right:-41px;position:absolute;right:0px;top:50%;transform:translateY(-50%);cursor: pointer;display: inline-block;width:41px;height:44px;
-  background-color: lightslategray;background-image: url('img/melodice.png');background-repeat: no-repeat;background-position: center;display:none;}
+  background-color: lightslategray;background-image: url('img/melodice.png');background-repeat: no-repeat;background-position: center;}
 #melodice label:hover {background-color: white;}
 #melodice input {display:none;}
 #meloDisplay {transition: width .8s ease;width:0;overflow: hidden;height:200px;background:black;margin:0px;padding:0px;text-align:center;font-weight:bold;color:lightslategray;}

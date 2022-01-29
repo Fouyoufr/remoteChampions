@@ -56,37 +56,31 @@ function displayBottom() {
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
 
     if ($meloDice!='' and $bodyClass=='index') {
-      echo '
-      <script type="application/javascript">
+      echo '<script>
         var tag=document.createElement(\'script\');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName(\'script\')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         var ytPlayer;
-
         function onYouTubeIframeAPIReady() {
-          ytPlayer = new YT.Player(\'ytPlayer\', {events: {\'onReady\': ytPlayerStateChange,\'onStateChange\': ytPlayerStateChange}});}
+          ytPlayer = new YT.Player(\'ytPlayer\',{videoId:\''.$meloDice1.'\',events: {\'onReady\': ytPlayerStateChange,\'onStateChange\': ytPlayerStateChange}});}
         
         function ytPlayerStateChange(event) {
           if (ytPlayer.getPlayerState() == YT.PlayerState.PLAYING) {
             document.getElementById(\'meloPlay\').style.display=\'none\';
             document.getElementById(\'meloStop\').style.display=\'block\';
-            document.getElementById(\'meloNext\').style.display=\'block\';
-            document.getElementById(\'meloButton\').style.display=\'block\';}
+            document.getElementById(\'meloNext\').style.display=\'block\';}
           else {
             document.getElementById(\'meloPlay\').style.display=\'block\';
             document.getElementById(\'meloStop\').style.display=\'none\';
-            document.getElementById(\'meloNext\').style.display=\'none\';
-            document.getElementById(\'meloButton\').style.display=\'block\';}}
+            document.getElementById(\'meloNext\').style.display=\'none\';}}
 
       </script>
       <div id="melodice">
         <input id="meloCheck" type="checkbox">
         <div id="meloDisplay">
           <a id="meloLink" href="https://melodice.org/playlist/'.$meloList.'" target="_blank">MELODICE</a>
-          <iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&rel=0&playsinline=1&autoplay=0&showinfo=0&autohide=1&controls=0&modestbranding=1&disablekb=1&origin=http';
-      if ($_SERVER['HTTPS']) echo 's';
-      echo '://'.$_SERVER['SERVER_NAME'].'&playlist='.$meloDice.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
+          <iframe id="ytPlayer" title="melodice" type="text/html" src="https://www.youtube.com/embed/'.$meloDice1.'?enablejsapi=1&playsinline=1&autoplay=0&showinfo=0&controls=0&disablekb=1&playlist='.$meloDice.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"></iframe>
           <div id="meloList">('.$meloList.')</div>
         </div>
         <div id="meloCommands">
@@ -96,6 +90,10 @@ function displayBottom() {
           <label for="meloCheck" id="meloButton"></label>
         </div>
       </div>';}}}
+#url de l'iframe si besoin de spécifier l'origine :
+#<iframe [...] src="[...]&origin=http';
+#if ($_SERVER['HTTPS']) echo 's';
+#echo '://'.$_SERVER['SERVER_NAME'].'"></iframe>'
 
 function updatePassword() {
   global $adminPassword,$str;
