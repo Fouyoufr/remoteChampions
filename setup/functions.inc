@@ -50,7 +50,7 @@ function displayBottom() {
     echo '<div id="lang-menu"><div class="'.$rcLang.'"></div><ul>';
     if (isset($_GET['lang'])) unset ($_GET['lang']);
     if (empty($_GET)) $urlLangAdd='?lang='; else $urlLangAdd='?'.$_SERVER['QUERY_STRING'].'&lang=';
-    foreach ($rcLangs as $selecLang) echo '<li><a href="'.$urlLangAdd.$selecLang.'" class="'.$selecLang.'"></a></li>';
+    foreach ($rcLangs as $selecLang) if ($selecLang!=$rcLang) echo '<li><a href="'.$urlLangAdd.$selecLang.'" class="'.$selecLang.'"></a></li>';
     echo '</ul></div>';
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/blob/$gitBranch/doc/$rcLang/readme.md#utilisation-de-remote-champions' alt='".$str['rcUsage']."' id='aide' target='_blank'><img src='img/aide.png' alt='".$str['rcUsage']."'/></a>";
     echo "<a href='https://github.com/Fouyoufr/remoteChampions/issues' alt='".$str['bugReport']."' id='bugReport' target='_blank'><img src='img/bug.png' alt='".$str['bugReport']."'/></a>";
