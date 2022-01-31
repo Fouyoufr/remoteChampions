@@ -8,7 +8,7 @@ function displaydeck($deck,$box) {
       for (i=0;i<selecDeck.length;i++) { selecDeck[i].checked=newCheck;}
 }'/></td><td>";
     $imageBoite=$box['id'];}
-  echo "<div class='newEncadre'><input type='checkbox' name='deck".$deck['id']."' class='deckBox$imageBoite'";
+  echo "<div class='newEncadre'><input type='checkbox' name='deck".$deck['id']."' class='deckBox$imageBoite deckCheck'";
   if (empty($_POST) or $_POST['deck'.$deck['id']]=='on') echo ' checked';
   echo "><label for='deck".$deck['id']."'>".$deck['name']."</label></div>";}
 

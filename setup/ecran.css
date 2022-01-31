@@ -80,7 +80,7 @@ body.index {background: url('img/marvel-fullHD.png') no-repeat center center fix
 .changeMechant,.changeHeros {display: flex;align-items: center;justify-content: left;background:lightgray;color:black;}
 .changeMechant:hover,.changeHeros:hover {cursor: pointer;background:black;color:lightgray;}
 .changeMechant img,.changeHeros img {margin-right:5px; background-color: white;}
-#dispClef {position:absolute;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;text-decoration: none;}
+#dispClef {position:fixed;bottom:2px;left:calc(50% - 200px);background:black;border:solid 2px white;color:white;width:400px;text-align:center;font-size:15px;padding:1px;text-decoration: none;}
 #dispClef:hover {cursor: pointer;}
 #dispClef span {font-weight:bold;font-size:20px;font-variant: small-caps; text-transform: capitalize;}
 #dispClef span:hover {color:black;background:white;}
