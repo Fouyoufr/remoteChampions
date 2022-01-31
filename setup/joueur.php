@@ -14,6 +14,7 @@ echo ">";
   <div id="picJoueur" onclick='document.getElementById("changeHerosMobile").style.display="block";'></div>
   <div id="joueur" onclick='document.getElementById("changeNameOld").innerText=document.getElementById("joueur").innerText;document.getElementById("changeNameMobile").style.display="block";document.getElementById("playerName").focus();'></div>
   <div class='vieJoueur'>
+    <a href="javascript:fullScreen();" class="fsOn">&nbsp;</a>
     <input class="vieJoueur" id="vieJoueurMoins" type="button" value="<" onclick='document.getElementById("vieJoueur").innerText-=1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText,"ajaxJoueurSet");'>
     <div id="vieJoueur"></div>
     <input class="vieJoueur" type="button" value=">" onclick='document.getElementById("vieJoueur").innerText=parseInt(document.getElementById("vieJoueur").innerText)+1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText,"ajaxJoueurSet");'>

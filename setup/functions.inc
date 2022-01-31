@@ -64,7 +64,6 @@ function displayBottom() {
         var ytPlayer;
         function onYouTubeIframeAPIReady() {
           ytPlayer = new YT.Player(\'ytPlayer\',{videoId:\''.$meloDice1.'\',events: {\'onReady\': ytPlayerStateChange,\'onStateChange\': ytPlayerStateChange}});}
-        
         function ytPlayerStateChange(event) {
           if (ytPlayer.getPlayerState() == YT.PlayerState.PLAYING) {
             document.getElementById(\'meloPlay\').style.display=\'none\';
@@ -74,7 +73,6 @@ function displayBottom() {
             document.getElementById(\'meloPlay\').style.display=\'block\';
             document.getElementById(\'meloStop\').style.display=\'none\';
             document.getElementById(\'meloNext\').style.display=\'none\';}}
-
       </script>
       <div id="melodice">
         <input id="meloCheck" type="checkbox">

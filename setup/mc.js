@@ -1,3 +1,17 @@
+function fullScreen() {
+  if (!document.fullscreenElement) {
+    document.getElementsByClassName('fsOn')[0].className='fsOff';
+    document.documentElement.requestFullscreen();
+    if ('wakeLock' in navigator) {wakeLock=navigator.wakeLock.request('screen');}}
+  else {
+    document.getElementsByClassName('fsOff')[0].className='fsOn';
+    if (document.exitFullscreen) {document.exitFullscreen();}
+    if ('wakeLock' in navigator) {
+      wakeLock.release()
+      .then(() => {wakeLock = null;});}
+    }
+  }
+
 function ajaxDot(color) {
   var ajaxDotBox=document.getElementById('ajaxDot');
   if (!ajaxDotBox) {
