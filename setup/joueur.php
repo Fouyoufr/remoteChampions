@@ -13,8 +13,7 @@ echo ">";
   </div>
   <div id="picJoueur" onclick='document.getElementById("changeHerosMobile").style.display="block";'></div>
   <div id="joueur" onclick='document.getElementById("changeNameOld").innerText=document.getElementById("joueur").innerText;document.getElementById("changeNameMobile").style.display="block";document.getElementById("playerName").focus();'></div>
-  <div class='vieJoueur'>
-    <a href="javascript:fullScreen();" class="fsOn">&nbsp;</a>
+  <div class='vieJoueurDisp'>
     <input class="vieJoueur" id="vieJoueurMoins" type="button" value="<" onclick='document.getElementById("vieJoueur").innerText-=1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText,"ajaxJoueurSet");'>
     <div id="vieJoueur"></div>
     <input class="vieJoueur" type="button" value=">" onclick='document.getElementById("vieJoueur").innerText=parseInt(document.getElementById("vieJoueur").innerText)+1;ajaxPost("vieJoueur",document.getElementById("vieJoueur").innerText,"ajaxJoueurSet");'>
@@ -36,6 +35,10 @@ echo '</select><div class="buttonChange"><input type ="submit" value="'.$str['co
 echo '<div id="changeNameMobile"><div class="mobilePopuptitle">'.$str['changePlayerName'].'</div><form class="mobilePopupContent" onsubmit=\'ajaxPost("changeName",document.getElementById("playerName").value,"ajaxJoueurSet");document.getElementById("changeNameMobile").style.display="none";return false;\'>'.$str['newPlayerName'].' <span id="changeNameOld"></span><br/><br/><input type=\'text\' id=\'playerName\' minlength="4" maxlength="50"><br/><br/>
 <div class="centre"><input type ="submit" value="'.$str['confirm'].'"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeNameMobile").style.display="none";\'></div></form></div>';
 ?>
-<script type="application/javascript">ajaxPush(document.getElementById('partie').value,ajaxJoueurSet);</script>
+<a href="javascript:fullScreen();" class="fsOn" id="fullScreen">&nbsp;</a>
+<script type="application/javascript">
+ajaxPush(document.getElementById('partie').value,ajaxJoueurSet);
+if (!fsRequestMethod) {document.getElementById('fullScreen').style.display='none';}
+</script>
 </body>
 </html>

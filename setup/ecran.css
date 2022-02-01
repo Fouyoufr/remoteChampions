@@ -174,7 +174,7 @@ body.joueur {overflow:hidden;background:lightgray;padding:0px;}
 #ajaxSave.joueur{bottom:22px;left:22px;}
 .vieJoueur,.vieJoueurRed {font:calc(4vw + 4vh + 2vmin) bold;font-family:Impact,Charcoal,sans-serif;color:white;margin:3px;border:solid 2px white;border-radius:7px;text-align:center;background:black;padding-left:3%;padding-right:3%;}
 .vieJoueurRed {color:red;border:solid 2px red;}
-div.vieJoueur {text-align:center;margin:2%;position:relative;}
+div.vieJoueurDisp {text-align:center;margin:2%;position:relative;}
 div.buttonChange {text-align:center;margin-top:10%;}
 .desJoueur,.tenJoueur,.sonJoueur {display:inline-block;font-size: calc(2vw + 2vh + 2vmin);font-family:Impact,Charcoal,sans-serif;color:black;margin:2px;}
 .desJoueur {background-color:#e5d2e5;}
@@ -186,7 +186,7 @@ div.buttonChange {text-align:center;margin-top:10%;}
 #joueurFirst.on{filter:grayscale(0);}
 #joueurFirst.off{filter:grayscale(1);}
 .joueurAide {position:absolute;display:block;bottom:22px;right:22px;width:50px;height:50px;background:url(img/aide.png) center no-repeat;text-decoration: none;}
-.fsOn,.fsOff {position:absolute;display:block;top:50%;left:50px;width:20px;height:20px;text-decoration: none;}
+.fsOn,.fsOff {position:absolute;display:block;left:50%;bottom:10px;margin-left:-10px;width:20px;height:20px;text-decoration: none;}
 .fsOn {background: url('img/fsOn.png') center no-repeat;}
 .fsOff {background: url('img/fsOff.png') center no-repeat;}
 

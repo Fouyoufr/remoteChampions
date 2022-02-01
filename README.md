@@ -11,6 +11,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
 
 # Historique des changements
+## Version 6.1
+Bouton de Full Screen sur écrans mobiles
 ## Version 6.0
 Adaptation du moteur Ajax en mode "long pooling"  
 FInalisation du mini-lecteur Melodice

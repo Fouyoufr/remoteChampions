@@ -17,6 +17,10 @@ global $str;
 echo '<input id="mechantDesorienteME" type="button" value="'.$str['villainConfused'].'"  onclick=\'ajaxPost("switch","mechantDesoriente","ajaxMechantSet");\'><input id="mechantSonneME" type="button" value="'.$str['villainStunned'].'" onclick=\'ajaxPost("switch","mechantSonne","ajaxMechantSet");\'><input id="mechantTenaceME" type="button" value="'.$str['villainTough'].'" onclick=\'ajaxPost("switch","mechantTenace","ajaxMechantSet");\'><input id="mechantRiposteME" type="button" value="'.$str['villainRetaliate'].'" onclick=\'ajaxPost("switch","mechantRiposte","ajaxMechantSet");\'><input id="mechantPercantME" type="button" value="'.$str['villainPiercing'].'" onclick=\'ajaxPost("switch","mechantPercant","ajaxMechantSet");\'><input id="mechantDistanceME" type="button" value="'.$str['villainRanged'].'" onclick=\'ajaxPost("switch","mechantDistance","ajaxMechantSet");\'>';
 ?>
 </div>
-<script type="application/javascript">ajaxPush(document.getElementById('partie').value,ajaxMechantSet);</script>
+<a href="javascript:fullScreen();" class="fsOn" id="fullScreen">&nbsp;</a>
+<script type="application/javascript">
+ajaxPush(document.getElementById('partie').value,ajaxMechantSet);
+if (!fsRequestMethod) {document.getElementById('fullScreen').style.display='none';}
+</script>
 </body>
 </html>
