@@ -1,5 +1,16 @@
 var fsRequestMethod = document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen || document.documentElement.mozRequestFullScreen || document.documentElement.msRequestFullScreen;
 
+function smartPhoneTilt() {
+  if (screen) {
+    if (screen.orientation.type === "portrait-secondary" || screen.orientation.type === "portrait-primary") {document.getElementById('smartPhoneTilt').style.display='block';}
+    screen.orientation.onchange = function (){
+    if (screen.orientation.type === "landscape-primary" || screen.orientation.type === "landscape-secondary") {document.getElementById('smartPhoneTilt').style.display='none';}
+    else if (screen.orientation.type === "portrait-secondary" || screen.orientation.type === "portrait-primary") {document.getElementById('smartPhoneTilt').style.display='block';}}}
+  else {
+    if (window.innerWidth > window.innerHeight) {document.getElementById('smartPhoneTilt').style.display='none';} else {document.getElementById('smartPhoneTilt').style.display='block';}
+    window.onresize = function(){
+      if (window.innerWidth > window.innerHeight) {document.getElementById('smartPhoneTilt').style.display='none';} else {document.getElementById('smartPhoneTilt').style.display='block';}}}}
+
 if (document.addEventListener) {
  document.addEventListener('fullscreenchange', fullScreenExit, false);
  document.addEventListener('mozfullscreenchange', fullScreenExit, false);

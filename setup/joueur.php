@@ -36,6 +36,7 @@ echo '<div id="changeNameMobile"><div class="mobilePopuptitle">'.$str['changePla
 <div class="centre"><input type ="submit" value="'.$str['confirm'].'"><input type="button" value="'.$str['cancel'].'" onclick=\'document.getElementById("changeNameMobile").style.display="none";\'></div></form></div>';
 ?>
 <a href="javascript:fullScreen();" class="fsOn" id="fullScreen">&nbsp;</a>
+<div id="smartPhoneTilt"><script type="application/javascript">smartPhoneTilt();</script></div>
 <script type="application/javascript">
 ajaxPush(document.getElementById('partie').value,ajaxJoueurSet);
 if (!fsRequestMethod) {document.getElementById('fullScreen').style.display='none';}

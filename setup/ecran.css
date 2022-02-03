@@ -268,3 +268,4 @@ div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgr
 #meloCommands a:hover {background-color: white;color:mediumslateblue;}
 #meloPlay,#meloStop {top:35px;}
 #meloNext {bottom:35px;}
+#smartPhoneTilt {width:178px;height:191px;position:fixed;top:50%;margin-top:-105px;left:50%;margin-left:-99px;background-color:gainsboro;background-image: url('img/smartPhoneTilt.png');background-repeat: no-repeat;background-position: center;border:solid 10px gainsboro;display: none;}

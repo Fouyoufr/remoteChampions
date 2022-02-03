@@ -13,6 +13,7 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 # Historique des changements
 ## Version 6.1
 Bouton de Full Screen sur écrans mobiles
+Invite de bascule sur écrans mobiles
 ## Version 6.0
 Adaptation du moteur Ajax en mode "long pooling"  
 FInalisation du mini-lecteur Melodice

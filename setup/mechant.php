@@ -18,6 +18,7 @@ echo '<input id="mechantDesorienteME" type="button" value="'.$str['villainConfus
 ?>
 </div>
 <a href="javascript:fullScreen();" class="fsOn" id="fullScreen">&nbsp;</a>
+<div id="smartPhoneTilt"><script type="application/javascript">smartPhoneTilt();</script></div>
 <script type="application/javascript">
 ajaxPush(document.getElementById('partie').value,ajaxMechantSet);
 if (!fsRequestMethod) {document.getElementById('fullScreen').style.display='none';}
