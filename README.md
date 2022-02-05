@@ -11,6 +11,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
 
 # Historique des changements
+## Version 6.2
+Remote Champions devient une application web "installable" pour en faciliter l'accès.
 ## Version 6.1
 Bouton de Full Screen sur écrans mobiles
 Invite de bascule sur écrans mobiles

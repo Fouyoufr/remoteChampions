@@ -1,0 +1,1 @@
+self.addEventListener("fetch", function(event) {console.log(`Install:start server worker`)});

@@ -1,5 +1,6 @@
 <?php
   $str=array(
+      'install'=>'Install locally as Application',
       'adminPwd'=>'Administrative password',
       'defaultAdminPass'=>'The administrative password is set to it\'s default value !',
       'gamePass'=>'This game key is',

@@ -1,3 +1,22 @@
+//Affichage du bouton d'installation
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  addBtn=document.getElementsByClassName('install')[0];
+  addBtn.style.display='block';
+  addBtn.addEventListener('click', (e) => {
+    addBtn.style.display='none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {deferredPrompt = null;});});});
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceWorker.js').then(function(registration) {
+    console.log('ServiceWorker registration successful!');
+  }).catch(function(err) {
+    console.log('ServiceWorker registration failed: ', err);
+  });
+}
+
 var fsRequestMethod = document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen || document.documentElement.mozRequestFullScreen || document.documentElement.msRequestFullScreen;
 
 function smartPhoneTilt() {
@@ -24,8 +43,6 @@ function fullScreenExit() {
 function fullScreen() {
   if (document.getElementById('fullScreen').className=='fsOn') {
     document.getElementById('fullScreen').className='fsOff';
-    
-
     document.documentElement.requestFullscreen();
     if ('wakeLock' in navigator) {
       navigator.wakeLock.request('screen')

@@ -269,3 +269,5 @@ div.newError div {text-align:left;font-size:.5em;font-style:italic;color:lightgr
 #meloPlay,#meloStop {top:35px;}
 #meloNext {bottom:35px;}
 #smartPhoneTilt {width:178px;height:191px;position:fixed;top:50%;margin-top:-105px;left:50%;margin-left:-99px;background-color:gainsboro;background-image: url('img/smartPhoneTilt.png');background-repeat: no-repeat;background-position: center;border:solid 10px gainsboro;display: none;}
+button.install{position:absolute;padding:10px;width:240px;height:38px;margin-top:10px;left:-120px;margin-left:50%;background:rgba(255,255,255,0.5);background-image:url('img/install.png');background-repeat:no-repeat;background-position:2px 2px;padding:0px;padding-left:34px;font-weight:bold;display:none;}
+button.install:hover {background:rgba(255,255,255,0.8);background-image:url('img/install.png');background-repeat:no-repeat;background-position:2px 2px;}

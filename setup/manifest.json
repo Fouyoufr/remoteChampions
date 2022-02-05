@@ -1,0 +1,30 @@
+{
+    "short_name": "RC",
+    "name": "Remote Champions",
+    "orientation": "landscape",
+    "icons": [
+      {
+        "src": "/img/iconBig.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/img/iconSmall.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/index.php",
+    "background_color": "#D3D3D3",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#D3D3D3",
+    "description": "Facilite l agestion des parties en ligne de Marvel Champions",
+    "screenshots": [
+      {
+        "src": "/img/screenShot.png",
+        "type": "image/png",
+        "sizes": "804x486"
+      }
+    ]
+  }
