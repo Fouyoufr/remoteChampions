@@ -1,4 +1,4 @@
-//Affichage du bouton d'installation
+function startInstall() {
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
@@ -8,14 +8,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     addBtn.style.display='none';
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {deferredPrompt = null;});});});
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceWorker.js').then(function(registration) {
-    console.log('ServiceWorker registration successful!');
-  }).catch(function(err) {
-    console.log('ServiceWorker registration failed: ', err);
-  });
-}
+if ('serviceWorker' in navigator) {navigator.serviceWorker.register('/serviceWorker.js');}}
 
 var fsRequestMethod = document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen || document.documentElement.mozRequestFullScreen || document.documentElement.msRequestFullScreen;
 

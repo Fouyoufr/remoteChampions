@@ -4,11 +4,13 @@
 You'll need a web/PHP server or a Docker engine to run the website.  
 Simply copy the entire content of the "*setup*" folder to the root of your web server and access it...  
 [See project documentation](https://github.com/Fouyoufr/remotechampions/blob/main/doc/en/readme.md)  
+[Test a sample implementation](http://rchampions.tk)  
 
 ## Moteur *fan-made*, pour faciliter les parties distantes de Marvel champions
 Vous aurez besoin d'un serveur web/PHP.
 Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine de votre serveur web accèdez-y... 
 [Voir la documentation du projet](https://github.com/Fouyoufr/remoteChampions/blob/main/doc/fr/readme.md)  
+[Implémentation test](http://rchampions.tk)
 
 # Historique des changements
 ## Version 6.2

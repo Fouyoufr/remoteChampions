@@ -69,6 +69,7 @@ if(isset($_POST['heros'])) {
 
 if(isset($_POST['vieMechant'])) {
   $vieMechant=htmlspecialchars($_POST['vieMechant']);
+  if ($vieMechant<0) $vieMechant=0;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pMechVie']=$vieMechant;
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
@@ -138,18 +139,21 @@ if(isset($_POST['changeName'])) {
 
 if(isset($_POST['vieJoueur'])) {
   $vie=htmlspecialchars($_POST['vieJoueur']);
+  if ($vie<0) $vie=0;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->joueur as $jId=>$jValue) if ($jValue['jId']==$joueurId) {$jValue['jVie']=$vie;}
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['manigance'])) {
   $manigance=htmlspecialchars($_POST['manigance']);
+  if ($manigance<0) $manigance=0;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pManiCourant']=$manigance;
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
 
 if(isset($_POST['maniganceMax'])) {
   $manigance=htmlspecialchars($_POST['maniganceMax']);
+  if ($manigance<0) $manigance=0;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   $xml['pManiMax']=$manigance;
   xmlSave($xml,'ajax/'.$partieId.'.xml');}
@@ -255,6 +259,7 @@ if (isset($_POST['delCompteur'])) {
 if(isset($_POST['compteur'])) {
   $compteur=htmlspecialchars($_POST['compteur']);
   $value=htmlspecialchars($_POST['value']);
+  if ($value<0) $value=0;
   $xml=simplexml_load_file('ajax/'.$partieId.'.xml');
   foreach ($xml->compteur as $XMLcompteur) if ($XMLcompteur['cId']==$compteur) {$XMLcompteur['cValeur']=$value;}
   xmlSave($xml,'ajax/'.$partieId.'.xml');}

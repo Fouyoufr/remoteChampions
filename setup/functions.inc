@@ -28,7 +28,7 @@ function xmlSave($xsObject,$xsFile) {
 function gitFileDate($gitFile=null){
   global $str,$gitBranch,$gitToken;
   #Récupération des informations du repositery par les API gitHub (le $context permet de passer un userAgent à file_get_contents, requis par gitHub)
-  $context = stream_context_create(array('http'=>array('method'=>'GET','header'=>"Accept-language: en\r\nCookie: foo=bar\r\nUser-Agent: Fouyoufr\r\nAuthorization: Basic ".base64_encode("Fouyoufr:$gitToken"),'protocol_version'=>1.1)));
+  $context = stream_context_create(array('http'=>array('timeout'=>'2','method'=>'GET','header'=>"Accept-language: en\r\nCookie: foo=bar\r\nUser-Agent: Fouyoufr\r\nAuthorization: Basic ".base64_encode("Fouyoufr:$gitToken"),'protocol_version'=>1.1)));
   $gitReq='https://api.github.com/repos/Fouyoufr/remotechampions/commits?per_page=1&sha='.$gitBranch;
   if (isset($gitFile) and $gitFile!='') $gitReq.='&path='.$gitFile;
   $jsonContent=@file_get_contents($gitReq,false,$context);

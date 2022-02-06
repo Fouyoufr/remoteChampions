@@ -13,7 +13,7 @@ if (!isset($partieId)) {
     echo "'><input type='hidden' name='publicPass' id='publicPass'>".$str['create']."</form></td></tr>";}
   echo "</table></div></body></html>";
 displayBottom();
-echo '<button class="install">'.$str['install'].'</button>';
+echo '<button class="install">'.$str['install'].'</button><script type="application/javascript">startInstall();</script>';
 exit();}
 
 if ($mobile) {

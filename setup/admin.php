@@ -192,6 +192,9 @@ if (isset($_GET['del'])) {
 <?php
 $gameList=glob('ajax/*.xml');
 if ($gameList) {
+  function gameSort($a, $b) {
+    if ($a['date']==$b['date']) return 0;
+    return ($a['date'] < $b['date']) ? -1 : 1;}
   echo "<div class='pannel'><div class='titleAdmin'>".$str['gamesList']."</div><table><tr><th>".$str['gamePassAdmin']."</th><th>".$str['villain']."</th><th>".$str['players']."</th><th>".$str['gameDate']."</th><th></th></tr>";
   $gamesList=array();
   foreach($gameList as $game) {
@@ -201,7 +204,11 @@ if ($gameList) {
     if ($xml->joueur->count()>0) $gameLine.='</td><td>'.$xml->joueur->count();  else $gameLine.='</td><td>'.$str['noPlayer'];
     $gameLine.='</td><td>le '.date('d/m/Y H:i',$xml['pDate']->__toString()).'</td><td class="adminIcones"><a href=".?p='.$xml['pUri'].'"><img src="img/link.png" alt="'.$str['adminOpenGame'].'"/></a> / <a href="?del='.$xml['pUri'].'" onclick="return confirm(\''.$str['deleteConfirm'].' '.$xml['pUri'].' ?\')"><img src="img/trash.png" alt="'.$str['adminDelete'].'"/></a> / <a href="ajax/'.$xml['pUri'].'.xml" download><img src="img/saveB.png" alt="'.$str['save'].'"/></a></td></tr>';
     $gamesList[]=array('date'=>$xml['pDate']->__toString(),'gameLine'=>$gameLine);}
-  usort($gamesList,create_function('$a,$b','return $b[\'date\']-$a[\'date\'];'));
+
+    //print_r($gamesList);
+
+  usort($gamesList,'gameSort');
+
   foreach ($gamesList as $gameLine) echo $gameLine['gameLine'];
   echo "</table></div>";}
 
