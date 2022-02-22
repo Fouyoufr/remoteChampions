@@ -13,6 +13,8 @@ Copiez simplement l'intégralité du contenu du dossier "*setup*" à la racine d
 [Implémentation test](http://rchampions.tk)
 
 # Historique des changements
+## Version 6.3
+Correction du passage en rouge du bouton de diminution de vie d'un joueur tenace sur l'écran principal.  
 ## Version 6.2
 Remote Champions devient une application web "installable" pour en faciliter l'accès.
 ## Version 6.1

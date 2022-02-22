@@ -8,7 +8,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     addBtn.style.display='none';
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {deferredPrompt = null;});});});
-if ('serviceWorker' in navigator) {navigator.serviceWorker.register('/serviceWorker.js');}}
+if ('serviceWorker' in navigator) {navigator.serviceWorker.register('serviceWorker.js');}}
 
 var fsRequestMethod = document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen || document.documentElement.mozRequestFullScreen || document.documentElement.msRequestFullScreen;
 
@@ -305,9 +305,15 @@ function ajaxMainSet(ajaxMainReq) {
     if (etat=='AE') etat=lang['alter']; else etat=lang['hero'];
     if (jDoc.getAttribute('jDesoriente')==0) document.getElementById('desoriente'+numero).className='disabledButton'; else document.getElementById('desoriente'+numero).className='desoriente';
     if (jDoc.getAttribute('jSonne')==0) document.getElementById('sonne'+numero).className='disabledButton'; else document.getElementById('sonne'+numero).className='sonne';
-    if (jDoc.getAttribute('jTenace')==0) document.getElementById('tenace'+numero).className='disabledButton'; else document.getElementById('tenace'+numero).className='tenace';
     document.getElementById('picJoueur'+numero).src='img/heros/'+jDoc.getAttribute('jHeros')+'.png';
-   	document.getElementById('vieDisp'+numero).innerHTML='<input class="vieBtn" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');"><div id="vie'+numero+'" class="playerLife">'+vie+'</div><input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'vie'+numero+'\').innerText=parseInt(document.getElementById(\'vie'+numero+'\').innerText)+1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');">';
+   	document.getElementById('vieDisp'+numero).innerHTML='<input id="vieBtnMoins'+numero+'" type="button" value="<" onclick="document.getElementById(\'vie'+numero+'\').innerText-=1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');"><div id="vie'+numero+'" class="playerLife">'+vie+'</div><input class="vieBtn" type="button" value=">" onclick="document.getElementById(\'vie'+numero+'\').innerText=parseInt(document.getElementById(\'vie'+numero+'\').innerText)+1;ajaxPost(\'j='+jId+'&vieJoueur\',document.getElementById(\'vie'+numero+'\').innerText,\'ajaxMainSet\');">';
+     if (jDoc.getAttribute('jTenace')==0) {
+      document.getElementById('vieBtnMoins'+numero).className='vieBtn';
+      document.getElementById('tenace'+numero).className='disabledButton';}
+    else {
+      document.getElementById('vieJoueurMoins').className='vieBtnRed';
+      document.getElementById('tenace'+numero).className='tenace';
+    }
     document.getElementById('joueur'+numero+'Etat').innerHTML='<div class="etatJoueur" onclick="ajaxPost(\'j='+jId+'&switch\',\'etat\',\'ajaxMainSet\');"><span>'+etat+'</span></div>';
     document.getElementById('desoriente'+numero).setAttribute('onclick','ajaxPost("j='+jId+'&switch","desoriente",\'ajaxMainSet\');');
     document.getElementById('desoriente'+numero).className+=' bouton';

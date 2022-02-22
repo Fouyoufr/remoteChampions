@@ -4,17 +4,17 @@
     "orientation": "landscape",
     "icons": [
       {
-        "src": "/img/iconBig.png",
+        "src": "img/iconBig.png",
         "type": "image/png",
         "sizes": "512x512"
       },
       {
-        "src": "/img/iconSmall.png",
+        "src": "img/iconSmall.png",
         "type": "image/png",
         "sizes": "192x192"
       }
     ],
-    "start_url": "/index.php",
+    "start_url": "index.php",
     "background_color": "#D3D3D3",
     "display": "fullscreen",
     "scope": "/",
@@ -22,7 +22,7 @@
     "description": "Facilite l agestion des parties en ligne de Marvel Champions",
     "screenshots": [
       {
-        "src": "/img/screenShot.png",
+        "src": "img/screenShot.png",
         "type": "image/png",
         "sizes": "804x486"
       }

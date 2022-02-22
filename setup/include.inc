@@ -19,7 +19,7 @@ if (isset($title)) {
   <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
   <meta charset='UTF-8'>
   <script type='application/javascript' src='mc.js'></script>
-  <link rel='manifest' href='/manifest.json'>
+  <link rel='manifest' href='rc.manifest'>
   <link rel='stylesheet' href='ecran.css' content-type='text/css; charset=utf-8'>
   <link rel='icon' type='image/x-icon' href='favicon.ico'/>
   <title>$title</title>

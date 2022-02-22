@@ -4,7 +4,7 @@
     'admin.php','ajax.php','functions.inc','include.inc','index.php','joueur.php','mechant.php','new.php','en/lang.php','fr/lang.php','longpool.php',
     'aide.css','ecran.css',
 	'mc.js','serviceWorker.js',
-	'manifest.json',
+	'rc.manifest',
 	'aide.png','amplification.png','bug.png','counter.png','first.png','link.png','load.png','marvel-fullHD.png','Menace+.png','MenaceAcceleration.png','MenaceCrise.png','MenaceRencontre.png','pp.png','save.png','saveB.png','smartphone.png','trash.png','en.png','fr.png','melodice.png','fsOn.png','fsOff.png','smartPhoneTilt.png','screenShot.png','iconBig.png','iconSmall.png','install.png');
   error_reporting(E_ERROR | E_PARSE);
   clearstatcache();
