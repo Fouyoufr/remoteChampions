@@ -311,7 +311,7 @@ function ajaxMainSet(ajaxMainReq) {
       document.getElementById('vieBtnMoins'+numero).className='vieBtn';
       document.getElementById('tenace'+numero).className='disabledButton';}
     else {
-      document.getElementById('vieJoueurMoins').className='vieBtnRed';
+      document.getElementById('vieBtnMoins'+numero).className='vieBtnRed';
       document.getElementById('tenace'+numero).className='tenace';
     }
     document.getElementById('joueur'+numero+'Etat').innerHTML='<div class="etatJoueur" onclick="ajaxPost(\'j='+jId+'&switch\',\'etat\',\'ajaxMainSet\');"><span>'+etat+'</span></div>';
