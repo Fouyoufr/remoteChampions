@@ -9,7 +9,7 @@ if (!isset($partieId)) {
   echo "<h1>".$str['welcome']."</h1><table><tr><td>".$str['typeKey']."</td><td><form method='post'><input type='text' name='p' id='selectPartieName' maxlength='6' size='6'><input type='submit' value='OK'></form></td></tr>";
   if (!$mobile) {
     echo "<tr><td>".$str['orCreate']."</td><td><form action='new.php' method='post' class='creer' onclick='";
-    if ($publicPass!='') echo "moDePass=prompt(\"".$str['publicPass']."\");if(moDePass===null) return; else {getElementById(\"publicPass\").value=moDePass;this.submit();}"; else echo "this.submit();";
+    if ($publicPass!='' and $publicPass!=$_SESSION['publicPass']) echo "moDePass=prompt(\"".$str['publicPass']."\");if(moDePass===null) return; else {getElementById(\"publicPass\").value=moDePass;this.submit();}"; else echo "this.submit();";
     echo "'><input type='hidden' name='publicPass' id='publicPass'>".$str['create']."</form></td></tr>";}
   echo "</table></div></body></html>";
 displayBottom();
