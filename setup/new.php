@@ -42,6 +42,10 @@ if (!empty($_POST) and $error=='') {
 	$xml=new SimpleXMLElement($partieXML);
     if(!isset($_POST['mechantSeul'])) {
       $premier=mt_rand(1,$_POST['nbJoueurs']);
+      #Insertion des informations si connecté sur le site de test
+      if (isset($_SESSION['azureAuth'])) {
+        $xmlAzureAuth=$xml->addChild('azureAuth');
+        xmlAttr($xmlAzureAuth,$_SESSION['azureAuth']);}
       for ($i=1;$i<=$_POST['nbJoueurs'];$i++) {
         $xmlJoueur=$xml->addChild('joueur');
         xmlAttr($xmlJoueur,array('jId'=>$i,'jNom'=>$str['player'].' '.$i,'jNumero'=>$i,'jVie'=>12,'jStatut'=>'AE','jDesoriente'=>0,'jSonne'=>0,'jTenace'=>0,'jHeros'=>0));}}
